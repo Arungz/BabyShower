@@ -4,39 +4,49 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:image" content="Images/logo.png"/>
   <title>Baby Shower</title>
-  <link rel="icon" type="image/png" href="Images/logo.png"/>
+  <link rel="icon" type="image/png" href="images/logo.png"/>
 
 <style>
-    div.scroll-container {
-  background-color: #333;
-  overflow: auto;
-  white-space: nowrap;
-  padding: 10px;
-}
+  .video-wrapper {
+    max-width: 90%; /* திரையின் இருபுறமும் இடைவெளி இருக்க 90% என வைக்கப்பட்டுள்ளது */
+    margin: 20px auto; /* மேல்/கீழ் மற்றும் பக்கவாட்டில் இடைவெளிக்காக */
+    text-align: center;
+  }
 
-div.scroll-container img {
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  height: 600px;
-  width: 350px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 10px;
-}
+  video {
+    width: 100%;    /* மொபைல் மற்றும் டெஸ்க்டாப்பிற்கு ஏற்ப மாறும் */
+    height: auto;   /* வீடியோவின் விகிதம் (aspect ratio) மாறாமல் இருக்க */
+    border-radius: 8px; /* வீடியோ ஓரங்கள் மென்மையாக இருக்க */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* வீடியோ தெளிவாகத் தெரிய நிழல் */
+  }
 </style>
 </head>
 <body>
-    <div class="scroll-container">
-        <img src="Images\1.png" alt="Invite1" oncontextmenu="return false";>
+    <div class="video-wrapper">
+  <!-- முதல் வீடியோ -->
+  <video id="myVideo" muted playsinline autoplay>
+    <source src="video1.mp4" type="video/invite1.mp4">
+    உங்கள் உலாவி (Browser) வீடியோவை ஆதரிக்கவில்லை.
+  </video>
+</div>
+    <!--<div class="scroll-container">
+        <img src="images\1.png" alt="Maadu1" oncontextmenu="return false";>
 
-        <img src="Images\2.png" alt="Invite2" oncontextmenu="return false";>
+        <img src="images\2.png" alt="Maadu2" oncontextmenu="return false";>
 
-      </div>
+      </div> -->
+      
       <script>
+          const videoPlayer = document.getElementById('myVideo');
+  const nextVideoSource = "video/invite2.mp4"; // இரண்டாவது வீடியோவின் முகவரி
+
+  // வீடியோ தொடங்கி 3 விநாடிகளுக்குப் பின் அடுத்த வீடியோவை மாற்ற
+  setTimeout(function() {
+    videoPlayer.src = nextVideoSource;
+    videoPlayer.play();
+  }, 3000); // 3000ms = 3 விநாடிகள்
+
           document.body.addEventListener('dragstart', event => {
   event.preventDefault();
 });
@@ -47,6 +57,4 @@ document.body.addEventListener('drop', event => {
       </script>
       
 </body>
-
 </html>
-
