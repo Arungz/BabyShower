@@ -29,10 +29,6 @@
     border-radius: 8px; 
     box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
   }
-  
-  #myVideo[ended="true"] {
-    opacity: 0;
- }
 </style>
 </head>
 <body>
@@ -54,10 +50,6 @@
     });
   }, 3000); 
 
-  document.getElementById('myVideo').addEventListener('ended', function() {
-    this.load();
-}, false);
-
   document.body.addEventListener('dragstart', event => {
     event.preventDefault();
   });
@@ -68,3 +60,4 @@
 </script>  
 </body>
 </html>
+
