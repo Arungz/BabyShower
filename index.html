@@ -29,15 +29,19 @@
     border-radius: 8px; 
     box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
   }
-  img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+  img { 
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    user-select: none; 
+  }
 </style>
 </head>
 <body>
     <div class="video-wrapper">
   <video id="myVideo" muted playsinline autoplay poster="Images/preview.png" style="background-image: url('Images/preview.png'); background-size: cover;">
-    <source src="video/invite1.mp4" type="video/mp4"
+    <source src="video/invite1.mp4" type="video/mp4">
   </video>
-     <img id="endImage" src="Images/2.png" style="display: none; width: 100%; height: auto; "oncontextmenu="return false;" draggabl="false">
+     <img id="endImage" src="Images/2.png" style="display: none; width: 100%; height: auto;" oncontextmenu="return false;" draggable="false">
   </div>
 <script>
   const videoPlayer = document.getElementById('myVideo');
@@ -47,17 +51,10 @@
     videoPlayer.src = nextVideoSource;
     videoPlayer.play();
     videoPlayer.addEventListener('ended', function() {
-      videoPlayer.poster = 'Images/2.png';
+      videoPlayer.style.display = 'none';
+      document.getElementById('endImage').style.display = 'block';
     });
   }, 3000); 
-
-  const video = document.getElementById('myVideo');
-  const image = document.getElementById('endImage');
-
-video.addEventListener('ended', function() {
-    video.style.display = 'none';
-    image.style.display = 'block';
-}, false);
 
   document.addEventListener('contextmenu', event => event.preventDefault());
   
@@ -69,6 +66,13 @@ video.addEventListener('ended', function() {
 
   document.body.addEventListener('drop', event => {
     event.preventDefault();
+  });
+
+  // Try to prevent screenshot (might not work in all browsers)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'PrintScreen') {
+      e.preventDefault();
+    }
   });
 </script>  
 </body>
