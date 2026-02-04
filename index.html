@@ -40,7 +40,7 @@
   </video>
 </div>
 <script>
-          const videoPlayer = document.getElementById('myVideo');
+       const videoPlayer = document.getElementById('myVideo');
   const nextVideoSource = "video/invite2.mp4"; // இரண்டாவது வீடியோவின் முகவரி
 
   // வீடியோ தொடங்கி 3 விநாடிகளுக்குப் பின் அடுத்த வீடியோவை மாற்ற
@@ -49,7 +49,7 @@
     videoPlayer.play();
     // Video ended event listener
     videoPlayer.addEventListener('ended', function() {
-      videoPlayer.poster = 'Images/invite.png';
+      videoPlayer.poster = 'Images/2.png';
     });
   }, 3000); // 3000ms = 3 விநாடிகள்
 
@@ -65,6 +65,3 @@ document.body.addEventListener('drop', event => {
 </body>
 
 </html>
-
-
-
