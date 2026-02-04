@@ -39,9 +39,8 @@
     user-select: none; 
   }
 
-  /* --- New & Updated Styles --- */
+  /* --- Updated Styles --- */
   #mainContentContainer {
-    position: relative; /* This is the anchor for the side images */
     display: none; /* Hidden until video ends */
   }
 
@@ -50,41 +49,12 @@
     height: auto;   
     border-radius: 8px; 
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  }
-
-  .side-image {
-    position: absolute;
-    top: 0; /* Align to the top of the container */
-    width: 25%; /* Smaller size */
-    max-width: 120px;
-    height: auto;
-    border-radius: 8px;
-    opacity: 0;
-    transition: all 1.5s ease-out;
-  }
-
-  #leftImage {
-    left: 0; /* Positioned on the far left */
-    transform: translateX(-100%);
-  }
-  #leftImage.revealed {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  #rightImage {
-    right: 0; /* Positioned on the far right */
-    transform: translateX(100%);
-  }
-  #rightImage.revealed {
-    opacity: 1;
-    transform: translateX(0);
+    margin-bottom: 30px; /* Add space below the main image */
   }
   
   #locationText, #locationLink {
     opacity: 0;
     transition: opacity 2s ease-in;
-    margin-top: 30px;
   }
   
   #locationText.revealed, #locationLink.revealed {
@@ -94,6 +64,7 @@
   #locationText {
     font-size: 1.2em;
     font-weight: bold;
+    margin-top: 15px; /* Space above the text */
   }
 
   #locationLink img {
@@ -115,26 +86,19 @@
       <!-- This container holds all the content that appears after the video -->
       <div id="mainContentContainer">
           <img id="endImage" src="Images/2.png" oncontextmenu="return false;" draggable="false">
-
-          <!-- NOTE: Replace 'left-image.png' with your image -->
-          <img id="leftImage" class="side-image" src="Images/left-image.png">
-          <!-- NOTE: Replace 'right-image.png' with your image -->
-          <img id="rightImage" class="side-image" src="Images/right-image.png">
-          
-          <p id="locationText">Click below to get the exact location</p>
           
           <!-- IMPORTANT: Replace 'YOUR_GOOGLE_MAPS_LINK_HERE' with your location URL -->
           <a id="locationLink" href="YOUR_GOOGLE_MAPS_LINK_HERE" target="_blank">
             <!-- NOTE: Replace 'location-button.png' with your image -->
             <img src="Images/location-button.png" alt="Get Location">
           </a>
+
+          <p id="locationText">Click above to get the exact location</p>
       </div>
   </div>
 <script>
   const videoPlayer = document.getElementById('myVideo');
   const mainContentContainer = document.getElementById('mainContentContainer');
-  const leftImage = document.getElementById('leftImage');
-  const rightImage = document.getElementById('rightImage');
   const locationText = document.getElementById('locationText');
   const locationLink = document.getElementById('locationLink');
 
@@ -143,17 +107,11 @@
       videoPlayer.style.display = 'none';
       mainContentContainer.style.display = 'block';
       
-      // After a short delay, reveal the side images
+      // After a short delay, fade in the location link and text
       setTimeout(() => {
-        leftImage.classList.add('revealed');
-        rightImage.classList.add('revealed');
-      }, 500);
-
-      // After the side images have animated, fade in the text and button
-      setTimeout(() => {
-        locationText.classList.add('revealed');
         locationLink.classList.add('revealed');
-      }, 2000); 
+        locationText.classList.add('revealed');
+      }, 500); // 0.5 second delay
   });
 
   // Security features
