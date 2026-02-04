@@ -47,6 +47,10 @@
   setTimeout(function() {
     videoPlayer.src = nextVideoSource;
     videoPlayer.play();
+    // Video ended event listener
+    videoPlayer.addEventListener('ended', function() {
+      videoPlayer.poster = 'Images/invite.png';
+    });
   }, 3000); // 3000ms = 3 விநாடிகள்
 
           document.body.addEventListener('dragstart', event => {
