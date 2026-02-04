@@ -45,19 +45,19 @@
   </div>
 <script>
   const videoPlayer = document.getElementById('myVideo');
-  const nextVideoSource = "video/invite2.mp4";
+  const videos = ["video/invite1.mp4", "video/invite2.mp4"];
+  let currentVideoIndex = 0;
 
   videoPlayer.addEventListener('ended', function() {
-    videoPlayer.src = nextVideoSource;
-    videoPlayer.play();
-  });
-
-  videoPlayer.addEventListener('ended', function() {
-    if (videoPlayer.src === nextVideoSource) {
+    currentVideoIndex++;
+    if (currentVideoIndex < videos.length) {
+      videoPlayer.src = videos[currentVideoIndex];
+      videoPlayer.play();
+    } else {
       videoPlayer.style.display = 'none';
       document.getElementById('endImage').style.display = 'block';
     }
-  }, { once: true });
+  });
 
   document.addEventListener('contextmenu', event => event.preventDefault());
   
