@@ -47,14 +47,19 @@
   const videoPlayer = document.getElementById('myVideo');
   const nextVideoSource = "video/invite2.mp4";
 
-  setTimeout(function() {
+  // Preload the next video
+  const nextVideo = new Video();
+  nextVideo.src = nextVideoSource;
+  nextVideo.preload = 'auto';
+
+  videoPlayer.addEventListener('ended', function() {
     videoPlayer.src = nextVideoSource;
     videoPlayer.play();
     videoPlayer.addEventListener('ended', function() {
       videoPlayer.style.display = 'none';
       document.getElementById('endImage').style.display = 'block';
     });
-  }, 3000); 
+  });
 
   document.addEventListener('contextmenu', event => event.preventDefault());
   
