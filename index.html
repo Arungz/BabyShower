@@ -88,6 +88,13 @@
       <video id="myVideo" muted playsinline autoplay poster="Images/preview.gif">
         <source src="video/invite1.mp4" type="video/mp4">
       </video>
+      <div id="loading-text" style="display: none; text-align: center; margin-top: 10px;">
+    Loading... Please wait.
+  </div>
+  <div id="refresh-text" style="display: none; text-align: center; margin-top: 10px; color: #666;">
+    Taking too long? <a href="javascript:location.reload()">Refresh</a> the page.
+  </div>
+    </div>
       
       <!-- This container holds all the content that appears after the video -->
       <div id="mainContentContainer">
@@ -118,6 +125,23 @@
         locationLink.classList.add('revealed');
         locationText.classList.add('revealed');
       }, 500); // 0.5 second delay
+  });
+
+  // Show loading text
+  const loadingText = document.getElementById('loading-text');
+  const refreshText = document.getElementById('refresh-text');
+  loadingText.style.display = 'block';
+
+  // Show refresh text after 1 minute
+  setTimeout(() => {
+    loadingText.style.display = 'none';
+    refreshText.style.display = 'block';
+  }, 60000); // 1 minute
+
+  // Hide loading/refresh text when video is ready
+  videoPlayer.addEventListener('canplay', () => {
+    loadingText.style.display = 'none';
+    refreshText.style.display = 'none';
   });
 
   // Security features
