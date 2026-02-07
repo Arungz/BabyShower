@@ -1,402 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="Baby Shower Invitation" />
-  <meta property="og:description" content="Invitation To The Family Member" />
-  <meta property="og:image" content="https://arungz.github.io/BabyShower/Images/preview.gif" />
-  <meta property="og:image:secure_url" content="https://arungz.github.io/BabyShower/Images/preview.gif" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:url" content="https://arungz.github.io/BabyShower/" />
-  <meta property="og:type" content="website" />
-  <title>Baby Shower</title>
-  <link rel="icon" type="image/png" href="Images/logo.png"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: 'Poppins', sans-serif;
-    color: #333;
-    background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* Smooth scroll behavior */
-  html {
-    scroll-behavior: smooth;
-  }
-
-  .video-wrapper {
-    max-width: 90%; 
-    margin: 20px auto; 
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    animation: slideDown 0.8s ease-out;
-  }
-
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  #myVideo {
-    object-fit: cover;
-    object-position: center;
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(236, 72, 153, 0.3);
-  }
-
-  video {
-    width: 100%;    
-    height: auto;   
-    border-radius: 12px; 
-    box-shadow: 0 8px 32px rgba(236, 72, 153, 0.3);
-    max-width: 100%;
-  }
-
-  img { 
-    -webkit-touch-callout: none; 
-    -webkit-user-select: none; 
-    user-select: none; 
-  }
-
-  /* Loading & Refresh text styles */
-  .loading-container {
-    margin-top: 20px;
-    text-align: center;
-    min-height: 40px;
-  }
-
-  #loading-text {
-    font-size: 1em;
-    color: #ec4899;
-    font-weight: 600;
-    animation: pulse 1.5s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-  }
-
-  #refresh-text {
-    color: #999;
-    font-size: 0.95em;
-  }
-
-  #refresh-text a {
-    color: #ec4899;
-    text-decoration: none;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  #refresh-text a:hover {
-    text-decoration: underline;
-    color: #be185d;
-  }
-
-  /* Main content container */
-  #mainContentContainer {
-    display: none;
-    animation: fadeInUp 1s ease-out;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  #endImage {
-    width: 100%;    
-    height: auto;   
-    border-radius: 12px; 
-    box-shadow: 0 8px 32px rgba(236, 72, 153, 0.3);
-    margin-bottom: 30px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    transition: transform 0.3s ease;
-  }
-
-  #endImage:hover {
-    transform: scale(1.02);
-  }
-  
-  #locationText, #locationLink {
-    opacity: 0;
-    transition: opacity 2s ease-in;
-  }
-  
-  #locationText.revealed, #locationLink.revealed {
-    opacity: 1;
-    animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  @keyframes popIn {
-    0% {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  #locationText {
-    font-size: 1.2em;
-    font-weight: 600;
-    margin-top: 15px;
-    color: #be185d;
-    letter-spacing: 0.5px;
-  }
-
-  #locationLink {
-    display: inline-block;
-    margin-top: 20px;
-    perspective: 1000px;
-  }
-
-  #locationLink img {
-    max-width: 250px;
-    width: 60%;
-    cursor: pointer;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(236, 72, 153, 0.3);
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    display: block;
-  }
-
-  #locationLink img:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(236, 72, 153, 0.4);
-  }
-
-  #locationLink img:active {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3);
-  }
-
-  /* Footer with confetti celebration */
-  .celebration-container {
-    text-align: center;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    display: none;
-  }
-
-  .celebration-text {
-    font-size: 1.5em;
-    font-family: 'Playfair Display', serif;
-    color: #be185d;
-    margin-bottom: 15px;
-    animation: scaleIn 0.8s ease-out;
-  }
-
-  @keyframes scaleIn {
-    from {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  .confetti {
-    position: fixed;
-    width: 10px;
-    height: 10px;
-    background-color: #fbbf24;
-    pointer-events: none;
-  }
-
-  /* Responsive design */
-  @media (max-width: 768px) {
-    .video-wrapper {
-      margin: 15px auto;
-    }
-
-    #locationText {
-      font-size: 1em;
-    }
-
-    #endImage {
-      margin-bottom: 20px;
-    }
-
-    .celebration-text {
-      font-size: 1.2em;
-    }
-  }
-
-  @media (max-width: 480px) {
-    body {
-      padding: 10px;
-    }
-
-    #locationLink img {
-      width: 80%;
-      max-width: 180px;
-    }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Shower Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #ffafbd, #ffc3a0);
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        .invitation {
+            margin: 50px auto;
+            padding: 20px;
+            border: 3px dashed #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            animation: bounce 1s infinite;
+        }
+        .celebrate {
+            font-size: 24px;
+            font-weight: bold;
+            color: #444;
+            margin: 20px 0;
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
-    <div class="video-wrapper">
-      <video id="myVideo" muted playsinline autoplay poster="Images/preview.gif">
-        <source src="video/invite1.mp4" type="video/mp4">
-      </video>
-      <div class="loading-container">
-        <div id="loading-text">Loading... Please wait.</div>
-        <div id="refresh-text" style="display: none;">
-          Taking too long? <a href="javascript:location.reload()">Refresh</a> the page.
-        </div>
-      </div>
+    <div class="invitation">
+        <h1>You're Invited to a Baby Shower!</h1>
+        <p>Join us to celebrate the upcoming arrival of our new baby!</p>
+        <div class="celebrate">Let's Celebrate!</div>
     </div>
-      
-    <!-- Main content container -->
-    <div id="mainContentContainer">
-      <img id="endImage" src="Images/2.png" oncontextmenu="return false;" draggable="false" alt="Baby Shower Invitation">
-      
-      <!-- Location Link -->
-      <div style="text-align: center;">
-        <a id="locationLink" href="https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8" target="_blank" rel="noopener noreferrer">
-          <img src="Images/location-button.png" alt="Get Location" draggable="false">
-        </a>
-        <p id="locationText">Click Above Image For Location</p>
-      </div>
-
-      <!-- Celebration message -->
-      <div class="celebration-container" id="celebrationContainer">
-        <p class="celebration-text">✨ We Look Forward to Celebrating With You! ✨</p>
-      </div>
-    </div>
-
-<script>
-  // Core functionality
-  const videoPlayer = document.getElementById('myVideo');
-  const mainContentContainer = document.getElementById('mainContentContainer');
-  const locationText = document.getElementById('locationText');
-  const locationLink = document.getElementById('locationLink');
-  const celebrationContainer = document.getElementById('celebrationContainer');
-  const loadingText = document.getElementById('loading-text');
-  const refreshText = document.getElementById('refresh-text');
-
-  // Video ended event
-  videoPlayer.addEventListener('ended', function() {
-    videoPlayer.style.display = 'none';
-    mainContentContainer.style.display = 'block';
-    
-    setTimeout(() => {
-      locationLink.classList.add('revealed');
-      locationText.classList.add('revealed');
-      
-      // Show celebration after location appears
-      setTimeout(() => {
-        celebrationContainer.style.display = 'block';
-        createConfetti();
-      }, 1500);
-    }, 500);
-  });
-
-  // Show loading text
-  loadingText.style.display = 'block';
-
-  // Show refresh text after 1 minute
-  setTimeout(() => {
-    loadingText.style.display = 'none';
-    refreshText.style.display = 'block';
-  }, 60000);
-
-  // Hide loading/refresh text when video is ready
-  videoPlayer.addEventListener('canplay', () => {
-    loadingText.style.display = 'none';
-    refreshText.style.display = 'none';
-  });
-
-  // Confetti animation function
-  function createConfetti() {
-    const colors = ['#fbbf24', '#ec4899', '#f43f5e', '#a78bfa', '#60a5fa'];
-    
-    for (let i = 0; i < 50; i++) {
-      const confetti = document.createElement('div');
-      confetti.className = 'confetti';
-      confetti.style.left = Math.random() * 100 + '%';
-      confetti.style.top = '-10px';
-      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      confetti.style.opacity = Math.random() * 0.7 + 0.3;
-      document.body.appendChild(confetti);
-
-      const duration = Math.random() * 2 + 2;
-      const xMove = Math.random() * 200 - 100;
-      const rotate = Math.random() * 720;
-
-      confetti.animate([
-        { transform: `translateY(0) translateX(0) rotate(0deg)`, opacity: 1 },
-        { transform: `translateY(${window.innerHeight + 10}px) translateX(${xMove}px) rotate(${rotate}deg)`, opacity: 0 }
-      ], {
-        duration: duration * 1000,
-        easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-      });
-
-      setTimeout(() => confetti.remove(), duration * 1000);
-    }
-  }
-
-  // Security features
-  document.addEventListener('contextmenu', event => event.preventDefault());
-  document.addEventListener('dragstart', event => event.preventDefault());
-  document.body.addEventListener('dragstart', event => event.preventDefault());
-  document.body.addEventListener('drop', event => event.preventDefault());
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'PrintScreen') {
-      e.preventDefault();
-    }
-  });
-
-  // Add smooth scroll on location link click
-  locationLink.addEventListener('click', function(e) {
-    if (!e.ctrlKey && !e.metaKey) {
-      e.preventDefault();
-      // Optional: Add animation before opening
-      setTimeout(() => {
-        window.open(this.href, '_blank', 'noopener,noreferrer');
-      }, 100);
-    }
-  });
-</script>  
+    <div class="confetti"></div>
+    <script>
+        function createConfetti() {
+            const colors = ['#ffeb3b', '#ff5722', '#4caf50', '#2196f3', '#9c27b0'];
+            const confetti = document.querySelector('.confetti');
+            for (let i = 0; i < 100; i++) {
+                const confettiPiece = document.createElement('div');
+                confettiPiece.classList.add('confetti-piece');
+                confettiPiece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confettiPiece.style.position = 'absolute';
+                confettiPiece.style.width = `${Math.random() * 10 + 5}px`;
+                confettiPiece.style.height = `${Math.random() * 10 + 5}px`;
+                confettiPiece.style.left = `${Math.random() * 100}vw`;
+                confettiPiece.style.top = `${Math.random() * 100}vh`;
+                confettiPiece.style.opacity = Math.random();
+                confettiPiece.style.transition = 'all 2s ease-out';
+                confetti.appendChild(confettiPiece);
+                confettiPiece.addEventListener('animationend', () => {
+                    confettiPiece.remove();
+                });
+            }
+        }
+        setInterval(createConfetti, 1000);
+    </script>
 </body>
 </html>
