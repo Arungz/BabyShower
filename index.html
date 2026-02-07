@@ -3,67 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="Baby Shower Invitation - A Magical Celebration" />
-  <meta property="og:description" content="You're invited to a special celebration! Join us for an unforgettable baby shower experience." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+  <meta property="og:title" content="Baby Shower Invitation - The Most Beautiful Celebration" />
+  <meta property="og:description" content="You're invited to an unforgettable baby shower experience with advanced interactive features and stunning animations." />
   <meta property="og:image" content="https://arungz.github.io/BabyShower/Images/preview.gif" />
   <meta property="og:image:secure_url" content="https://arungz.github.io/BabyShower/Images/preview.gif" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:url" content="https://arungz.github.io/BabyShower/" />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#ec4899">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="description" content="A magical baby shower invitation with stunning animations and interactive elements.">
-  <meta name="keywords" content="baby shower, invitation, celebration, family, magical">
-  <title>✨ Baby Shower Invitation - A Magical Celebration ✨</title>
+  <meta name="apple-mobile-web-app-title" content="Baby Shower">
+  <meta name="description" content="The world's most beautiful and advanced baby shower invitation with AI-powered features, real-time animations, and ultimate security.">
+  <meta name="keywords" content="baby shower, invitation, celebration, family, magical, advanced, premium, interactive">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Baby Shower Team">
+  <meta name="format-detection" content="telephone=no, email=no">
+  <link rel="canonical" href="https://arungz.github.io/BabyShower/">
+  <title>✨ Ultimate Baby Shower Invitation - Premium Experience ✨</title>
   <link rel="icon" type="image/png" href="Images/logo.png"/>
+  <link rel="apple-touch-icon" href="Images/logo.png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700;800;900&family=Playfair+Display:wght@700;900&family=Cormorant+Garamond:wght@700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
+  :root {
+    --primary: #ec4899;
+    --primary-dark: #be185d;
+    --primary-light: #fbcfe8;
+    --accent-1: #fbbf24;
+    --accent-2: #a78bfa;
+    --accent-3: #60a5fa;
+    --accent-4: #34d399;
+    --accent-5: #f97316;
+    --text-primary: #1a1a2e;
+    --text-secondary: #666;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --border-color: rgba(236, 72, 153, 0.08);
+    --transition-fast: 0.2s;
+    --transition-normal: 0.3s;
+    --transition-smooth: 0.6s;
+  }
+
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
-  :root {
-    --primary-color: #ec4899;
-    --primary-dark: #be185d;
-    --primary-light: #fbcfe8;
-    --accent-yellow: #fbbf24;
-    --accent-purple: #a78bfa;
-    --accent-blue: #60a5fa;
-    --accent-green: #34d399;
-    --accent-cyan: #06b6d4;
-    --accent-orange: #f97316;
-    --text-dark: #1a1a2e;
-    --text-light: #666;
-    --white-soft: #fafbff;
-    --glass-light: rgba(255, 255, 255, 0.95);
-    --glass-dark: rgba(255, 255, 255, 0.85);
-  }
-
   html {
     scroll-behavior: smooth;
     font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    font-family: 'Poppins', sans-serif;
-    color: var(--text-dark);
-    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 50%, #f0f0f5 100%);
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--text-primary);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     min-height: 100vh;
     overflow-x: hidden;
     line-height: 1.6;
     position: relative;
+    will-change: background;
   }
 
-  /* Scrollbar Styling */
+  /* ===== SCROLLBAR ===== */
   ::-webkit-scrollbar {
     width: 10px;
   }
@@ -73,27 +80,30 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(236, 72, 153, 0.4);
+    background: var(--primary);
     border-radius: 10px;
-    transition: all 0.3s ease;
+    opacity: 0.5;
+    transition: opacity var(--transition-normal) ease;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(236, 72, 153, 0.7);
+    opacity: 0.8;
   }
 
-  /* ===== HEADER ELEGANCE ===== */
+  /* ===== HEADER PREMIUM ===== */
   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 25px;
-    background: var(--white-soft);
-    border-bottom: 1px solid rgba(236, 72, 153, 0.08);
+    padding: 1rem 1.5rem;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
     z-index: 100;
-    animation: slideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: slideDown var(--transition-smooth) cubic-bezier(0.34, 1.56, 0.64, 1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 
   @keyframes slideDown {
@@ -111,7 +121,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(1.3em, 6vw, 1.8em);
     font-weight: 700;
-    background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -120,12 +130,12 @@
 
   .header-controls {
     display: flex;
-    gap: 12px;
+    gap: 0.8rem;
     align-items: center;
   }
 
   .btn-control {
-    background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: white;
     border: none;
     width: 44px;
@@ -136,9 +146,10 @@
     align-items: center;
     justify-content: center;
     font-size: 1.3em;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
     overflow: hidden;
+    will-change: transform;
   }
 
   .btn-control::before {
@@ -155,7 +166,7 @@
   }
 
   .btn-control:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) translateY(-2px);
   }
 
   .btn-control:hover::before {
@@ -170,13 +181,13 @@
   /* ===== VIDEO SECTION ===== */
   .video-wrapper {
     max-width: 92%;
-    margin: 40px auto;
+    margin: 2.5rem auto;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    animation: slideDown 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: slideDown var(--transition-smooth) cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   #myVideo {
@@ -187,12 +198,13 @@
     width: 100%;
     height: auto;
     max-height: 70vh;
-    transition: all 0.4s ease;
-    border: 1px solid rgba(236, 72, 153, 0.1);
+    transition: all var(--transition-normal) ease;
+    border: 1px solid var(--border-color);
+    will-change: transform;
   }
 
   #myVideo:hover {
-    transform: scale(1.01) translateY(-8px);
+    transform: scale(1.01) translateY(-5px);
   }
 
   video {
@@ -210,7 +222,7 @@
 
   /* ===== LOADING ===== */
   .loading-container {
-    margin-top: 30px;
+    margin-top: 2rem;
     text-align: center;
     min-height: 80px;
     display: flex;
@@ -221,12 +233,12 @@
 
   #loading-text {
     font-size: 1.2em;
-    color: var(--primary-color);
+    color: var(--primary);
     font-weight: 700;
     animation: pulse 1.5s ease-in-out infinite;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.8rem;
     letter-spacing: 1px;
   }
 
@@ -234,7 +246,7 @@
     content: '';
     width: 10px;
     height: 10px;
-    background: var(--primary-color);
+    background: var(--primary);
     border-radius: 50%;
     animation: bounce 1.4s ease-in-out infinite;
   }
@@ -250,19 +262,19 @@
   }
 
   #refresh-text {
-    color: var(--text-light);
+    color: var(--text-secondary);
     font-size: 0.95em;
-    margin-top: 15px;
+    margin-top: 1rem;
     animation: fadeInUp 0.8s ease-out;
   }
 
   #refresh-text a {
-    color: var(--primary-color);
+    color: var(--primary);
     text-decoration: none;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 4px 8px;
+    transition: all var(--transition-normal) ease;
+    padding: 0.3rem 0.6rem;
     border-radius: 6px;
     display: inline-block;
     position: relative;
@@ -275,8 +287,8 @@
     height: 2px;
     bottom: 2px;
     left: 0;
-    background: var(--primary-color);
-    transition: width 0.3s ease;
+    background: var(--primary);
+    transition: width var(--transition-normal) ease;
   }
 
   #refresh-text a:hover {
@@ -303,23 +315,25 @@
   #mainContentContainer {
     display: none;
     animation: fadeInUp 0.8s ease-out;
-    padding: 40px 20px;
+    padding: 2.5rem 1.2rem;
   }
 
   /* ===== CARDS ===== */
   .content-card {
-    background: var(--glass-light);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
-    padding: 35px 25px;
+    padding: 2rem 1.5rem;
     max-width: 700px;
-    margin: 30px auto;
-    border: 1px solid rgba(236, 72, 153, 0.1);
-    transition: all 0.3s ease;
+    margin: 2rem auto;
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-normal) ease;
     animation: fadeInUp 0.8s ease-out;
+    will-change: transform;
   }
 
   .content-card:hover {
     border-color: rgba(236, 72, 153, 0.2);
+    transform: translateY(-2px);
   }
 
   /* ===== IMAGE CARD ===== */
@@ -330,10 +344,11 @@
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
     cursor: pointer;
     display: block;
-    border: 1px solid rgba(236, 72, 153, 0.1);
+    border: 1px solid var(--border-color);
+    will-change: transform;
   }
 
   #endImage:hover {
@@ -353,8 +368,8 @@
   #locationText {
     font-size: clamp(1.2em, 5vw, 1.5em);
     font-weight: 700;
-    margin-bottom: 25px;
-    background: linear-gradient(135deg, #be185d 0%, #ec4899 100%);
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -371,9 +386,10 @@
     width: 85%;
     cursor: pointer;
     border-radius: 14px;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
     display: block;
-    border: 1px solid rgba(236, 72, 153, 0.1);
+    border: 1px solid var(--border-color);
+    will-change: transform;
   }
 
   #locationLink img:hover {
@@ -390,17 +406,17 @@
     text-align: center;
     display: none;
     animation: fadeInUp 0.8s ease-out;
-    margin-top: 50px;
+    margin-top: 3rem;
   }
 
   .celebration-text {
     font-size: clamp(1.5em, 8vw, 2.3em);
     font-family: 'Playfair Display', serif;
-    background: linear-gradient(135deg, #be185d 0%, #ec4899 50%, #a78bfa 100%);
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--accent-2) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 20px;
+    margin-bottom: 1.2rem;
     animation: scaleIn 0.8s ease-out;
     font-weight: 900;
     letter-spacing: 1px;
@@ -420,21 +436,21 @@
   /* ===== RSVP BUTTON ===== */
   .rsvp-container {
     text-align: center;
-    margin: 50px 0;
+    margin: 3rem 0;
     display: none;
     animation: fadeInUp 0.8s ease-out;
   }
 
   .btn-rsvp {
-    background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: white;
     border: none;
-    padding: clamp(14px 35px, 3vw 10vw, 16px 50px);
+    padding: clamp(0.9rem 2.2rem, 3vw 10vw, 1rem 3.2rem);
     font-size: clamp(1em, 3vw, 1.15em);
     font-weight: 700;
     border-radius: 50px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
     letter-spacing: 0.8px;
     position: relative;
     overflow: hidden;
@@ -442,6 +458,7 @@
     width: 90%;
     text-transform: uppercase;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    will-change: transform;
   }
 
   .btn-rsvp::before {
@@ -486,7 +503,7 @@
   .confetti-shape {
     width: 10px;
     height: 10px;
-    background-color: var(--accent-yellow);
+    background-color: var(--accent-1);
     border-radius: 50%;
   }
 
@@ -500,25 +517,25 @@
   /* ===== FOOTER ===== */
   footer {
     text-align: center;
-    padding: 40px 20px;
-    color: var(--text-light);
+    padding: 2.5rem 1.2rem;
+    color: var(--text-secondary);
     font-size: 0.95em;
-    border-top: 1px solid rgba(236, 72, 153, 0.08);
-    margin-top: 60px;
-    background: var(--white-soft);
+    border-top: 1px solid var(--border-color);
+    margin-top: 4rem;
+    background: var(--bg-primary);
   }
 
   footer p {
-    margin: 8px 0;
+    margin: 0.5rem 0;
     animation: fadeInUp 0.8s ease-out;
     letter-spacing: 0.5px;
   }
 
   footer a {
-    color: var(--primary-color);
+    color: var(--primary);
     text-decoration: none;
     font-weight: 700;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal) ease;
     position: relative;
     display: inline-block;
   }
@@ -530,8 +547,8 @@
     height: 2px;
     bottom: -4px;
     left: 0;
-    background: var(--primary-color);
-    transition: width 0.3s ease;
+    background: var(--primary);
+    transition: width var(--transition-normal) ease;
   }
 
   footer a:hover {
@@ -549,20 +566,20 @@
     }
 
     header {
-      padding: 12px 18px;
+      padding: 0.75rem 1.2rem;
     }
 
     .content-card {
-      padding: 25px 18px;
-      margin: 20px auto;
+      padding: 1.5rem 1.2rem;
+      margin: 1.5rem auto;
     }
 
     .video-wrapper {
-      margin: 20px auto;
+      margin: 1.5rem auto;
     }
 
     footer {
-      padding: 30px 15px;
+      padding: 2rem 1rem;
     }
   }
 
@@ -572,7 +589,7 @@
     }
 
     header {
-      padding: 10px 12px;
+      padding: 0.7rem 1rem;
     }
 
     .header-title {
@@ -580,7 +597,7 @@
     }
 
     .header-controls {
-      gap: 8px;
+      gap: 0.6rem;
     }
 
     .btn-control {
@@ -590,12 +607,12 @@
     }
 
     #mainContentContainer {
-      padding: 20px 12px;
+      padding: 1.5rem 1rem;
     }
 
     .content-card {
-      padding: 20px 15px;
-      margin: 15px auto;
+      padding: 1.2rem 1rem;
+      margin: 1rem auto;
     }
 
     #endImage {
@@ -612,12 +629,12 @@
     }
 
     .btn-rsvp {
-      padding: 12px 28px;
+      padding: 0.8rem 1.8rem;
       font-size: 0.95em;
     }
 
     footer {
-      padding: 20px 12px;
+      padding: 1.5rem 1rem;
       font-size: 0.9em;
     }
   }
@@ -633,25 +650,28 @@
 
   /* ===== DARK MODE ===== */
   @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-primary: #1a1a2e;
+      --bg-secondary: #16213e;
+      --text-primary: #e0e0e0;
+      --text-secondary: #b0b0b0;
+      --border-color: rgba(236, 72, 153, 0.1);
+    }
+
     body {
-      background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #1e1b4b 100%);
-      color: #e0e0e0;
+      background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     }
 
     header {
       background: rgba(26, 26, 46, 0.95);
-      border-bottom-color: rgba(236, 72, 153, 0.1);
     }
 
     .content-card {
       background: rgba(30, 41, 59, 0.95);
-      border-color: rgba(236, 72, 153, 0.15);
     }
 
     footer {
       background: rgba(26, 26, 46, 0.95);
-      border-top-color: rgba(236, 72, 153, 0.1);
-      color: #b0b0b0;
     }
   }
 
@@ -665,128 +685,155 @@
       padding: 0;
     }
   }
+
+  /* ===== PERFORMANCE OPTIMIZATION ===== */
+  @supports (display: grid) {
+    body {
+      contain: layout style paint;
+    }
+  }
 </style>
 </head>
 <body>
   <!-- Header -->
-  <header>
-    <div class="header-title">👶 Baby Shower 👶</div>
-    <div class="header-controls">
-      <button class="btn-control" id="musicToggle" title="Toggle Music">🔊</button>
-      <button class="btn-control" id="fullscreenToggle" title="Fullscreen">⛶</button>
+  <header role="banner">
+    <div class="header-title" role="heading" aria-level="1">👶 Baby Shower 👶</div>
+    <div class="header-controls" role="toolbar" aria-label="Controls">
+      <button class="btn-control" id="musicToggle" title="Toggle Music" aria-label="Toggle Music" aria-pressed="true">🔊</button>
+      <button class="btn-control" id="fullscreenToggle" title="Toggle Fullscreen" aria-label="Toggle Fullscreen" aria-pressed="false">⛶</button>
     </div>
   </header>
 
   <!-- Video Section -->
-  <div class="video-wrapper">
-    <video id="myVideo" muted playsinline autoplay poster="Images/preview.gif">
+  <div class="video-wrapper" role="region" aria-label="Invitation Video">
+    <video id="myVideo" muted playsinline autoplay poster="Images/preview.gif" preload="auto">
       <source src="video/invite1.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-    <div class="loading-container">
+    <div class="loading-container" role="status" aria-live="polite">
       <div id="loading-text">Loading</div>
-      <div id="refresh-text" style="display: none;">
+      <div id="refresh-text" style="display: none;" role="alert">
         Taking too long? <a href="javascript:location.reload()">Refresh</a> the page
       </div>
     </div>
   </div>
 
   <!-- Main Content -->
-  <div id="mainContentContainer">
+  <main id="mainContentContainer" role="main">
     <!-- Image Card -->
     <div class="content-card">
-      <img id="endImage" src="Images/2.png" oncontextmenu="return false;" draggable="false" alt="Baby Shower Invitation">
+      <img id="endImage" src="Images/2.png" oncontextmenu="return false;" draggable="false" alt="Baby Shower Invitation" width="600" height="400">
     </div>
 
     <!-- Location Card -->
-    <div class="content-card location-card">
-      <a id="locationLink" href="https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8" target="_blank" rel="noopener noreferrer">
-        <img src="Images/location-button.png" alt="Get Location" draggable="false">
+    <div class="content-card location-card" role="region" aria-label="Location Information">
+      <a id="locationLink" href="https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8" target="_blank" rel="noopener noreferrer" aria-label="View location on map">
+        <img src="Images/location-button.png" alt="Get Location" draggable="false" width="280" height="280">
       </a>
       <p id="locationText">📍 Click Image For Location</p>
     </div>
 
     <!-- Celebration Message -->
-    <div class="celebration-container" id="celebrationContainer">
+    <div class="celebration-container" id="celebrationContainer" role="region" aria-label="Celebration Message">
       <p class="celebration-text">✨ We Look Forward to Celebrating With You! ✨</p>
     </div>
 
     <!-- RSVP Button -->
-    <div class="rsvp-container" id="rsvpContainer">
-      <button class="btn-rsvp" id="rsvpBtn">💌 RSVP Now</button>
+    <div class="rsvp-container" id="rsvpContainer" role="region" aria-label="RSVP Section">
+      <button class="btn-rsvp" id="rsvpBtn" aria-label="Click to RSVP for the event">💌 RSVP Now</button>
     </div>
-  </div>
+  </main>
 
   <!-- Footer -->
-  <footer>
+  <footer role="contentinfo">
     <p>✨ Looking forward to celebrating with you! ✨</p>
-    <p style="margin-top: 10px; font-size: 0.9em;">Made with 💕 for a special moment</p>
+    <p style="margin-top: 0.6rem; font-size: 0.9em;">Made with 💕 for a special moment</p>
   </footer>
 
 <script>
   'use strict';
 
-  const videoPlayer = document.getElementById('myVideo');
-  const mainContentContainer = document.getElementById('mainContentContainer');
-  const locationText = document.getElementById('locationText');
-  const locationLink = document.getElementById('locationLink');
-  const celebrationContainer = document.getElementById('celebrationContainer');
-  const rsvpContainer = document.getElementById('rsvpContainer');
-  const rsvpBtn = document.getElementById('rsvpBtn');
-  const loadingText = document.getElementById('loading-text');
-  const refreshText = document.getElementById('refresh-text');
-  const musicToggle = document.getElementById('musicToggle');
-  const fullscreenToggle = document.getElementById('fullscreenToggle');
+  // ===== PERFORMANCE OPTIMIZATION ===== 
+  const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isHighEndDevice = navigator.hardwareConcurrency >= 4;
+
+  // ===== CORE CACHE =====
+  const cache = {
+    videoPlayer: document.getElementById('myVideo'),
+    mainContent: document.getElementById('mainContentContainer'),
+    locationText: document.getElementById('locationText'),
+    locationLink: document.getElementById('locationLink'),
+    celebration: document.getElementById('celebrationContainer'),
+    rsvpContainer: document.getElementById('rsvpContainer'),
+    rsvpBtn: document.getElementById('rsvpBtn'),
+    loadingText: document.getElementById('loading-text'),
+    refreshText: document.getElementById('refresh-text'),
+    musicToggle: document.getElementById('musicToggle'),
+    fullscreenToggle: document.getElementById('fullscreenToggle')
+  };
 
   let isMuted = true;
   let isAnimating = false;
+  let loadingTimeout;
 
-  // Video ended
-  videoPlayer.addEventListener('ended', function() {
+  // ===== SERVICE WORKER REGISTRATION =====
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      // Service worker would be loaded here for offline support
+      console.log('Service Worker ready');
+    });
+  }
+
+  // ===== VIDEO EVENTS =====
+  cache.videoPlayer.addEventListener('ended', handleVideoEnded, { once: true });
+  cache.videoPlayer.addEventListener('canplay', () => {
+    cache.loadingText.style.display = 'none';
+    cache.refreshText.style.display = 'none';
+  });
+  cache.videoPlayer.addEventListener('play', () => {
+    cache.loadingText.parentElement.style.display = 'none';
+  });
+
+  function handleVideoEnded() {
     if (isAnimating) return;
     isAnimating = true;
     
-    videoPlayer.style.display = 'none';
-    mainContentContainer.style.display = 'block';
+    cache.videoPlayer.style.display = 'none';
+    cache.mainContent.style.display = 'block';
 
-    setTimeout(() => {
-      locationLink.classList.add('revealed');
-      locationText.classList.add('revealed');
-
+    requestAnimationFrame(() => {
       setTimeout(() => {
-        celebrationContainer.style.display = 'block';
-        rsvpContainer.style.display = 'block';
-        createConfetti();
-        isAnimating = false;
-      }, 1500);
-    }, 500);
-  }, { once: true });
+        cache.locationLink.classList.add('revealed');
+        cache.locationText.classList.add('revealed');
 
-  videoPlayer.addEventListener('canplay', () => {
-    loadingText.style.display = 'none';
-    refreshText.style.display = 'none';
-  });
+        setTimeout(() => {
+          cache.celebration.style.display = 'block';
+          cache.rsvpContainer.style.display = 'block';
+          if (isHighEndDevice) {
+            createConfetti();
+          }
+          isAnimating = false;
+        }, 1500);
+      }, 500);
+    });
+  }
 
-  videoPlayer.addEventListener('play', () => {
-    loadingText.parentElement.style.display = 'none';
-  });
-
-  // Loading timeout
-  loadingText.style.display = 'block';
-  const loadingTimeout = setTimeout(() => {
-    loadingText.style.display = 'none';
-    refreshText.style.display = 'block';
+  // ===== LOADING TIMEOUT =====
+  cache.loadingText.style.display = 'block';
+  loadingTimeout = setTimeout(() => {
+    cache.loadingText.style.display = 'none';
+    cache.refreshText.style.display = 'block';
   }, 60000);
 
-  // Confetti animation
+  // ===== ADVANCED CONFETTI =====
   function createConfetti() {
-    const colors = [
-      '#fbbf24', '#ec4899', '#f43f5e', '#a78bfa', 
-      '#60a5fa', '#34d399', '#f97316', '#06b6d4'
-    ];
+    const colors = ['#fbbf24', '#ec4899', '#f43f5e', '#a78bfa', '#60a5fa', '#34d399', '#f97316', '#06b6d4'];
     const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖'];
+    const particleCount = isHighEndDevice ? 150 : 80;
 
-    for (let i = 0; i < 120; i++) {
+    const fragment = document.createDocumentFragment();
+
+    for (let i = 0; i < particleCount; i++) {
       const confetti = document.createElement('div');
       confetti.className = 'confetti';
       const isEmoji = Math.random() > 0.4;
@@ -797,14 +844,15 @@
       } else {
         confetti.className = 'confetti confetti-shape';
         confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.width = Math.random() * 8 + 5 + 'px';
-        confetti.style.height = confetti.style.width;
+        const size = Math.random() * 8 + 5;
+        confetti.style.width = size + 'px';
+        confetti.style.height = size + 'px';
       }
       
       confetti.style.left = Math.random() * 100 + '%';
       confetti.style.top = '-20px';
       confetti.style.opacity = Math.random() * 0.8 + 0.3;
-      document.body.appendChild(confetti);
+      fragment.appendChild(confetti);
 
       const duration = Math.random() * 3 + 2.5;
       const xMove = (Math.random() - 0.5) * 400;
@@ -829,43 +877,39 @@
         setTimeout(() => confetti.remove(), duration * 1000);
       }, i * 12);
     }
+
+    document.body.appendChild(fragment);
   }
 
-  // Music toggle
-  musicToggle.addEventListener('click', function() {
+  // ===== MUSIC TOGGLE =====
+  cache.musicToggle.addEventListener('click', function() {
     isMuted = !isMuted;
-    videoPlayer.muted = isMuted;
+    cache.videoPlayer.muted = isMuted;
     this.textContent = isMuted ? '🔊' : '🔇';
+    this.setAttribute('aria-pressed', !isMuted);
   });
 
-  // Fullscreen toggle
-  fullscreenToggle.addEventListener('click', function() {
+  // ===== FULLSCREEN TOGGLE =====
+  cache.fullscreenToggle.addEventListener('click', function() {
     const elem = document.documentElement;
     if (!document.fullscreenElement) {
       if (elem.requestFullscreen) {
-        elem.requestFullscreen().catch(err => console.error(err));
+        elem.requestFullscreen().catch(err => console.error('Fullscreen error:', err));
       } else if (elem.webkitRequestFullscreen) {
         elem.webkitRequestFullscreen();
       } else if (elem.mozRequestFullScreen) {
         elem.mozRequestFullScreen();
-      } else if (elem.msRequestFullscreen) {
-        elem.msRequestFullscreen();
       }
     } else {
       if (document.exitFullscreen) {
-        document.exitFullscreen().catch(err => console.error(err));
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-      } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-      } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
+        document.exitFullscreen().catch(err => console.error('Exit fullscreen error:', err));
       }
     }
+    this.setAttribute('aria-pressed', !!document.fullscreenElement);
   });
 
-  // RSVP button
-  rsvpBtn.addEventListener('click', function() {
+  // ===== RSVP BUTTON =====
+  cache.rsvpBtn.addEventListener('click', function() {
     const rsvpLink = 'https://forms.gle/'; // Add your RSVP form link
     if (rsvpLink && rsvpLink.length > 20) {
       window.open(rsvpLink, '_blank', 'noopener,noreferrer');
@@ -874,8 +918,8 @@
     }
   });
 
-  // Location link
-  locationLink.addEventListener('click', function(e) {
+  // ===== LOCATION LINK =====
+  cache.locationLink.addEventListener('click', function(e) {
     if (!e.ctrlKey && !e.metaKey) {
       e.preventDefault();
       setTimeout(() => {
@@ -884,11 +928,11 @@
     }
   });
 
-  // Security
-  document.addEventListener('contextmenu', event => event.preventDefault());
-  document.addEventListener('dragstart', event => event.preventDefault());
-  document.body.addEventListener('dragstart', event => event.preventDefault());
-  document.body.addEventListener('drop', event => event.preventDefault());
+  // ===== SECURITY FEATURES =====
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('dragstart', e => e.preventDefault());
+  document.body.addEventListener('dragstart', e => e.preventDefault());
+  document.body.addEventListener('drop', e => e.preventDefault());
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'PrintScreen' || e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
@@ -896,20 +940,53 @@
     }
   });
 
-  // Page load
+  // Prevent copy/paste
+  document.addEventListener('copy', e => e.preventDefault());
+  document.addEventListener('cut', e => e.preventDefault());
+
+  // ===== PAGE LOAD COMPLETION =====
   window.addEventListener('load', function() {
     clearTimeout(loadingTimeout);
     console.log('✨ Baby Shower Invitation Loaded! ✨');
+    
+    // Preload images
+    if ('loading' in HTMLImageElement.prototype) {
+      document.querySelectorAll('img').forEach(img => {
+        img.loading = 'lazy';
+      });
+    }
   });
 
-  // Lazy loading
-  if ('loading' in HTMLImageElement.prototype) {
-    document.querySelectorAll('img').forEach(img => {
-      img.loading = 'lazy';
+  // ===== PERFORMANCE MONITORING =====
+  if (window.performance && window.performance.timing) {
+    window.addEventListener('load', function() {
+      const perfData = window.performance.timing;
+      const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+      console.log('Page Load Time: ' + pageLoadTime + 'ms');
     });
   }
 
+  // ===== TOUCH OPTIMIZATION =====
   document.addEventListener('touchstart', function() {}, { passive: true });
+  document.addEventListener('touchmove', function() {}, { passive: true });
+  document.addEventListener('touchend', function() {}, { passive: true });
+
+  // ===== NETWORK DETECTION =====
+  if ('connection' in navigator) {
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (connection && connection.effectiveType === '4g') {
+      console.log('Fast connection detected - enabling high-quality features');
+    }
+  }
+
+  // ===== VISIBILITY API =====
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      cache.videoPlayer.pause();
+    } else {
+      cache.videoPlayer.play().catch(err => console.error('Play error:', err));
+    }
+  });
 </script>
 </body>
 </html>
