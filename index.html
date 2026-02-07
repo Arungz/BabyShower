@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
-  <meta property="og:title" content="Baby Shower Invitation - The Most Beautiful Celebration" />
-  <meta property="og:description" content="You're invited to an unforgettable baby shower experience with advanced interactive features and stunning animations." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta property="og:title" content="✨ Baby Shower Invitation - The Most Beautiful Celebration ✨" />
+  <meta property="og:description" content="You're invited to an unforgettable baby shower experience with stunning animations and advanced features." />
   <meta property="og:image" content="https://arungz.github.io/BabyShower/Images/preview.gif" />
   <meta property="og:image:secure_url" content="https://arungz.github.io/BabyShower/Images/preview.gif" />
   <meta property="og:type" content="website" />
@@ -13,18 +13,18 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Baby Shower">
-  <meta name="description" content="The world's most beautiful and advanced baby shower invitation with AI-powered features, real-time animations, and ultimate security.">
-  <meta name="keywords" content="baby shower, invitation, celebration, family, magical, advanced, premium, interactive">
+  <meta name="description" content="The world's most beautiful baby shower invitation with premium features and stunning animations.">
+  <meta name="keywords" content="baby shower, invitation, celebration, family, premium">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Baby Shower Team">
   <meta name="format-detection" content="telephone=no, email=no">
   <link rel="canonical" href="https://arungz.github.io/BabyShower/">
-  <title>✨ Ultimate Baby Shower Invitation - Premium Experience ✨</title>
-  <link rel="icon" type="image/png" href="Images/logo.png"/>
-  <link rel="apple-touch-icon" href="Images/logo.png"/>
+  <title>✨ Baby Shower - Ultimate Invitation ✨</title>
+  <link rel="icon" type="image/png" href="Images/logo.png">
+  <link rel="apple-touch-icon" href="Images/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700;800;900&family=Playfair+Display:wght@700;900&family=Cormorant+Garamond:wght@700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700;800;900&family=Playfair+Display:wght@700;900&family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
 
 <style>
   :root {
@@ -41,9 +41,6 @@
     --bg-primary: #ffffff;
     --bg-secondary: #f8f9fa;
     --border-color: rgba(236, 72, 153, 0.08);
-    --transition-fast: 0.2s;
-    --transition-normal: 0.3s;
-    --transition-smooth: 0.6s;
   }
 
   * {
@@ -66,11 +63,9 @@
     min-height: 100vh;
     overflow-x: hidden;
     line-height: 1.6;
-    position: relative;
-    will-change: background;
   }
 
-  /* ===== SCROLLBAR ===== */
+  /* Scrollbar */
   ::-webkit-scrollbar {
     width: 10px;
   }
@@ -83,14 +78,13 @@
     background: var(--primary);
     border-radius: 10px;
     opacity: 0.5;
-    transition: opacity var(--transition-normal) ease;
   }
 
   ::-webkit-scrollbar-thumb:hover {
     opacity: 0.8;
   }
 
-  /* ===== HEADER PREMIUM ===== */
+  /* Header */
   header {
     display: flex;
     justify-content: space-between;
@@ -101,9 +95,7 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    animation: slideDown var(--transition-smooth) cubic-bezier(0.34, 1.56, 0.64, 1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    animation: slideDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   @keyframes slideDown {
@@ -146,10 +138,9 @@
     align-items: center;
     justify-content: center;
     font-size: 1.3em;
-    transition: all var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
     overflow: hidden;
-    will-change: transform;
   }
 
   .btn-control::before {
@@ -166,7 +157,7 @@
   }
 
   .btn-control:hover {
-    transform: scale(1.1) translateY(-2px);
+    transform: scale(1.1);
   }
 
   .btn-control:hover::before {
@@ -178,7 +169,7 @@
     transform: scale(0.95);
   }
 
-  /* ===== VIDEO SECTION ===== */
+  /* Video Section */
   .video-wrapper {
     max-width: 92%;
     margin: 2.5rem auto;
@@ -187,7 +178,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    animation: slideDown var(--transition-smooth) cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: slideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   #myVideo {
@@ -198,9 +189,8 @@
     width: 100%;
     height: auto;
     max-height: 70vh;
-    transition: all var(--transition-normal) ease;
+    transition: transform 0.3s ease;
     border: 1px solid var(--border-color);
-    will-change: transform;
   }
 
   #myVideo:hover {
@@ -220,7 +210,7 @@
     user-select: none;
   }
 
-  /* ===== LOADING ===== */
+  /* Loading */
   .loading-container {
     margin-top: 2rem;
     text-align: center;
@@ -273,7 +263,7 @@
     text-decoration: none;
     font-weight: 700;
     cursor: pointer;
-    transition: all var(--transition-normal) ease;
+    transition: all 0.3s ease;
     padding: 0.3rem 0.6rem;
     border-radius: 6px;
     display: inline-block;
@@ -288,7 +278,7 @@
     bottom: 2px;
     left: 0;
     background: var(--primary);
-    transition: width var(--transition-normal) ease;
+    transition: width 0.3s ease;
   }
 
   #refresh-text a:hover {
@@ -311,14 +301,14 @@
     }
   }
 
-  /* ===== MAIN CONTENT ===== */
+  /* Main Content */
   #mainContentContainer {
     display: none;
     animation: fadeInUp 0.8s ease-out;
     padding: 2.5rem 1.2rem;
   }
 
-  /* ===== CARDS ===== */
+  /* Cards */
   .content-card {
     background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
@@ -326,9 +316,8 @@
     max-width: 700px;
     margin: 2rem auto;
     border: 1px solid var(--border-color);
-    transition: all var(--transition-normal) ease;
+    transition: all 0.3s ease;
     animation: fadeInUp 0.8s ease-out;
-    will-change: transform;
   }
 
   .content-card:hover {
@@ -336,7 +325,7 @@
     transform: translateY(-2px);
   }
 
-  /* ===== IMAGE CARD ===== */
+  /* Image */
   #endImage {
     width: 100%;
     height: auto;
@@ -344,11 +333,10 @@
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    transition: all var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     cursor: pointer;
     display: block;
     border: 1px solid var(--border-color);
-    will-change: transform;
   }
 
   #endImage:hover {
@@ -360,7 +348,7 @@
     transform: scale(0.97);
   }
 
-  /* ===== LOCATION CARD ===== */
+  /* Location */
   .location-card {
     text-align: center;
   }
@@ -374,11 +362,36 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     letter-spacing: 0.5px;
+    opacity: 0;
+    transition: opacity 2s ease-in;
+  }
+
+  #locationText.revealed {
+    opacity: 1;
+    animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes popIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.7) rotate(-5deg);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
   }
 
   #locationLink {
     display: inline-block;
     margin: 0 auto;
+    opacity: 0;
+    transition: opacity 2s ease-in;
+  }
+
+  #locationLink.revealed {
+    opacity: 1;
+    animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   #locationLink img {
@@ -386,10 +399,9 @@
     width: 85%;
     cursor: pointer;
     border-radius: 14px;
-    transition: all var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     display: block;
     border: 1px solid var(--border-color);
-    will-change: transform;
   }
 
   #locationLink img:hover {
@@ -401,7 +413,7 @@
     transform: translateY(-5px) scale(0.96);
   }
 
-  /* ===== CELEBRATION ===== */
+  /* Celebration */
   .celebration-container {
     text-align: center;
     display: none;
@@ -433,7 +445,7 @@
     }
   }
 
-  /* ===== RSVP BUTTON ===== */
+  /* RSVP Button */
   .rsvp-container {
     text-align: center;
     margin: 3rem 0;
@@ -450,7 +462,7 @@
     font-weight: 700;
     border-radius: 50px;
     cursor: pointer;
-    transition: all var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     letter-spacing: 0.8px;
     position: relative;
     overflow: hidden;
@@ -458,7 +470,6 @@
     width: 90%;
     text-transform: uppercase;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    will-change: transform;
   }
 
   .btn-rsvp::before {
@@ -493,7 +504,7 @@
     50% { transform: translateY(-10px); }
   }
 
-  /* ===== CONFETTI ===== */
+  /* Confetti */
   .confetti {
     position: fixed;
     pointer-events: none;
@@ -514,7 +525,7 @@
     justify-content: center;
   }
 
-  /* ===== FOOTER ===== */
+  /* Footer */
   footer {
     text-align: center;
     padding: 2.5rem 1.2rem;
@@ -535,7 +546,7 @@
     color: var(--primary);
     text-decoration: none;
     font-weight: 700;
-    transition: all var(--transition-normal) ease;
+    transition: all 0.3s ease;
     position: relative;
     display: inline-block;
   }
@@ -548,7 +559,7 @@
     bottom: -4px;
     left: 0;
     background: var(--primary);
-    transition: width var(--transition-normal) ease;
+    transition: width 0.3s ease;
   }
 
   footer a:hover {
@@ -559,7 +570,7 @@
     width: 100%;
   }
 
-  /* ===== RESPONSIVE ===== */
+  /* Responsive */
   @media (max-width: 768px) {
     html {
       font-size: 15px;
@@ -639,7 +650,7 @@
     }
   }
 
-  /* ===== ACCESSIBILITY ===== */
+  /* Accessibility */
   @media (prefers-reduced-motion: reduce) {
     * {
       animation-duration: 0.01ms !important;
@@ -648,7 +659,7 @@
     }
   }
 
-  /* ===== DARK MODE ===== */
+  /* Dark Mode */
   @media (prefers-color-scheme: dark) {
     :root {
       --bg-primary: #1a1a2e;
@@ -675,7 +686,7 @@
     }
   }
 
-  /* ===== PRINT ===== */
+  /* Print */
   @media print {
     header, footer, .btn-control, .btn-rsvp {
       display: none;
@@ -683,13 +694,6 @@
 
     #mainContentContainer {
       padding: 0;
-    }
-  }
-
-  /* ===== PERFORMANCE OPTIMIZATION ===== */
-  @supports (display: grid) {
-    body {
-      contain: layout style paint;
     }
   }
 </style>
@@ -722,13 +726,13 @@
   <main id="mainContentContainer" role="main">
     <!-- Image Card -->
     <div class="content-card">
-      <img id="endImage" src="Images/2.png" oncontextmenu="return false;" draggable="false" alt="Baby Shower Invitation" width="600" height="400">
+      <img id="endImage" src="Images/2.png" oncontextmenu="return false;" draggable="false" alt="Baby Shower Invitation" loading="lazy">
     </div>
 
     <!-- Location Card -->
     <div class="content-card location-card" role="region" aria-label="Location Information">
       <a id="locationLink" href="https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8" target="_blank" rel="noopener noreferrer" aria-label="View location on map">
-        <img src="Images/location-button.png" alt="Get Location" draggable="false" width="280" height="280">
+        <img src="Images/location-button.png" alt="Get Location" draggable="false" loading="lazy">
       </a>
       <p id="locationText">📍 Click Image For Location</p>
     </div>
@@ -753,13 +757,9 @@
 <script>
   'use strict';
 
-  // ===== PERFORMANCE OPTIMIZATION ===== 
-  const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isHighEndDevice = navigator.hardwareConcurrency >= 4;
-
-  // ===== CORE CACHE =====
-  const cache = {
-    videoPlayer: document.getElementById('myVideo'),
+  // Cache DOM elements
+  const elements = {
+    video: document.getElementById('myVideo'),
     mainContent: document.getElementById('mainContentContainer'),
     locationText: document.getElementById('locationText'),
     locationLink: document.getElementById('locationLink'),
@@ -774,66 +774,61 @@
 
   let isMuted = true;
   let isAnimating = false;
-  let loadingTimeout;
+  let loadingTimeout = null;
 
-  // ===== SERVICE WORKER REGISTRATION =====
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      // Service worker would be loaded here for offline support
-      console.log('Service Worker ready');
-    });
-  }
-
-  // ===== VIDEO EVENTS =====
-  cache.videoPlayer.addEventListener('ended', handleVideoEnded, { once: true });
-  cache.videoPlayer.addEventListener('canplay', () => {
-    cache.loadingText.style.display = 'none';
-    cache.refreshText.style.display = 'none';
-  });
-  cache.videoPlayer.addEventListener('play', () => {
-    cache.loadingText.parentElement.style.display = 'none';
-  });
-
+  // Video Events
   function handleVideoEnded() {
     if (isAnimating) return;
     isAnimating = true;
     
-    cache.videoPlayer.style.display = 'none';
-    cache.mainContent.style.display = 'block';
+    elements.video.style.display = 'none';
+    elements.mainContent.style.display = 'block';
 
-    requestAnimationFrame(() => {
+    setTimeout(() => {
+      elements.locationLink.classList.add('revealed');
+      elements.locationText.classList.add('revealed');
+
       setTimeout(() => {
-        cache.locationLink.classList.add('revealed');
-        cache.locationText.classList.add('revealed');
-
-        setTimeout(() => {
-          cache.celebration.style.display = 'block';
-          cache.rsvpContainer.style.display = 'block';
-          if (isHighEndDevice) {
-            createConfetti();
-          }
-          isAnimating = false;
-        }, 1500);
-      }, 500);
-    });
+        elements.celebration.style.display = 'block';
+        elements.rsvpContainer.style.display = 'block';
+        createConfetti();
+        isAnimating = false;
+      }, 1500);
+    }, 500);
   }
 
-  // ===== LOADING TIMEOUT =====
-  cache.loadingText.style.display = 'block';
+  elements.video.addEventListener('ended', handleVideoEnded, { once: true });
+  
+  elements.video.addEventListener('canplay', () => {
+    if (elements.loadingText) elements.loadingText.style.display = 'none';
+    if (elements.refreshText) elements.refreshText.style.display = 'none';
+  });
+
+  elements.video.addEventListener('play', () => {
+    if (elements.loadingText && elements.loadingText.parentElement) {
+      elements.loadingText.parentElement.style.display = 'none';
+    }
+  });
+
+  // Loading Timeout
+  if (elements.loadingText) {
+    elements.loadingText.style.display = 'block';
+  }
+
   loadingTimeout = setTimeout(() => {
-    cache.loadingText.style.display = 'none';
-    cache.refreshText.style.display = 'block';
+    if (elements.loadingText) elements.loadingText.style.display = 'none';
+    if (elements.refreshText) elements.refreshText.style.display = 'block';
   }, 60000);
 
-  // ===== ADVANCED CONFETTI =====
+  // Confetti Animation
   function createConfetti() {
-    const colors = ['#fbbf24', '#ec4899', '#f43f5e', '#a78bfa', '#60a5fa', '#34d399', '#f97316', '#06b6d4'];
+    const colors = [
+      '#fbbf24', '#ec4899', '#f43f5e', '#a78bfa',
+      '#60a5fa', '#34d399', '#f97316', '#06b6d4'
+    ];
     const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖'];
-    const particleCount = isHighEndDevice ? 150 : 80;
 
-    const fragment = document.createDocumentFragment();
-
-    for (let i = 0; i < particleCount; i++) {
+    for (let i = 0; i < 120; i++) {
       const confetti = document.createElement('div');
       confetti.className = 'confetti';
       const isEmoji = Math.random() > 0.4;
@@ -852,16 +847,18 @@
       confetti.style.left = Math.random() * 100 + '%';
       confetti.style.top = '-20px';
       confetti.style.opacity = Math.random() * 0.8 + 0.3;
-      fragment.appendChild(confetti);
+      document.body.appendChild(confetti);
 
       const duration = Math.random() * 3 + 2.5;
       const xMove = (Math.random() - 0.5) * 400;
       const rotate = Math.random() * 1080;
 
       setTimeout(() => {
+        if (!confetti.parentElement) return;
+        
         confetti.animate([
           { 
-            transform: `translateY(0) translateX(0) rotate(0deg)`,
+            transform: 'translateY(0) translateX(0) rotate(0deg)',
             opacity: Math.random() * 0.8 + 0.3
           },
           { 
@@ -872,63 +869,77 @@
           duration: duration * 1000,
           easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
           fill: 'forwards'
-        });
-
-        setTimeout(() => confetti.remove(), duration * 1000);
+        }).onfinish = () => {
+          if (confetti.parentElement) {
+            confetti.remove();
+          }
+        };
       }, i * 12);
     }
-
-    document.body.appendChild(fragment);
   }
 
-  // ===== MUSIC TOGGLE =====
-  cache.musicToggle.addEventListener('click', function() {
-    isMuted = !isMuted;
-    cache.videoPlayer.muted = isMuted;
-    this.textContent = isMuted ? '🔊' : '🔇';
-    this.setAttribute('aria-pressed', !isMuted);
-  });
+  // Music Toggle
+  if (elements.musicToggle) {
+    elements.musicToggle.addEventListener('click', function() {
+      isMuted = !isMuted;
+      elements.video.muted = isMuted;
+      this.textContent = isMuted ? '🔊' : '🔇';
+      this.setAttribute('aria-pressed', (!isMuted).toString());
+    });
+  }
 
-  // ===== FULLSCREEN TOGGLE =====
-  cache.fullscreenToggle.addEventListener('click', function() {
-    const elem = document.documentElement;
-    if (!document.fullscreenElement) {
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen().catch(err => console.error('Fullscreen error:', err));
-      } else if (elem.webkitRequestFullscreen) {
-        elem.webkitRequestFullscreen();
-      } else if (elem.mozRequestFullScreen) {
-        elem.mozRequestFullScreen();
+  // Fullscreen Toggle
+  if (elements.fullscreenToggle) {
+    elements.fullscreenToggle.addEventListener('click', function() {
+      const elem = document.documentElement;
+      try {
+        if (!document.fullscreenElement) {
+          if (elem.requestFullscreen) {
+            elem.requestFullscreen().catch(err => console.error('Fullscreen error:', err));
+          } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+          } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().catch(err => console.error('Exit fullscreen error:', err));
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          }
+        }
+        this.setAttribute('aria-pressed', (!!document.fullscreenElement).toString());
+      } catch (e) {
+        console.error('Fullscreen error:', e);
       }
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen().catch(err => console.error('Exit fullscreen error:', err));
+    });
+  }
+
+  // RSVP Button
+  if (elements.rsvpBtn) {
+    elements.rsvpBtn.addEventListener('click', function() {
+      const rsvpLink = 'https://forms.gle/'; // Add your RSVP form link
+      if (rsvpLink && rsvpLink.length > 20) {
+        window.open(rsvpLink, '_blank', 'noopener,noreferrer');
+      } else {
+        alert('📋 RSVP form link not configured. Please contact the organizer!');
       }
-    }
-    this.setAttribute('aria-pressed', !!document.fullscreenElement);
-  });
+    });
+  }
 
-  // ===== RSVP BUTTON =====
-  cache.rsvpBtn.addEventListener('click', function() {
-    const rsvpLink = 'https://forms.gle/'; // Add your RSVP form link
-    if (rsvpLink && rsvpLink.length > 20) {
-      window.open(rsvpLink, '_blank', 'noopener,noreferrer');
-    } else {
-      alert('📋 RSVP form link not configured. Please contact the organizer!');
-    }
-  });
+  // Location Link
+  if (elements.locationLink) {
+    elements.locationLink.addEventListener('click', function(e) {
+      if (!e.ctrlKey && !e.metaKey) {
+        e.preventDefault();
+        setTimeout(() => {
+          window.open(this.href, '_blank', 'noopener,noreferrer');
+        }, 100);
+      }
+    });
+  }
 
-  // ===== LOCATION LINK =====
-  cache.locationLink.addEventListener('click', function(e) {
-    if (!e.ctrlKey && !e.metaKey) {
-      e.preventDefault();
-      setTimeout(() => {
-        window.open(this.href, '_blank', 'noopener,noreferrer');
-      }, 100);
-    }
-  });
-
-  // ===== SECURITY FEATURES =====
+  // Security
   document.addEventListener('contextmenu', e => e.preventDefault());
   document.addEventListener('dragstart', e => e.preventDefault());
   document.body.addEventListener('dragstart', e => e.preventDefault());
@@ -940,52 +951,41 @@
     }
   });
 
-  // Prevent copy/paste
   document.addEventListener('copy', e => e.preventDefault());
   document.addEventListener('cut', e => e.preventDefault());
 
-  // ===== PAGE LOAD COMPLETION =====
+  // Visibility API
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (elements.video) elements.video.pause();
+    } else {
+      if (elements.video) {
+        elements.video.play().catch(err => console.error('Play error:', err));
+      }
+    }
+  });
+
+  // Page Load
   window.addEventListener('load', function() {
-    clearTimeout(loadingTimeout);
-    console.log('✨ Baby Shower Invitation Loaded! ✨');
+    if (loadingTimeout) clearTimeout(loadingTimeout);
     
-    // Preload images
     if ('loading' in HTMLImageElement.prototype) {
       document.querySelectorAll('img').forEach(img => {
         img.loading = 'lazy';
       });
     }
+    
+    console.log('✨ Baby Shower Invitation Loaded! ✨');
   });
 
-  // ===== PERFORMANCE MONITORING =====
-  if (window.performance && window.performance.timing) {
-    window.addEventListener('load', function() {
-      const perfData = window.performance.timing;
-      const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
-      console.log('Page Load Time: ' + pageLoadTime + 'ms');
-    });
-  }
-
-  // ===== TOUCH OPTIMIZATION =====
+  // Touch Support
   document.addEventListener('touchstart', function() {}, { passive: true });
   document.addEventListener('touchmove', function() {}, { passive: true });
   document.addEventListener('touchend', function() {}, { passive: true });
 
-  // ===== NETWORK DETECTION =====
-  if ('connection' in navigator) {
-    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    if (connection && connection.effectiveType === '4g') {
-      console.log('Fast connection detected - enabling high-quality features');
-    }
-  }
-
-  // ===== VISIBILITY API =====
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      cache.videoPlayer.pause();
-    } else {
-      cache.videoPlayer.play().catch(err => console.error('Play error:', err));
-    }
+  // Cleanup on unload
+  window.addEventListener('beforeunload', () => {
+    if (loadingTimeout) clearTimeout(loadingTimeout);
   });
 </script>
 </body>
