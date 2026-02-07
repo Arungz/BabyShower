@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <meta property="og:title" content="✨ Baby Shower Invitation - The Most Beautiful Celebration ✨" />
-  <meta property="og:description" content="You're invited to an unforgettable baby shower experience with stunning magical animations and premium features." />
+  <meta property="og:description" content="You're invited to an unforgettable baby shower experience with stunning magical animations." />
   <meta property="og:image" content="https://arungz.github.io/BabyShower/Images/preview.gif" />
   <meta property="og:image:secure_url" content="https://arungz.github.io/BabyShower/Images/preview.gif" />
   <meta property="og:type" content="website" />
@@ -13,7 +13,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Baby Shower">
-  <meta name="description" content="The world's most beautiful baby shower invitation with premium features, magical animations, and advanced interactive elements.">
+  <meta name="description" content="The world's most beautiful baby shower invitation with premium features and magical animations.">
   <meta name="keywords" content="baby shower, invitation, celebration, family, premium, magical, interactive">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Baby Shower Team">
@@ -34,18 +34,12 @@
     --gradient-1: linear-gradient(135deg, #ec4899 0%, #a78bfa 50%, #60a5fa 100%);
     --gradient-2: linear-gradient(135deg, #f472b6 0%, #c084fc 50%, #60a5fa 100%);
     --gradient-3: linear-gradient(135deg, #ec4899 0%, #f43f5e 50%, #a78bfa 100%);
-    --gradient-4: linear-gradient(135deg, #d946ef 0%, #ec4899 50%, #f472b6 100%);
-    --gradient-5: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #34d399 100%);
-    --glow-pink: rgba(236, 72, 153, 0.6);
-    --glow-purple: rgba(167, 139, 250, 0.6);
-    --glow-blue: rgba(96, 165, 250, 0.6);
+    --glow-pink: rgba(236, 72, 153, 0.5);
+    --glow-purple: rgba(167, 139, 250, 0.5);
     --text-primary: #1a1a2e;
     --text-secondary: #666;
-    --text-light: #999;
     --bg-primary: #ffffff;
-    --bg-secondary: #f8f9fa;
     --bg-light: #faf9f7;
-    --border-color: rgba(236, 72, 153, 0.08);
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -74,9 +68,9 @@
     overflow-x: hidden;
     line-height: 1.6;
     position: relative;
+    will-change: background;
   }
 
-  /* Scrollbar */
   ::-webkit-scrollbar {
     width: 10px;
   }
@@ -92,7 +86,7 @@
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    opacity: 1;
+    opacity: 0.9;
   }
 
   /* Header */
@@ -102,22 +96,22 @@
     align-items: center;
     padding: 1.2rem 1.8rem;
     background: var(--bg-primary);
-    border-bottom: 2px solid transparent;
-    border-image: var(--gradient-1) 1;
+    border-bottom: 1px solid rgba(236, 72, 153, 0.1);
     position: sticky;
     top: 0;
     z-index: 100;
     animation: slideDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: var(--shadow-sm);
     gap: 1rem;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    will-change: transform;
   }
 
   @keyframes slideDown {
     from {
       opacity: 0;
-      transform: translateY(-30px);
+      transform: translateY(-20px);
     }
     to {
       opacity: 1;
@@ -127,27 +121,15 @@
 
   .header-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.4em, 6vw, 2em);
+    font-size: clamp(1.3em, 5vw, 1.8em);
     font-weight: 900;
     background: var(--gradient-1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     flex: 1;
     text-align: center;
-    animation: shimmer 3s ease-in-out infinite;
-  }
-
-  @keyframes shimmer {
-    0%, 100% { 
-      filter: drop-shadow(0 0 10px var(--glow-pink));
-      transform: scale(1);
-    }
-    50% { 
-      filter: drop-shadow(0 0 20px var(--glow-purple));
-      transform: scale(1.01);
-    }
   }
 
   .header-controls {
@@ -161,19 +143,20 @@
     background: var(--gradient-1);
     color: white;
     border: none;
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3em;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-size: 1.2em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 0 20px var(--glow-pink);
+    box-shadow: 0 0 15px var(--glow-pink);
     flex-shrink: 0;
+    will-change: transform;
   }
 
   .btn-control::before {
@@ -183,35 +166,21 @@
     left: 50%;
     width: 0;
     height: 0;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-  }
-
-  .btn-control::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--gradient-1);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 50%;
-    z-index: -1;
+    transition: width 0.4s ease, height 0.4s ease;
+    pointer-events: none;
   }
 
   .btn-control:hover {
-    transform: scale(1.12) translateY(-3px);
-    box-shadow: 0 0 30px var(--glow-purple), 0 8px 20px rgba(0, 0, 0, 0.1);
+    transform: scale(1.08);
+    box-shadow: 0 0 25px var(--glow-purple);
   }
 
   .btn-control:hover::before {
-    width: 300px;
-    height: 300px;
-  }
-
-  .btn-control:hover::after {
-    opacity: 0.2;
+    width: 250px;
+    height: 250px;
   }
 
   .btn-control:active {
@@ -220,53 +189,42 @@
 
   /* Video Section */
   .video-wrapper {
-    max-width: 92%;
-    margin: 3rem auto;
+    max-width: 90%;
+    margin: 2.5rem auto;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     animation: slideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: transform;
   }
 
   #myVideo {
     object-fit: cover;
     object-position: center;
-    border-radius: 24px;
+    border-radius: 20px;
     max-width: 100%;
     width: 100%;
     height: auto;
-    max-height: 70vh;
-    transition: all 0.3s ease;
-    border: 3px solid transparent;
-    border-image: var(--gradient-1) 1;
-    box-shadow: 0 0 40px var(--glow-pink), var(--shadow-lg);
+    max-height: 65vh;
+    transition: transform 0.3s ease;
+    border: none;
+    box-shadow: 0 8px 40px var(--glow-pink);
     display: block;
-    animation: magneticGlow 3s ease-in-out infinite;
-  }
-
-  @keyframes magneticGlow {
-    0%, 100% {
-      box-shadow: 0 0 40px var(--glow-pink), var(--shadow-lg);
-      transform: scale(1);
-    }
-    50% {
-      box-shadow: 0 0 60px var(--glow-purple), var(--shadow-lg);
-      transform: scale(1.01);
-    }
+    will-change: transform;
   }
 
   #myVideo:hover {
-    transform: scale(1.02) translateY(-8px);
-    box-shadow: 0 0 80px var(--glow-pink), var(--shadow-lg);
+    transform: scale(1.01) translateY(-4px);
   }
 
   video {
     width: 100%;
     height: auto;
-    border-radius: 24px;
+    border-radius: 20px;
     background: #000;
+    display: block;
   }
 
   img {
@@ -277,9 +235,9 @@
 
   /* Loading */
   .loading-container {
-    margin-top: 2.5rem;
+    margin-top: 2rem;
     text-align: center;
-    min-height: 80px;
+    min-height: 70px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -287,7 +245,7 @@
   }
 
   #loading-text {
-    font-size: 1.3em;
+    font-size: 1.1em;
     background: var(--gradient-1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -296,19 +254,19 @@
     animation: pulse 1.5s ease-in-out infinite;
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    letter-spacing: 1px;
+    gap: 0.6rem;
+    letter-spacing: 0.8px;
     justify-content: center;
   }
 
   #loading-text::after {
     content: '';
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background: var(--gradient-1);
     border-radius: 50%;
     animation: bounce 1.4s ease-in-out infinite;
-    box-shadow: 0 0 15px var(--glow-pink);
+    box-shadow: 0 0 10px var(--glow-pink);
   }
 
   @keyframes pulse {
@@ -318,13 +276,13 @@
 
   @keyframes bounce {
     0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-12px) scale(1.3); }
+    50% { transform: translateY(-10px) scale(1.15); }
   }
 
   #refresh-text {
     color: var(--text-secondary);
-    font-size: 0.95em;
-    margin-top: 1.5rem;
+    font-size: 0.9em;
+    margin-top: 1.2rem;
     animation: fadeInUp 0.8s ease-out;
   }
 
@@ -336,38 +294,21 @@
     text-decoration: none;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0.4rem 0.8rem;
-    border-radius: 8px;
+    transition: opacity 0.2s ease;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
     display: inline-block;
     position: relative;
-    border: 2px solid transparent;
-    border-image: var(--gradient-1) 1;
-  }
-
-  #refresh-text a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background: var(--gradient-1);
-    transition: width 0.3s ease;
   }
 
   #refresh-text a:hover {
-    box-shadow: 0 0 15px var(--glow-pink);
-  }
-
-  #refresh-text a:hover::after {
-    width: 100%;
+    opacity: 0.8;
   }
 
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(15px);
+      transform: translateY(10px);
     }
     to {
       opacity: 1;
@@ -379,71 +320,47 @@
   #mainContentContainer {
     display: none;
     animation: fadeInUp 0.8s ease-out;
-    padding: 3rem 1.2rem;
-  }
-
-  /* Cards */
-  .content-card {
-    background: rgba(255, 255, 255, 0.98);
-    border-radius: 24px;
-    padding: 2.5rem 2rem;
-    max-width: 700px;
-    margin: 2.5rem auto;
-    border: 2px solid transparent;
-    border-image: var(--gradient-1) 1;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    animation: fadeInUp 0.8s ease-out;
-    box-shadow: var(--shadow-md), 0 0 30px var(--glow-pink);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-
-  .content-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-lg), 0 0 50px var(--glow-purple);
+    padding: 2.5rem 1.2rem;
+    will-change: contents;
   }
 
   /* Image */
   #endImage {
     width: 100%;
     height: auto;
-    border-radius: 20px;
+    border-radius: 18px;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform 0.3s ease;
     cursor: pointer;
     display: block;
-    border: 2px solid transparent;
-    border-image: var(--gradient-1) 1;
-    box-shadow: var(--shadow-md), 0 0 30px var(--glow-pink);
+    box-shadow: 0 6px 30px var(--glow-pink);
+    will-change: transform;
   }
 
   #endImage:hover {
-    transform: scale(1.05) translateY(-12px);
-    box-shadow: var(--shadow-lg), 0 0 50px var(--glow-purple);
+    transform: scale(1.04) translateY(-8px);
   }
 
   #endImage:active {
-    transform: scale(0.98);
+    transform: scale(0.97);
   }
 
   /* Location */
-  .location-card {
-    text-align: center;
-  }
-
   #locationText {
-    font-size: clamp(1.3em, 5vw, 1.6em);
+    font-size: clamp(1.2em, 5vw, 1.5em);
     font-weight: 700;
-    margin-bottom: 1.8rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
     background: var(--gradient-1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
+    text-align: center;
     opacity: 0;
-    transition: opacity 2s ease-in;
+    transition: opacity 1.5s ease-in;
   }
 
   #locationText.revealed {
@@ -454,10 +371,10 @@
   @keyframes popIn {
     0% {
       opacity: 0;
-      transform: scale(0.5) rotate(-15deg);
+      transform: scale(0.6) rotate(-10deg);
     }
     50% {
-      transform: scale(1.05) rotate(5deg);
+      transform: scale(1.08) rotate(3deg);
     }
     100% {
       opacity: 1;
@@ -469,7 +386,8 @@
     display: inline-block;
     margin: 0 auto;
     opacity: 0;
-    transition: opacity 2s ease-in;
+    transition: opacity 1.5s ease-in;
+    text-align: center;
   }
 
   #locationLink.revealed {
@@ -478,24 +396,23 @@
   }
 
   #locationLink img {
-    max-width: 320px;
-    width: 88%;
+    max-width: 300px;
+    width: 80%;
     cursor: pointer;
-    border-radius: 18px;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-radius: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: block;
-    border: 2px solid transparent;
-    border-image: var(--gradient-1) 1;
-    box-shadow: var(--shadow-md), 0 0 30px var(--glow-pink);
+    box-shadow: 0 6px 30px var(--glow-pink);
+    will-change: transform;
   }
 
   #locationLink img:hover {
-    transform: translateY(-14px) scale(1.08) rotateZ(2deg);
-    box-shadow: var(--shadow-lg), 0 0 50px var(--glow-purple);
+    transform: translateY(-10px) scale(1.06);
+    box-shadow: 0 12px 40px var(--glow-purple);
   }
 
   #locationLink img:active {
-    transform: translateY(-6px) scale(0.96);
+    transform: translateY(-4px) scale(0.95);
   }
 
   /* Celebration */
@@ -503,43 +420,37 @@
     text-align: center;
     display: none;
     animation: fadeInUp 0.8s ease-out;
-    margin-top: 3.5rem;
+    margin-top: 3rem;
   }
 
   .celebration-text {
-    font-size: clamp(1.6em, 8vw, 2.5em);
+    font-size: clamp(1.5em, 7vw, 2.2em);
     font-family: 'Playfair Display', serif;
     background: var(--gradient-1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 1.5rem;
-    animation: magicalScale 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    margin-bottom: 1.2rem;
+    animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     font-weight: 900;
-    letter-spacing: 1.2px;
-    text-shadow: 0 0 20px var(--glow-pink);
+    letter-spacing: 0.8px;
   }
 
-  @keyframes magicalScale {
+  @keyframes scaleIn {
     0% {
       opacity: 0;
-      transform: scale(0.3) rotate(-20deg);
-      filter: blur(10px);
-    }
-    50% {
-      transform: scale(1.1) rotate(5deg);
+      transform: scale(0.5) rotate(-10deg);
     }
     100% {
       opacity: 1;
       transform: scale(1) rotate(0deg);
-      filter: blur(0);
     }
   }
 
   /* RSVP Button */
   .rsvp-container {
     text-align: center;
-    margin: 3.5rem 0 2rem;
+    margin: 3rem 0 2rem;
     display: none;
     animation: fadeInUp 0.8s ease-out;
   }
@@ -548,20 +459,21 @@
     background: var(--gradient-1);
     color: white;
     border: none;
-    padding: clamp(1rem 2.5rem, 3vw 10vw, 1.1rem 3.5rem);
-    font-size: clamp(1.05em, 3vw, 1.2em);
+    padding: clamp(0.95rem 2.2rem, 3vw 9vw, 1rem 3rem);
+    font-size: clamp(1em, 3vw, 1.1em);
     font-weight: 700;
-    border-radius: 60px;
+    border-radius: 50px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    letter-spacing: 1px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    letter-spacing: 0.8px;
     position: relative;
     overflow: hidden;
-    max-width: 340px;
+    max-width: 320px;
     width: 90%;
     text-transform: uppercase;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 30px var(--glow-pink), var(--shadow-md);
+    border: none;
+    box-shadow: 0 6px 25px var(--glow-pink);
+    will-change: transform;
   }
 
   .btn-rsvp::before {
@@ -571,44 +483,31 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.25);
-    transition: left 0.6s ease;
-  }
-
-  .btn-rsvp::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--gradient-2);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: -1;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.4s ease;
+    pointer-events: none;
   }
 
   .btn-rsvp:hover {
-    transform: translateY(-5px) scale(1.08);
-    box-shadow: 0 0 50px var(--glow-purple), var(--shadow-lg);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 35px var(--glow-purple);
   }
 
   .btn-rsvp:hover::before {
     left: 100%;
   }
 
-  .btn-rsvp:hover::after {
-    opacity: 1;
-  }
-
   .btn-rsvp:active {
-    transform: translateY(-2px) scale(0.98);
+    transform: translateY(-1px) scale(0.98);
   }
 
   .btn-rsvp {
-    animation: floatMagical 3.5s ease-in-out infinite;
+    animation: float 3s ease-in-out infinite;
   }
 
-  @keyframes floatMagical {
+  @keyframes float {
     0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
+    50% { transform: translateY(-10px); }
   }
 
   /* Confetti */
@@ -616,49 +515,43 @@
     position: fixed;
     pointer-events: none;
     z-index: 999;
+    will-change: transform;
   }
 
   .confetti-shape {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), var(--gradient-1));
-    box-shadow: 0 0 10px var(--glow-pink);
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), var(--gradient-1));
+    box-shadow: 0 0 8px var(--glow-pink);
   }
 
   .confetti-emoji {
-    font-size: 28px;
+    font-size: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: drop-shadow(0 0 8px var(--glow-pink)) drop-shadow(0 0 4px var(--glow-purple));
-    animation: confettiSpin 2s linear infinite;
-  }
-
-  @keyframes confettiSpin {
-    0% { transform: rotateZ(0deg); }
-    100% { transform: rotateZ(360deg); }
+    filter: drop-shadow(0 0 6px var(--glow-pink));
   }
 
   /* Footer */
   footer {
     text-align: center;
-    padding: 3rem 1.2rem;
+    padding: 2.5rem 1.2rem;
     color: var(--text-secondary);
     font-size: 0.95em;
-    border-top: 2px solid transparent;
-    border-image: var(--gradient-1) 1;
-    margin-top: 4rem;
+    border-top: 1px solid rgba(236, 72, 153, 0.1);
+    margin-top: 3rem;
     background: var(--bg-primary);
     box-shadow: var(--shadow-sm);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
   footer p {
-    margin: 0.6rem 0;
+    margin: 0.5rem 0;
     animation: fadeInUp 0.8s ease-out;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
   }
 
   footer a {
@@ -668,28 +561,13 @@
     background-clip: text;
     text-decoration: none;
     font-weight: 700;
-    transition: all 0.3s ease;
+    transition: opacity 0.2s ease;
     position: relative;
     display: inline-block;
   }
 
-  footer a::before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -4px;
-    left: 0;
-    background: var(--gradient-1);
-    transition: width 0.3s ease;
-  }
-
   footer a:hover {
-    filter: brightness(1.2);
-  }
-
-  footer a:hover::before {
-    width: 100%;
+    opacity: 0.8;
   }
 
   /* Responsive */
@@ -699,24 +577,19 @@
     }
 
     header {
-      padding: 1rem 1.2rem;
-    }
-
-    .content-card {
-      padding: 1.8rem 1.2rem;
-      margin: 1.5rem auto;
+      padding: 0.9rem 1rem;
     }
 
     .video-wrapper {
-      margin: 1.8rem auto;
+      margin: 1.5rem auto;
+    }
+
+    #mainContentContainer {
+      padding: 1.8rem 1rem;
     }
 
     footer {
-      padding: 2.5rem 1rem;
-    }
-
-    .header-title {
-      font-size: 1.3em;
+      padding: 2rem 1rem;
     }
   }
 
@@ -726,60 +599,52 @@
     }
 
     header {
-      padding: 0.8rem 1rem;
-      gap: 0.5rem;
+      padding: 0.7rem 0.9rem;
+      gap: 0.4rem;
       flex-wrap: wrap;
     }
 
     .header-title {
-      font-size: 1.15em;
+      font-size: 1.1em;
       flex-basis: 100%;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
 
     .header-controls {
-      gap: 0.6rem;
+      gap: 0.5rem;
       width: 100%;
       justify-content: center;
     }
 
     .btn-control {
-      width: 40px;
-      height: 40px;
-      font-size: 1.1em;
+      width: 36px;
+      height: 36px;
+      font-size: 1em;
     }
 
-    #mainContentContainer {
-      padding: 1.5rem 1rem;
-    }
-
-    .content-card {
-      padding: 1.5rem 1rem;
-      margin: 1rem auto;
+    #myVideo {
+      border-radius: 16px;
+      max-height: 60vh;
     }
 
     #endImage {
-      border-radius: 16px;
+      border-radius: 14px;
     }
 
     #locationLink img {
-      width: 90%;
-      max-width: 200px;
-    }
-
-    .celebration-text {
-      font-size: 1.5em;
+      width: 85%;
+      max-width: 180px;
     }
 
     .btn-rsvp {
-      padding: 0.9rem 2rem;
-      font-size: 0.95em;
+      padding: 0.8rem 1.8rem;
+      font-size: 0.9em;
       width: 92%;
     }
 
     footer {
-      padding: 2rem 1rem;
-      font-size: 0.9em;
+      padding: 1.5rem 0.9rem;
+      font-size: 0.85em;
     }
   }
 
@@ -796,14 +661,9 @@
   @media (prefers-color-scheme: dark) {
     :root {
       --bg-primary: #1a1a2e;
-      --bg-secondary: #16213e;
       --bg-light: #1f1f3a;
       --text-primary: #e8e8f0;
       --text-secondary: #b0b0c0;
-      --border-color: rgba(236, 72, 153, 0.15);
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
-      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
     }
 
     body {
@@ -812,10 +672,6 @@
 
     header {
       background: rgba(26, 26, 46, 0.98);
-    }
-
-    .content-card {
-      background: rgba(30, 41, 59, 0.98);
     }
 
     footer {
@@ -854,25 +710,21 @@
     <div class="loading-container" role="status" aria-live="polite" aria-atomic="true">
       <div id="loading-text">Loading</div>
       <div id="refresh-text" style="display: none;" role="alert">
-        Taking too long? <a href="javascript:location.reload()">Refresh</a> the page
+        Taking too long? <a href="javascript:location.reload()">Refresh</a> page
       </div>
     </div>
   </div>
 
   <!-- Main Content -->
   <main id="mainContentContainer" role="main">
-    <!-- Image Card -->
-    <div class="content-card">
-      <img id="endImage" src="Images/2.png" oncontextmenu="return false;" draggable="false" alt="Beautiful Baby Shower Invitation" loading="lazy">
-    </div>
+    <!-- Image -->
+    <img id="endImage" src="Images/2.png" oncontextmenu="return false;" draggable="false" alt="Beautiful Baby Shower Invitation" loading="lazy">
 
-    <!-- Location Card -->
-    <div class="content-card location-card" role="region" aria-label="Location Information">
-      <a id="locationLink" href="https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8" target="_blank" rel="noopener noreferrer" aria-label="View event location on map">
-        <img src="Images/location-button.png" alt="Get Location" draggable="false" loading="lazy">
-      </a>
-      <p id="locationText">📍 Click Image For Location</p>
-    </div>
+    <!-- Location -->
+    <a id="locationLink" href="https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8" target="_blank" rel="noopener noreferrer" aria-label="View event location on map" style="display: none;">
+      <img src="Images/location-button.png" alt="Get Location" draggable="false" loading="lazy">
+    </a>
+    <p id="locationText">📍 Click Image For Location</p>
 
     <!-- Celebration Message -->
     <div class="celebration-container" id="celebrationContainer" role="region" aria-label="Celebration Message">
@@ -888,21 +740,14 @@
   <!-- Footer -->
   <footer role="contentinfo">
     <p>✨ Looking forward to celebrating with you! ✨</p>
-    <p style="margin-top: 0.8rem; font-size: 0.9em;">Made with 💕 for a special moment</p>
+    <p style="margin-top: 0.6rem; font-size: 0.9em;">Made with 💕 for a special moment</p>
   </footer>
 
 <script>
   'use strict';
 
-  // Performance Optimization
-  const requestIdleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
-
-  // Cache DOM elements
-  const getElement = (id) => {
-    const el = document.getElementById(id);
-    if (!el) console.warn(`Element "${id}" not found`);
-    return el;
-  };
+  // Cache DOM
+  const getElement = (id) => document.getElementById(id);
 
   const elements = {
     video: getElement('myVideo'),
@@ -918,27 +763,14 @@
     fullscreenToggle: getElement('fullscreenToggle')
   };
 
-  // State management
   let state = {
     isMuted: true,
     isAnimating: false,
-    hasEnded: false,
-    loadingTimeout: null
+    hasEnded: false
   };
 
-  // Error handling
   const handleError = (error, context = '') => {
     console.error(`Error in ${context}:`, error);
-  };
-
-  const safeSetTimeout = (fn, delay) => {
-    return setTimeout(() => {
-      try {
-        fn();
-      } catch (error) {
-        handleError(error, 'setTimeout callback');
-      }
-    }, delay);
   };
 
   // Video Events
@@ -950,11 +782,12 @@
     if (elements.video) elements.video.style.display = 'none';
     if (elements.mainContent) elements.mainContent.style.display = 'block';
 
-    safeSetTimeout(() => {
-      if (elements.locationLink) elements.locationLink.classList.add('revealed');
+    setTimeout(() => {
+      if (elements.locationLink) elements.locationLink.style.display = 'block';
       if (elements.locationText) elements.locationText.classList.add('revealed');
+      if (elements.locationLink) elements.locationLink.classList.add('revealed');
 
-      safeSetTimeout(() => {
+      setTimeout(() => {
         if (elements.celebration) elements.celebration.style.display = 'block';
         if (elements.rsvpContainer) elements.rsvpContainer.style.display = 'block';
         createConfetti();
@@ -971,128 +804,75 @@
       if (elements.refreshText) elements.refreshText.style.display = 'none';
     });
 
-    elements.video.addEventListener('play', () => {
-      if (elements.loadingText?.parentElement) {
-        elements.loadingText.parentElement.style.display = 'none';
-      }
-    });
-
-    elements.video.addEventListener('error', (e) => {
-      handleError(e, 'video playback');
-      if (elements.loadingText) {
-        elements.loadingText.textContent = '❌ Video failed to load';
-      }
+    elements.video.addEventListener('error', () => {
+      if (elements.loadingText) elements.loadingText.textContent = '❌ Video failed to load';
     });
   }
 
-  // Loading Timeout
   if (elements.loadingText) {
     elements.loadingText.style.display = 'block';
   }
 
-  state.loadingTimeout = safeSetTimeout(() => {
+  setTimeout(() => {
     if (elements.loadingText) elements.loadingText.style.display = 'none';
     if (elements.refreshText) elements.refreshText.style.display = 'block';
   }, 60000);
 
-  // Enhanced Confetti
+  // Confetti - Optimized
   function createConfetti() {
-    const colors = [
-      '#ec4899', '#f472b6', '#d946ef', '#a78bfa',
-      '#60a5fa', '#34d399', '#f43f5e', '#c084fc'
-    ];
-    const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎊', '💐', '🌺', '🎀'];
-
-    const particleCount = Math.min(window.innerWidth > 768 ? 200 : 120, 250);
+    const colors = ['#ec4899', '#f472b6', '#d946ef', '#a78bfa', '#60a5fa', '#34d399'];
+    const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖'];
+    const particleCount = window.innerWidth > 768 ? 100 : 60;
 
     for (let i = 0; i < particleCount; i++) {
-      try {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        const isEmoji = Math.random() > 0.4;
-        
-        if (isEmoji) {
-          const emoji = emojis[Math.floor(Math.random() * emojis.length)];
-          confetti.innerHTML = emoji;
-          confetti.className = 'confetti confetti-emoji';
-          confetti.setAttribute('aria-hidden', 'true');
-        } else {
-          confetti.className = 'confetti confetti-shape';
-          const color = colors[Math.floor(Math.random() * colors.length)];
-          confetti.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), ${color})`;
-          confetti.style.boxShadow = `0 0 10px ${color}`;
-          const size = Math.random() * 10 + 6;
-          confetti.style.width = size + 'px';
-          confetti.style.height = size + 'px';
-          confetti.setAttribute('aria-hidden', 'true');
-        }
-        
-        confetti.style.left = Math.random() * 100 + '%';
-        confetti.style.top = '-20px';
-        confetti.style.opacity = Math.random() * 0.8 + 0.4;
-        document.body.appendChild(confetti);
-
-        const duration = Math.random() * 4 + 2.5;
-        const xMove = (Math.random() - 0.5) * 500;
-        const rotate = Math.random() * 1440;
-
-        safeSetTimeout(() => {
-          try {
-            if (!confetti.parentElement) return;
-            
-            const animation = confetti.animate([
-              { 
-                transform: 'translateY(0) translateX(0) rotate(0deg) scale(1)',
-                opacity: Math.random() * 0.8 + 0.4
-              },
-              { 
-                transform: `translateY(${window.innerHeight + 20}px) translateX(${xMove}px) rotate(${rotate}deg) scale(0.3)`,
-                opacity: 0
-              }
-            ], {
-              duration: duration * 1000,
-              easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-              fill: 'forwards'
-            });
-
-            if (animation && typeof animation.onfinish === 'function') {
-              animation.onfinish = () => {
-                try {
-                  if (confetti.parentElement) confetti.remove();
-                } catch (e) {
-                  handleError(e, 'confetti cleanup');
-                }
-              };
-            } else {
-              safeSetTimeout(() => {
-                try {
-                  if (confetti.parentElement) confetti.remove();
-                } catch (e) {
-                  handleError(e, 'confetti cleanup fallback');
-                }
-              }, duration * 1000);
-            }
-          } catch (error) {
-            handleError(error, 'confetti animation');
-          }
-        }, i * 8);
-      } catch (error) {
-        handleError(error, 'confetti creation');
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      const isEmoji = Math.random() > 0.4;
+      
+      if (isEmoji) {
+        confetti.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+        confetti.className = 'confetti confetti-emoji';
+      } else {
+        confetti.className = 'confetti confetti-shape';
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), ${color})`;
+        confetti.style.boxShadow = `0 0 8px ${color}`;
       }
+      
+      confetti.style.left = Math.random() * 100 + '%';
+      confetti.style.top = '-20px';
+      confetti.style.opacity = Math.random() * 0.7 + 0.3;
+      document.body.appendChild(confetti);
+
+      const duration = Math.random() * 3 + 2;
+      const xMove = (Math.random() - 0.5) * 400;
+      const rotate = Math.random() * 1080;
+
+      setTimeout(() => {
+        try {
+          if (!confetti.parentElement) return;
+          
+          confetti.animate([
+            { transform: 'translateY(0) translateX(0) rotate(0deg)', opacity: Math.random() * 0.7 + 0.3 },
+            { transform: `translateY(${window.innerHeight + 20}px) translateX(${xMove}px) rotate(${rotate}deg)`, opacity: 0 }
+          ], {
+            duration: duration * 1000,
+            easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            fill: 'forwards'
+          }).onfinish = () => {
+            try { if (confetti.parentElement) confetti.remove(); } catch (e) {}
+          };
+        } catch (e) {}
+      }, i * 6);
     }
   }
 
   // Music Toggle
   if (elements.musicToggle) {
     elements.musicToggle.addEventListener('click', function() {
-      try {
-        state.isMuted = !state.isMuted;
-        if (elements.video) elements.video.muted = state.isMuted;
-        this.textContent = state.isMuted ? '🔊' : '🔇';
-        this.setAttribute('aria-pressed', (!state.isMuted).toString());
-      } catch (error) {
-        handleError(error, 'music toggle');
-      }
+      state.isMuted = !state.isMuted;
+      if (elements.video) elements.video.muted = state.isMuted;
+      this.textContent = state.isMuted ? '🔊' : '🔇';
     });
   }
 
@@ -1102,46 +882,22 @@
       const elem = document.documentElement;
       try {
         if (!document.fullscreenElement) {
-          const request = elem.requestFullscreen || 
-                         elem.webkitRequestFullscreen || 
-                         elem.mozRequestFullScreen ||
-                         elem.msRequestFullscreen;
-          
-          if (request) {
-            Promise.resolve(request.call(elem))
-              .then(() => this.setAttribute('aria-pressed', 'true'))
-              .catch(err => handleError(err, 'fullscreen enter'));
-          }
+          (elem.requestFullscreen || elem.webkitRequestFullscreen || elem.mozRequestFullScreen || elem.msRequestFullscreen).call(elem).catch(() => {});
         } else {
-          const exit = document.exitFullscreen || 
-                      document.webkitExitFullscreen || 
-                      document.mozCancelFullScreen ||
-                      document.msExitFullscreen;
-          
-          if (exit) {
-            Promise.resolve(exit.call(document))
-              .then(() => this.setAttribute('aria-pressed', 'false'))
-              .catch(err => handleError(err, 'fullscreen exit'));
-          }
+          (document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen).call(document).catch(() => {});
         }
-      } catch (error) {
-        handleError(error, 'fullscreen toggle');
-      }
+      } catch (e) {}
     });
   }
 
   // RSVP Button
   if (elements.rsvpBtn) {
     elements.rsvpBtn.addEventListener('click', function() {
-      try {
-        const rsvpLink = 'https://forms.gle/'; // Add your RSVP form link
-        if (rsvpLink && rsvpLink.length > 20) {
-          window.open(rsvpLink, '_blank', 'noopener,noreferrer');
-        } else {
-          alert('📋 RSVP form link not configured. Please contact the organizer!');
-        }
-      } catch (error) {
-        handleError(error, 'RSVP button click');
+      const rsvpLink = 'https://forms.gle/'; // Add your RSVP form link
+      if (rsvpLink && rsvpLink.length > 20) {
+        window.open(rsvpLink, '_blank', 'noopener,noreferrer');
+      } else {
+        alert('📋 RSVP form link not configured. Please contact the organizer!');
       }
     });
   }
@@ -1149,91 +905,53 @@
   // Location Link
   if (elements.locationLink) {
     elements.locationLink.addEventListener('click', function(e) {
-      try {
-        if (!e.ctrlKey && !e.metaKey) {
-          e.preventDefault();
-          safeSetTimeout(() => {
-            window.open(this.href, '_blank', 'noopener,noreferrer');
-          }, 100);
-        }
-      } catch (error) {
-        handleError(error, 'location link click');
+      if (!e.ctrlKey && !e.metaKey) {
+        e.preventDefault();
+        setTimeout(() => {
+          window.open(this.href, '_blank', 'noopener,noreferrer');
+        }, 100);
       }
     });
   }
 
-  // Security Features
+  // Security
   document.addEventListener('contextmenu', e => e.preventDefault());
   document.addEventListener('dragstart', e => e.preventDefault());
-  document.body.addEventListener('dragstart', e => e.preventDefault());
-  document.body.addEventListener('drop', e => e.preventDefault());
-
   document.addEventListener('keydown', (e) => {
     if (e.key === 'PrintScreen' || e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
       e.preventDefault();
     }
   });
-
   document.addEventListener('copy', e => e.preventDefault());
   document.addEventListener('cut', e => e.preventDefault());
 
-  // Visibility API
+  // Visibility
   document.addEventListener('visibilitychange', () => {
-    try {
-      if (elements.video) {
-        if (document.hidden) {
-          elements.video.pause();
-        } else {
-          elements.video.play().catch(err => handleError(err, 'video resume'));
-        }
-      }
-    } catch (error) {
-      handleError(error, 'visibility change');
+    if (elements.video) {
+      document.hidden ? elements.video.pause() : elements.video.play().catch(() => {});
     }
   });
 
   // Page Load
   window.addEventListener('load', function() {
-    try {
-      if (state.loadingTimeout) clearTimeout(state.loadingTimeout);
-      
-      if ('loading' in HTMLImageElement.prototype) {
-        document.querySelectorAll('img').forEach(img => {
-          img.loading = 'lazy';
-        });
-      }
-      
-      console.log('✨ Baby Shower Invitation Loaded Successfully! ✨');
-    } catch (error) {
-      handleError(error, 'page load');
+    if ('loading' in HTMLImageElement.prototype) {
+      document.querySelectorAll('img').forEach(img => img.loading = 'lazy');
     }
+    console.log('✨ Baby Shower Invitation Loaded! ✨');
   });
 
-  // Touch Support
-  document.addEventListener('touchstart', function() {}, { passive: true });
-  document.addEventListener('touchmove', function() {}, { passive: true });
-  document.addEventListener('touchend', function() {}, { passive: true });
+  // Touch
+  ['touchstart', 'touchmove', 'touchend'].forEach(e => {
+    document.addEventListener(e, () => {}, { passive: true });
+  });
 
   // Cleanup
   window.addEventListener('beforeunload', () => {
-    try {
-      if (state.loadingTimeout) clearTimeout(state.loadingTimeout);
-      if (elements.video) {
-        elements.video.pause();
-        elements.video.src = '';
-      }
-    } catch (error) {
-      handleError(error, 'cleanup');
+    if (elements.video) {
+      elements.video.pause();
+      elements.video.src = '';
     }
   });
-
-  // Network status
-  if ('connection' in navigator) {
-    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    if (conn && conn.effectiveType === '4g') {
-      console.log('✨ Fast connection detected - Premium features enabled!');
-    }
-  }
 </script>
 </body>
 </html>
