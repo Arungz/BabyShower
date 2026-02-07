@@ -1,79 +1,777 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baby Shower Invitation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(to right, #ffafbd, #ffc3a0);
-            font-family: 'Roboto', sans-serif;
-            text-align: center;
-            overflow: hidden;
-        }
-        .invitation {
-            margin: 50px auto;
-            padding: 20px;
-            border: 3px dashed #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            position: relative;
-            animation: bounce 1s infinite;
-        }
-        .celebrate {
-            font-size: 24px;
-            font-weight: bold;
-            color: #444;
-            margin: 20px 0;
-        }
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-        .confetti {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            pointer-events: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Baby Shower Invitation" />
+  <meta property="og:description" content="Invitation To The Family Member - Join us for a special celebration!" />
+  <meta property="og:image" content="https://arungz.github.io/BabyShower/Images/preview.gif" />
+  <meta property="og:image:secure_url" content="https://arungz.github.io/BabyShower/Images/preview.gif" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://arungz.github.io/BabyShower/" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#ec4899">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Baby Shower Invitation</title>
+  <link rel="icon" type="image/png" href="Images/logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --primary-color: #ec4899;
+    --primary-dark: #be185d;
+    --accent-yellow: #fbbf24;
+    --text-dark: #333;
+    --text-light: #666;
+    --bg-gradient: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(236, 72, 153, 0.1);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+  }
+
+  /* Header */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(236, 72, 153, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    animation: slideDown 0.6s ease-out;
+  }
+
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5em;
+    font-weight: 900;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+  }
+
+  .header-controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .btn-control {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+  }
+
+  .btn-control:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 6px 16px rgba(236, 72, 153, 0.4);
+  }
+
+  .btn-control:active {
+    transform: scale(0.95);
+  }
+
+  /* Main Video Section */
+  .video-wrapper {
+    max-width: 90%;
+    margin: 20px auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation: slideDown 0.8s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  #myVideo {
+    object-fit: cover;
+    object-position: center;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(236, 72, 153, 0.4);
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  video {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(236, 72, 153, 0.4);
+    max-width: 100%;
+    background: #000;
+  }
+
+  img {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Loading Container */
+  .loading-container {
+    margin-top: 20px;
+    text-align: center;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #loading-text {
+    font-size: 1.1em;
+    color: var(--primary-color);
+    font-weight: 600;
+    animation: pulse 1.5s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #loading-text::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    animation: bounce 1.4s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  #refresh-text {
+    color: var(--text-light);
+    font-size: 0.95em;
+    margin-top: 10px;
+  }
+
+  #refresh-text a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+
+  #refresh-text a:hover {
+    text-decoration: underline;
+    color: var(--primary-dark);
+    background: rgba(236, 72, 153, 0.1);
+  }
+
+  /* Main Content Container */
+  #mainContentContainer {
+    display: none;
+    animation: fadeInUp 1s ease-out;
+    padding: 20px;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* End Image */
+  #endImage {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(236, 72, 153, 0.4);
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+  }
+
+  #endImage:hover {
+    transform: scale(1.03) translateY(-8px);
+    box-shadow: 0 16px 50px rgba(236, 72, 153, 0.5);
+  }
+
+  /* Location Link & Text */
+  #locationText, #locationLink {
+    opacity: 0;
+    transition: opacity 2s ease-in;
+  }
+
+  #locationText.revealed, #locationLink.revealed {
+    opacity: 1;
+    animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes popIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.7) rotate(-5deg);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  #locationText {
+    font-size: 1.3em;
+    font-weight: 700;
+    margin-top: 20px;
+    color: var(--primary-dark);
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  #locationLink {
+    display: inline-block;
+    margin-top: 25px;
+    perspective: 1000px;
+  }
+
+  #locationLink img {
+    max-width: 280px;
+    width: 70%;
+    cursor: pointer;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(236, 72, 153, 0.35);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: block;
+  }
+
+  #locationLink img:hover {
+    transform: translateY(-8px) rotate(2deg);
+    box-shadow: 0 14px 40px rgba(236, 72, 153, 0.5);
+  }
+
+  #locationLink img:active {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3);
+  }
+
+  /* Celebration Container */
+  .celebration-container {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    display: none;
+  }
+
+  .celebration-text {
+    font-size: 2em;
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-dark);
+    margin-bottom: 25px;
+    animation: scaleIn 0.8s ease-out;
+    font-weight: 900;
+    letter-spacing: 1px;
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.7) rotate(-10deg);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  /* RSVP Button */
+  .rsvp-container {
+    text-align: center;
+    margin: 40px 0;
+    display: none;
+  }
+
+  .btn-rsvp {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    border: none;
+    padding: 15px 45px;
+    font-size: 1.1em;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-rsvp:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.5s ease;
+  }
+
+  .btn-rsvp:hover:before {
+    left: 100%;
+  }
+
+  .btn-rsvp:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(236, 72, 153, 0.5);
+  }
+
+  .btn-rsvp:active {
+    transform: translateY(-1px);
+  }
+
+  /* Confetti Animation */
+  .confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: var(--accent-yellow);
+    pointer-events: none;
+    border-radius: 50%;
+    z-index: 999;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--text-light);
+    font-size: 0.95em;
+    border-top: 2px solid rgba(236, 72, 153, 0.1);
+    margin-top: 50px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+  }
+
+  footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  footer a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .header-title {
+      font-size: 1.2em;
+    }
+
+    .video-wrapper {
+      margin: 15px auto;
+    }
+
+    #locationText {
+      font-size: 1.1em;
+    }
+
+    #endImage {
+      margin-bottom: 20px;
+    }
+
+    .celebration-text {
+      font-size: 1.5em;
+    }
+
+    .btn-rsvp {
+      padding: 12px 35px;
+      font-size: 1em;
+    }
+  }
+
+  @media (max-width: 480px) {
+    body {
+      padding: 0;
+    }
+
+    header {
+      padding: 12px 15px;
+    }
+
+    .header-title {
+      font-size: 1.1em;
+    }
+
+    .header-controls {
+      gap: 8px;
+    }
+
+    .btn-control {
+      width: 36px;
+      height: 36px;
+      font-size: 1em;
+    }
+
+    #locationLink img {
+      width: 85%;
+      max-width: 200px;
+    }
+
+    .celebration-text {
+      font-size: 1.3em;
+      margin-bottom: 20px;
+    }
+
+    .btn-rsvp {
+      padding: 12px 30px;
+      font-size: 0.95em;
+      width: 90%;
+    }
+
+    footer {
+      font-size: 0.85em;
+    }
+  }
+
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Dark Mode Support */
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #e0e0e0;
+    }
+
+    header {
+      background: rgba(30, 30, 50, 0.95);
+      box-shadow: 0 2px 10px rgba(236, 72, 153, 0.2);
+    }
+
+    footer {
+      background: rgba(30, 30, 50, 0.5);
+      border-top-color: rgba(236, 72, 153, 0.2);
+      color: #a0a0a0;
+    }
+  }
+</style>
 </head>
 <body>
-    <div class="invitation">
-        <h1>You're Invited to a Baby Shower!</h1>
-        <p>Join us to celebrate the upcoming arrival of our new baby!</p>
-        <div class="celebrate">Let's Celebrate!</div>
+  <!-- Header with Controls -->
+  <header>
+    <div class="header-title">👶 Baby Shower 👶</div>
+    <div class="header-controls">
+      <button class="btn-control" id="musicToggle" title="Toggle Music">🔊</button>
+      <button class="btn-control" id="fullscreenToggle" title="Fullscreen">⛶</button>
     </div>
-    <div class="confetti"></div>
-    <script>
-        function createConfetti() {
-            const colors = ['#ffeb3b', '#ff5722', '#4caf50', '#2196f3', '#9c27b0'];
-            const confetti = document.querySelector('.confetti');
-            for (let i = 0; i < 100; i++) {
-                const confettiPiece = document.createElement('div');
-                confettiPiece.classList.add('confetti-piece');
-                confettiPiece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confettiPiece.style.position = 'absolute';
-                confettiPiece.style.width = `${Math.random() * 10 + 5}px`;
-                confettiPiece.style.height = `${Math.random() * 10 + 5}px`;
-                confettiPiece.style.left = `${Math.random() * 100}vw`;
-                confettiPiece.style.top = `${Math.random() * 100}vh`;
-                confettiPiece.style.opacity = Math.random();
-                confettiPiece.style.transition = 'all 2s ease-out';
-                confetti.appendChild(confettiPiece);
-                confettiPiece.addEventListener('animationend', () => {
-                    confettiPiece.remove();
-                });
-            }
-        }
-        setInterval(createConfetti, 1000);
-    </script>
+  </header>
+
+  <!-- Video Section -->
+  <div class="video-wrapper">
+    <video id="myVideo" muted playsinline autoplay poster="Images/preview.gif">
+      <source src="video/invite1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="loading-container">
+      <div id="loading-text">Loading</div>
+      <div id="refresh-text" style="display: none;">
+        Taking too long? <a href="javascript:location.reload()">Refresh</a> the page.
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="mainContentContainer">
+    <img id="endImage" src="Images/2.png" oncontextmenu="return false;" draggable="false" alt="Baby Shower Invitation">
+
+    <div style="text-align: center;">
+      <a id="locationLink" href="https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8" target="_blank" rel="noopener noreferrer">
+        <img src="Images/location-button.png" alt="Get Location" draggable="false">
+      </a>
+      <p id="locationText">📍 Click Above Image For Location</p>
+    </div>
+
+    <!-- Celebration Message -->
+    <div class="celebration-container" id="celebrationContainer">
+      <p class="celebration-text">✨ We Look Forward to Celebrating With You! ✨</p>
+    </div>
+
+    <!-- RSVP Button -->
+    <div class="rsvp-container" id="rsvpContainer">
+      <button class="btn-rsvp" id="rsvpBtn">💌 RSVP Now</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>✨ Looking forward to celebrating with you! ✨</p>
+    <p style="margin-top: 10px; font-size: 0.9em;">Made with 💕 for a special moment</p>
+  </footer>
+
+<script>
+  // ===== CORE VARIABLES =====
+  const videoPlayer = document.getElementById('myVideo');
+  const mainContentContainer = document.getElementById('mainContentContainer');
+  const locationText = document.getElementById('locationText');
+  const locationLink = document.getElementById('locationLink');
+  const celebrationContainer = document.getElementById('celebrationContainer');
+  const rsvpContainer = document.getElementById('rsvpContainer');
+  const rsvpBtn = document.getElementById('rsvpBtn');
+  const loadingText = document.getElementById('loading-text');
+  const refreshText = document.getElementById('refresh-text');
+  const musicToggle = document.getElementById('musicToggle');
+  const fullscreenToggle = document.getElementById('fullscreenToggle');
+
+  let isMuted = true;
+  let confettiTimeout;
+
+  // ===== VIDEO EVENT LISTENERS =====
+  videoPlayer.addEventListener('ended', function() {
+    videoPlayer.style.display = 'none';
+    mainContentContainer.style.display = 'block';
+
+    setTimeout(() => {
+      locationLink.classList.add('revealed');
+      locationText.classList.add('revealed');
+
+      setTimeout(() => {
+        celebrationContainer.style.display = 'block';
+        rsvpContainer.style.display = 'block';
+        createConfetti();
+      }, 1500);
+    }, 500);
+  });
+
+  videoPlayer.addEventListener('canplay', () => {
+    loadingText.style.display = 'none';
+    refreshText.style.display = 'none';
+  });
+
+  videoPlayer.addEventListener('play', () => {
+    loadingText.parentElement.style.display = 'none';
+  });
+
+  // ===== LOADING STATES =====
+  loadingText.style.display = 'block';
+
+  const loadingTimeout = setTimeout(() => {
+    loadingText.style.display = 'none';
+    refreshText.style.display = 'block';
+  }, 60000);
+
+  // ===== CONFETTI ANIMATION =====
+  function createConfetti() {
+    clearTimeout(confettiTimeout);
+    const colors = ['#fbbf24', '#ec4899', '#f43f5e', '#a78bfa', '#60a5fa', '#34d399', '#f97316'];
+
+    for (let i = 0; i < 60; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + '%';
+      confetti.style.top = '-10px';
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.opacity = Math.random() * 0.8 + 0.2;
+      confetti.style.width = Math.random() * 8 + 5 + 'px';
+      confetti.style.height = confetti.style.width;
+      document.body.appendChild(confetti);
+
+      const duration = Math.random() * 2.5 + 2;
+      const xMove = Math.random() * 300 - 150;
+      const rotate = Math.random() * 720;
+      const delay = i * 10;
+
+      setTimeout(() => {
+        confetti.animate([
+          { transform: `translateY(0) translateX(0) rotate(0deg)`, opacity: 1 },
+          { transform: `translateY(${window.innerHeight + 10}px) translateX(${xMove}px) rotate(${rotate}deg)`, opacity: 0 }
+        ], {
+          duration: duration * 1000,
+          easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+        });
+
+        const removeTimeout = setTimeout(() => {
+          confetti.remove();
+        }, duration * 1000);
+
+        return () => clearTimeout(removeTimeout);
+      }, delay);
+    }
+  }
+
+  // ===== MUSIC TOGGLE =====
+  musicToggle.addEventListener('click', function() {
+    isMuted = !isMuted;
+    videoPlayer.muted = isMuted;
+    this.textContent = isMuted ? '🔊' : '🔇';
+    this.style.background = isMuted ? 'var(--primary-color)' : 'linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%)';
+  });
+
+  // ===== FULLSCREEN TOGGLE =====
+  fullscreenToggle.addEventListener('click', function() {
+    const elem = document.documentElement;
+    if (!document.fullscreenElement) {
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+      } else if (elem.mozRequestFullScreen) {
+        elem.mozRequestFullScreen();
+      } else if (elem.msRequestFullscreen) {
+        elem.msRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    }
+  });
+
+  // ===== RSVP BUTTON =====
+  rsvpBtn.addEventListener('click', function() {
+    // Replace with your RSVP link (e.g., Google Form, Typeform, etc.)
+    const rsvpLink = 'https://forms.gle/'; // Add your RSVP form link here
+    if (rsvpLink.length > 20) {
+      window.open(rsvpLink, '_blank', 'noopener,noreferrer');
+    } else {
+      alert('📋 RSVP form link not configured. Please contact the organizer!');
+    }
+  });
+
+  // ===== LOCATION LINK =====
+  locationLink.addEventListener('click', function(e) {
+    if (!e.ctrlKey && !e.metaKey) {
+      e.preventDefault();
+      setTimeout(() => {
+        window.open(this.href, '_blank', 'noopener,noreferrer');
+      }, 100);
+    }
+  });
+
+  // ===== SECURITY FEATURES =====
+  document.addEventListener('contextmenu', event => event.preventDefault());
+  document.addEventListener('dragstart', event => event.preventDefault());
+  document.body.addEventListener('dragstart', event => event.preventDefault());
+  document.body.addEventListener('drop', event => event.preventDefault());
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'PrintScreen') {
+      e.preventDefault();
+    }
+    // Prevent F12 Developer Tools
+    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+      e.preventDefault();
+    }
+  });
+
+  // ===== SCROLL REVEAL =====
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  // ===== PAGE LOAD COMPLETION =====
+  window.addEventListener('load', function() {
+    clearTimeout(loadingTimeout);
+    console.log('✨ Baby Shower Invitation Loaded!');
+  });
+</script>
 </body>
 </html>
