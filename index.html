@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <meta property="og:title" content="✨ Baby Shower Invitation - The Most Beautiful Celebration ✨" />
-  <meta property="og:description" content="You're invited to an unforgettable baby shower experience with stunning animations and advanced features." />
+  <meta property="og:description" content="You're invited to an unforgettable baby shower experience with stunning animations and premium features." />
   <meta property="og:image" content="https://arungz.github.io/BabyShower/Images/preview.gif" />
   <meta property="og:image:secure_url" content="https://arungz.github.io/BabyShower/Images/preview.gif" />
   <meta property="og:type" content="website" />
@@ -13,13 +13,13 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Baby Shower">
-  <meta name="description" content="The world's most beautiful baby shower invitation with premium features and stunning animations.">
-  <meta name="keywords" content="baby shower, invitation, celebration, family, premium">
+  <meta name="description" content="The world's most beautiful baby shower invitation with premium features, stunning animations, and advanced interactive elements.">
+  <meta name="keywords" content="baby shower, invitation, celebration, family, premium, magical, interactive">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Baby Shower Team">
   <meta name="format-detection" content="telephone=no, email=no">
   <link rel="canonical" href="https://arungz.github.io/BabyShower/">
-  <title>✨ Baby Shower - Ultimate Invitation ✨</title>
+  <title>✨ Baby Shower - Ultimate Premium Invitation ✨</title>
   <link rel="icon" type="image/png" href="Images/logo.png">
   <link rel="apple-touch-icon" href="Images/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,11 +36,15 @@
     --accent-3: #60a5fa;
     --accent-4: #34d399;
     --accent-5: #f97316;
+    --accent-6: #06b6d4;
     --text-primary: #1a1a2e;
     --text-secondary: #666;
     --bg-primary: #ffffff;
     --bg-secondary: #f8f9fa;
     --border-color: rgba(236, 72, 153, 0.08);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
   }
 
   * {
@@ -54,6 +58,8 @@
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
   }
 
   body {
@@ -63,11 +69,13 @@
     min-height: 100vh;
     overflow-x: hidden;
     line-height: 1.6;
+    position: relative;
   }
 
-  /* Scrollbar */
+  /* Scrollbar Styling */
   ::-webkit-scrollbar {
     width: 10px;
+    height: 10px;
   }
 
   ::-webkit-scrollbar-track {
@@ -78,6 +86,7 @@
     background: var(--primary);
     border-radius: 10px;
     opacity: 0.5;
+    transition: opacity 0.3s ease;
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -96,6 +105,8 @@
     top: 0;
     z-index: 100;
     animation: slideDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: var(--shadow-sm);
+    gap: 1rem;
   }
 
   @keyframes slideDown {
@@ -118,12 +129,14 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     letter-spacing: 2px;
+    flex: 1;
   }
 
   .header-controls {
     display: flex;
     gap: 0.8rem;
     align-items: center;
+    flex-shrink: 0;
   }
 
   .btn-control {
@@ -141,6 +154,8 @@
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow-md);
+    flex-shrink: 0;
   }
 
   .btn-control::before {
@@ -157,7 +172,8 @@
   }
 
   .btn-control:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: var(--shadow-lg);
   }
 
   .btn-control:hover::before {
@@ -167,6 +183,11 @@
 
   .btn-control:active {
     transform: scale(0.95);
+  }
+
+  .btn-control:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
   }
 
   /* Video Section */
@@ -189,12 +210,15 @@
     width: 100%;
     height: auto;
     max-height: 70vh;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+    display: block;
   }
 
   #myVideo:hover {
     transform: scale(1.01) translateY(-5px);
+    box-shadow: var(--shadow-lg);
   }
 
   video {
@@ -268,6 +292,7 @@
     border-radius: 6px;
     display: inline-block;
     position: relative;
+    background: rgba(236, 72, 153, 0.08);
   }
 
   #refresh-text a::after {
@@ -282,12 +307,17 @@
   }
 
   #refresh-text a:hover {
-    background: rgba(236, 72, 153, 0.1);
+    background: rgba(236, 72, 153, 0.15);
     color: var(--primary-dark);
   }
 
   #refresh-text a:hover::after {
     width: 100%;
+  }
+
+  #refresh-text a:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
   }
 
   @keyframes fadeInUp {
@@ -318,11 +348,13 @@
     border: 1px solid var(--border-color);
     transition: all 0.3s ease;
     animation: fadeInUp 0.8s ease-out;
+    box-shadow: var(--shadow-md);
   }
 
   .content-card:hover {
     border-color: rgba(236, 72, 153, 0.2);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
   }
 
   /* Image */
@@ -337,15 +369,22 @@
     cursor: pointer;
     display: block;
     border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
   }
 
   #endImage:hover {
     transform: scale(1.04) translateY(-10px);
     border-color: rgba(236, 72, 153, 0.3);
+    box-shadow: var(--shadow-lg);
   }
 
   #endImage:active {
     transform: scale(0.97);
+  }
+
+  #endImage:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
   }
 
   /* Location */
@@ -402,15 +441,22 @@
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     display: block;
     border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
   }
 
   #locationLink img:hover {
     transform: translateY(-12px) scale(1.06);
     border-color: rgba(236, 72, 153, 0.3);
+    box-shadow: var(--shadow-lg);
   }
 
   #locationLink img:active {
     transform: translateY(-5px) scale(0.96);
+  }
+
+  #locationLink img:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
   }
 
   /* Celebration */
@@ -470,6 +516,7 @@
     width: 90%;
     text-transform: uppercase;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: var(--shadow-md);
   }
 
   .btn-rsvp::before {
@@ -483,16 +530,22 @@
     transition: left 0.6s ease;
   }
 
+  .btn-rsvp:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: var(--shadow-lg);
+  }
+
   .btn-rsvp:hover::before {
     left: 100%;
   }
 
-  .btn-rsvp:hover {
-    transform: translateY(-4px) scale(1.05);
-  }
-
   .btn-rsvp:active {
     transform: translateY(-1px) scale(0.98);
+  }
+
+  .btn-rsvp:focus-visible {
+    outline: 2px solid var(--primary-light);
+    outline-offset: 4px;
   }
 
   .btn-rsvp {
@@ -516,6 +569,7 @@
     height: 10px;
     background-color: var(--accent-1);
     border-radius: 50%;
+    box-shadow: 0 0 4px rgba(251, 191, 36, 0.6);
   }
 
   .confetti-emoji {
@@ -523,6 +577,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.1));
   }
 
   /* Footer */
@@ -534,6 +589,7 @@
     border-top: 1px solid var(--border-color);
     margin-top: 4rem;
     background: var(--bg-primary);
+    box-shadow: var(--shadow-sm);
   }
 
   footer p {
@@ -570,6 +626,11 @@
     width: 100%;
   }
 
+  footer a:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
     html {
@@ -601,6 +662,7 @@
 
     header {
       padding: 0.7rem 1rem;
+      gap: 0.5rem;
     }
 
     .header-title {
@@ -667,6 +729,9 @@
       --text-primary: #e0e0e0;
       --text-secondary: #b0b0b0;
       --border-color: rgba(236, 72, 153, 0.1);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
     }
 
     body {
@@ -683,6 +748,10 @@
 
     footer {
       background: rgba(26, 26, 46, 0.95);
+    }
+
+    .btn-rsvp {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.9) 0%, rgba(190, 24, 93, 0.9) 100%);
     }
   }
 
@@ -702,7 +771,7 @@
   <!-- Header -->
   <header role="banner">
     <div class="header-title" role="heading" aria-level="1">👶 Baby Shower 👶</div>
-    <div class="header-controls" role="toolbar" aria-label="Controls">
+    <div class="header-controls" role="toolbar" aria-label="Invitation Controls">
       <button class="btn-control" id="musicToggle" title="Toggle Music" aria-label="Toggle Music" aria-pressed="true">🔊</button>
       <button class="btn-control" id="fullscreenToggle" title="Toggle Fullscreen" aria-label="Toggle Fullscreen" aria-pressed="false">⛶</button>
     </div>
@@ -714,7 +783,7 @@
       <source src="video/invite1.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-    <div class="loading-container" role="status" aria-live="polite">
+    <div class="loading-container" role="status" aria-live="polite" aria-atomic="true">
       <div id="loading-text">Loading</div>
       <div id="refresh-text" style="display: none;" role="alert">
         Taking too long? <a href="javascript:location.reload()">Refresh</a> the page
@@ -726,12 +795,12 @@
   <main id="mainContentContainer" role="main">
     <!-- Image Card -->
     <div class="content-card">
-      <img id="endImage" src="Images/2.png" oncontextmenu="return false;" draggable="false" alt="Baby Shower Invitation" loading="lazy">
+      <img id="endImage" src="Images/2.png" oncontextmenu="return false;" draggable="false" alt="Beautiful Baby Shower Invitation" loading="lazy">
     </div>
 
     <!-- Location Card -->
     <div class="content-card location-card" role="region" aria-label="Location Information">
-      <a id="locationLink" href="https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8" target="_blank" rel="noopener noreferrer" aria-label="View location on map">
+      <a id="locationLink" href="https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8" target="_blank" rel="noopener noreferrer" aria-label="View event location on map">
         <img src="Images/location-button.png" alt="Get Location" draggable="false" loading="lazy">
       </a>
       <p id="locationText">📍 Click Image For Location</p>
@@ -744,7 +813,7 @@
 
     <!-- RSVP Button -->
     <div class="rsvp-container" id="rsvpContainer" role="region" aria-label="RSVP Section">
-      <button class="btn-rsvp" id="rsvpBtn" aria-label="Click to RSVP for the event">💌 RSVP Now</button>
+      <button class="btn-rsvp" id="rsvpBtn" aria-label="Click to RSVP for the baby shower event">💌 RSVP Now</button>
     </div>
   </main>
 
@@ -757,134 +826,218 @@
 <script>
   'use strict';
 
-  // Cache DOM elements
-  const elements = {
-    video: document.getElementById('myVideo'),
-    mainContent: document.getElementById('mainContentContainer'),
-    locationText: document.getElementById('locationText'),
-    locationLink: document.getElementById('locationLink'),
-    celebration: document.getElementById('celebrationContainer'),
-    rsvpContainer: document.getElementById('rsvpContainer'),
-    rsvpBtn: document.getElementById('rsvpBtn'),
-    loadingText: document.getElementById('loading-text'),
-    refreshText: document.getElementById('refresh-text'),
-    musicToggle: document.getElementById('musicToggle'),
-    fullscreenToggle: document.getElementById('fullscreenToggle')
+  // Cache DOM elements with null checking
+  const getElement = (id) => {
+    const el = document.getElementById(id);
+    if (!el) console.warn(`Element with id "${id}" not found`);
+    return el;
   };
 
-  let isMuted = true;
-  let isAnimating = false;
-  let loadingTimeout = null;
+  const elements = {
+    video: getElement('myVideo'),
+    mainContent: getElement('mainContentContainer'),
+    locationText: getElement('locationText'),
+    locationLink: getElement('locationLink'),
+    celebration: getElement('celebrationContainer'),
+    rsvpContainer: getElement('rsvpContainer'),
+    rsvpBtn: getElement('rsvpBtn'),
+    loadingText: getElement('loading-text'),
+    refreshText: getElement('refresh-text'),
+    musicToggle: getElement('musicToggle'),
+    fullscreenToggle: getElement('fullscreenToggle')
+  };
+
+  // State management
+  let state = {
+    isMuted: true,
+    isAnimating: false,
+    hasEnded: false,
+    loadingTimeout: null
+  };
+
+  // Utility functions
+  const handleError = (error, context = '') => {
+    console.error(`Error in ${context}:`, error);
+  };
+
+  const safeSetTimeout = (fn, delay) => {
+    return setTimeout(() => {
+      try {
+        fn();
+      } catch (error) {
+        handleError(error, 'setTimeout callback');
+      }
+    }, delay);
+  };
 
   // Video Events
   function handleVideoEnded() {
-    if (isAnimating) return;
-    isAnimating = true;
+    if (state.isAnimating || state.hasEnded) return;
+    state.isAnimating = true;
+    state.hasEnded = true;
     
-    elements.video.style.display = 'none';
-    elements.mainContent.style.display = 'block';
+    if (elements.video) {
+      elements.video.style.display = 'none';
+    }
+    if (elements.mainContent) {
+      elements.mainContent.style.display = 'block';
+    }
 
-    setTimeout(() => {
-      elements.locationLink.classList.add('revealed');
-      elements.locationText.classList.add('revealed');
+    safeSetTimeout(() => {
+      if (elements.locationLink) {
+        elements.locationLink.classList.add('revealed');
+      }
+      if (elements.locationText) {
+        elements.locationText.classList.add('revealed');
+      }
 
-      setTimeout(() => {
-        elements.celebration.style.display = 'block';
-        elements.rsvpContainer.style.display = 'block';
+      safeSetTimeout(() => {
+        if (elements.celebration) {
+          elements.celebration.style.display = 'block';
+        }
+        if (elements.rsvpContainer) {
+          elements.rsvpContainer.style.display = 'block';
+        }
         createConfetti();
-        isAnimating = false;
+        state.isAnimating = false;
       }, 1500);
     }, 500);
   }
 
-  elements.video.addEventListener('ended', handleVideoEnded, { once: true });
-  
-  elements.video.addEventListener('canplay', () => {
-    if (elements.loadingText) elements.loadingText.style.display = 'none';
-    if (elements.refreshText) elements.refreshText.style.display = 'none';
-  });
+  if (elements.video) {
+    elements.video.addEventListener('ended', handleVideoEnded, { once: true });
+    
+    elements.video.addEventListener('canplay', () => {
+      if (elements.loadingText) elements.loadingText.style.display = 'none';
+      if (elements.refreshText) elements.refreshText.style.display = 'none';
+    });
 
-  elements.video.addEventListener('play', () => {
-    if (elements.loadingText && elements.loadingText.parentElement) {
-      elements.loadingText.parentElement.style.display = 'none';
-    }
-  });
+    elements.video.addEventListener('play', () => {
+      if (elements.loadingText?.parentElement) {
+        elements.loadingText.parentElement.style.display = 'none';
+      }
+    });
+
+    elements.video.addEventListener('error', (e) => {
+      handleError(e, 'video playback');
+      if (elements.loadingText) {
+        elements.loadingText.textContent = '❌ Video failed to load';
+      }
+    });
+  }
 
   // Loading Timeout
   if (elements.loadingText) {
     elements.loadingText.style.display = 'block';
   }
 
-  loadingTimeout = setTimeout(() => {
+  state.loadingTimeout = safeSetTimeout(() => {
     if (elements.loadingText) elements.loadingText.style.display = 'none';
     if (elements.refreshText) elements.refreshText.style.display = 'block';
   }, 60000);
 
-  // Confetti Animation
+  // Confetti Animation - Enhanced
   function createConfetti() {
     const colors = [
       '#fbbf24', '#ec4899', '#f43f5e', '#a78bfa',
       '#60a5fa', '#34d399', '#f97316', '#06b6d4'
     ];
-    const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖'];
+    const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎊'];
 
-    for (let i = 0; i < 120; i++) {
-      const confetti = document.createElement('div');
-      confetti.className = 'confetti';
-      const isEmoji = Math.random() > 0.4;
-      
-      if (isEmoji) {
-        confetti.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-        confetti.className = 'confetti confetti-emoji';
-      } else {
-        confetti.className = 'confetti confetti-shape';
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        const size = Math.random() * 8 + 5;
-        confetti.style.width = size + 'px';
-        confetti.style.height = size + 'px';
-      }
-      
-      confetti.style.left = Math.random() * 100 + '%';
-      confetti.style.top = '-20px';
-      confetti.style.opacity = Math.random() * 0.8 + 0.3;
-      document.body.appendChild(confetti);
+    const particleCount = Math.min(window.innerWidth > 768 ? 150 : 80, 200);
 
-      const duration = Math.random() * 3 + 2.5;
-      const xMove = (Math.random() - 0.5) * 400;
-      const rotate = Math.random() * 1080;
-
-      setTimeout(() => {
-        if (!confetti.parentElement) return;
+    for (let i = 0; i < particleCount; i++) {
+      try {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        const isEmoji = Math.random() > 0.4;
         
-        confetti.animate([
-          { 
-            transform: 'translateY(0) translateX(0) rotate(0deg)',
-            opacity: Math.random() * 0.8 + 0.3
-          },
-          { 
-            transform: `translateY(${window.innerHeight + 20}px) translateX(${xMove}px) rotate(${rotate}deg)`,
-            opacity: 0
+        if (isEmoji) {
+          const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+          confetti.innerHTML = emoji;
+          confetti.className = 'confetti confetti-emoji';
+          confetti.setAttribute('aria-hidden', 'true');
+        } else {
+          confetti.className = 'confetti confetti-shape';
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          const size = Math.random() * 8 + 4;
+          confetti.style.width = size + 'px';
+          confetti.style.height = size + 'px';
+          confetti.setAttribute('aria-hidden', 'true');
+        }
+        
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.top = '-20px';
+        confetti.style.opacity = Math.random() * 0.8 + 0.3;
+        document.body.appendChild(confetti);
+
+        const duration = Math.random() * 3 + 2.5;
+        const xMove = (Math.random() - 0.5) * 400;
+        const rotate = Math.random() * 1080;
+
+        safeSetTimeout(() => {
+          try {
+            if (!confetti.parentElement) return;
+            
+            const animation = confetti.animate([
+              { 
+                transform: 'translateY(0) translateX(0) rotate(0deg)',
+                opacity: Math.random() * 0.8 + 0.3
+              },
+              { 
+                transform: `translateY(${window.innerHeight + 20}px) translateX(${xMove}px) rotate(${rotate}deg)`,
+                opacity: 0
+              }
+            ], {
+              duration: duration * 1000,
+              easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              fill: 'forwards'
+            });
+
+            if (animation && typeof animation.onfinish === 'function') {
+              animation.onfinish = () => {
+                try {
+                  if (confetti.parentElement) {
+                    confetti.remove();
+                  }
+                } catch (e) {
+                  handleError(e, 'confetti cleanup');
+                }
+              };
+            } else {
+              safeSetTimeout(() => {
+                try {
+                  if (confetti.parentElement) {
+                    confetti.remove();
+                  }
+                } catch (e) {
+                  handleError(e, 'confetti cleanup fallback');
+                }
+              }, duration * 1000);
+            }
+          } catch (error) {
+            handleError(error, 'confetti animation');
           }
-        ], {
-          duration: duration * 1000,
-          easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-          fill: 'forwards'
-        }).onfinish = () => {
-          if (confetti.parentElement) {
-            confetti.remove();
-          }
-        };
-      }, i * 12);
+        }, i * 12);
+      } catch (error) {
+        handleError(error, 'confetti creation');
+      }
     }
   }
 
   // Music Toggle
   if (elements.musicToggle) {
     elements.musicToggle.addEventListener('click', function() {
-      isMuted = !isMuted;
-      elements.video.muted = isMuted;
-      this.textContent = isMuted ? '🔊' : '🔇';
-      this.setAttribute('aria-pressed', (!isMuted).toString());
+      try {
+        state.isMuted = !state.isMuted;
+        if (elements.video) {
+          elements.video.muted = state.isMuted;
+        }
+        this.textContent = state.isMuted ? '🔊' : '🔇';
+        this.setAttribute('aria-pressed', (!state.isMuted).toString());
+      } catch (error) {
+        handleError(error, 'music toggle');
+      }
     });
   }
 
@@ -894,23 +1047,34 @@
       const elem = document.documentElement;
       try {
         if (!document.fullscreenElement) {
-          if (elem.requestFullscreen) {
-            elem.requestFullscreen().catch(err => console.error('Fullscreen error:', err));
-          } else if (elem.webkitRequestFullscreen) {
-            elem.webkitRequestFullscreen();
-          } else if (elem.mozRequestFullScreen) {
-            elem.mozRequestFullScreen();
+          const request = elem.requestFullscreen || 
+                         elem.webkitRequestFullscreen || 
+                         elem.mozRequestFullScreen ||
+                         elem.msRequestFullscreen;
+          
+          if (request) {
+            Promise.resolve(request.call(elem))
+              .then(() => {
+                this.setAttribute('aria-pressed', 'true');
+              })
+              .catch(err => handleError(err, 'fullscreen enter'));
           }
         } else {
-          if (document.exitFullscreen) {
-            document.exitFullscreen().catch(err => console.error('Exit fullscreen error:', err));
-          } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
+          const exit = document.exitFullscreen || 
+                      document.webkitExitFullscreen || 
+                      document.mozCancelFullScreen ||
+                      document.msExitFullscreen;
+          
+          if (exit) {
+            Promise.resolve(exit.call(document))
+              .then(() => {
+                this.setAttribute('aria-pressed', 'false');
+              })
+              .catch(err => handleError(err, 'fullscreen exit'));
           }
         }
-        this.setAttribute('aria-pressed', (!!document.fullscreenElement).toString());
-      } catch (e) {
-        console.error('Fullscreen error:', e);
+      } catch (error) {
+        handleError(error, 'fullscreen toggle');
       }
     });
   }
@@ -918,11 +1082,15 @@
   // RSVP Button
   if (elements.rsvpBtn) {
     elements.rsvpBtn.addEventListener('click', function() {
-      const rsvpLink = 'https://forms.gle/'; // Add your RSVP form link
-      if (rsvpLink && rsvpLink.length > 20) {
-        window.open(rsvpLink, '_blank', 'noopener,noreferrer');
-      } else {
-        alert('📋 RSVP form link not configured. Please contact the organizer!');
+      try {
+        const rsvpLink = 'https://forms.gle/'; // Add your RSVP form link
+        if (rsvpLink && rsvpLink.length > 20) {
+          window.open(rsvpLink, '_blank', 'noopener,noreferrer');
+        } else {
+          alert('📋 RSVP form link not configured. Please contact the organizer!');
+        }
+      } catch (error) {
+        handleError(error, 'RSVP button click');
       }
     });
   }
@@ -930,16 +1098,20 @@
   // Location Link
   if (elements.locationLink) {
     elements.locationLink.addEventListener('click', function(e) {
-      if (!e.ctrlKey && !e.metaKey) {
-        e.preventDefault();
-        setTimeout(() => {
-          window.open(this.href, '_blank', 'noopener,noreferrer');
-        }, 100);
+      try {
+        if (!e.ctrlKey && !e.metaKey) {
+          e.preventDefault();
+          safeSetTimeout(() => {
+            window.open(this.href, '_blank', 'noopener,noreferrer');
+          }, 100);
+        }
+      } catch (error) {
+        handleError(error, 'location link click');
       }
     });
   }
 
-  // Security
+  // Security Features
   document.addEventListener('contextmenu', e => e.preventDefault());
   document.addEventListener('dragstart', e => e.preventDefault());
   document.body.addEventListener('dragstart', e => e.preventDefault());
@@ -956,37 +1128,61 @@
 
   // Visibility API
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      if (elements.video) elements.video.pause();
-    } else {
+    try {
       if (elements.video) {
-        elements.video.play().catch(err => console.error('Play error:', err));
+        if (document.hidden) {
+          elements.video.pause();
+        } else {
+          elements.video.play().catch(err => handleError(err, 'video resume'));
+        }
       }
+    } catch (error) {
+      handleError(error, 'visibility change');
     }
   });
 
   // Page Load
   window.addEventListener('load', function() {
-    if (loadingTimeout) clearTimeout(loadingTimeout);
-    
-    if ('loading' in HTMLImageElement.prototype) {
-      document.querySelectorAll('img').forEach(img => {
-        img.loading = 'lazy';
-      });
+    try {
+      if (state.loadingTimeout) clearTimeout(state.loadingTimeout);
+      
+      if ('loading' in HTMLImageElement.prototype) {
+        document.querySelectorAll('img').forEach(img => {
+          img.loading = 'lazy';
+        });
+      }
+      
+      console.log('✨ Baby Shower Invitation Loaded Successfully! ✨');
+    } catch (error) {
+      handleError(error, 'page load');
     }
-    
-    console.log('✨ Baby Shower Invitation Loaded! ✨');
   });
 
-  // Touch Support
+  // Touch Support - Performance
   document.addEventListener('touchstart', function() {}, { passive: true });
   document.addEventListener('touchmove', function() {}, { passive: true });
   document.addEventListener('touchend', function() {}, { passive: true });
 
   // Cleanup on unload
   window.addEventListener('beforeunload', () => {
-    if (loadingTimeout) clearTimeout(loadingTimeout);
+    try {
+      if (state.loadingTimeout) clearTimeout(state.loadingTimeout);
+      if (elements.video) {
+        elements.video.pause();
+        elements.video.src = '';
+      }
+    } catch (error) {
+      handleError(error, 'cleanup');
+    }
   });
+
+  // Network status
+  if ('connection' in navigator) {
+    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (conn && conn.effectiveType === '4g') {
+      console.log('✨ Fast connection detected - Premium features enabled!');
+    }
+  }
 </script>
 </body>
 </html>
