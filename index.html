@@ -984,6 +984,28 @@
       }
     });
 
+    // Disable F1 through F12 and other developer shortcuts
+document.addEventListener('keydown', function(e) {
+    // 1. Block F1 through F12
+    // This catches keys whether pressed alone or with 'Fn'
+    if (e.key.startsWith('F') && !isNaN(e.key.substring(1))) {
+        e.preventDefault();
+        return false;
+    }
+
+    // 2. Block Ctrl+U (View Source)
+    if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+        e.preventDefault();
+        return false;
+    }
+
+    // 3. Block Ctrl+Shift+I / J / C (Developer Tools)
+    if (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) {
+        e.preventDefault();
+        return false;
+    }
+}, false);
+
     // Page visibility
     document.addEventListener('visibilitychange', () => {
       if (elements.video) {
