@@ -746,299 +746,153 @@
   <script>
     'use strict';
 
-    const elements = {
-      video: document.getElementById('myVideo'),
-      mainContent: document.getElementById('mainContentContainer'),
-      endImage: document.getElementById('endImage'),
-      locationBtn: document.getElementById('locationBtn'),
-      locationText: document.getElementById('locationText'),
-      celebration: document.getElementById('celebrationContainer'),
-      rsvpContainer: document.getElementById('rsvpContainer'),
-      rsvpBtn: document.getElementById('rsvpBtn'),
-      loadingText: document.getElementById('loading-text'),
-      refreshText: document.getElementById('refresh-text'),
-      musicToggle: document.getElementById('musicToggle'),
-      fullscreenToggle: document.getElementById('fullscreenToggle')
-    };
+const elements = {
+  video: document.getElementById('myVideo'),
+  mainContent: document.getElementById('mainContentContainer'),
+  endImage: document.getElementById('endImage'),
+  locationBtn: document.getElementById('locationBtn'),
+  locationText: document.getElementById('locationText'),
+  celebration: document.getElementById('celebrationContainer'),
+  rsvpContainer: document.getElementById('rsvpContainer'),
+  rsvpBtn: document.getElementById('rsvpBtn'),
+  loadingText: document.getElementById('loading-text'),
+  refreshText: document.getElementById('refresh-text'),
+  musicToggle: document.getElementById('musicToggle'),
+  fullscreenToggle: document.getElementById('fullscreenToggle')
+};
 
-    let state = {
-      isMuted: true,
-      isAnimating: false,
-      hasEnded: false,
-      isFullscreen: false
-    };
+let state = {
+  isMuted: true,
+  isAnimating: false,
+  hasEnded: false,
+  calendarOpened: false // Added to prevent multiple calendar popups
+};
 
-    // Video ended handler
-    function handleVideoEnded() {
-      if (state.isAnimating || state.hasEnded) return;
-      state.isAnimating = true;
-      state.hasEnded = true;
+// --- VIDEO LOGIC ---
+function handleVideoEnded() {
+  if (state.isAnimating || state.hasEnded) return;
+  state.isAnimating = true;
+  state.hasEnded = true;
 
-      if (elements.video) {
-        elements.video.style.display = 'none';
-      }
+  if (elements.video) elements.video.style.display = 'none';
+  if (elements.mainContent) elements.mainContent.classList.add('active');
 
-      if (elements.mainContent) {
-        elements.mainContent.classList.add('active');
-      }
-
-      // Staggered reveal animations
-      setTimeout(() => {
-        if (elements.locationText) {
-          elements.locationText.classList.add('revealed');
-        }
-
-        setTimeout(() => {
-          if (elements.celebration) {
-            elements.celebration.classList.add('active');
-          }
-          if (elements.rsvpContainer) {
-            elements.rsvpContainer.classList.add('active');
-          }
-
-          createConfetti();
-          state.isAnimating = false;
-        }, 800);
-      }, 600);
-    }
-
-    function handleVideoCanPlay() {
-      if (elements.loadingText) {
-        elements.loadingText.style.display = 'none';
-      }
-      if (elements.refreshText) {
-        elements.refreshText.style.display = 'none';
-      }
-    }
-
-    function handleVideoError() {
-      if (elements.loadingText) {
-        elements.loadingText.textContent = '❌ Video failed to load';
-      }
-    }
-
-    // Video initialization
-    if (elements.video) {
-      elements.video.addEventListener('ended', handleVideoEnded, { once: true });
-      elements.video.addEventListener('canplay', handleVideoCanPlay);
-      elements.video.addEventListener('error', handleVideoError);
-    }
-
-    if (elements.loadingText) {
-      elements.loadingText.style.display = 'block';
-    }
-
-    // Show refresh message after 60 seconds
+  setTimeout(() => {
+    if (elements.locationText) elements.locationText.classList.add('revealed');
     setTimeout(() => {
-      if (elements.loadingText) {
-        elements.loadingText.style.display = 'none';
-      }
-      if (elements.refreshText) {
-        elements.refreshText.style.display = 'block';
-      }
-    }, 60000);
+      if (elements.celebration) elements.celebration.classList.add('active');
+      if (elements.rsvpContainer) elements.rsvpContainer.classList.add('active');
+      createConfetti();
+      state.isAnimating = false;
+    }, 800);
+  }, 600);
+}
 
-    // Confetti animation
-    function createConfetti() {
-      const colors = ['#ec4899', '#f472b6', '#d946ef', '#a78bfa', '#60a5fa', '#34d399'];
-      const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖'];
-      const particleCount = window.innerWidth > 768 ? 100 : 60;
+function handleVideoCanPlay() {
+  if (elements.loadingText) elements.loadingText.style.display = 'none';
+  if (elements.refreshText) elements.refreshText.style.display = 'none';
+}
 
-      for (let i = 0; i < particleCount; i++) {
-        const confetti = document.createElement('div');
-        const isEmoji = Math.random() > 0.4;
+if (elements.video) {
+  elements.video.addEventListener('ended', handleVideoEnded, { once: true });
+  elements.video.addEventListener('canplay', handleVideoCanPlay);
+  elements.video.addEventListener('error', () => {
+    if (elements.loadingText) elements.loadingText.textContent = '❌ Video failed to load';
+  });
+}
 
-        if (isEmoji) {
-          confetti.className = 'confetti confetti-emoji';
-          confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-        } else {
-          confetti.className = 'confetti confetti-shape';
-          const color = colors[Math.floor(Math.random() * colors.length)];
-          confetti.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), ${color})`;
-          confetti.style.boxShadow = `0 0 8px ${color}`;
-        }
-
-        confetti.style.left = Math.random() * 100 + '%';
-        confetti.style.top = '-20px';
-        confetti.style.opacity = Math.random() * 0.7 + 0.3;
-        document.body.appendChild(confetti);
-
-        const duration = Math.random() * 3 + 2;
-        const xMove = (Math.random() - 0.5) * 420;
-        const rotate = Math.random() * 1080;
-
-        setTimeout(() => {
-          try {
-            if (!confetti.parentElement) return;
-
-            const animation = confetti.animate(
-              [
-                { transform: 'translateY(0) translateX(0) rotate(0deg)', opacity: Math.random() * 0.7 + 0.3 },
-                { transform: `translateY(${window.innerHeight + 20}px) translateX(${xMove}px) rotate(${rotate}deg)`, opacity: 0 }
-              ],
-              {
-                duration: duration * 1000,
-                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                fill: 'forwards'
-              }
-            );
-
-            animation.onfinish = () => {
-              try {
-                if (confetti.parentElement) {
-                  confetti.remove();
-                }
-              } catch (e) {}
-            };
-          } catch (e) {}
-        }, i * 6);
-      }
-    }
-
-    // Music toggle
-    if (elements.musicToggle) {
-      elements.musicToggle.addEventListener('click', function () {
-        state.isMuted = !state.isMuted;
-        if (elements.video) {
-          elements.video.muted = state.isMuted;
-        }
-        this.textContent = state.isMuted ? '🔊' : '🔇';
-        this.setAttribute('aria-pressed', !state.isMuted);
-      });
-    }
-
-    // Fullscreen toggle
-    if (elements.fullscreenToggle) {
-      elements.fullscreenToggle.addEventListener('click', function () {
-        const elem = document.documentElement;
-        try {
-          if (!document.fullscreenElement) {
-            const requestFullscreen =
-              elem.requestFullscreen ||
-              elem.webkitRequestFullscreen ||
-              elem.mozRequestFullScreen ||
-              elem.msRequestFullscreen;
-
-            if (requestFullscreen) {
-              requestFullscreen.call(elem);
-              this.setAttribute('aria-pressed', 'true');
-            }
-          } else {
-            const exitFullscreen =
-              document.exitFullscreen ||
-              document.webkitExitFullscreen ||
-              document.mozCancelFullScreen ||
-              document.msExitFullscreen;
-
-            if (exitFullscreen) {
-              exitFullscreen.call(document);
-              this.setAttribute('aria-pressed', 'false');
-            }
-          }
-        } catch (e) {}
-      });
-    }
-
-    // Location handlers
-    const locationUrl = 'https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8';
-
-    if (elements.endImage) {
-      elements.endImage.addEventListener('click', () => {
-        window.open(locationUrl, '_blank', 'noopener,noreferrer');
-      });
-    }
-
-    if (elements.locationBtn) {
-      elements.locationBtn.addEventListener('click', () => {
-        window.open(locationUrl, '_blank', 'noopener,noreferrer');
-      });
-
-      elements.locationBtn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          window.open(locationUrl, '_blank', 'noopener,noreferrer');
-        }
-      });
-    }
-
-    // RSVP handler
-    if (elements.rsvpBtn) {
-      elements.rsvpBtn.addEventListener('click', function () {
-        const rsvpLink = 'https://forms.gle/Aqrw3mATGPEahUxCA'; // Replace with your RSVP form link
-        if (rsvpLink && rsvpLink.length > 20) {
-          window.open(rsvpLink, '_blank', 'noopener,noreferrer');
-        } else {
-          alert('📋 RSVP form link not configured. Appudilam onnum illa Ellarum Kandipa Family oda Varanum');
-        }
-      });
-    }
-
-    // Security
-    document.addEventListener('contextmenu', (e) => e.preventDefault());
-    document.addEventListener('dragstart', (e) => e.preventDefault());
-    document.addEventListener('selectstart', (e) => e.preventDefault());
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'PrintScreen' || e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u')) {
-        e.preventDefault();
-      }
-    });
-
-    // Disable F1 through F12 and other developer shortcuts
+// --- SECURITY & ADVANCED LOCKDOWN ---
+// Merged and optimized key protection
 document.addEventListener('keydown', function(e) {
-    // 1. Block F1 through F12
-    // This catches keys whether pressed alone or with 'Fn'
-    if (e.key.startsWith('F') && !isNaN(e.key.substring(1))) {
-        e.preventDefault();
-        return false;
-    }
+  // 1. Block F1 through F12
+  if (e.key.startsWith('F') && !isNaN(e.key.substring(1))) {
+    e.preventDefault();
+    return false;
+  }
 
-    // 2. Block Ctrl+U (View Source)
-    if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
-        e.preventDefault();
-        return false;
-    }
+  // 2. Block Developer Shortcuts (Ctrl+U, Ctrl+Shift+I/J/C, etc.)
+  const isDevKey = (e.ctrlKey && (e.key === 'u' || e.key === 'U')) || 
+                   (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) ||
+                   (e.key === 'F12') || (e.key === 'PrintScreen');
 
-    // 3. Block Ctrl+Shift+I / J / C (Developer Tools)
-    if (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) {
-        e.preventDefault();
-        return false;
-    }
+  if (isDevKey) {
+    e.preventDefault();
+    return false;
+  }
 }, false);
 
-    // Page visibility
-    document.addEventListener('visibilitychange', () => {
-      if (elements.video) {
-        if (document.hidden) {
-          elements.video.pause();
-        } else {
-          elements.video.play().catch(() => {});
-        }
-      }
-    });
-    // Open Google Calendar event creation link after 20 seconds
-     setTimeout(() => {
-        const eventDate = '20260305T103000'; // March 5, 2026, 10:30 AM
-        const eventTitle = 'Karthika Arun baby shower';
-        const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventTitle)}&dates=${eventDate}/${eventDate}`;
-        window.open(googleCalendarUrl, '_blank');
-      }, 20000); // 20-second delay
+// Disable Mouse Protections
+document.addEventListener('contextmenu', (e) => e.preventDefault());
+document.addEventListener('dragstart', (e) => e.preventDefault());
+document.addEventListener('selectstart', (e) => e.preventDefault());
 
-    // Cleanup
-    window.addEventListener('beforeunload', () => {
-      if (elements.video) {
-        elements.video.pause();
-        elements.video.src = '';
-      }
-    });
+// --- CALENDAR AUTOMATION ---
+setTimeout(() => {
+  if (!state.calendarOpened) {
+    const eventDate = '20260305T103000'; 
+    const eventTitle = 'Karthika Arun baby shower';
+    const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventTitle)}&dates=${eventDate}/${eventDate}`;
+    window.open(googleCalendarUrl, '_blank');
+    state.calendarOpened = true;
+  }
+}, 20000);
 
-    window.addEventListener('load', function () {
-      document.querySelectorAll('img').forEach((img) => {
-        if (!img.hasAttribute('loading')) {
-          img.loading = 'lazy';
-        }
-      });
-    });
+// --- UI CONTROLS ---
+if (elements.musicToggle) {
+  elements.musicToggle.addEventListener('click', function () {
+    state.isMuted = !state.isMuted;
+    if (elements.video) elements.video.muted = state.isMuted;
+    this.textContent = state.isMuted ? '🔊' : '🔇';
+  });
+}
+
+// Location and RSVP
+const locationUrl = 'https://www.google.com/maps'; // Use full HTTPS link
+const openMap = () => window.open(locationUrl, '_blank', 'noopener,noreferrer');
+
+if (elements.endImage) elements.endImage.addEventListener('click', openMap);
+if (elements.locationBtn) elements.locationBtn.addEventListener('click', openMap);
+
+if (elements.rsvpBtn) {
+  elements.rsvpBtn.addEventListener('click', () => {
+    const rsvpLink = 'https://forms.gle/Aqrw3mATGPEahUxCA';
+    window.open(rsvpLink, '_blank', 'noopener,noreferrer');
+  });
+}
+
+// --- UTILS ---
+function createConfetti() {
+  const colors = ['#ec4899', '#f472b6', '#d946ef', '#a78bfa', '#60a5fa', '#34d399'];
+  const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶'];
+  for (let i = 0; i < 80; i++) {
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti ' + (Math.random() > 0.4 ? 'confetti-emoji' : 'confetti-shape');
+    if (confetti.classList.contains('confetti-emoji')) {
+        confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    } else {
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+    }
+    confetti.style.left = Math.random() * 100 + '%';
+    document.body.appendChild(confetti);
+    confetti.animate([
+      { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+      { transform: `translateY(${window.innerHeight}px) rotate(720deg)`, opacity: 0 }
+    ], { duration: Math.random() * 3000 + 2000, easing: 'ease-out' }).onfinish = () => confetti.remove();
+  }
+}
+
+// Visibility and Cleanup
+document.addEventListener('visibilitychange', () => {
+  if (elements.video) document.hidden ? elements.video.pause() : elements.video.play().catch(()=>{});
+});
+
+window.addEventListener('beforeunload', () => {
+  if (elements.video) {
+    elements.video.pause();
+    elements.video.removeAttribute('src'); 
+    elements.video.load();
+  }
+});
   </script>
 </body>
 </html>
