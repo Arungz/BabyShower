@@ -313,6 +313,8 @@
       align-items: center;
       cursor: pointer;
       gap: 0;
+      outline: none;           /* Removes the focus box, but see note below */
+      -webkit-tap-highlight-color: transparent; /* Fixes blue flash on mobile */
       transition: transform var(--transition-normal);
     }
 
@@ -324,6 +326,7 @@
 
     .location-btn img {
       background: transparent;
+      border-radius: 50%
       max-width: 220px;
       width: 75%;
       height: auto;
