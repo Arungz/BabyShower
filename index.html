@@ -20,12 +20,13 @@
   <meta name="format-detection" content="telephone=no, email=no">
   <meta name="application-name" content="Baby Shower Invitation">
   <link rel="canonical" href="https://arungz.github.io/BabyShower/">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  
   <title>Baby Shower</title>
   <link rel="icon" type="image/png" href="Images/logo.png">
   <link rel="apple-touch-icon" href="Images/logo.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -74,6 +75,23 @@
       overflow-x: hidden;
       line-height: 1.6;
       font-weight: 400;
+    }
+
+    /* Skip to main content link for accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--primary);
+      color: white;
+      padding: 8px;
+      text-decoration: none;
+      z-index: 100;
+      border-radius: 0 0 4px 0;
+    }
+
+    .skip-link:focus {
+      top: 0;
     }
 
     /* ========== HEADER ========== */
@@ -275,6 +293,10 @@
       transition: opacity var(--transition-fast);
       border-radius: 6px;
       padding: 0.3rem 0.8rem;
+      border: none;
+      background-color: transparent;
+      font-family: inherit;
+      font-size: inherit;
     }
 
     #refresh-text a:hover {
@@ -790,15 +812,25 @@
     ::-webkit-scrollbar-thumb:hover {
       background: var(--primary-dark);
     }
+
+    /* ========== PERFORMANCE IMPROVEMENTS ========== */
+    @supports (font-display: swap) {
+      @font-face {
+        font-display: swap;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Skip to main content link -->
+  <a href="#mainContentContainer" class="skip-link">Skip to main content</a>
+
   <!-- Header -->
   <header role="banner">
     <h1 class="header-title">💕 Baby Shower 💕</h1>
     <div class="header-controls" role="toolbar" aria-label="Invitation Controls">
-      <button class="btn-control" id="musicToggle" title="Toggle Music" aria-label="Toggle Music" aria-pressed="true">🔊</button>
-      <button class="btn-control" id="fullscreenToggle" title="Toggle Fullscreen" aria-label="Toggle Fullscreen" aria-pressed="false">⛶</button>
+      <button class="btn-control" id="musicToggle" type="button" title="Toggle Music" aria-label="Toggle Music" aria-pressed="true">🔊</button>
+      <button class="btn-control" id="fullscreenToggle" type="button" title="Toggle Fullscreen" aria-label="Toggle Fullscreen" aria-pressed="false">⛶</button>
     </div>
   </header>
 
@@ -811,7 +843,7 @@
     <div class="loading-container" role="status" aria-live="polite" aria-atomic="true">
       <div id="loading-text">Loading Invitation</div>
       <div id="refresh-text" style="display: none;" role="alert">
-        Taking too long? <a href="javascript:void(0);" onclick="location.reload(); return false;">Refresh Page</a>
+        Taking too long? <button id="refreshBtn">Refresh Page</button>
       </div>
     </div>
   </section>
@@ -819,7 +851,7 @@
   <!-- Main Content -->
   <main id="mainContentContainer" role="main">
     <!-- Invitation Image -->
-    <img class="invite-image" id="endImage" src="Images/2.png" alt="Beautiful Baby Shower Invitation" draggable="false" loading="lazy">
+    <img class="invite-image" id="endImage" src="Images/2.png" alt="Beautiful Baby Shower Invitation with location and event details" draggable="false" loading="lazy">
 
     <!-- Location Section with Glossy Button -->
     <div class="location-section">
@@ -835,7 +867,7 @@
     <!-- Action Buttons -->
     <div class="button-container" id="buttonContainer">
       <div class="button-group">
-        <button class="btn-glossy btn-rsvp" id="rsvpBtn" type="button" aria-label="Vote Now - RSVP">💌 Vote Now</button>
+        <button class="btn-glossy btn-rsvp" id="rsvpBtn" type="button" aria-label="Vote Now - RSVP to the Baby Shower">💌 Vote Now</button>
         <button class="btn-glossy btn-save-date" id="saveDateBtn" type="button" aria-label="Save Date to Calendar">📅 Save Date</button>
       </div>
     </div>
@@ -867,6 +899,10 @@
         date: '20260305T103000',
         title: 'Karthika Arun Baby Shower',
       },
+      performance: {
+        enableAnalytics: false,
+        debugMode: false,
+      },
     };
 
     // ========== DOM ELEMENTS ==========
@@ -882,6 +918,7 @@
       saveDateBtn: document.getElementById('saveDateBtn'),
       loadingText: document.getElementById('loading-text'),
       refreshText: document.getElementById('refresh-text'),
+      refreshBtn: document.getElementById('refreshBtn'),
       musicToggle: document.getElementById('musicToggle'),
       fullscreenToggle: document.getElementById('fullscreenToggle'),
     };
@@ -893,15 +930,20 @@
       hasEnded: false,
       isFullscreen: false,
       timeouts: [],
+      isInitialized: false,
     };
 
     // ========== UTILITY FUNCTIONS ==========
     function openLink(url, target = '_blank') {
-      if (!url) {
-        console.warn('Invalid URL provided');
+      if (!url || typeof url !== 'string') {
+        console.warn('Invalid URL provided:', url);
         return;
       }
-      window.open(url, target, 'noopener,noreferrer');
+      try {
+        window.open(url, target, 'noopener,noreferrer');
+      } catch (e) {
+        console.error('Failed to open link:', e);
+      }
     }
 
     function clearTimeouts() {
@@ -910,9 +952,19 @@
     }
 
     function addTimeout(callback, delay) {
+      if (typeof callback !== 'function') {
+        console.warn('Invalid callback provided to addTimeout');
+        return null;
+      }
       const timeout = setTimeout(callback, delay);
       state.timeouts.push(timeout);
       return timeout;
+    }
+
+    function log(message, data = null) {
+      if (CONFIG.performance.debugMode) {
+        console.log(`[BabyShower] ${message}`, data || '');
+      }
     }
 
     // ========== VIDEO HANDLERS ==========
@@ -920,6 +972,8 @@
       if (state.isAnimating || state.hasEnded) return;
       state.isAnimating = true;
       state.hasEnded = true;
+
+      log('Video ended, starting animations');
 
       if (elements.video) {
         elements.video.style.display = 'none';
@@ -946,6 +1000,7 @@
 
           createConfetti();
           state.isAnimating = false;
+          log('Animations complete');
         }, CONFIG.timing.celebrationDelay);
       }, CONFIG.timing.staggerDelay);
     }
@@ -957,19 +1012,23 @@
       if (elements.refreshText) {
         elements.refreshText.style.display = 'none';
       }
+      log('Video ready to play');
     }
 
-    function handleVideoError() {
+    function handleVideoError(error) {
       if (elements.loadingText) {
         elements.loadingText.innerHTML = '❌ Video loading failed';
         elements.loadingText.setAttribute('role', 'alert');
       }
-      console.error('Video loading error occurred');
+      console.error('Video loading error:', error);
     }
 
     // ========== VIDEO INITIALIZATION ==========
     function initVideo() {
-      if (!elements.video) return;
+      if (!elements.video) {
+        console.warn('Video element not found');
+        return;
+      }
 
       elements.video.addEventListener('ended', handleVideoEnded, { once: true });
       elements.video.addEventListener('canplay', handleVideoCanPlay);
@@ -988,6 +1047,8 @@
           }
         }
       }, CONFIG.timing.videoTimeout);
+
+      log('Video initialization complete');
     }
 
     // ========== CONFETTI ANIMATION ==========
@@ -996,6 +1057,8 @@
       const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎀', '🌺'];
       const particleCount = window.innerWidth > 768 ? 120 : 70;
       const fragment = document.createDocumentFragment();
+
+      log(`Creating ${particleCount} confetti particles`);
 
       for (let i = 0; i < particleCount; i++) {
         const confetti = document.createElement('div');
@@ -1072,6 +1135,7 @@
         }
         elements.musicToggle.textContent = state.isMuted ? '🔊' : '🔇';
         elements.musicToggle.setAttribute('aria-pressed', !state.isMuted);
+        log(`Music toggled: ${state.isMuted ? 'muted' : 'unmuted'}`);
       });
     }
 
@@ -1088,6 +1152,8 @@
             if (requestFS) {
               await requestFS.call(elem);
               elements.fullscreenToggle.setAttribute('aria-pressed', 'true');
+              state.isFullscreen = true;
+              log('Entered fullscreen');
             }
           } else {
             const exitFS = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
@@ -1095,6 +1161,8 @@
             if (exitFS) {
               await exitFS.call(document);
               elements.fullscreenToggle.setAttribute('aria-pressed', 'false');
+              state.isFullscreen = false;
+              log('Exited fullscreen');
             }
           }
         } catch (e) {
@@ -1146,6 +1214,15 @@
       }
     }
 
+    // ========== REFRESH BUTTON ==========
+    function initRefreshButton() {
+      if (elements.refreshBtn) {
+        elements.refreshBtn.addEventListener('click', () => {
+          location.reload();
+        });
+      }
+    }
+
     // ========== SECURITY & PROTECTION ==========
     function initSecurity() {
       // Prevent right-click context menu
@@ -1170,6 +1247,8 @@
         },
         { passive: false }
       );
+
+      log('Security features initialized');
     }
 
     // ========== PAGE VISIBILITY ==========
@@ -1179,23 +1258,27 @@
 
         if (document.hidden) {
           elements.video.pause();
+          log('Page hidden, video paused');
         } else {
           elements.video.play().catch((e) => {
             console.warn('Video play error:', e);
           });
+          log('Page visible, video resumed');
         }
       });
     }
 
     // ========== LAZY LOADING ==========
     function initLazyLoading() {
-      window.addEventListener('load', () => {
-        document.querySelectorAll('img').forEach((img) => {
-          if (!img.hasAttribute('loading')) {
-            img.loading = 'lazy';
-          }
-        });
+      // Ensure images have lazy loading
+      const images = document.querySelectorAll('img');
+      images.forEach((img) => {
+        if (!img.hasAttribute('loading')) {
+          img.loading = 'lazy';
+        }
       });
+
+      log(`Lazy loading initialized for ${images.length} images`);
     }
 
     // ========== CLEANUP ==========
@@ -1206,28 +1289,66 @@
           elements.video.pause();
           elements.video.src = '';
         }
+        log('Page cleanup executed');
       });
+    }
+
+    // ========== PERFORMANCE OBSERVER ==========
+    function initPerformanceObserver() {
+      if ('PerformanceObserver' in window && CONFIG.performance.debugMode) {
+        try {
+          const observer = new PerformanceObserver((list) => {
+            for (const entry of list.getEntries()) {
+              console.log(`[Performance] ${entry.name}: ${entry.duration.toFixed(2)}ms`);
+            }
+          });
+          observer.observe({ entryTypes: ['navigation', 'resource'] });
+        } catch (e) {
+          console.warn('PerformanceObserver not available');
+        }
+      }
     }
 
     // ========== INITIALIZATION ==========
     function init() {
+      if (state.isInitialized) {
+        log('Already initialized, skipping');
+        return;
+      }
+
+      log('Initializing Baby Shower Invitation');
+
       initVideo();
       initMusicToggle();
       initFullscreenToggle();
       initLocationHandler();
       initRSVPHandlers();
+      initRefreshButton();
       initSecurity();
       initPageVisibility();
       initLazyLoading();
       initCleanup();
+      initPerformanceObserver();
+
+      state.isInitialized = true;
+      log('Initialization complete');
     }
 
     // Start when DOM is ready
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
+      document.addEventListener('DOMContentLoaded', init, { once: true });
     } else {
       init();
     }
+
+    // Global error handler
+    window.addEventListener('error', (e) => {
+      console.error('[Baby Shower Error]', e.error);
+    });
+
+    window.addEventListener('unhandledrejection', (e) => {
+      console.error('[Baby Shower Promise Error]', e.reason);
+    });
   </script>
 </body>
-</html>
+  </html>
