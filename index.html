@@ -4,21 +4,23 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-  <meta property="og:title" content="Baby Shower" />
-  <meta property="og:description" content="Baby Shower Invitation to your family" />
+  <meta property="og:title" content="Baby Shower Celebration" />
+  <meta property="og:description" content="Join us for a magical Baby Shower Invitation with family and friends!" />
   <meta property="og:image" content="https://arungz.github.io/BabyShower/Images/1770581656335.png" />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://arungz.github.io/BabyShower/" />
   <meta name="theme-color" content="#ec4899">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="✨Baby Shower🍼">
-  <meta name="description" content="🎂Baby Shower Invitation to your family🎉">
-  <meta name="keywords" content="baby shower, invitation, celebration, family, premium, magical, interactive">
+  <meta name="description" content="🎂 Magical Baby Shower Invitation to your family 🎉">
+  <meta name="keywords" content="baby shower, invitation, celebration, family, premium, magical, interactive, event">
   <meta name="robots" content="index, follow">
   <meta name="author" content="ArunKarthika">
   <meta name="format-detection" content="telephone=no, email=no">
+  <meta name="application-name" content="Baby Shower Invitation">
   <link rel="canonical" href="https://arungz.github.io/BabyShower/">
-  <title> Baby Shower </title>
+  <title>Baby Shower - Magical Celebration Invitation</title>
   <link rel="icon" type="image/png" href="Images/logo.png">
   <link rel="apple-touch-icon" href="Images/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,21 +33,33 @@
       --primary-dark: #be185d;
       --primary-light: #fbcfe8;
       --gradient-1: linear-gradient(135deg, #ec4899 0%, #a78bfa 50%, #60a5fa 100%);
+      --gradient-2: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #34d399 100%);
       --glow-pink: rgba(236, 72, 153, 0.5);
       --glow-purple: rgba(167, 139, 250, 0.5);
       --text-primary: #1a1a2e;
+      --text-secondary: #4a4a6a;
       --bg-primary: #ffffff;
       --bg-light: #faf9f7;
+      --bg-overlay: rgba(255, 255, 255, 0.8);
       --transition-fast: 0.2s;
       --transition-normal: 0.3s;
+      --transition-slow: 0.5s;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    html { 
-      font-size: 16px; 
+    html {
+      font-size: 16px;
       scroll-behavior: smooth;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     body {
@@ -55,6 +69,7 @@
       min-height: 100vh;
       overflow-x: hidden;
       line-height: 1.6;
+      font-weight: 400;
     }
 
     /* ========== HEADER ========== */
@@ -64,28 +79,30 @@
       justify-content: space-between;
       padding: 1.1rem 1.5rem;
       background: var(--bg-primary);
-      border-bottom: 1px solid #fbcfe8;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      border-bottom: 1px solid var(--primary-light);
+      box-shadow: var(--shadow-md);
       position: sticky;
       top: 0;
-      z-index: 99;
+      z-index: 999;
       animation: slideDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      backdrop-filter: blur(10px);
+      background: var(--bg-overlay);
     }
 
     @keyframes slideDown {
-      from { 
-        opacity: 0; 
-        transform: translateY(-24px); 
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
       }
-      to { 
-        opacity: 1; 
-        transform: translateY(0); 
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
     .header-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.35rem, 5vw, 1.9rem);
+      font-size: clamp(1.4rem, 5vw, 2rem);
       font-weight: 900;
       background: var(--gradient-1);
       -webkit-background-clip: text;
@@ -93,8 +110,9 @@
       background-clip: text;
       text-align: left;
       flex: 1;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
       padding-right: 1.2rem;
+      min-width: 0;
     }
 
     .header-controls {
@@ -108,18 +126,19 @@
       background: var(--gradient-1);
       color: white;
       border: none;
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-      box-shadow: 0 0 12px var(--glow-pink);
+      font-size: 1.3rem;
+      transition: all var(--transition-fast) ease-out;
+      box-shadow: var(--shadow-lg);
       position: relative;
       overflow: hidden;
+      will-change: transform, box-shadow;
     }
 
     .btn-control::before {
@@ -129,76 +148,83 @@
       left: 50%;
       width: 0;
       height: 0;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.25);
       border-radius: 50%;
       transform: translate(-50%, -50%);
-      transition: width 0.4s ease, height 0.4s ease;
+      transition: width 0.5s ease, height 0.5s ease;
       pointer-events: none;
     }
 
     .btn-control:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 20px var(--glow-purple);
+      transform: scale(1.1);
+      box-shadow: 0 0 24px var(--glow-purple);
     }
 
     .btn-control:hover::before {
-      width: 200px;
-      height: 200px;
+      width: 220px;
+      height: 220px;
     }
 
-    .btn-control:active { 
-      transform: scale(0.94); 
+    .btn-control:active {
+      transform: scale(0.92);
     }
 
-    .btn-control:focus {
-      outline: 2px solid var(--primary);
-      outline-offset: 2px;
+    .btn-control:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 3px;
     }
 
     /* ========== VIDEO SECTION ========== */
     .video-wrapper {
       max-width: 95%;
-      margin: 2rem auto 0;
+      margin: 2.5rem auto 0;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 0 0.5rem;
+      animation: fadeInUp 0.8s ease-out;
     }
 
     #myVideo {
       width: 100%;
-      max-width: 600px;
-      max-height: 68vh;
-      border-radius: 20px;
+      max-width: 700px;
+      max-height: 70vh;
+      border-radius: 24px;
       object-fit: cover;
       object-position: center;
-      box-shadow: 0 8px 40px var(--glow-pink);
-      transition: transform var(--transition-normal);
-      background: #000;
-      margin-bottom: 1.2rem;
+      box-shadow: var(--shadow-lg);
+      transition: all var(--transition-normal) ease-out;
+      background: linear-gradient(135deg, #1a1a2e, #2d2d4a);
+      margin-bottom: 1.5rem;
       display: block;
+      will-change: transform;
+      aspect-ratio: 9 / 16;
     }
 
-    #myVideo:hover { 
-      transform: scale(1.01) translateY(-3px); 
+    #myVideo:hover {
+      transform: scale(1.02) translateY(-4px);
+      box-shadow: 0 12px 48px var(--glow-pink);
     }
 
     .loading-container {
-      margin-top: 0.8rem;
-      min-height: 50px;
+      margin-top: 1rem;
+      min-height: 60px;
       text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
+      gap: 0.8rem;
     }
 
     #loading-text {
-      font-size: 1.08rem;
+      font-size: 1.1rem;
       background: var(--gradient-1);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-weight: 700;
+      background-clip: text;
+      font-weight: 600;
       animation: pulse 1.5s ease-in-out infinite;
       display: inline-flex;
       align-items: center;
@@ -208,52 +234,56 @@
 
     #loading-text::after {
       content: '';
-      width: 8px;
-      height: 8px;
-      background: var(--gradient-1);
+      width: 10px;
+      height: 10px;
+      background: var(--primary);
       border-radius: 50%;
       animation: bounce 1.4s ease-in-out infinite;
-      box-shadow: 0 0 10px var(--glow-pink);
+      box-shadow: 0 0 12px var(--glow-pink);
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 0.8; }
+      0%, 100% { opacity: 0.7; }
       50% { opacity: 1; }
     }
 
     @keyframes bounce {
       0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-10px) scale(1.15); }
+      50% { transform: translateY(-12px) scale(1.2); }
     }
 
     #refresh-text {
-      color: #666;
-      font-size: 0.94rem;
-      margin-top: 0.8rem;
-      animation: fadeInUp 0.8s ease-out;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-top: 0.6rem;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
     }
 
     #refresh-text a {
       background: var(--gradient-1);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-decoration: none;
+      background-clip: text;
+      text-decoration: underline;
+      text-underline-offset: 3px;
       font-weight: 700;
       cursor: pointer;
-      border-radius: 5px;
-      padding: 0.2rem 0.6rem;
       transition: opacity var(--transition-fast);
+      border-radius: 6px;
+      padding: 0.3rem 0.8rem;
     }
 
-    #refresh-text a:hover { opacity: 0.8; }
+    #refresh-text a:hover {
+      opacity: 0.8;
+    }
 
     @keyframes fadeInUp {
-      from { 
-        opacity: 0; 
-        transform: translateY(10px);
+      from {
+        opacity: 0;
+        transform: translateY(20px);
       }
-      to { 
-        opacity: 1; 
+      to {
+        opacity: 1;
         transform: translateY(0);
       }
     }
@@ -261,10 +291,10 @@
     /* ========== MAIN CONTENT ========== */
     #mainContentContainer {
       display: none;
-      max-width: 650px;
+      max-width: 700px;
       margin: 0 auto;
-      padding: 2rem 1rem;
-      animation: fadeInUp 0.8s ease-out;
+      padding: 2.5rem 1.2rem;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
     }
 
     #mainContentContainer.active {
@@ -275,33 +305,35 @@
     .invite-image {
       width: 100%;
       max-width: 100%;
-      border-radius: 19px;
-      box-shadow: 0 6px 30px var(--glow-pink);
+      border-radius: 22px;
+      box-shadow: var(--shadow-lg);
       display: block;
       cursor: pointer;
-      transition: transform var(--transition-normal);
-      margin-bottom: 2.5rem;
+      transition: all var(--transition-normal) ease-out;
+      margin-bottom: 3rem;
       -webkit-touch-callout: none;
       -webkit-user-select: none;
       user-select: none;
+      will-change: transform;
     }
 
-    .invite-image:hover { 
-      transform: scale(1.03) translateY(-6px); 
+    .invite-image:hover {
+      transform: scale(1.04) translateY(-8px);
+      box-shadow: 0 16px 48px var(--glow-pink);
     }
 
-    .invite-image:active { 
-      transform: scale(0.98); 
+    .invite-image:active {
+      transform: scale(0.97);
     }
 
-    /* ========== LOCATION SECTION (Properly Spaced) ========== */
+    /* ========== LOCATION SECTION ========== */
     .location-section {
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 2.2rem;
-      gap: 0.8rem;
+      margin-bottom: 3rem;
+      gap: 1rem;
     }
 
     .location-btn {
@@ -314,73 +346,76 @@
       cursor: pointer;
       gap: 0;
       transition: transform var(--transition-normal);
+      will-change: transform;
     }
 
-    .location-btn:focus {
-      outline: 2px solid var(--primary);
-      outline-offset: 2px;
-      border-radius: 14px;
+    .location-btn:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 6px;
+      border-radius: 16px;
     }
 
     .location-btn img {
-      max-width: 220px;
-      width: 75%;
+      max-width: 240px;
+      width: 80%;
       height: auto;
-      border-radius: 14px;
-      box-shadow: 0 6px 28px var(--glow-pink);
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+      border-radius: 16px;
+      box-shadow: var(--shadow-lg);
+      transition: all var(--transition-fast) ease-out;
       -webkit-touch-callout: none;
       -webkit-user-select: none;
       user-select: none;
       display: block;
+      will-change: transform, box-shadow;
     }
 
-    .location-btn img:hover { 
-      transform: scale(1.08) translateY(-5px); 
-      box-shadow: 0 12px 36px var(--glow-purple);
+    .location-btn img:hover {
+      transform: scale(1.1) translateY(-6px);
+      box-shadow: 0 16px 48px var(--glow-purple);
     }
 
-    .location-btn img:active { 
-      transform: scale(0.96); 
+    .location-btn img:active {
+      transform: scale(0.95);
     }
 
     .location-text {
-      font-size: 1.18rem;
+      font-size: 1.25rem;
       font-weight: 700;
       background: var(--gradient-1);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-align: center;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.6px;
       opacity: 0;
-      transition: opacity 1.5s ease-in;
+      transition: opacity 1.8s ease-in;
+      will-change: opacity;
     }
 
     .location-text.revealed {
       opacity: 1;
-      animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: popIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
 
     @keyframes popIn {
-      0% { 
-        opacity: 0; 
-        transform: scale(0.6) rotate(-10deg); 
+      0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(-15deg);
       }
-      50% { 
-        transform: scale(1.08) rotate(3deg); 
+      50% {
+        transform: scale(1.1) rotate(5deg);
       }
-      100% { 
-        opacity: 1; 
-        transform: scale(1) rotate(0deg); 
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
       }
     }
 
     /* ========== CELEBRATION MESSAGE ========== */
     .celebration-container {
       text-align: center;
-      margin-top: 2.8rem;
-      margin-bottom: 2.2rem;
+      margin-top: 3rem;
+      margin-bottom: 2.5rem;
       display: none;
       animation: fadeInUp 0.8s ease-out;
     }
@@ -391,56 +426,64 @@
 
     .celebration-text {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.3rem, 7vw, 2.1rem);
-      background: var(--gradient-1);
+      font-size: clamp(1.4rem, 8vw, 2.4rem);
+      background: var(--gradient-2);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       font-weight: 900;
-      margin-bottom: 1rem;
-      letter-spacing: 0.8px;
-      animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      margin-bottom: 1.2rem;
+      letter-spacing: 1px;
+      animation: scaleIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+      line-height: 1.3;
     }
 
     @keyframes scaleIn {
-      0% { 
-        opacity: 0; 
-        transform: scale(0.5) rotate(-10deg); 
+      0% {
+        opacity: 0;
+        transform: scale(0.4) rotate(-20deg);
       }
-      100% { 
-        opacity: 1; 
-        transform: scale(1) rotate(0deg); 
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
       }
     }
 
     /* ========== RSVP BUTTON ========== */
     .rsvp-container {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
       display: none;
       animation: fadeInUp 0.8s ease-out;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .rsvp-container.active {
-      display: block;
+      display: flex;
     }
 
     .btn-rsvp {
       background: var(--gradient-1);
       color: white;
       border: none;
-      padding: 1rem 2.4rem;
-      font-size: clamp(0.95rem, 3vw, 1.1rem);
+      padding: 1.1rem 2.6rem;
+      font-size: clamp(0.95rem, 3vw, 1.15rem);
       font-weight: 700;
       border-radius: 50px;
       cursor: pointer;
-      box-shadow: 0 6px 22px var(--glow-pink);
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+      box-shadow: var(--shadow-lg);
+      transition: all var(--transition-fast) ease-out;
       text-transform: uppercase;
-      letter-spacing: 0.9px;
+      letter-spacing: 1px;
       position: relative;
       overflow: hidden;
-      animation: float 3s ease-in-out infinite;
+      animation: float 3.5s ease-in-out infinite;
+      will-change: transform, box-shadow;
+      flex: 1;
+      min-width: 160px;
+      max-width: 280px;
     }
 
     .btn-rsvp::before {
@@ -450,73 +493,82 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.2);
-      transition: left 0.4s ease;
+      background: rgba(255, 255, 255, 0.25);
+      transition: left 0.5s ease;
       pointer-events: none;
     }
 
     .btn-rsvp:hover {
-      transform: translateY(-3px) scale(1.07);
-      box-shadow: 0 10px 30px var(--glow-purple);
+      transform: translateY(-5px) scale(1.08);
+      box-shadow: 0 12px 36px var(--glow-purple);
     }
 
     .btn-rsvp:hover::before {
       left: 100%;
     }
 
-    .btn-rsvp:active { 
-      transform: translateY(0) scale(0.97); 
+    .btn-rsvp:active {
+      transform: translateY(-2px) scale(0.98);
     }
 
-    .btn-rsvp:focus {
-      outline: 2px solid white;
+    .btn-rsvp:focus-visible {
+      outline: 3px solid white;
       outline-offset: 2px;
+    }
+
+    .btn-rsvp:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
     }
 
     @keyframes float {
       0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
+      50% { transform: translateY(-10px); }
     }
 
     /* ========== CONFETTI ========== */
     .confetti {
       position: fixed;
       pointer-events: none;
-      z-index: 999;
+      z-index: 998;
+      will-change: transform;
     }
 
     .confetti-shape {
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), var(--gradient-1));
-      box-shadow: 0 0 8px var(--glow-pink);
+      background: var(--gradient-1);
+      box-shadow: 0 0 10px var(--glow-pink);
     }
 
     .confetti-emoji {
-      font-size: 24px;
+      font-size: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
-      filter: drop-shadow(0 0 6px var(--glow-pink));
+      filter: drop-shadow(0 0 8px var(--glow-pink));
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     /* ========== FOOTER ========== */
     footer {
       text-align: center;
-      padding: 2.2rem 1rem;
-      color: #666;
+      padding: 2.5rem 1.2rem;
+      color: var(--text-secondary);
       font-size: 0.98rem;
-      border-top: 1px solid #fbcfe8;
-      margin-top: 2rem;
+      border-top: 1px solid var(--primary-light);
+      margin-top: 2.5rem;
       background: var(--bg-primary);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      box-shadow: var(--shadow-md);
     }
 
     footer p {
-      margin: 0.5rem 0;
+      margin: 0.6rem 0;
       animation: fadeInUp 0.8s ease-out;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.3px;
+      font-weight: 500;
     }
 
     footer a {
@@ -529,139 +581,147 @@
       transition: opacity var(--transition-fast);
     }
 
-    footer a:hover { opacity: 0.8; }
+    footer a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
 
     /* ========== RESPONSIVE DESIGN ========== */
     @media (max-width: 768px) {
       html { font-size: 15px; }
 
-      header { 
-        padding: 0.9rem 1rem; 
-        gap: 1rem;
+      header {
+        padding: 1rem 1rem;
+        gap: 0.8rem;
       }
 
-      .header-title { 
-        font-size: 1.2rem; 
-        padding-right: 0.8rem;
+      .header-title {
+        font-size: 1.25rem;
+        padding-right: 0.6rem;
+        letter-spacing: 0.8px;
       }
 
-      .header-controls { gap: 0.6rem; }
+      .header-controls { gap: 0.7rem; }
 
-      .btn-control { 
-        width: 40px; 
-        height: 40px; 
-        font-size: 1.1rem;
+      .btn-control {
+        width: 42px;
+        height: 42px;
+        font-size: 1.15rem;
       }
 
-      #myVideo { 
-        max-height: 60vh; 
-        border-radius: 18px;
+      #myVideo {
+        max-height: 65vh;
+        border-radius: 20px;
       }
 
       .invite-image {
-        max-width: 100%;
-        margin-bottom: 2rem;
+        border-radius: 18px;
+        margin-bottom: 2.5rem;
       }
 
-      .location-btn img { 
-        max-width: 160px; 
+      .location-btn img {
+        max-width: 180px;
       }
 
-      #mainContentContainer { 
-        padding: 1.5rem 0.8rem; 
+      #mainContentContainer {
+        padding: 1.8rem 1rem;
       }
 
-      footer { 
-        padding: 1.8rem 1rem; 
+      footer {
+        padding: 2rem 1rem;
       }
     }
 
     @media (max-width: 480px) {
       html { font-size: 14px; }
 
-      header { 
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 0.8rem 0.7rem; 
+      header {
+        padding: 0.9rem 0.8rem;
         gap: 0.5rem;
       }
 
-      .header-title { 
-        text-align: left; 
-        flex: 1;
+      .header-title {
         font-size: 1.1rem;
-        padding-right: 0.5rem;
+        padding-right: 0.4rem;
       }
 
-      .header-controls { 
-        gap: 0.4rem;
-      }
+      .header-controls { gap: 0.4rem; }
 
-      .btn-control { 
-        width: 38px; 
-        height: 38px; 
+      .btn-control {
+        width: 40px;
+        height: 40px;
         font-size: 1rem;
       }
 
-      #myVideo { 
-        max-width: 100vw;
-        max-height: 55vh;
+      #myVideo {
+        max-width: 100%;
+        max-height: 60vh;
         border-radius: 16px;
+        margin-bottom: 1rem;
       }
 
       .invite-image {
-        max-width: 100vw;
-        margin-bottom: 1.8rem;
+        border-radius: 16px;
+        margin-bottom: 2rem;
       }
 
       .location-section {
-        margin-bottom: 1.8rem;
-        gap: 0.6rem;
+        margin-bottom: 2rem;
+        gap: 0.8rem;
       }
 
-      .location-btn img { 
-        max-width: 85vw;
+      .location-btn img {
         max-width: 140px;
+        width: 90%;
       }
 
       .location-text {
-        font-size: 1rem;
+        font-size: 1.05rem;
       }
 
-      .celebration-text { 
-        font-size: 1.2rem; 
+      .celebration-text {
+        font-size: 1.3rem;
       }
 
-      .btn-rsvp { 
-        padding: 0.85rem 1.8rem; 
+      .btn-rsvp {
+        padding: 0.9rem 1.8rem;
         font-size: 0.95rem;
+        letter-spacing: 0.5px;
+        min-width: 130px;
       }
 
-      #mainContentContainer { 
-        padding: 1.2rem 0.6rem; 
+      .rsvp-container {
+        gap: 0.8rem;
       }
 
-      footer { 
-        padding: 1.5rem 0.7rem; 
-        font-size: 0.9em;
+      #mainContentContainer {
+        padding: 1.5rem 0.7rem;
+      }
+
+      footer {
+        padding: 1.8rem 0.8rem;
+        font-size: 0.9rem;
       }
     }
 
     /* ========== ACCESSIBILITY ========== */
     @media (prefers-reduced-motion: reduce) {
-      * {
+      *,
+      *::before,
+      *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
     }
 
-    /* ========== DARK MODE ========== */
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg-primary: #1a1a2e;
-        --bg-light: #1f1f3a;
-        --text-primary: #e8e8f0;
+        --bg-primary: #0f1419;
+        --bg-light: #1a1f2e;
+        --bg-overlay: rgba(15, 20, 25, 0.85);
+        --text-primary: #f0f0f8;
+        --text-secondary: #b0b0d0;
       }
 
       body {
@@ -669,11 +729,13 @@
       }
 
       header {
-        background: rgba(26, 26, 46, 0.98);
+        background: var(--bg-overlay);
+        border-bottom-color: rgba(236, 72, 153, 0.2);
       }
 
       footer {
-        background: rgba(26, 26, 46, 0.98);
+        background: var(--bg-primary);
+        border-top-color: rgba(236, 72, 153, 0.2);
       }
     }
 
@@ -686,6 +748,28 @@
       #mainContentContainer {
         padding: 0;
       }
+
+      body {
+        background: white;
+      }
+    }
+
+    /* ========== SCROLLBAR ========== */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-light);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-dark);
     }
   </style>
 </head>
@@ -701,14 +785,14 @@
 
   <!-- Video Section -->
   <section class="video-wrapper" role="region" aria-label="Invitation Video">
-    <video id="myVideo" muted playsinline autoplay poster="Images/preview.gif" preload="auto">
+    <video id="myVideo" muted playsinline autoplay poster="Images/preview.gif" preload="metadata" loading="lazy">
       <source src="video/invite1.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     <div class="loading-container" role="status" aria-live="polite" aria-atomic="true">
-      <div id="loading-text">Loading</div>
+      <div id="loading-text">Loading Invitation</div>
       <div id="refresh-text" style="display: none;" role="alert">
-        Taking too long? <a href="javascript:void(0);" onclick="location.reload(); return false;">Refresh</a> page
+        Taking too long? <a href="javascript:void(0);" onclick="location.reload(); return false;">Refresh Page</a>
       </div>
     </div>
   </section>
@@ -718,12 +802,12 @@
     <!-- Invitation Image -->
     <img class="invite-image" id="endImage" src="Images/2.png" alt="Beautiful Baby Shower Invitation" draggable="false" loading="lazy">
 
-    <!-- Location Button and Text (Properly Separated) -->
+    <!-- Location Section -->
     <div class="location-section">
-      <button class="location-btn" id="locationBtn" aria-label="View event location on map" type="button">
-        <img src="Images/location-button.png" alt="Get Location" draggable="false" loading="lazy">
+      <button class="location-btn" id="locationBtn" aria-label="View event location on Google Maps" type="button">
+        <img src="Images/location-button.png" alt="Event Location Map" draggable="false" loading="lazy">
       </button>
-      <div class="location-text" id="locationText">📍 Click above image for Location</div>
+      <div class="location-text" id="locationText">📍 Click to View Location</div>
     </div>
 
     <!-- Celebration Message -->
@@ -731,22 +815,43 @@
       <p class="celebration-text">✨ We Look Forward to Celebrating With You! ✨</p>
     </section>
 
-    <!-- RSVP Button -->
-    <div class="rsvp-container active" id="rsvpContainer" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
-    <button class="btn-rsvp" id="rsvpBtn" type="button" style="flex: 1; min-width: 140px; margin: 0;">💌 Vote Now</button>
-    <button class="btn-rsvp" id="saveDateBtn" type="button" style="flex: 1; min-width: 140px; margin: 0; background: var(--gradient-1);">📅 Save Date</button>
+    <!-- RSVP Buttons -->
+    <div class="rsvp-container" id="rsvpContainer">
+      <button class="btn-rsvp" id="rsvpBtn" type="button" aria-label="Vote Now - RSVP">💌 Vote Now</button>
+      <button class="btn-rsvp" id="saveDateBtn" type="button" aria-label="Save Date to Calendar">📅 Save Date</button>
     </div>
   </main>
 
   <!-- Footer -->
   <footer role="contentinfo">
     <p>✨ Looking forward to celebrating with you! ✨</p>
-    <p style="margin-top: 0.6rem; font-size: 0.9em;">Made with 💕 for a special moment</p>
+    <p>Made with 💕 for a special moment</p>
   </footer>
 
   <script>
     'use strict';
 
+    // ========== CONFIGURATION ==========
+    const CONFIG = {
+      locations: {
+        event: 'https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8',
+      },
+      forms: {
+        rsvp: 'https://forms.gle/Aqrw3mATGPEahUxCA',
+      },
+      timing: {
+        videoTimeout: 60000,
+        calendarDelay: 20000,
+        staggerDelay: 600,
+        celebrationDelay: 800,
+      },
+      event: {
+        date: '20260305T103000',
+        title: 'Karthika Arun Baby Shower',
+      },
+    };
+
+    // ========== DOM ELEMENTS ==========
     const elements = {
       video: document.getElementById('myVideo'),
       mainContent: document.getElementById('mainContentContainer'),
@@ -756,20 +861,43 @@
       celebration: document.getElementById('celebrationContainer'),
       rsvpContainer: document.getElementById('rsvpContainer'),
       rsvpBtn: document.getElementById('rsvpBtn'),
+      saveDateBtn: document.getElementById('saveDateBtn'),
       loadingText: document.getElementById('loading-text'),
       refreshText: document.getElementById('refresh-text'),
       musicToggle: document.getElementById('musicToggle'),
-      fullscreenToggle: document.getElementById('fullscreenToggle')
+      fullscreenToggle: document.getElementById('fullscreenToggle'),
     };
 
+    // ========== STATE MANAGEMENT ==========
     let state = {
       isMuted: true,
       isAnimating: false,
       hasEnded: false,
-      isFullscreen: false
+      isFullscreen: false,
+      timeouts: [],
     };
 
-    // Video ended handler
+    // ========== UTILITY FUNCTIONS ==========
+    function openLink(url, target = '_blank') {
+      if (!url) {
+        console.warn('Invalid URL provided');
+        return;
+      }
+      window.open(url, target, 'noopener,noreferrer');
+    }
+
+    function clearTimeouts() {
+      state.timeouts.forEach(timeout => clearTimeout(timeout));
+      state.timeouts = [];
+    }
+
+    function addTimeout(callback, delay) {
+      const timeout = setTimeout(callback, delay);
+      state.timeouts.push(timeout);
+      return timeout;
+    }
+
+    // ========== VIDEO HANDLERS ==========
     function handleVideoEnded() {
       if (state.isAnimating || state.hasEnded) return;
       state.isAnimating = true;
@@ -777,6 +905,7 @@
 
       if (elements.video) {
         elements.video.style.display = 'none';
+        elements.video.pause();
       }
 
       if (elements.mainContent) {
@@ -784,12 +913,12 @@
       }
 
       // Staggered reveal animations
-      setTimeout(() => {
+      addTimeout(() => {
         if (elements.locationText) {
           elements.locationText.classList.add('revealed');
         }
 
-        setTimeout(() => {
+        addTimeout(() => {
           if (elements.celebration) {
             elements.celebration.classList.add('active');
           }
@@ -799,8 +928,8 @@
 
           createConfetti();
           state.isAnimating = false;
-        }, 800);
-      }, 600);
+        }, CONFIG.timing.celebrationDelay);
+      }, CONFIG.timing.staggerDelay);
     }
 
     function handleVideoCanPlay() {
@@ -814,40 +943,45 @@
 
     function handleVideoError() {
       if (elements.loadingText) {
-        elements.loadingText.textContent = '❌ Video failed to load';
+        elements.loadingText.innerHTML = '❌ Video loading failed';
+        elements.loadingText.setAttribute('role', 'alert');
       }
+      console.error('Video loading error occurred');
     }
 
-    // Video initialization
-    if (elements.video) {
+    // ========== VIDEO INITIALIZATION ==========
+    function initVideo() {
+      if (!elements.video) return;
+
       elements.video.addEventListener('ended', handleVideoEnded, { once: true });
       elements.video.addEventListener('canplay', handleVideoCanPlay);
       elements.video.addEventListener('error', handleVideoError);
-    }
 
-    if (elements.loadingText) {
-      elements.loadingText.style.display = 'block';
-    }
-
-    // Show refresh message after 60 seconds
-    setTimeout(() => {
       if (elements.loadingText) {
-        elements.loadingText.style.display = 'none';
+        elements.loadingText.style.display = 'block';
       }
-      if (elements.refreshText) {
-        elements.refreshText.style.display = 'block';
-      }
-    }, 60000);
 
-    // Confetti animation
+      // Show refresh message after timeout
+      addTimeout(() => {
+        if (elements.loadingText && elements.loadingText.style.display !== 'none') {
+          elements.loadingText.style.display = 'none';
+          if (elements.refreshText) {
+            elements.refreshText.style.display = 'block';
+          }
+        }
+      }, CONFIG.timing.videoTimeout);
+    }
+
+    // ========== CONFETTI ANIMATION ==========
     function createConfetti() {
-      const colors = ['#ec4899', '#f472b6', '#d946ef', '#a78bfa', '#60a5fa', '#34d399'];
-      const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖'];
-      const particleCount = window.innerWidth > 768 ? 100 : 60;
+      const colors = ['#ec4899', '#f472b6', '#d946ef', '#a78bfa', '#60a5fa', '#34d399', '#fbbf24'];
+      const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎀', '🌺'];
+      const particleCount = window.innerWidth > 768 ? 120 : 70;
+      const fragment = document.createDocumentFragment();
 
       for (let i = 0; i < particleCount; i++) {
         const confetti = document.createElement('div');
-        const isEmoji = Math.random() > 0.4;
+        const isEmoji = Math.random() > 0.35;
 
         if (isEmoji) {
           confetti.className = 'confetti confetti-emoji';
@@ -855,191 +989,233 @@
         } else {
           confetti.className = 'confetti confetti-shape';
           const color = colors[Math.floor(Math.random() * colors.length)];
-          confetti.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), ${color})`;
-          confetti.style.boxShadow = `0 0 8px ${color}`;
+          confetti.style.background = color;
+          confetti.style.boxShadow = `0 0 12px ${color}`;
         }
 
         confetti.style.left = Math.random() * 100 + '%';
-        confetti.style.top = '-20px';
-        confetti.style.opacity = Math.random() * 0.7 + 0.3;
-        document.body.appendChild(confetti);
+        confetti.style.top = '-30px';
+        confetti.style.opacity = Math.random() * 0.8 + 0.2;
+        fragment.appendChild(confetti);
 
-        const duration = Math.random() * 3 + 2;
-        const xMove = (Math.random() - 0.5) * 420;
+        const duration = Math.random() * 3.5 + 2.5;
+        const xMove = (Math.random() - 0.5) * 500;
         const rotate = Math.random() * 1080;
 
-        setTimeout(() => {
+        addTimeout(() => {
           try {
             if (!confetti.parentElement) return;
 
-            const animation = confetti.animate(
-              [
-                { transform: 'translateY(0) translateX(0) rotate(0deg)', opacity: Math.random() * 0.7 + 0.3 },
-                { transform: `translateY(${window.innerHeight + 20}px) translateX(${xMove}px) rotate(${rotate}deg)`, opacity: 0 }
-              ],
+            const keyframes = [
               {
-                duration: duration * 1000,
-                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                fill: 'forwards'
-              }
-            );
+                transform: 'translateY(0) translateX(0) rotate(0deg)',
+                opacity: Math.random() * 0.8 + 0.2,
+              },
+              {
+                transform: `translateY(${window.innerHeight + 50}px) translateX(${xMove}px) rotate(${rotate}deg)`,
+                opacity: 0,
+              },
+            ];
+
+            const options = {
+              duration: duration * 1000,
+              easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              fill: 'forwards',
+            };
+
+            const animation = confetti.animate(keyframes, options);
 
             animation.onfinish = () => {
               try {
                 if (confetti.parentElement) {
                   confetti.remove();
                 }
-              } catch (e) {}
+              } catch (e) {
+                // Silently handle cleanup errors
+              }
             };
-          } catch (e) {}
-        }, i * 6);
+          } catch (e) {
+            console.warn('Confetti animation error:', e);
+          }
+        }, i * 8);
       }
+
+      document.body.appendChild(fragment);
     }
 
-    // Music toggle
-    if (elements.musicToggle) {
-      elements.musicToggle.addEventListener('click', function () {
+    // ========== MUSIC TOGGLE ==========
+    function initMusicToggle() {
+      if (!elements.musicToggle) return;
+
+      elements.musicToggle.addEventListener('click', () => {
         state.isMuted = !state.isMuted;
         if (elements.video) {
           elements.video.muted = state.isMuted;
         }
-        this.textContent = state.isMuted ? '🔊' : '🔇';
-        this.setAttribute('aria-pressed', !state.isMuted);
+        elements.musicToggle.textContent = state.isMuted ? '🔊' : '🔇';
+        elements.musicToggle.setAttribute('aria-pressed', !state.isMuted);
       });
     }
 
-    // Fullscreen toggle
-    if (elements.fullscreenToggle) {
-      elements.fullscreenToggle.addEventListener('click', function () {
-        const elem = document.documentElement;
+    // ========== FULLSCREEN TOGGLE ==========
+    function initFullscreenToggle() {
+      if (!elements.fullscreenToggle) return;
+
+      elements.fullscreenToggle.addEventListener('click', async () => {
         try {
           if (!document.fullscreenElement) {
-            const requestFullscreen =
-              elem.requestFullscreen ||
-              elem.webkitRequestFullscreen ||
-              elem.mozRequestFullScreen ||
-              elem.msRequestFullscreen;
+            const elem = document.documentElement;
+            const requestFS = elem.requestFullscreen || elem.webkitRequestFullscreen || elem.mozRequestFullScreen || elem.msRequestFullscreen;
 
-            if (requestFullscreen) {
-              requestFullscreen.call(elem);
-              this.setAttribute('aria-pressed', 'true');
+            if (requestFS) {
+              await requestFS.call(elem);
+              elements.fullscreenToggle.setAttribute('aria-pressed', 'true');
             }
           } else {
-            const exitFullscreen =
-              document.exitFullscreen ||
-              document.webkitExitFullscreen ||
-              document.mozCancelFullScreen ||
-              document.msExitFullscreen;
+            const exitFS = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
 
-            if (exitFullscreen) {
-              exitFullscreen.call(document);
-              this.setAttribute('aria-pressed', 'false');
+            if (exitFS) {
+              await exitFS.call(document);
+              elements.fullscreenToggle.setAttribute('aria-pressed', 'false');
             }
           }
-        } catch (e) {}
-      });
-    }
-
-    // Location handlers
-    const locationUrl = 'https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8';
-
-    if (elements.endImage) {
-      elements.endImage.addEventListener('click', () => {
-        window.open(locationUrl, '_blank', 'noopener,noreferrer');
-      });
-    }
-
-    if (elements.locationBtn) {
-      elements.locationBtn.addEventListener('click', () => {
-        window.open(locationUrl, '_blank', 'noopener,noreferrer');
-      });
-
-      elements.locationBtn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          window.open(locationUrl, '_blank', 'noopener,noreferrer');
+        } catch (e) {
+          console.warn('Fullscreen error:', e);
         }
       });
     }
 
-    // RSVP handler
-    if (elements.rsvpBtn) {
-      elements.rsvpBtn.addEventListener('click', function () {
-        const rsvpLink = 'https://forms.gle/Aqrw3mATGPEahUxCA'; // Replace with your RSVP form link
-        if (rsvpLink && rsvpLink.length > 20) {
-          window.open(rsvpLink, '_blank', 'noopener,noreferrer');
-        } else {
-          alert('📋 RSVP form link not configured. Appudilam onnum illa Ellarum Kandipa Family oda Varanum');
-        }
-      });
-    }
-
-    // Security
-    document.addEventListener('contextmenu', (e) => e.preventDefault());
-    document.addEventListener('dragstart', (e) => e.preventDefault());
-    document.addEventListener('selectstart', (e) => e.preventDefault());
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'PrintScreen' || e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u')) {
-        e.preventDefault();
+    // ========== LOCATION HANDLERS ==========
+    function initLocationHandlers() {
+      if (elements.endImage) {
+        elements.endImage.addEventListener('click', () => {
+          openLink(CONFIG.locations.event);
+        });
+        elements.endImage.style.cursor = 'pointer';
       }
-    });
 
-    // Disable F1 through F12 and other developer shortcuts
-document.addEventListener('keydown', function(e) {
-    // 1. Block F1 through F12
-    // This catches keys whether pressed alone or with 'Fn'
-    if (e.key.startsWith('F') && !isNaN(e.key.substring(1))) {
-        e.preventDefault();
-        return false;
+      if (elements.locationBtn) {
+        elements.locationBtn.addEventListener('click', () => {
+          openLink(CONFIG.locations.event);
+        });
+
+        elements.locationBtn.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openLink(CONFIG.locations.event);
+          }
+        });
+      }
     }
 
-    // 2. Block Ctrl+U (View Source)
-    if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
-        e.preventDefault();
-        return false;
+    // ========== RSVP HANDLERS ==========
+    function initRSVPHandlers() {
+      if (elements.rsvpBtn) {
+        elements.rsvpBtn.addEventListener('click', () => {
+          if (CONFIG.forms.rsvp) {
+            openLink(CONFIG.forms.rsvp);
+          } else {
+            alert('RSVP form not configured. Please contact the organizer.');
+          }
+        });
+      }
+
+      if (elements.saveDateBtn) {
+        elements.saveDateBtn.addEventListener('click', () => {
+          const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(CONFIG.event.title)}&dates=${CONFIG.event.date}/${CONFIG.event.date}`;
+          openLink(googleCalendarUrl);
+        });
+      }
     }
 
-    // 3. Block Ctrl+Shift+I / J / C (Developer Tools)
-    if (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) {
-        e.preventDefault();
-        return false;
-    }
-}, false);
+    // ========== SECURITY & PROTECTION ==========
+    function initSecurity() {
+      // Prevent right-click context menu
+      document.addEventListener('contextmenu', (e) => e.preventDefault(), { passive: false });
 
-    // Page visibility
-    document.addEventListener('visibilitychange', () => {
-      if (elements.video) {
+      // Prevent drag and drop
+      document.addEventListener('dragstart', (e) => e.preventDefault(), { passive: false });
+
+      // Prevent text selection
+      document.addEventListener('selectstart', (e) => e.preventDefault(), { passive: false });
+
+      // Developer tools prevention
+      document.addEventListener(
+        'keydown',
+        (e) => {
+          const isDevTools = e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u');
+          const isFKey = e.key.startsWith('F') && !isNaN(parseInt(e.key.substring(1), 10));
+
+          if (isDevTools || isFKey) {
+            e.preventDefault();
+          }
+        },
+        { passive: false }
+      );
+    }
+
+    // ========== PAGE VISIBILITY ==========
+    function initPageVisibility() {
+      document.addEventListener('visibilitychange', () => {
+        if (!elements.video) return;
+
         if (document.hidden) {
           elements.video.pause();
         } else {
-          elements.video.play().catch(() => {});
-        }
-      }
-    });
-    // Open Google Calendar event creation link after 20 seconds
-     setTimeout(() => {
-        const eventDate = '20260305T103000'; // March 5, 2026, 10:30 AM
-        const eventTitle = 'Karthika Arun baby shower';
-        const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventTitle)}&dates=${eventDate}/${eventDate}`;
-        window.open(googleCalendarUrl, '_blank');
-      }, 20000); // 20-second delay
-
-    // Cleanup
-    window.addEventListener('beforeunload', () => {
-      if (elements.video) {
-        elements.video.pause();
-        elements.video.src = '';
-      }
-    });
-
-    window.addEventListener('load', function () {
-      document.querySelectorAll('img').forEach((img) => {
-        if (!img.hasAttribute('loading')) {
-          img.loading = 'lazy';
+          elements.video.play().catch((e) => {
+            console.warn('Video play error:', e);
+          });
         }
       });
-    });
+    }
+
+    // ========== LAZY LOADING ==========
+    function initLazyLoading() {
+      window.addEventListener('load', () => {
+        document.querySelectorAll('img').forEach((img) => {
+          if (!img.hasAttribute('loading')) {
+            img.loading = 'lazy';
+          }
+        });
+      });
+    }
+
+    // ========== CLEANUP ==========
+    function initCleanup() {
+      window.addEventListener('beforeunload', () => {
+        clearTimeouts();
+        if (elements.video) {
+          elements.video.pause();
+          elements.video.src = '';
+        }
+      });
+    }
+
+    // ========== INITIALIZATION ==========
+    function init() {
+      initVideo();
+      initMusicToggle();
+      initFullscreenToggle();
+      initLocationHandlers();
+      initRSVPHandlers();
+      initSecurity();
+      initPageVisibility();
+      initLazyLoading();
+      initCleanup();
+
+      // Open calendar after delay
+      addTimeout(() => {
+        const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(CONFIG.event.title)}&dates=${CONFIG.event.date}/${CONFIG.event.date}`;
+        openLink(googleCalendarUrl);
+      }, CONFIG.timing.calendarDelay);
+    }
+
+    // Start when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   </script>
 </body>
 </html>
