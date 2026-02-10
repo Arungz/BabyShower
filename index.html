@@ -36,10 +36,13 @@
       --gradient-1: linear-gradient(135deg, #ec4899 0%, #a78bfa 50%, #60a5fa 100%);
       --gradient-2: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #34d399 100%);
       --gradient-3: linear-gradient(135deg, #f472b6 0%, #ec4899 50%, #a78bfa 100%);
+      --gradient-rsvp: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+      --gradient-save: linear-gradient(135deg, #34d399 0%, #10b981 100%);
       --gradient-location: linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #0e7490 100%);
       --glow-pink: rgba(236, 72, 153, 0.5);
       --glow-purple: rgba(167, 139, 250, 0.5);
       --glow-cyan: rgba(6, 182, 212, 0.5);
+      --glow-green: rgba(16, 185, 129, 0.5);
       --text-primary: #1a1a2e;
       --text-secondary: #4a4a6a;
       --bg-primary: #ffffff;
@@ -274,35 +277,6 @@
       50% { transform: translateY(-12px) scale(1.2); }
     }
 
-    #refresh-text {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin-top: 0.6rem;
-      animation: fadeInUp 0.8s ease-out 0.2s both;
-    }
-
-    #refresh-text a {
-      background: var(--gradient-1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: opacity var(--transition-fast);
-      border-radius: 6px;
-      padding: 0.3rem 0.8rem;
-      border: none;
-      background-color: transparent;
-      font-family: inherit;
-      font-size: inherit;
-    }
-
-    #refresh-text a:hover {
-      opacity: 0.8;
-    }
-
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -350,49 +324,6 @@
 
     .invite-image:active {
       transform: scale(0.97);
-    }
-
-    /* ========== LOCATION SECTION ========== */
-    .location-section {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 3rem;
-      gap: 1.5rem;
-    }
-
-    .location-text {
-      font-size: 1.25rem;
-      font-weight: 700;
-      background: var(--gradient-1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-align: center;
-      letter-spacing: 0.6px;
-      opacity: 0;
-      transition: opacity 1.8s ease-in;
-      will-change: opacity;
-    }
-
-    .location-text.revealed {
-      opacity: 1;
-      animation: popIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    }
-
-    @keyframes popIn {
-      0% {
-        opacity: 0;
-        transform: scale(0.5) rotate(-15deg);
-      }
-      50% {
-        transform: scale(1.1) rotate(5deg);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-      }
     }
 
     /* ========== CELEBRATION MESSAGE ========== */
@@ -451,6 +382,7 @@
       justify-content: center;
       flex-wrap: wrap;
       margin-bottom: 1.5rem;
+      align-items: stretch;
     }
 
     /* ========== GLOSSY BUTTON STYLES ========== */
@@ -470,9 +402,12 @@
       animation: float 3.5s ease-in-out infinite;
       will-change: transform, box-shadow;
       color: white;
-      min-width: 160px;
-      max-width: 280px;
       flex: 1;
+      min-width: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
     }
 
     /* Glossy shine effect */
@@ -513,8 +448,8 @@
     }
 
     .btn-glossy:hover {
-      transform: translateY(-6px) scale(1.08);
-      box-shadow: 0 14px 48px rgba(0, 0, 0, 0.25);
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 16px 56px rgba(0, 0, 0, 0.3);
     }
 
     .btn-glossy:active {
@@ -537,33 +472,34 @@
       50% { transform: translateY(-10px); }
     }
 
-    /* Primary Button - Pink */
+    /* RSVP Button - Pink */
     .btn-rsvp {
-      background: var(--gradient-1);
+      background: var(--gradient-rsvp);
     }
 
     .btn-rsvp:hover {
-      box-shadow: 0 14px 48px var(--glow-purple);
+      box-shadow: 0 16px 56px var(--glow-pink);
     }
 
-    /* Secondary Button - Green */
+    /* Save Date Button - Green */
     .btn-save-date {
-      background: var(--gradient-2);
+      background: var(--gradient-save);
     }
 
     .btn-save-date:hover {
-      box-shadow: 0 14px 48px rgba(52, 211, 153, 0.4);
+      box-shadow: 0 16px 56px var(--glow-green);
     }
 
     /* Location Button - Cyan */
     .btn-location {
       background: var(--gradient-location);
-      max-width: 100%;
       width: 100%;
+      max-width: 100%;
+      margin-top: 1rem;
     }
 
     .btn-location:hover {
-      box-shadow: 0 14px 48px var(--glow-cyan);
+      box-shadow: 0 16px 56px var(--glow-cyan);
     }
 
     /* ========== CONFETTI ========== */
@@ -708,31 +644,27 @@
         margin-bottom: 2rem;
       }
 
-      .location-section {
-        margin-bottom: 2rem;
-        gap: 1rem;
-      }
-
-      .location-text {
-        font-size: 1.05rem;
-      }
-
       .celebration-text {
         font-size: 1.3rem;
       }
 
       .button-group {
-        flex-direction: column;
+        flex-direction: row;
         gap: 0.8rem;
+        align-items: stretch;
       }
 
       .btn-glossy {
-        padding: 1rem 2rem;
-        font-size: 0.95rem;
+        padding: 1rem 1.6rem;
+        font-size: 0.9rem;
         letter-spacing: 0.8px;
-        min-width: 100%;
-        max-width: 100%;
-        flex: unset;
+        min-width: 100px;
+        flex: 1;
+      }
+
+      .btn-location {
+        font-size: 0.9rem;
+        padding: 1rem 1.6rem;
       }
 
       #mainContentContainer {
@@ -812,13 +744,6 @@
     ::-webkit-scrollbar-thumb:hover {
       background: var(--primary-dark);
     }
-
-    /* ========== PERFORMANCE IMPROVEMENTS ========== */
-    @supports (font-display: swap) {
-      @font-face {
-        font-display: swap;
-      }
-    }
   </style>
 </head>
 <body>
@@ -842,22 +767,13 @@
     </video>
     <div class="loading-container" role="status" aria-live="polite" aria-atomic="true">
       <div id="loading-text">Loading Invitation</div>
-      <div id="refresh-text" style="display: none;" role="alert">
-        Taking too long? <button id="refreshBtn">Refresh Page</button>
-      </div>
     </div>
   </section>
 
   <!-- Main Content -->
   <main id="mainContentContainer" role="main">
     <!-- Invitation Image -->
-    <img class="invite-image" id="endImage" src="Images/2.png" alt="Beautiful Baby Shower Invitation with location and event details" draggable="false" loading="lazy">
-
-    <!-- Location Section with Glossy Button -->
-    <div class="location-section">
-      <div class="location-text" id="locationText">📍 View Event Location</div>
-      <button class="btn-glossy btn-location" id="locationBtn" type="button" aria-label="View event location on Google Maps">📍 Get Location</button>
-    </div>
+    <img class="invite-image" id="endImage" src="Images/2.png" alt="Beautiful Baby Shower Invitation with event details" draggable="false" loading="lazy">
 
     <!-- Celebration Message -->
     <section class="celebration-container" id="celebrationContainer" role="region" aria-label="Celebration Message">
@@ -867,9 +783,19 @@
     <!-- Action Buttons -->
     <div class="button-container" id="buttonContainer">
       <div class="button-group">
-        <button class="btn-glossy btn-rsvp" id="rsvpBtn" type="button" aria-label="Vote Now - RSVP to the Baby Shower">💌 Vote Now</button>
-        <button class="btn-glossy btn-save-date" id="saveDateBtn" type="button" aria-label="Save Date to Calendar">📅 Save Date</button>
+        <button class="btn-glossy btn-rsvp" id="rsvpBtn" type="button" aria-label="Vote Now - RSVP to the Baby Shower">
+          <span>💌</span>
+          <span>Vote Now</span>
+        </button>
+        <button class="btn-glossy btn-save-date" id="saveDateBtn" type="button" aria-label="Save Date to Calendar">
+          <span>📅</span>
+          <span>Save Date</span>
+        </button>
       </div>
+      <button class="btn-glossy btn-location" id="locationBtn" type="button" aria-label="View event location on Google Maps">
+        <span>📍</span>
+        <span>Get Location</span>
+      </button>
     </div>
   </main>
 
@@ -899,10 +825,6 @@
         date: '20260305T103000',
         title: 'Karthika Arun Baby Shower',
       },
-      performance: {
-        enableAnalytics: false,
-        debugMode: false,
-      },
     };
 
     // ========== DOM ELEMENTS ==========
@@ -911,14 +833,11 @@
       mainContent: document.getElementById('mainContentContainer'),
       endImage: document.getElementById('endImage'),
       locationBtn: document.getElementById('locationBtn'),
-      locationText: document.getElementById('locationText'),
       celebration: document.getElementById('celebrationContainer'),
       buttonContainer: document.getElementById('buttonContainer'),
       rsvpBtn: document.getElementById('rsvpBtn'),
       saveDateBtn: document.getElementById('saveDateBtn'),
       loadingText: document.getElementById('loading-text'),
-      refreshText: document.getElementById('refresh-text'),
-      refreshBtn: document.getElementById('refreshBtn'),
       musicToggle: document.getElementById('musicToggle'),
       fullscreenToggle: document.getElementById('fullscreenToggle'),
     };
@@ -961,19 +880,11 @@
       return timeout;
     }
 
-    function log(message, data = null) {
-      if (CONFIG.performance.debugMode) {
-        console.log(`[BabyShower] ${message}`, data || '');
-      }
-    }
-
     // ========== VIDEO HANDLERS ==========
     function handleVideoEnded() {
       if (state.isAnimating || state.hasEnded) return;
       state.isAnimating = true;
       state.hasEnded = true;
-
-      log('Video ended, starting animations');
 
       if (elements.video) {
         elements.video.style.display = 'none';
@@ -986,33 +897,22 @@
 
       // Staggered reveal animations
       addTimeout(() => {
-        if (elements.locationText) {
-          elements.locationText.classList.add('revealed');
+        if (elements.celebration) {
+          elements.celebration.classList.add('active');
+        }
+        if (elements.buttonContainer) {
+          elements.buttonContainer.classList.add('active');
         }
 
-        addTimeout(() => {
-          if (elements.celebration) {
-            elements.celebration.classList.add('active');
-          }
-          if (elements.buttonContainer) {
-            elements.buttonContainer.classList.add('active');
-          }
-
-          createConfetti();
-          state.isAnimating = false;
-          log('Animations complete');
-        }, CONFIG.timing.celebrationDelay);
-      }, CONFIG.timing.staggerDelay);
+        createConfetti();
+        state.isAnimating = false;
+      }, CONFIG.timing.celebrationDelay);
     }
 
     function handleVideoCanPlay() {
       if (elements.loadingText) {
         elements.loadingText.style.display = 'none';
       }
-      if (elements.refreshText) {
-        elements.refreshText.style.display = 'none';
-      }
-      log('Video ready to play');
     }
 
     function handleVideoError(error) {
@@ -1037,18 +937,6 @@
       if (elements.loadingText) {
         elements.loadingText.style.display = 'block';
       }
-
-      // Show refresh message after timeout
-      addTimeout(() => {
-        if (elements.loadingText && elements.loadingText.style.display !== 'none') {
-          elements.loadingText.style.display = 'none';
-          if (elements.refreshText) {
-            elements.refreshText.style.display = 'block';
-          }
-        }
-      }, CONFIG.timing.videoTimeout);
-
-      log('Video initialization complete');
     }
 
     // ========== CONFETTI ANIMATION ==========
@@ -1057,8 +945,6 @@
       const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎀', '🌺'];
       const particleCount = window.innerWidth > 768 ? 120 : 70;
       const fragment = document.createDocumentFragment();
-
-      log(`Creating ${particleCount} confetti particles`);
 
       for (let i = 0; i < particleCount; i++) {
         const confetti = document.createElement('div');
@@ -1135,7 +1021,6 @@
         }
         elements.musicToggle.textContent = state.isMuted ? '🔊' : '🔇';
         elements.musicToggle.setAttribute('aria-pressed', !state.isMuted);
-        log(`Music toggled: ${state.isMuted ? 'muted' : 'unmuted'}`);
       });
     }
 
@@ -1153,7 +1038,6 @@
               await requestFS.call(elem);
               elements.fullscreenToggle.setAttribute('aria-pressed', 'true');
               state.isFullscreen = true;
-              log('Entered fullscreen');
             }
           } else {
             const exitFS = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
@@ -1162,7 +1046,6 @@
               await exitFS.call(document);
               elements.fullscreenToggle.setAttribute('aria-pressed', 'false');
               state.isFullscreen = false;
-              log('Exited fullscreen');
             }
           }
         } catch (e) {
@@ -1214,15 +1097,6 @@
       }
     }
 
-    // ========== REFRESH BUTTON ==========
-    function initRefreshButton() {
-      if (elements.refreshBtn) {
-        elements.refreshBtn.addEventListener('click', () => {
-          location.reload();
-        });
-      }
-    }
-
     // ========== SECURITY & PROTECTION ==========
     function initSecurity() {
       // Prevent right-click context menu
@@ -1247,8 +1121,6 @@
         },
         { passive: false }
       );
-
-      log('Security features initialized');
     }
 
     // ========== PAGE VISIBILITY ==========
@@ -1258,27 +1130,22 @@
 
         if (document.hidden) {
           elements.video.pause();
-          log('Page hidden, video paused');
         } else {
           elements.video.play().catch((e) => {
             console.warn('Video play error:', e);
           });
-          log('Page visible, video resumed');
         }
       });
     }
 
     // ========== LAZY LOADING ==========
     function initLazyLoading() {
-      // Ensure images have lazy loading
       const images = document.querySelectorAll('img');
       images.forEach((img) => {
         if (!img.hasAttribute('loading')) {
           img.loading = 'lazy';
         }
       });
-
-      log(`Lazy loading initialized for ${images.length} images`);
     }
 
     // ========== CLEANUP ==========
@@ -1289,49 +1156,26 @@
           elements.video.pause();
           elements.video.src = '';
         }
-        log('Page cleanup executed');
       });
-    }
-
-    // ========== PERFORMANCE OBSERVER ==========
-    function initPerformanceObserver() {
-      if ('PerformanceObserver' in window && CONFIG.performance.debugMode) {
-        try {
-          const observer = new PerformanceObserver((list) => {
-            for (const entry of list.getEntries()) {
-              console.log(`[Performance] ${entry.name}: ${entry.duration.toFixed(2)}ms`);
-            }
-          });
-          observer.observe({ entryTypes: ['navigation', 'resource'] });
-        } catch (e) {
-          console.warn('PerformanceObserver not available');
-        }
-      }
     }
 
     // ========== INITIALIZATION ==========
     function init() {
       if (state.isInitialized) {
-        log('Already initialized, skipping');
         return;
       }
-
-      log('Initializing Baby Shower Invitation');
 
       initVideo();
       initMusicToggle();
       initFullscreenToggle();
       initLocationHandler();
       initRSVPHandlers();
-      initRefreshButton();
       initSecurity();
       initPageVisibility();
       initLazyLoading();
       initCleanup();
-      initPerformanceObserver();
 
       state.isInitialized = true;
-      log('Initialization complete');
     }
 
     // Start when DOM is ready
@@ -1351,4 +1195,4 @@
     });
   </script>
 </body>
-  </html>
+</html>
