@@ -305,7 +305,7 @@
     }
 
     .location-btn {
-      background: transparent;
+      background: none;
       border: none;
       padding: 0;
       display: flex;
@@ -313,8 +313,6 @@
       align-items: center;
       cursor: pointer;
       gap: 0;
-      outline: none;           /* Removes the focus box, but see note below */
-      -webkit-tap-highlight-color: transparent; /* Fixes blue flash on mobile */
       transition: transform var(--transition-normal);
     }
 
@@ -325,12 +323,11 @@
     }
 
     .location-btn img {
-      background: transparent;
-      border-radius: 50%
       max-width: 220px;
       width: 75%;
       height: auto;
       border-radius: 14px;
+      box-shadow: 0 6px 28px var(--glow-pink);
       transition: transform var(--transition-fast), box-shadow var(--transition-fast);
       -webkit-touch-callout: none;
       -webkit-user-select: none;
@@ -340,6 +337,7 @@
 
     .location-btn img:hover { 
       transform: scale(1.08) translateY(-5px); 
+      box-shadow: 0 12px 36px var(--glow-purple);
     }
 
     .location-btn img:active { 
@@ -734,8 +732,9 @@
     </section>
 
     <!-- RSVP Button -->
-    <div class="rsvp-container" id="rsvpContainer" role="region" aria-label="RSVP Section">
-      <button class="btn-rsvp" id="rsvpBtn" type="button" aria-label="Click to RSVP for the baby shower event">💌 Vote Now</button>
+    <div class="rsvp-container active" id="rsvpContainer" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
+    <button class="btn-rsvp" id="rsvpBtn" type="button" style="flex: 1; min-width: 140px; margin: 0;">💌 Vote Now</button>
+    <button class="btn-rsvp" id="saveDateBtn" type="button" style="flex: 1; min-width: 140px; margin: 0; background: var(--gradient-1);">📅 Save Date</button>
     </div>
   </main>
 
