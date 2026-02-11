@@ -22,32 +22,27 @@
   <link rel="canonical" href="https://arungz.github.io/BabyShower/">
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
   
   <title>Baby Shower</title>
   <link rel="icon" type="image/png" href="Images/logo.png">
   <link rel="apple-touch-icon" href="Images/logo.png">
 
   <style>
-    /* ========== ADVANCED CSS VARIABLES ========== */
     :root {
-      /* Color Palette */
       --primary: #d64a88;
       --primary-dark: #b8225c;
       --primary-light: #f5b3d4;
       --secondary: #9d6bc0;
       --secondary-light: #c9a8e8;
       --accent: #00bcd4;
-      --accent-dark: #0097a7;
       --success: #26c281;
       --warning: #f4b350;
       --white: #ffffff;
       --black: #1a1a2e;
       
-      /* Advanced Gradients */
       --gradient-primary: linear-gradient(135deg, #d64a88 0%, #9d6bc0 100%);
       --gradient-secondary: linear-gradient(135deg, #9d6bc0 0%, #00bcd4 100%);
-      --gradient-tertiary: linear-gradient(135deg, #ff6b9d 0%, #d64a88 100%);
       --gradient-rsvp: linear-gradient(135deg, #ff4081 0%, #d64a88 50%, #c2185b 100%);
       --gradient-save: linear-gradient(135deg, #26c281 0%, #1abc9c 50%, #00897b 100%);
       --gradient-location: linear-gradient(135deg, #00bcd4 0%, #0288d1 50%, #0097a7 100%);
@@ -56,13 +51,11 @@
       --gradient-overlay: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 100%);
       --gradient-shimmer: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
       
-      /* Text Colors */
       --text-primary: #1a1a2e;
       --text-secondary: #666b7f;
       --text-light: #999;
       --text-muted: #b0b5c8;
       
-      /* Background Colors */
       --bg-primary: #ffffff;
       --bg-light: #f9f7ff;
       --bg-lighter: #fcfaff;
@@ -70,7 +63,6 @@
       --bg-card: rgba(255, 255, 255, 0.85);
       --bg-glass: rgba(255, 255, 255, 0.7);
       
-      /* Spacing */
       --space-xs: 0.25rem;
       --space-sm: 0.5rem;
       --space-md: 1rem;
@@ -79,17 +71,13 @@
       --space-2xl: 2.5rem;
       --space-3xl: 3rem;
       
-      /* Transitions */
       --transition-fast: 0.15s;
       --transition-normal: 0.3s;
       --transition-slow: 0.5s;
-      --transition-slower: 0.8s;
-      --easing-in: cubic-bezier(0.4, 0, 1, 1);
       --easing-out: cubic-bezier(0, 0, 0.2, 1);
       --easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
       --easing-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
       
-      /* Shadows with Color Tint */
       --shadow-sm: 0 2px 4px rgba(214, 74, 136, 0.08);
       --shadow-md: 0 4px 12px rgba(214, 74, 136, 0.12);
       --shadow-lg: 0 8px 24px rgba(214, 74, 136, 0.15);
@@ -97,42 +85,23 @@
       --shadow-2xl: 0 16px 48px rgba(214, 74, 136, 0.2);
       --shadow-glow: 0 0 20px rgba(214, 74, 136, 0.3);
       --shadow-glow-lg: 0 0 40px rgba(214, 74, 136, 0.25);
-      --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
       
-      /* Border Radius */
       --radius-xs: 4px;
       --radius-sm: 8px;
       --radius-md: 16px;
       --radius-lg: 24px;
-      --radius-xl: 32px;
       --radius-full: 50%;
       
-      /* Z-Index Scale */
-      --z-dropdown: 10;
       --z-sticky: 20;
       --z-fixed: 30;
       --z-modal: 40;
-      --z-popover: 50;
-      --z-tooltip: 60;
       --z-notification: 70;
-      --z-debug: 999;
     }
 
-    /* ========== RESET & BASE STYLES ========== */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-    }
-
-    *::-moz-selection {
-      background: var(--primary-light);
-      color: var(--primary-dark);
-    }
-
-    *::selection {
-      background: var(--primary-light);
-      color: var(--primary-dark);
     }
 
     html {
@@ -166,7 +135,43 @@
       z-index: -1;
     }
 
-    /* ========== ACCESSIBILITY ========== */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 1.5rem;
+      background: var(--bg-card);
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-xl);
+      animation: slideUp 0.4s var(--easing-out) forwards;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(214, 74, 136, 0.3);
+      max-width: 300px;
+      z-index: var(--z-notification);
+      word-wrap: break-word;
+    }
+
+    .toast.success {
+      background: linear-gradient(135deg, rgba(38, 194, 129, 0.1), rgba(26, 194, 130, 0.05));
+      border-color: rgba(38, 194, 129, 0.3);
+    }
+
+    .toast.error {
+      background: linear-gradient(135deg, rgba(255, 64, 129, 0.1), rgba(244, 67, 54, 0.05));
+      border-color: rgba(255, 64, 129, 0.3);
+    }
+
+    .toast.info {
+      background: linear-gradient(135deg, rgba(0, 188, 212, 0.1), rgba(3, 169, 244, 0.05));
+      border-color: rgba(0, 188, 212, 0.3);
+    }
+
+    .toast-text {
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+    }
+
     .skip-link {
       position: absolute;
       top: -40px;
@@ -186,7 +191,6 @@
       top: 0;
     }
 
-    /* ========== SMOOTH PAGE TRANSITIONS ========== */
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -277,7 +281,17 @@
       to { transform: rotate(360deg); }
     }
 
-    /* ========== HEADER SECTION ========== */
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+    }
+
     header {
       display: flex;
       align-items: center;
@@ -308,8 +322,12 @@
       min-width: 0;
       word-break: break-word;
       animation: slideInLeft 0.6s var(--easing-out) 0.1s both;
-      text-shadow: 0 4px 8px rgba(214, 74, 136, 0.1);
       filter: drop-shadow(0 2px 4px rgba(214, 74, 136, 0.15));
+      transition: all var(--transition-normal);
+    }
+
+    .header-title:hover {
+      filter: drop-shadow(0 4px 8px rgba(214, 74, 136, 0.25));
     }
 
     .header-controls {
@@ -362,12 +380,6 @@
       transform: scale(0.92);
     }
 
-    .btn-control:focus-visible {
-      outline: 3px solid var(--primary);
-      outline-offset: 3px;
-    }
-
-    /* ========== VIDEO SECTION ========== */
     .video-wrapper {
       max-width: 95%;
       margin: var(--space-lg) auto 0;
@@ -434,7 +446,6 @@
       animation: bounce 1.4s var(--easing-smooth) infinite;
     }
 
-    /* ========== MAIN CONTENT ========== */
     #mainContentContainer {
       display: none;
       max-width: 720px;
@@ -447,7 +458,6 @@
       display: block;
     }
 
-    /* ========== INVITATION IMAGE ========== */
     .invite-image-wrapper {
       margin-bottom: var(--space-2xl);
       margin-top: -var(--space-lg);
@@ -490,7 +500,6 @@
       transform: scale(1.03) translateY(-6px);
     }
 
-    /* ========== CELEBRATION MESSAGE ========== */
     .celebration-container {
       text-align: center;
       margin: var(--space-2xl) 0 var(--space-2xl) 0;
@@ -537,7 +546,6 @@
       z-index: 2;
     }
 
-    /* ========== BUTTONS CONTAINER ========== */
     .button-container {
       text-align: center;
       display: none;
@@ -558,7 +566,6 @@
       width: 100%;
     }
 
-    /* ========== PREMIUM BUTTON DESIGN ========== */
     .btn-glossy {
       position: relative;
       border: none;
@@ -620,18 +627,13 @@
     }
 
     .btn-glossy:hover {
-      transform: translateY(-5px);
+      transform: translateY(-5px) scale(1.05);
       box-shadow: var(--shadow-glow-lg);
       filter: brightness(1.15);
     }
 
     .btn-glossy:active {
-      transform: translateY(-2px);
-    }
-
-    .btn-glossy:focus-visible {
-      outline: 3px solid var(--primary);
-      outline-offset: 2px;
+      transform: translateY(-2px) scale(0.98);
     }
 
     .btn-glossy:disabled {
@@ -640,7 +642,6 @@
       transform: none;
     }
 
-    /* ========== BUTTON ICONS & TEXT ========== */
     .btn-icon {
       display: inline-flex;
       align-items: center;
@@ -648,10 +649,12 @@
       font-size: 1.4rem;
       flex-shrink: 0;
       transition: transform var(--transition-normal);
+      animation: float 3s var(--easing-smooth) infinite;
     }
 
     .btn-glossy:hover .btn-icon {
-      transform: scale(1.25) rotate(8deg);
+      transform: scale(1.25) rotate(8deg) translateY(-2px);
+      animation: none;
     }
 
     .btn-text {
@@ -660,7 +663,6 @@
       letter-spacing: 0.8px;
     }
 
-    /* ========== BUTTON VARIANTS ========== */
     .btn-rsvp {
       background: var(--gradient-rsvp);
     }
@@ -688,7 +690,6 @@
       box-shadow: 0 10px 28px rgba(0, 188, 212, 0.4);
     }
 
-    /* ========== CONFETTI ANIMATION ========== */
     .confetti {
       position: fixed;
       pointer-events: none;
@@ -711,7 +712,6 @@
       filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
     }
 
-    /* ========== FOOTER ========== */
     footer {
       text-align: center;
       padding: var(--space-2xl) var(--space-lg);
@@ -761,140 +761,65 @@
       transform-origin: left;
     }
 
-    /* ========== RESPONSIVE DESIGN ========== */
     @media (max-width: 768px) {
       html { font-size: 15px; }
-
       header {
         padding: var(--space-lg) var(--space-md);
         gap: var(--space-sm);
-        border-bottom: 1.5px solid rgba(214, 74, 136, 0.15);
       }
-
-      .header-title {
-        font-size: 1.6rem;
-      }
-
-      .header-controls { gap: var(--space-sm); }
-
+      .header-title { font-size: 1.6rem; }
       .btn-control {
         width: 46px;
         height: 46px;
         font-size: 1.2rem;
       }
-
       #myVideo {
         max-height: 65vh;
         border-radius: var(--radius-md);
       }
-
-      .invite-image {
-        border-radius: var(--radius-md);
-      }
-
-      .invite-image-wrapper {
-        border-radius: var(--radius-md);
-        margin-bottom: var(--space-xl);
-        margin-top: -var(--space-md);
-      }
-
       #mainContentContainer {
         padding: var(--space-md) var(--space-md) var(--space-2xl) var(--space-md);
       }
-
       .celebration-container {
-        margin: var(--space-xl) 0 var(--space-xl) 0;
+        margin: var(--space-xl) 0;
         padding: var(--space-xl) var(--space-md);
       }
-
-      .button-group {
-        gap: var(--space-md);
-        margin-bottom: var(--space-lg);
-      }
-
       .btn-glossy {
         padding: 0.95rem var(--space-lg);
         font-size: 0.9rem;
         min-height: 52px;
-        min-width: 130px;
       }
-
-      footer {
-        padding: var(--space-xl) var(--space-md);
+      footer { padding: var(--space-xl) var(--space-md); }
+      .toast {
+        bottom: 1rem;
+        right: 1rem;
+        left: 1rem;
+        max-width: none;
       }
     }
 
     @media (max-width: 600px) {
       html { font-size: 14px; }
-
-      header {
-        padding: var(--space-md) var(--space-sm);
-        gap: var(--space-sm);
-      }
-
-      .header-title {
-        font-size: 1.4rem;
-      }
-
-      .header-controls { gap: var(--space-sm); }
-
+      header { padding: var(--space-md) var(--space-sm); }
+      .header-title { font-size: 1.4rem; }
       .btn-control {
         width: 44px;
         height: 44px;
         font-size: 1.1rem;
       }
-
       #myVideo {
         max-width: 100%;
         max-height: 60vh;
-        border-radius: var(--radius-md);
       }
-
-      .video-wrapper {
-        margin: var(--space-lg) auto 0;
-        padding: 0 var(--space-sm);
-      }
-
-      .invite-image {
-        border-radius: var(--radius-md);
-      }
-
-      .invite-image-wrapper {
-        border-radius: var(--radius-md);
-        margin-bottom: var(--space-lg);
-        margin-top: -var(--space-sm);
-      }
-
-      .celebration-text {
-        font-size: 1.3rem;
-      }
-
-      .celebration-container {
-        margin: var(--space-lg) 0 var(--space-lg) 0;
-        padding: var(--space-lg) var(--space-md);
-      }
-
-      .button-group {
-        gap: var(--space-sm);
-        margin-bottom: var(--space-md);
-      }
-
+      .celebration-text { font-size: 1.3rem; }
       .btn-glossy {
         padding: 0.9rem var(--space-md);
         font-size: 0.85rem;
-        min-width: 110px;
         min-height: 50px;
-        gap: var(--space-sm);
       }
-
-      .btn-icon {
-        font-size: 1.3rem;
-      }
-
       #mainContentContainer {
         padding: var(--space-sm) var(--space-sm) var(--space-xl) var(--space-sm);
       }
-
       footer {
         padding: var(--space-lg) var(--space-sm);
         font-size: 0.95rem;
@@ -903,29 +828,14 @@
 
     @media (max-width: 380px) {
       html { font-size: 13px; }
-
-      .header-title {
-        font-size: 1.2rem;
-      }
-
+      .header-title { font-size: 1.2rem; }
       .btn-glossy {
         padding: 0.85rem var(--space-md);
         font-size: 0.8rem;
-        min-width: 95px;
         min-height: 48px;
-        gap: var(--space-xs);
-      }
-
-      .btn-icon {
-        font-size: 1.2rem;
-      }
-
-      .celebration-text {
-        font-size: 1.15rem;
       }
     }
 
-    /* ========== ACCESSIBILITY & PREFERENCES ========== */
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
@@ -951,51 +861,29 @@
         --gradient-bg: var(--gradient-dark);
         --gradient-overlay: linear-gradient(180deg, rgba(13,20,25,0.98) 0%, rgba(13,20,25,0.95) 100%);
       }
-
-      body {
-        background: var(--gradient-dark);
-      }
-
-      body::before {
-        background: radial-gradient(ellipse at 50% -20%, rgba(214, 74, 136, 0.08), transparent 70%);
-      }
-
+      body { background: var(--gradient-dark); }
       header {
         background: var(--bg-overlay);
         border-bottom-color: rgba(214, 74, 136, 0.15);
       }
-
       .celebration-container {
         background: var(--bg-card);
         border-color: rgba(214, 74, 136, 0.15);
       }
-
       footer {
         background: var(--bg-overlay);
         border-top-color: rgba(214, 74, 136, 0.15);
       }
     }
 
-    /* ========== PRINT STYLES ========== */
     @media print {
       header, footer, .btn-control, .btn-glossy, .video-wrapper {
         display: none;
       }
-
-      #mainContentContainer {
-        padding: 0;
-      }
-
-      body {
-        background: white;
-      }
-
-      .invite-image-wrapper {
-        box-shadow: none;
-      }
+      #mainContentContainer { padding: 0; }
+      body { background: white; }
     }
 
-    /* ========== SCROLLBAR STYLING ========== */
     ::-webkit-scrollbar {
       width: 12px;
       height: 12px;
@@ -1016,7 +904,6 @@
       box-shadow: var(--shadow-glow);
     }
 
-    /* ========== FOCUS VISIBLE STYLES ========== */
     :focus-visible {
       outline: 3px solid var(--primary);
       outline-offset: 2px;
@@ -1024,10 +911,8 @@
   </style>
 </head>
 <body>
-  <!-- Skip to main content link -->
   <a href="#mainContentContainer" class="skip-link">Skip to main content</a>
 
-  <!-- Header -->
   <header role="banner">
     <h1 class="header-title">💕 Baby Shower 💕</h1>
     <div class="header-controls" role="toolbar" aria-label="Invitation Controls">
@@ -1036,7 +921,6 @@
     </div>
   </header>
 
-  <!-- Video Section -->
   <section class="video-wrapper" role="region" aria-label="Invitation Video">
     <video id="myVideo" muted playsinline autoplay poster="Images/preview.gif" preload="metadata" loading="lazy">
       <source src="video/invite1.mp4" type="video/mp4">
@@ -1047,19 +931,15 @@
     </div>
   </section>
 
-  <!-- Main Content -->
   <main id="mainContentContainer" role="main">
-    <!-- Invitation Image -->
     <div class="invite-image-wrapper">
       <img class="invite-image" id="endImage" src="Images/2.png" alt="Beautiful Baby Shower Invitation with event details" draggable="false" loading="lazy">
     </div>
 
-    <!-- Celebration Message -->
     <section class="celebration-container" id="celebrationContainer" role="region" aria-label="Celebration Message">
       <p class="celebration-text">✨ We Look Forward to Celebrating With You! ✨</p>
     </section>
 
-    <!-- Action Buttons -->
     <div class="button-container" id="buttonContainer">
       <div class="button-group">
         <button class="btn-glossy btn-rsvp" id="rsvpBtn" type="button" aria-label="Vote Now - RSVP to the Baby Shower">
@@ -1078,7 +958,6 @@
     </div>
   </main>
 
-  <!-- Footer -->
   <footer role="contentinfo">
     <p>✨ Looking forward to celebrating with you! ✨</p>
     <p>Made with 💕 for a special moment</p>
@@ -1087,7 +966,6 @@
   <script>
     'use strict';
 
-    /* ========== ENHANCED CONFIGURATION ========== */
     const CONFIG = {
       locations: {
         event: 'https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8',
@@ -1097,8 +975,8 @@
       },
       timing: {
         videoTimeout: 60000,
-        staggerDelay: 600,
         celebrationDelay: 800,
+        toastDuration: 3000,
       },
       event: {
         date: '20260305',
@@ -1112,24 +990,33 @@
       features: {
         enableAnalytics: true,
         enableErrorTracking: true,
+        enableToasts: true,
       },
     };
 
-    /* ========== UTILITY HELPER CLASS ========== */
+    class ToastManager {
+      static show(message, type = 'info', duration = CONFIG.timing.toastDuration) {
+        if (!CONFIG.features.enableToasts) return;
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `<div class="toast-text">${message}</div>`;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+          toast.style.animation = 'fadeOut 0.4s var(--easing-out) forwards';
+          setTimeout(() => toast.remove(), 400);
+        }, duration);
+      }
+      static success(message) { this.show(`✅ ${message}`, 'success'); }
+      static error(message) { this.show(`❌ ${message}`, 'error'); }
+      static info(message) { this.show(`ℹ️ ${message}`, 'info'); }
+    }
+
     class UtilityHelper {
       static validateURL(url) {
         try {
           return new URL(url) instanceof URL;
         } catch {
           return false;
-        }
-      }
-
-      static safeStringify(obj) {
-        try {
-          return JSON.stringify(obj);
-        } catch (e) {
-          return String(obj);
         }
       }
 
@@ -1141,55 +1028,19 @@
         };
       }
 
-      static throttle(func, limit = 300) {
-        let inThrottle;
-        return function throttled(...args) {
-          if (!inThrottle) {
-            func.apply(this, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-          }
-        };
-      }
-
       static detectPlatform() {
         const ua = navigator.userAgent.toLowerCase();
         if (/iphone|ipad|ipod|mac|safari/.test(ua) && !/chrome|android/.test(ua)) {
           return 'apple';
         }
-        if (/android|chrome/.test(ua)) {
-          return 'android';
-        }
-        return 'other';
+        return /android/.test(ua) ? 'android' : 'other';
+      }
+
+      static isMobileDevice() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       }
     }
 
-    /* ========== PERFORMANCE MONITORING ========== */
-    class PerformanceMonitor {
-      constructor() {
-        this.metrics = {};
-        this.startTime = performance.now();
-      }
-
-      mark(name) {
-        this.metrics[name] = performance.now() - this.startTime;
-        if (window.location.hash === '#debug') {
-          console.debug(`⏱️ ${name}: ${this.metrics[name].toFixed(2)}ms`);
-        }
-      }
-
-      getReport() {
-        return this.metrics;
-      }
-
-      logReport() {
-        console.table(this.getReport());
-      }
-    }
-
-    const perfMonitor = new PerformanceMonitor();
-
-    /* ========== ICAL FORMAT GENERATOR ========== */
     class CalendarURLBuilder {
       static generateGoogleCalendarURL() {
         const { date, startTime, endTime, title, description, location, timezone } = CONFIG.event;
@@ -1206,15 +1057,15 @@
 
       static generateICalendar() {
         const { date, startTime, endTime, title, description, location } = CONFIG.event;
-        
         const startDateTime = `${date}T${startTime}`;
         const endDateTime = `${date}T${endTime}`;
         
-        const ical = `BEGIN:VCALENDAR
+        return `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Baby Shower Invitation//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
+X-WR-CALNAME:${title}
 BEGIN:VEVENT
 UID:baby-shower-${date}@invitation.com
 DTSTAMP:${this.getCurrentTimestamp()}
@@ -1229,17 +1080,10 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT24H
-DESCRIPTION:Reminder: ${title}
-END:VALARM
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT2H
-DESCRIPTION:Reminder: ${title} starts in 2 hours
+DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 END:VCALENDAR`;
-
-        return ical;
       }
 
       static getCurrentTimestamp() {
@@ -1250,7 +1094,6 @@ END:VCALENDAR`;
         const hours = String(now.getUTCHours()).padStart(2, '0');
         const minutes = String(now.getUTCMinutes()).padStart(2, '0');
         const seconds = String(now.getUTCSeconds()).padStart(2, '0');
-        
         return `${year}${month}${day}T${hours}${minutes}${seconds}Z`;
       }
 
@@ -1260,30 +1103,25 @@ END:VCALENDAR`;
           const blob = new Blob([ical], { type: 'text/calendar;charset=utf-8' });
           const link = document.createElement('a');
           const url = URL.createObjectURL(blob);
-          
           link.setAttribute('href', url);
           link.setAttribute('download', `baby-shower-${CONFIG.event.date}.ics`);
           link.style.visibility = 'hidden';
-          
           document.body.appendChild(link);
           link.click();
-          
           setTimeout(() => {
             document.body.removeChild(link);
             URL.revokeObjectURL(url);
           }, 100);
-          
-          trackEvent('calendar_download_success', { format: 'ics' });
+          ToastManager.success('Event saved to calendar!');
           return true;
         } catch (error) {
-          console.error('❌ Calendar download error:', error);
-          trackEvent('calendar_download_error', { error: error?.message });
+          console.error('Calendar error:', error);
+          ToastManager.error('Failed to save event');
           return false;
         }
       }
     }
 
-    /* ========== DOM ELEMENTS CACHE ========== */
     const elements = {
       video: document.getElementById('myVideo'),
       mainContent: document.getElementById('mainContentContainer'),
@@ -1298,7 +1136,6 @@ END:VCALENDAR`;
       fullscreenToggle: document.getElementById('fullscreenToggle'),
     };
 
-    /* ========== STATE MANAGEMENT ========== */
     const state = {
       isMuted: true,
       isAnimating: false,
@@ -1307,88 +1144,54 @@ END:VCALENDAR`;
       timeouts: [],
       isInitialized: false,
       platform: UtilityHelper.detectPlatform(),
+      isMobile: UtilityHelper.isMobileDevice(),
       analytics: {
         videoPlayed: false,
-        buttonClicked: {},
         startTime: Date.now(),
-        platform: UtilityHelper.detectPlatform(),
+        sessionId: Math.random().toString(36).substr(2, 9),
       },
     };
 
-    /* ========== LINK HANDLER ========== */
-    function openLink(url, target = '_blank') {
+    function openLink(url) {
       if (!url || typeof url !== 'string') {
-        console.warn('⚠️ Invalid URL provided:', url);
+        ToastManager.error('Invalid URL');
         return;
       }
-
       if (!UtilityHelper.validateURL(url)) {
-        console.warn('⚠️ URL validation failed:', url);
+        ToastManager.error('Invalid URL format');
         return;
       }
-
       try {
-        const windowRef = window.open(url, target, 'noopener,noreferrer');
-        if (!windowRef) {
-          console.warn('⚠️ Popup may have been blocked');
-        }
-        trackEvent('link_opened', { url });
+        window.open(url, '_blank', 'noopener,noreferrer');
       } catch (error) {
-        console.error('❌ Failed to open link:', error);
-        trackEvent('link_error', { error: error?.message });
+        console.error('Link error:', error);
+        ToastManager.error('Failed to open link');
       }
     }
 
-    /* ========== TIMEOUT MANAGEMENT ========== */
     function clearTimeouts() {
       state.timeouts.forEach(timeout => clearTimeout(timeout));
       state.timeouts = [];
     }
 
     function addTimeout(callback, delay) {
-      if (typeof callback !== 'function') {
-        console.warn('⚠️ Invalid callback provided to addTimeout');
-        return null;
-      }
+      if (typeof callback !== 'function') return null;
       const timeout = setTimeout(callback, delay);
       state.timeouts.push(timeout);
       return timeout;
     }
 
-    /* ========== ANALYTICS ========== */
-    function trackEvent(eventName, data = {}) {
-      if (!CONFIG.features.enableAnalytics) return;
-      
-      const eventData = {
-        timestamp: new Date().toISOString(),
-        duration: Date.now() - state.analytics.startTime,
-        platform: state.platform,
-        ...data,
-      };
-
-      if (window.location.hash === '#debug') {
-        console.debug(`📊 Event: ${eventName}`, eventData);
-      }
-    }
-
-    /* ========== VIDEO HANDLERS ========== */
     function handleVideoEnded() {
       if (state.isAnimating || state.hasEnded) return;
-      
-      perfMonitor.mark('video_ended');
       state.isAnimating = true;
       state.hasEnded = true;
-      trackEvent('video_ended');
-
       if (elements.video) {
         elements.video.style.display = 'none';
         elements.video.pause();
       }
-
       if (elements.mainContent) {
         elements.mainContent.classList.add('active');
       }
-
       addTimeout(() => {
         if (elements.celebration) {
           elements.celebration.classList.add('active');
@@ -1396,10 +1199,8 @@ END:VCALENDAR`;
         if (elements.buttonContainer) {
           elements.buttonContainer.classList.add('active');
         }
-
         createConfetti();
         state.isAnimating = false;
-        perfMonitor.mark('animation_complete');
       }, CONFIG.timing.celebrationDelay);
     }
 
@@ -1408,18 +1209,15 @@ END:VCALENDAR`;
         elements.loadingText.style.display = 'none';
       }
       state.analytics.videoPlayed = true;
-      perfMonitor.mark('video_ready');
     }
 
     function handleVideoError(error) {
       const errorMsg = error?.target?.error?.message || 'Unknown error';
       if (elements.loadingText) {
         elements.loadingText.innerHTML = '❌ Video loading failed';
-        elements.loadingText.setAttribute('role', 'alert');
       }
-      console.error('❌ Video loading error:', errorMsg);
-      trackEvent('video_error', { error: errorMsg });
-
+      console.error('Video error:', errorMsg);
+      ToastManager.error('Failed to load video');
       addTimeout(() => {
         if (elements.mainContent) {
           elements.mainContent.classList.add('active');
@@ -1427,25 +1225,16 @@ END:VCALENDAR`;
       }, 2000);
     }
 
-    /* ========== VIDEO INITIALIZATION ========== */
     function initVideo() {
-      if (!elements.video) {
-        console.warn('⚠️ Video element not found');
-        return;
-      }
-
+      if (!elements.video) return;
       elements.video.addEventListener('ended', handleVideoEnded, { once: true });
       elements.video.addEventListener('canplay', handleVideoCanPlay);
       elements.video.addEventListener('error', handleVideoError);
-
       if (elements.loadingText) {
         elements.loadingText.style.display = 'block';
       }
-
-      perfMonitor.mark('video_init');
     }
 
-    /* ========== CONFETTI ANIMATION ========== */
     function createConfetti() {
       const colors = ['#d64a88', '#ff6b9d', '#9d6bc0', '#00bcd4', '#26c281', '#f4b350'];
       const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎀', '🌺', '💐', '🎊'];
@@ -1476,54 +1265,33 @@ END:VCALENDAR`;
         addTimeout(() => {
           try {
             if (!confetti.parentElement) return;
-
             const keyframes = [
-              { 
-                transform: 'translateY(0) translateX(0) rotate(0deg)', 
-                opacity: Math.random() * 0.8 + 0.3,
-                filter: 'blur(0px)'
-              },
-              { 
-                transform: `translateY(${window.innerHeight + 50}px) translateX(${xMove}px) rotate(${rotate}deg)`, 
-                opacity: 0,
-                filter: 'blur(1px)'
-              },
+              { transform: 'translateY(0) translateX(0) rotate(0deg)', opacity: Math.random() * 0.8 + 0.3 },
+              { transform: `translateY(${window.innerHeight + 50}px) translateX(${xMove}px) rotate(${rotate}deg)`, opacity: 0 }
             ];
-
             const animation = confetti.animate(keyframes, {
               duration: duration * 1000,
               easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               fill: 'forwards',
             });
-
             animation.onfinish = () => {
-              try {
-                if (confetti.parentElement) {
-                  confetti.remove();
-                }
-              } catch (e) {
-                console.debug('Confetti cleanup:', e);
-              }
+              if (confetti.parentElement) confetti.remove();
             };
           } catch (error) {
-            console.warn('⚠️ Confetti error:', error);
+            console.warn('Confetti error:', error);
           }
         }, i * 15);
       }
 
       try {
         document.body.appendChild(fragment);
-        trackEvent('confetti_created', { count: particleCount });
-        perfMonitor.mark('confetti_complete');
       } catch (error) {
-        console.error('❌ Failed to append confetti:', error);
+        console.error('Confetti append error:', error);
       }
     }
 
-    /* ========== MUSIC TOGGLE ========== */
     function initMusicToggle() {
       if (!elements.musicToggle) return;
-
       elements.musicToggle.addEventListener('click', () => {
         state.isMuted = !state.isMuted;
         if (elements.video) {
@@ -1531,196 +1299,84 @@ END:VCALENDAR`;
         }
         elements.musicToggle.textContent = state.isMuted ? '🔊' : '🔇';
         elements.musicToggle.setAttribute('aria-pressed', !state.isMuted);
-        trackEvent('music_toggled', { muted: state.isMuted });
       });
     }
 
-    /* ========== FULLSCREEN TOGGLE ========== */
     function initFullscreenToggle() {
       if (!elements.fullscreenToggle) return;
-
       const handleFullscreenChange = () => {
         state.isFullscreen = !!document.fullscreenElement;
         elements.fullscreenToggle.setAttribute('aria-pressed', state.isFullscreen);
       };
-
       elements.fullscreenToggle.addEventListener('click', async () => {
         try {
           if (!document.fullscreenElement) {
             const elem = document.documentElement;
-            const requestFS = elem.requestFullscreen || 
-                             elem.webkitRequestFullscreen || 
-                             elem.mozRequestFullScreen || 
-                             elem.msRequestFullscreen;
-
-            if (requestFS) {
-              await requestFS.call(elem);
-              trackEvent('fullscreen_entered');
-            }
+            const requestFS = elem.requestFullscreen || elem.webkitRequestFullscreen || elem.mozRequestFullScreen || elem.msRequestFullscreen;
+            if (requestFS) await requestFS.call(elem);
           } else {
-            const exitFS = document.exitFullscreen || 
-                          document.webkitExitFullscreen || 
-                          document.mozCancelFullScreen || 
-                          document.msExitFullscreen;
-
-            if (exitFS) {
-              await exitFS.call(document);
-              trackEvent('fullscreen_exited');
-            }
+            const exitFS = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
+            if (exitFS) await exitFS.call(document);
           }
         } catch (error) {
-          console.warn('⚠️ Fullscreen error:', error);
-          trackEvent('fullscreen_error', { error: error?.message });
+          console.warn('Fullscreen error:', error);
         }
       });
-
       document.addEventListener('fullscreenchange', handleFullscreenChange);
       document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
       document.addEventListener('mozfullscreenchange', handleFullscreenChange);
-      document.addEventListener('msfullscreenchange', handleFullscreenChange);
     }
 
-    /* ========== LOCATION HANDLER ========== */
     function initLocationHandler() {
       if (!elements.locationBtn) return;
-
       const handleClick = UtilityHelper.debounce(() => {
         openLink(CONFIG.locations.event);
-        state.analytics.buttonClicked.location = true;
-        trackEvent('location_opened');
       }, 300);
-
       elements.locationBtn.addEventListener('click', handleClick);
-      elements.locationBtn.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          handleClick();
-        }
-      });
     }
 
-    /* ========== SAVE DATE HANDLER - CROSS-PLATFORM ========== */
     function initSaveDateHandler() {
       if (!elements.saveDateBtn) return;
-
       const handleSaveDate = UtilityHelper.debounce(() => {
         try {
           const platform = state.platform;
-          
-          if (window.location.hash === '#debug') {
-            console.debug(`📱 Detected Platform: ${platform}`);
-          }
-
           if (platform === 'apple') {
-            const success = CalendarURLBuilder.downloadICalendar();
-            if (success) {
-              state.analytics.buttonClicked.saveDate = true;
-              trackEvent('save_date_clicked', { method: 'icalendar', platform: 'apple' });
-            }
+            CalendarURLBuilder.downloadICalendar();
           } else {
             const calendarURL = CalendarURLBuilder.generateGoogleCalendarURL();
             openLink(calendarURL);
-            state.analytics.buttonClicked.saveDate = true;
-            trackEvent('save_date_clicked', { method: 'google_calendar', platform: platform });
           }
         } catch (error) {
-          console.error('❌ Save date error:', error);
-          trackEvent('save_date_error', { error: error?.message, platform: state.platform });
+          console.error('Save date error:', error);
+          ToastManager.error('Failed to save date');
         }
       }, 300);
-
       elements.saveDateBtn.addEventListener('click', handleSaveDate);
-      elements.saveDateBtn.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          handleSaveDate();
-        }
-      });
     }
 
-    /* ========== RSVP HANDLER ========== */
     function initRSVPHandler() {
       if (!elements.rsvpBtn) return;
-
       const handleRSVP = UtilityHelper.debounce(() => {
         if (CONFIG.forms.rsvp) {
           openLink(CONFIG.forms.rsvp);
-          state.analytics.buttonClicked.rsvp = true;
-          trackEvent('rsvp_clicked');
         } else {
-          console.warn('⚠️ RSVP form not configured');
-          alert('RSVP form not configured. Please contact the organizer.');
+          ToastManager.error('RSVP form not configured');
         }
       }, 300);
-
       elements.rsvpBtn.addEventListener('click', handleRSVP);
-      elements.rsvpBtn.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          handleRSVP();
-        }
-      });
     }
 
-    /* ========== SECURITY SETUP ========== */
-    function initSecurity() {
-      document.addEventListener('contextmenu', (e) => e.preventDefault(), { passive: false });
-      document.addEventListener('selectstart', (e) => e.preventDefault(), { passive: false });
-      document.addEventListener('dragstart', (e) => e.preventDefault(), { passive: false });
-
-      document.addEventListener('keydown', (event) => {
-        const isDevTools = event.key === 'F12' || 
-                          (event.ctrlKey && event.shiftKey && event.key === 'I') || 
-                          (event.ctrlKey && event.key === 'u') ||
-                          (event.metaKey && event.altKey && event.key === 'i');
-        
-        if (isDevTools) {
-          event.preventDefault();
-        }
-      }, { passive: false });
-
-      perfMonitor.mark('security_init');
-    }
-
-    /* ========== PAGE VISIBILITY ========== */
     function initPageVisibility() {
       document.addEventListener('visibilitychange', () => {
         if (!elements.video) return;
-
         if (document.hidden) {
           elements.video.pause();
-          trackEvent('page_hidden');
         } else {
-          elements.video.play().catch((error) => {
-            console.warn('⚠️ Video play error:', error);
-          });
-          trackEvent('page_visible');
+          elements.video.play().catch(() => {});
         }
       });
     }
 
-    /* ========== LAZY LOADING ========== */
-    function initLazyLoading() {
-      if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const img = entry.target;
-              if (img.dataset.src) {
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
-              }
-              imageObserver.unobserve(img);
-            }
-          });
-        }, { rootMargin: '50px' });
-
-        document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
-        perfMonitor.mark('lazy_loading_init');
-      }
-    }
-
-    /* ========== CLEANUP ========== */
     function initCleanup() {
       window.addEventListener('beforeunload', () => {
         clearTimeouts();
@@ -1728,23 +1384,11 @@ END:VCALENDAR`;
           elements.video.pause();
           elements.video.src = '';
         }
-
-        const sessionDuration = (Date.now() - state.analytics.startTime) / 1000;
-        console.debug('📊 Session Analytics:', {
-          ...state.analytics,
-          sessionDuration: `${sessionDuration.toFixed(2)}s`,
-        });
-
-        if (window.location.hash === '#debug') {
-          perfMonitor.logReport();
-        }
       });
     }
 
-    /* ========== MAIN INITIALIZATION ========== */
     function init() {
       if (state.isInitialized) return;
-
       try {
         initVideo();
         initMusicToggle();
@@ -1752,53 +1396,27 @@ END:VCALENDAR`;
         initLocationHandler();
         initRSVPHandler();
         initSaveDateHandler();
-        initSecurity();
         initPageVisibility();
-        initLazyLoading();
         initCleanup();
-
         state.isInitialized = true;
-        perfMonitor.mark('initialization_complete');
-        console.log(
-          '%c🎉 Baby Shower Invitation loaded successfully! 💕',
-          'color: #d64a88; font-size: 16px; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.2);'
-        );
-
-        if (window.location.hash === '#debug') {
-          perfMonitor.logReport();
-        }
+        console.log('%c🎉 Baby Shower loaded! 💕', 'color: #d64a88; font-size: 16px; font-weight: bold;');
       } catch (error) {
-        console.error('❌ Initialization error:', error);
-        trackEvent('init_error', { error: error?.message });
+        console.error('Init error:', error);
       }
     }
 
-    /* ========== DOM READY CHECK ========== */
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', init, { once: true });
     } else {
       init();
     }
 
-    /* ========== GLOBAL ERROR HANDLING ========== */
     window.addEventListener('error', (event) => {
-      console.error('❌ Error:', event.error);
-      if (CONFIG.features.enableErrorTracking) {
-        trackEvent('window_error', { 
-          message: event.error?.message,
-          filename: event.filename,
-          lineno: event.lineno,
-        });
-      }
+      console.error('Error:', event.error);
     });
 
     window.addEventListener('unhandledrejection', (event) => {
-      console.error('❌ Promise Error:', event.reason);
-      if (CONFIG.features.enableErrorTracking) {
-        trackEvent('unhandled_rejection', { 
-          reason: event.reason?.message || String(event.reason)
-        });
-      }
+      console.error('Promise error:', event.reason);
     });
   </script>
 </body>
