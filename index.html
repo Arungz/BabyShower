@@ -8,7 +8,6 @@
   <meta property="og:description" content="Join us for a magical Baby Shower Invitation with family and friends!" />
   <meta property="og:image" content="https://arungz.github.io/BabyShower/Images/1770581656335.png" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://arungz.github.io/BabyShower/" />
   <meta name="theme-color" content="#d64a88">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -17,16 +16,12 @@
   <meta name="keywords" content="baby shower, invitation, celebration, family, premium, magical, interactive, event">
   <meta name="robots" content="index, follow">
   <meta name="author" content="ArunKarthika">
-  <meta name="format-detection" content="telephone=no, email=no">
-  <meta name="application-name" content="Baby Shower Invitation">
-  <link rel="canonical" href="https://arungz.github.io/BabyShower/">
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
   
-  <title>Baby Shower</title>
+  <title>Baby Shower - Magical Celebration</title>
   <link rel="icon" type="image/png" href="Images/logo.png">
-  <link rel="apple-touch-icon" href="Images/logo.png">
 
   <style>
     :root {
@@ -34,7 +29,6 @@
       --primary-dark: #b8225c;
       --primary-light: #f5b3d4;
       --secondary: #9d6bc0;
-      --secondary-light: #c9a8e8;
       --accent: #00bcd4;
       --success: #26c281;
       --warning: #f4b350;
@@ -46,6 +40,7 @@
       --gradient-rsvp: linear-gradient(135deg, #ff4081 0%, #d64a88 50%, #c2185b 100%);
       --gradient-save: linear-gradient(135deg, #26c281 0%, #1abc9c 50%, #00897b 100%);
       --gradient-location: linear-gradient(135deg, #00bcd4 0%, #0288d1 50%, #0097a7 100%);
+      --gradient-share: linear-gradient(135deg, #8338ec 0%, #3a86ff 100%);
       --gradient-bg: linear-gradient(180deg, #fefbff 0%, #f5f2ff 50%, #faf7ff 100%);
       --gradient-dark: linear-gradient(180deg, #0d1419 0%, #1a1f2e 50%, #141820 100%);
       --gradient-overlay: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 100%);
@@ -54,16 +49,12 @@
       --text-primary: #1a1a2e;
       --text-secondary: #666b7f;
       --text-light: #999;
-      --text-muted: #b0b5c8;
       
       --bg-primary: #ffffff;
       --bg-light: #f9f7ff;
-      --bg-lighter: #fcfaff;
       --bg-overlay: rgba(255, 255, 255, 0.96);
       --bg-card: rgba(255, 255, 255, 0.85);
-      --bg-glass: rgba(255, 255, 255, 0.7);
       
-      --space-xs: 0.25rem;
       --space-sm: 0.5rem;
       --space-md: 1rem;
       --space-lg: 1.5rem;
@@ -78,22 +69,16 @@
       --easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
       --easing-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
       
-      --shadow-sm: 0 2px 4px rgba(214, 74, 136, 0.08);
-      --shadow-md: 0 4px 12px rgba(214, 74, 136, 0.12);
       --shadow-lg: 0 8px 24px rgba(214, 74, 136, 0.15);
       --shadow-xl: 0 12px 32px rgba(214, 74, 136, 0.18);
-      --shadow-2xl: 0 16px 48px rgba(214, 74, 136, 0.2);
       --shadow-glow: 0 0 20px rgba(214, 74, 136, 0.3);
       --shadow-glow-lg: 0 0 40px rgba(214, 74, 136, 0.25);
       
-      --radius-xs: 4px;
-      --radius-sm: 8px;
       --radius-md: 16px;
       --radius-lg: 24px;
       --radius-full: 50%;
       
       --z-sticky: 20;
-      --z-fixed: 30;
       --z-modal: 40;
       --z-notification: 70;
     }
@@ -108,7 +93,6 @@
       font-size: 16px;
       scroll-behavior: smooth;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
     body {
@@ -119,8 +103,6 @@
       overflow-x: hidden;
       line-height: 1.6;
       font-weight: 400;
-      transition: background var(--transition-slow) var(--easing-smooth);
-      position: relative;
     }
 
     body::before {
@@ -148,28 +130,18 @@
       border: 2px solid rgba(214, 74, 136, 0.3);
       max-width: 300px;
       z-index: var(--z-notification);
-      word-wrap: break-word;
+      font-weight: 600;
+      font-size: 0.95rem;
     }
 
     .toast.success {
-      background: linear-gradient(135deg, rgba(38, 194, 129, 0.1), rgba(26, 194, 130, 0.05));
-      border-color: rgba(38, 194, 129, 0.3);
+      border-color: rgba(38, 194, 129, 0.4);
+      background: rgba(38, 194, 129, 0.1);
     }
 
     .toast.error {
-      background: linear-gradient(135deg, rgba(255, 64, 129, 0.1), rgba(244, 67, 54, 0.05));
-      border-color: rgba(255, 64, 129, 0.3);
-    }
-
-    .toast.info {
-      background: linear-gradient(135deg, rgba(0, 188, 212, 0.1), rgba(3, 169, 244, 0.05));
-      border-color: rgba(0, 188, 212, 0.3);
-    }
-
-    .toast-text {
-      font-weight: 600;
-      font-size: 0.95rem;
-      letter-spacing: 0.3px;
+      border-color: rgba(255, 64, 129, 0.4);
+      background: rgba(255, 64, 129, 0.1);
     }
 
     .skip-link {
@@ -180,75 +152,39 @@
       color: var(--white);
       padding: var(--space-sm) var(--space-md);
       text-decoration: none;
-      z-index: var(--z-fixed);
-      border-radius: 0 0 var(--radius-sm) 0;
+      z-index: var(--z-sticky);
+      border-radius: 0 0 8px 0;
       font-weight: 600;
       font-size: 0.875rem;
-      transition: top var(--transition-fast);
     }
 
     .skip-link:focus {
       top: 0;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
     }
 
     @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
     }
 
     @keyframes scaleIn {
-      from {
-        opacity: 0;
-        transform: scale(0.8) rotateY(-20deg);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1) rotateY(0deg);
-      }
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     @keyframes pulse {
@@ -266,14 +202,14 @@
       50% { transform: translateY(-10px); }
     }
 
-    @keyframes glow {
-      0%, 100% { box-shadow: var(--shadow-glow); }
-      50% { box-shadow: var(--shadow-glow-lg); }
-    }
-
     @keyframes shimmer {
       0% { background-position: -1000px 0; }
       100% { background-position: 1000px 0; }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
     }
 
     @keyframes rotate {
@@ -281,22 +217,11 @@
       to { transform: rotate(360deg); }
     }
 
-    @keyframes fadeOut {
-      from {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      to {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-    }
-
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: var(--space-lg) var(--space-lg);
+      padding: var(--space-lg);
       background: var(--bg-overlay);
       border-bottom: 2px solid rgba(214, 74, 136, 0.15);
       box-shadow: var(--shadow-lg);
@@ -323,7 +248,6 @@
       word-break: break-word;
       animation: slideInLeft 0.6s var(--easing-out) 0.1s both;
       filter: drop-shadow(0 2px 4px rgba(214, 74, 136, 0.15));
-      transition: all var(--transition-normal);
     }
 
     .header-title:hover {
@@ -341,7 +265,7 @@
     .btn-control {
       background: var(--gradient-primary);
       color: var(--white);
-      border: 2px solid transparent;
+      border: none;
       width: 48px;
       height: 48px;
       border-radius: var(--radius-full);
@@ -357,23 +281,10 @@
       flex-shrink: 0;
     }
 
-    .btn-control::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3), transparent);
-      opacity: 0;
-      transition: opacity var(--transition-normal);
-    }
-
     .btn-control:hover {
       transform: scale(1.15) translateY(-3px);
       box-shadow: var(--shadow-glow-lg);
       filter: brightness(1.15);
-    }
-
-    .btn-control:hover::before {
-      opacity: 1;
     }
 
     .btn-control:active {
@@ -397,14 +308,11 @@
       max-height: 70vh;
       border-radius: var(--radius-lg);
       object-fit: cover;
-      object-position: center;
       box-shadow: var(--shadow-lg);
-      transition: all var(--transition-normal) var(--easing-smooth);
       background: var(--gradient-bg);
-      margin-bottom: 0;
       display: block;
       aspect-ratio: 9 / 16;
-      position: relative;
+      border: 3px solid rgba(214, 74, 136, 0.2);
     }
 
     #myVideo:hover {
@@ -446,6 +354,16 @@
       animation: bounce 1.4s var(--easing-smooth) infinite;
     }
 
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--gradient-primary);
+      z-index: var(--z-sticky);
+      box-shadow: 0 0 10px rgba(214, 74, 136, 0.5);
+    }
+
     #mainContentContainer {
       display: none;
       max-width: 720px;
@@ -466,34 +384,15 @@
       box-shadow: var(--shadow-xl);
       animation: slideUp 0.7s var(--easing-out);
       position: relative;
-      transition: all var(--transition-normal);
-    }
-
-    .invite-image-wrapper::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--gradient-overlay);
-      opacity: 0;
-      transition: opacity var(--transition-normal);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .invite-image-wrapper:hover::before {
-      opacity: 0.05;
+      border: 3px solid rgba(214, 74, 136, 0.15);
     }
 
     .invite-image {
       width: 100%;
-      max-width: 100%;
-      border-radius: var(--radius-lg);
       display: block;
-      cursor: default;
+      border-radius: var(--radius-lg);
       transition: all var(--transition-normal) var(--easing-smooth);
       background: var(--bg-light);
-      -webkit-user-select: none;
-      user-select: none;
     }
 
     .invite-image:hover {
@@ -510,7 +409,7 @@
       border-radius: var(--radius-lg);
       backdrop-filter: blur(10px);
       border: 2px solid rgba(214, 74, 136, 0.2);
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-lg);
       position: relative;
       overflow: hidden;
     }
@@ -562,7 +461,6 @@
       justify-content: center;
       flex-wrap: wrap;
       margin-bottom: var(--space-lg);
-      align-items: stretch;
       width: 100%;
     }
 
@@ -590,6 +488,7 @@
       min-height: 54px;
       font-family: 'Poppins', sans-serif;
       backdrop-filter: blur(10px);
+      border: 2px solid rgba(255,255,255,0.2);
     }
 
     .btn-glossy::before {
@@ -636,19 +535,12 @@
       transform: translateY(-2px) scale(0.98);
     }
 
-    .btn-glossy:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-
     .btn-icon {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       font-size: 1.4rem;
       flex-shrink: 0;
-      transition: transform var(--transition-normal);
       animation: float 3s var(--easing-smooth) infinite;
     }
 
@@ -690,6 +582,14 @@
       box-shadow: 0 10px 28px rgba(0, 188, 212, 0.4);
     }
 
+    .btn-share {
+      background: var(--gradient-share);
+    }
+
+    .btn-share:hover {
+      box-shadow: 0 10px 28px rgba(131, 56, 236, 0.4);
+    }
+
     .confetti {
       position: fixed;
       pointer-events: none;
@@ -726,7 +626,6 @@
 
     footer p {
       margin: var(--space-sm) 0;
-      animation: slideUp 0.7s var(--easing-out);
       letter-spacing: 0.4px;
       font-weight: 600;
     }
@@ -738,7 +637,6 @@
       background-clip: text;
       text-decoration: none;
       font-weight: 800;
-      transition: all var(--transition-fast) var(--easing-smooth);
       cursor: pointer;
       position: relative;
     }
@@ -761,6 +659,94 @@
       transform-origin: left;
     }
 
+    .share-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: var(--z-modal);
+      animation: slideUp 0.3s var(--easing-smooth);
+      backdrop-filter: blur(5px);
+    }
+
+    .share-modal.active {
+      display: flex;
+    }
+
+    .share-modal-content {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl);
+      box-shadow: var(--shadow-xl);
+      max-width: 400px;
+      width: 90%;
+      animation: slideUp 0.3s var(--easing-out);
+      border: 2px solid rgba(214, 74, 136, 0.2);
+      position: relative;
+    }
+
+    .share-modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-xl);
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .share-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .share-btn {
+      padding: var(--space-lg);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--white);
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 0.9rem;
+    }
+
+    .share-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .share-btn-icon {
+      font-size: 2rem;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: var(--space-lg);
+      right: var(--space-lg);
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: all var(--transition-normal);
+    }
+
+    .close-modal:hover {
+      transform: rotate(90deg);
+      color: var(--primary);
+    }
+
     @media (max-width: 768px) {
       html { font-size: 15px; }
       header {
@@ -775,7 +761,7 @@
       }
       #myVideo {
         max-height: 65vh;
-        border-radius: var(--radius-md);
+        border-radius: 16px;
       }
       #mainContentContainer {
         padding: var(--space-md) var(--space-md) var(--space-2xl) var(--space-md);
@@ -795,6 +781,9 @@
         right: 1rem;
         left: 1rem;
         max-width: none;
+      }
+      .share-options {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -837,49 +826,26 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
         --bg-primary: #0d1419;
         --bg-light: #1a1f2e;
-        --bg-lighter: #22283a;
         --bg-overlay: rgba(13, 20, 25, 0.96);
         --bg-card: rgba(26, 31, 46, 0.85);
-        --bg-glass: rgba(26, 31, 46, 0.7);
         --text-primary: #f0f4ff;
         --text-secondary: #a0a8b8;
-        --text-light: #707080;
-        --text-muted: #505060;
         --gradient-bg: var(--gradient-dark);
-        --gradient-overlay: linear-gradient(180deg, rgba(13,20,25,0.98) 0%, rgba(13,20,25,0.95) 100%);
       }
       body { background: var(--gradient-dark); }
-      header {
-        background: var(--bg-overlay);
-        border-bottom-color: rgba(214, 74, 136, 0.15);
-      }
-      .celebration-container {
-        background: var(--bg-card);
-        border-color: rgba(214, 74, 136, 0.15);
-      }
-      footer {
-        background: var(--bg-overlay);
-        border-top-color: rgba(214, 74, 136, 0.15);
-      }
+      header { background: var(--bg-overlay); border-bottom-color: rgba(214, 74, 136, 0.15); }
+      footer { background: var(--bg-overlay); border-top-color: rgba(214, 74, 136, 0.15); }
     }
 
     @media print {
-      header, footer, .btn-control, .btn-glossy, .video-wrapper {
-        display: none;
-      }
+      header, footer, .btn-control, .btn-glossy, .video-wrapper { display: none; }
       #mainContentContainer { padding: 0; }
       body { background: white; }
     }
@@ -895,8 +861,7 @@
 
     ::-webkit-scrollbar-thumb {
       background: var(--primary);
-      border-radius: var(--radius-sm);
-      transition: all var(--transition-normal);
+      border-radius: 8px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
@@ -913,11 +878,14 @@
 <body>
   <a href="#mainContentContainer" class="skip-link">Skip to main content</a>
 
+  <div class="progress-bar" id="progressBar"></div>
+
   <header role="banner">
     <h1 class="header-title">💕 Baby Shower 💕</h1>
     <div class="header-controls" role="toolbar" aria-label="Invitation Controls">
-      <button class="btn-control" id="musicToggle" type="button" title="Toggle Music" aria-label="Toggle Music" aria-pressed="true">🔊</button>
-      <button class="btn-control" id="fullscreenToggle" type="button" title="Toggle Fullscreen" aria-label="Toggle Fullscreen" aria-pressed="false">⛶</button>
+      <button class="btn-control" id="musicToggle" type="button" title="Toggle Music" aria-label="Toggle Music">🔊</button>
+      <button class="btn-control" id="shareToggle" type="button" title="Share Invitation" aria-label="Share Invitation">📤</button>
+      <button class="btn-control" id="fullscreenToggle" type="button" title="Toggle Fullscreen" aria-label="Toggle Fullscreen">⛶</button>
     </div>
   </header>
 
@@ -926,37 +894,62 @@
       <source src="video/invite1.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-    <div class="loading-container" role="status" aria-live="polite" aria-atomic="true">
+    <div class="loading-container" role="status" aria-live="polite">
       <div id="loading-text">Loading Invitation</div>
     </div>
   </section>
 
   <main id="mainContentContainer" role="main">
     <div class="invite-image-wrapper">
-      <img class="invite-image" id="endImage" src="Images/2.png" alt="Beautiful Baby Shower Invitation with event details" draggable="false" loading="lazy">
+      <img class="invite-image" src="Images/2.png" alt="Baby Shower Invitation with event details" draggable="false" loading="lazy">
     </div>
 
-    <section class="celebration-container" id="celebrationContainer" role="region" aria-label="Celebration Message">
+    <section class="celebration-container" id="celebrationContainer">
       <p class="celebration-text">✨ We Look Forward to Celebrating With You! ✨</p>
     </section>
 
     <div class="button-container" id="buttonContainer">
       <div class="button-group">
-        <button class="btn-glossy btn-rsvp" id="rsvpBtn" type="button" aria-label="Vote Now - RSVP to the Baby Shower">
+        <button class="btn-glossy btn-rsvp" id="rsvpBtn" type="button">
           <span class="btn-icon">💌</span>
           <span class="btn-text">Vote Now</span>
         </button>
-        <button class="btn-glossy btn-save-date" id="saveDateBtn" type="button" aria-label="Save Date to Calendar - Works on Apple and Android devices">
+        <button class="btn-glossy btn-save-date" id="saveDateBtn" type="button">
           <span class="btn-icon">📅</span>
           <span class="btn-text">Save Date</span>
         </button>
       </div>
-      <button class="btn-glossy btn-location" id="locationBtn" type="button" aria-label="View event location on Google Maps">
+      <button class="btn-glossy btn-location" id="locationBtn" type="button">
         <span class="btn-icon">📍</span>
         <span class="btn-text">Get Location</span>
       </button>
     </div>
   </main>
+
+  <div class="share-modal" id="shareModal">
+    <div class="share-modal-content">
+      <button class="close-modal" id="closeModal">&times;</button>
+      <h2 class="share-modal-title">Share Invitation</h2>
+      <div class="share-options">
+        <button class="share-btn" id="shareWhatsApp" style="background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);">
+          <span class="share-btn-icon">💬</span>
+          WhatsApp
+        </button>
+        <button class="share-btn" id="shareFacebook" style="background: linear-gradient(135deg, #1877f2 0%, #0a66c2 100%);">
+          <span class="share-btn-icon">📘</span>
+          Facebook
+        </button>
+        <button class="share-btn" id="shareTwitter" style="background: linear-gradient(135deg, #1da1f2 0%, #0d8bd9 100%);">
+          <span class="share-btn-icon">𝕏</span>
+          Twitter
+        </button>
+        <button class="share-btn" id="shareEmail" style="background: linear-gradient(135deg, #ea4c89 0%, #c1272d 100%);">
+          <span class="share-btn-icon">✉️</span>
+          Email
+        </button>
+      </div>
+    </div>
+  </div>
 
   <footer role="contentinfo">
     <p>✨ Looking forward to celebrating with you! ✨</p>
@@ -967,457 +960,315 @@
     'use strict';
 
     const CONFIG = {
-      locations: {
-        event: 'https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8',
-      },
-      forms: {
-        rsvp: 'https://forms.gle/Aqrw3mATGPEahUxCA',
-      },
-      timing: {
-        videoTimeout: 60000,
-        celebrationDelay: 800,
-        toastDuration: 3000,
-      },
+      locations: { event: 'https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8' },
+      forms: { rsvp: 'https://forms.gle/Aqrw3mATGPEahUxCA' },
       event: {
         date: '20260305',
         startTime: '103000',
         endTime: '113000',
         title: 'Karthika Arun Baby Shower',
-        description: 'Join us for a magical Baby Shower celebration with family and friends!',
+        description: 'Join us for a magical Baby Shower celebration!',
         location: 'Special Venue',
-        timezone: 'UTC',
-      },
-      features: {
-        enableAnalytics: true,
-        enableErrorTracking: true,
-        enableToasts: true,
-      },
+        url: 'https://arungz.github.io/BabyShower/'
+      }
     };
 
-    class ToastManager {
-      static show(message, type = 'info', duration = CONFIG.timing.toastDuration) {
-        if (!CONFIG.features.enableToasts) return;
+    class Toast {
+      static show(msg, type = 'info') {
         const toast = document.createElement('div');
         toast.className = `toast ${type}`;
-        toast.innerHTML = `<div class="toast-text">${message}</div>`;
+        toast.textContent = msg;
         document.body.appendChild(toast);
         setTimeout(() => {
-          toast.style.animation = 'fadeOut 0.4s var(--easing-out) forwards';
+          toast.style.animation = 'fadeOut 0.4s forwards';
           setTimeout(() => toast.remove(), 400);
-        }, duration);
+        }, 3000);
       }
-      static success(message) { this.show(`✅ ${message}`, 'success'); }
-      static error(message) { this.show(`❌ ${message}`, 'error'); }
-      static info(message) { this.show(`ℹ️ ${message}`, 'info'); }
+      static success(m) { this.show(m, 'success'); }
+      static error(m) { this.show(m, 'error'); }
     }
 
-    class UtilityHelper {
-      static validateURL(url) {
-        try {
-          return new URL(url) instanceof URL;
-        } catch {
-          return false;
-        }
+    class Progress {
+      static set(val) {
+        const bar = document.getElementById('progressBar');
+        if (bar) bar.style.width = Math.min(val, 100) + '%';
       }
-
-      static debounce(func, delay = 300) {
-        let timeoutId;
-        return function debounced(...args) {
-          clearTimeout(timeoutId);
-          timeoutId = setTimeout(() => func.apply(this, args), delay);
-        };
-      }
-
-      static detectPlatform() {
-        const ua = navigator.userAgent.toLowerCase();
-        if (/iphone|ipad|ipod|mac|safari/.test(ua) && !/chrome|android/.test(ua)) {
-          return 'apple';
-        }
-        return /android/.test(ua) ? 'android' : 'other';
-      }
-
-      static isMobileDevice() {
-        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      static complete() {
+        this.set(100);
+        setTimeout(() => {
+          const bar = document.getElementById('progressBar');
+          if (bar) bar.style.opacity = '0';
+        }, 1000);
       }
     }
 
-    class CalendarURLBuilder {
-      static generateGoogleCalendarURL() {
-        const { date, startTime, endTime, title, description, location, timezone } = CONFIG.event;
+    class Calendar {
+      static google() {
+        const { date, startTime, endTime, title, description, location } = CONFIG.event;
         const params = new URLSearchParams({
           action: 'TEMPLATE',
           text: title,
           dates: `${date}T${startTime}/${date}T${endTime}`,
-          tz: timezone,
           details: description,
-          location: location,
+          location: location
         });
         return `https://www.google.com/calendar/render?${params.toString()}`;
       }
 
-      static generateICalendar() {
+      static ics() {
         const { date, startTime, endTime, title, description, location } = CONFIG.event;
-        const startDateTime = `${date}T${startTime}`;
-        const endDateTime = `${date}T${endTime}`;
-        
         return `BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Baby Shower Invitation//EN
-CALSCALE:GREGORIAN
-METHOD:PUBLISH
-X-WR-CALNAME:${title}
+PRODID:-//Baby Shower//EN
 BEGIN:VEVENT
-UID:baby-shower-${date}@invitation.com
-DTSTAMP:${this.getCurrentTimestamp()}
-DTSTART:${startDateTime}
-DTEND:${endDateTime}
+DTSTART:${date}T${startTime}
+DTEND:${date}T${endTime}
 SUMMARY:${title}
 DESCRIPTION:${description}
 LOCATION:${location}
-SEQUENCE:0
-STATUS:CONFIRMED
-TRANSP:OPAQUE
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT24H
-DESCRIPTION:Reminder
-END:VALARM
 END:VEVENT
 END:VCALENDAR`;
       }
 
-      static getCurrentTimestamp() {
-        const now = new Date();
-        const year = now.getUTCFullYear();
-        const month = String(now.getUTCMonth() + 1).padStart(2, '0');
-        const day = String(now.getUTCDate()).padStart(2, '0');
-        const hours = String(now.getUTCHours()).padStart(2, '0');
-        const minutes = String(now.getUTCMinutes()).padStart(2, '0');
-        const seconds = String(now.getUTCSeconds()).padStart(2, '0');
-        return `${year}${month}${day}T${hours}${minutes}${seconds}Z`;
-      }
+      static save() {
+        const ua = navigator.userAgent.toLowerCase();
+        const isApple = /iphone|ipad|mac|safari/.test(ua) && !/chrome|android/.test(ua);
 
-      static downloadICalendar() {
-        try {
-          const ical = this.generateICalendar();
-          const blob = new Blob([ical], { type: 'text/calendar;charset=utf-8' });
-          const link = document.createElement('a');
-          const url = URL.createObjectURL(blob);
-          link.setAttribute('href', url);
-          link.setAttribute('download', `baby-shower-${CONFIG.event.date}.ics`);
-          link.style.visibility = 'hidden';
-          document.body.appendChild(link);
-          link.click();
-          setTimeout(() => {
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-          }, 100);
-          ToastManager.success('Event saved to calendar!');
-          return true;
-        } catch (error) {
-          console.error('Calendar error:', error);
-          ToastManager.error('Failed to save event');
-          return false;
+        if (isApple) {
+          try {
+            const blob = new Blob([this.ics()], { type: 'text/calendar' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'baby-shower.ics';
+            link.click();
+            Toast.success('Event saved!');
+          } catch {
+            Toast.error('Failed to save');
+          }
+        } else {
+          window.open(this.google(), '_blank');
+          Toast.success('Opening calendar...');
         }
       }
     }
 
-    const elements = {
+    class Share {
+      static show() {
+        document.getElementById('shareModal').classList.add('active');
+      }
+      static hide() {
+        document.getElementById('shareModal').classList.remove('active');
+      }
+      static send(platform) {
+        const { title, description, url } = CONFIG.event;
+        const text = `${title} - ${description}`;
+
+        switch(platform) {
+          case 'whatsapp':
+            window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
+            break;
+          case 'facebook':
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+            break;
+          case 'twitter':
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+            break;
+          case 'email':
+            window.location.href = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(description)}`;
+            break;
+        }
+        Toast.success('Shared!');
+        this.hide();
+      }
+    }
+
+    const el = {
       video: document.getElementById('myVideo'),
       mainContent: document.getElementById('mainContentContainer'),
-      endImage: document.getElementById('endImage'),
-      locationBtn: document.getElementById('locationBtn'),
       celebration: document.getElementById('celebrationContainer'),
       buttonContainer: document.getElementById('buttonContainer'),
-      rsvpBtn: document.getElementById('rsvpBtn'),
-      saveDateBtn: document.getElementById('saveDateBtn'),
       loadingText: document.getElementById('loading-text'),
       musicToggle: document.getElementById('musicToggle'),
       fullscreenToggle: document.getElementById('fullscreenToggle'),
+      shareToggle: document.getElementById('shareToggle'),
+      rsvpBtn: document.getElementById('rsvpBtn'),
+      saveDateBtn: document.getElementById('saveDateBtn'),
+      locationBtn: document.getElementById('locationBtn'),
+      shareModal: document.getElementById('shareModal'),
+      closeModal: document.getElementById('closeModal'),
+      shareWhatsApp: document.getElementById('shareWhatsApp'),
+      shareFacebook: document.getElementById('shareFacebook'),
+      shareTwitter: document.getElementById('shareTwitter'),
+      shareEmail: document.getElementById('shareEmail')
     };
 
-    const state = {
-      isMuted: true,
-      isAnimating: false,
-      hasEnded: false,
-      isFullscreen: false,
-      timeouts: [],
-      isInitialized: false,
-      platform: UtilityHelper.detectPlatform(),
-      isMobile: UtilityHelper.isMobileDevice(),
-      analytics: {
-        videoPlayed: false,
-        startTime: Date.now(),
-        sessionId: Math.random().toString(36).substr(2, 9),
-      },
-    };
+    const state = { isMuted: true, isEnded: false, timeouts: [] };
 
-    function openLink(url) {
-      if (!url || typeof url !== 'string') {
-        ToastManager.error('Invalid URL');
-        return;
-      }
-      if (!UtilityHelper.validateURL(url)) {
-        ToastManager.error('Invalid URL format');
-        return;
-      }
-      try {
-        window.open(url, '_blank', 'noopener,noreferrer');
-      } catch (error) {
-        console.error('Link error:', error);
-        ToastManager.error('Failed to open link');
-      }
-    }
-
-    function clearTimeouts() {
-      state.timeouts.forEach(timeout => clearTimeout(timeout));
+    function cleanup() {
+      state.timeouts.forEach(t => clearTimeout(t));
       state.timeouts = [];
     }
 
-    function addTimeout(callback, delay) {
-      if (typeof callback !== 'function') return null;
-      const timeout = setTimeout(callback, delay);
-      state.timeouts.push(timeout);
-      return timeout;
+    function timeout(fn, ms) {
+      const t = setTimeout(fn, ms);
+      state.timeouts.push(t);
+      return t;
     }
 
-    function handleVideoEnded() {
-      if (state.isAnimating || state.hasEnded) return;
-      state.isAnimating = true;
-      state.hasEnded = true;
-      if (elements.video) {
-        elements.video.style.display = 'none';
-        elements.video.pause();
+    function onVideoEnd() {
+      if (state.isEnded) return;
+      state.isEnded = true;
+      Progress.set(70);
+
+      if (el.video) {
+        el.video.style.display = 'none';
+        el.video.pause();
       }
-      if (elements.mainContent) {
-        elements.mainContent.classList.add('active');
-      }
-      addTimeout(() => {
-        if (elements.celebration) {
-          elements.celebration.classList.add('active');
-        }
-        if (elements.buttonContainer) {
-          elements.buttonContainer.classList.add('active');
-        }
+
+      if (el.mainContent) el.mainContent.classList.add('active');
+
+      timeout(() => {
+        if (el.celebration) el.celebration.classList.add('active');
+        if (el.buttonContainer) el.buttonContainer.classList.add('active');
         createConfetti();
-        state.isAnimating = false;
-      }, CONFIG.timing.celebrationDelay);
+        Progress.complete();
+      }, 800);
     }
 
-    function handleVideoCanPlay() {
-      if (elements.loadingText) {
-        elements.loadingText.style.display = 'none';
-      }
-      state.analytics.videoPlayed = true;
+    function onVideoPlay() {
+      if (el.loadingText) el.loadingText.style.display = 'none';
+      Progress.set(50);
     }
 
-    function handleVideoError(error) {
-      const errorMsg = error?.target?.error?.message || 'Unknown error';
-      if (elements.loadingText) {
-        elements.loadingText.innerHTML = '❌ Video loading failed';
-      }
-      console.error('Video error:', errorMsg);
-      ToastManager.error('Failed to load video');
-      addTimeout(() => {
-        if (elements.mainContent) {
-          elements.mainContent.classList.add('active');
-        }
+    function onVideoError() {
+      if (el.loadingText) el.loadingText.innerHTML = '❌ Video loading failed';
+      Toast.error('Video failed to load');
+      timeout(() => {
+        if (el.mainContent) el.mainContent.classList.add('active');
+        Progress.complete();
       }, 2000);
-    }
-
-    function initVideo() {
-      if (!elements.video) return;
-      elements.video.addEventListener('ended', handleVideoEnded, { once: true });
-      elements.video.addEventListener('canplay', handleVideoCanPlay);
-      elements.video.addEventListener('error', handleVideoError);
-      if (elements.loadingText) {
-        elements.loadingText.style.display = 'block';
-      }
     }
 
     function createConfetti() {
       const colors = ['#d64a88', '#ff6b9d', '#9d6bc0', '#00bcd4', '#26c281', '#f4b350'];
       const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎀', '🌺', '💐', '🎊'];
-      const particleCount = window.innerWidth > 768 ? 120 : 80;
-      const fragment = document.createDocumentFragment();
+      const count = window.innerWidth > 768 ? 100 : 60;
 
-      for (let i = 0; i < particleCount; i++) {
-        const confetti = document.createElement('div');
-        const isEmoji = Math.random() > 0.35;
-
-        if (isEmoji) {
-          confetti.className = 'confetti confetti-emoji';
-          confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      for (let i = 0; i < count; i++) {
+        const c = document.createElement('div');
+        c.className = 'confetti ' + (Math.random() > 0.3 ? 'confetti-emoji' : 'confetti-shape');
+        
+        if (Math.random() > 0.3) {
+          c.textContent = emojis[Math.floor(Math.random() * emojis.length)];
         } else {
-          confetti.className = 'confetti confetti-shape';
-          confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+          c.style.background = colors[Math.floor(Math.random() * colors.length)];
         }
 
-        confetti.style.left = Math.random() * 100 + '%';
-        confetti.style.top = '-30px';
-        confetti.style.opacity = Math.random() * 0.8 + 0.3;
-        fragment.appendChild(confetti);
+        c.style.left = Math.random() * 100 + '%';
+        c.style.top = '-30px';
+        c.style.opacity = Math.random() * 0.8 + 0.2;
 
-        const duration = Math.random() * 3.5 + 2;
+        const dur = Math.random() * 3 + 2;
         const xMove = (Math.random() - 0.5) * 500;
-        const rotate = Math.random() * 720;
+        const rot = Math.random() * 720;
 
-        addTimeout(() => {
-          try {
-            if (!confetti.parentElement) return;
-            const keyframes = [
-              { transform: 'translateY(0) translateX(0) rotate(0deg)', opacity: Math.random() * 0.8 + 0.3 },
-              { transform: `translateY(${window.innerHeight + 50}px) translateX(${xMove}px) rotate(${rotate}deg)`, opacity: 0 }
-            ];
-            const animation = confetti.animate(keyframes, {
-              duration: duration * 1000,
+        timeout(() => {
+          if (c.parentElement) {
+            c.animate([
+              { transform: 'translateY(0) rotate(0deg)', opacity: Math.random() * 0.8 + 0.2 },
+              { transform: `translateY(${window.innerHeight + 50}px) translateX(${xMove}px) rotate(${rot}deg)`, opacity: 0 }
+            ], {
+              duration: dur * 1000,
               easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-              fill: 'forwards',
-            });
-            animation.onfinish = () => {
-              if (confetti.parentElement) confetti.remove();
-            };
-          } catch (error) {
-            console.warn('Confetti error:', error);
+              fill: 'forwards'
+            }).onfinish = () => c.remove();
           }
-        }, i * 15);
+        }, i * 10);
       }
 
-      try {
-        document.body.appendChild(fragment);
-      } catch (error) {
-        console.error('Confetti append error:', error);
-      }
-    }
-
-    function initMusicToggle() {
-      if (!elements.musicToggle) return;
-      elements.musicToggle.addEventListener('click', () => {
-        state.isMuted = !state.isMuted;
-        if (elements.video) {
-          elements.video.muted = state.isMuted;
-        }
-        elements.musicToggle.textContent = state.isMuted ? '🔊' : '🔇';
-        elements.musicToggle.setAttribute('aria-pressed', !state.isMuted);
-      });
-    }
-
-    function initFullscreenToggle() {
-      if (!elements.fullscreenToggle) return;
-      const handleFullscreenChange = () => {
-        state.isFullscreen = !!document.fullscreenElement;
-        elements.fullscreenToggle.setAttribute('aria-pressed', state.isFullscreen);
-      };
-      elements.fullscreenToggle.addEventListener('click', async () => {
-        try {
-          if (!document.fullscreenElement) {
-            const elem = document.documentElement;
-            const requestFS = elem.requestFullscreen || elem.webkitRequestFullscreen || elem.mozRequestFullScreen || elem.msRequestFullscreen;
-            if (requestFS) await requestFS.call(elem);
-          } else {
-            const exitFS = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
-            if (exitFS) await exitFS.call(document);
-          }
-        } catch (error) {
-          console.warn('Fullscreen error:', error);
-        }
-      });
-      document.addEventListener('fullscreenchange', handleFullscreenChange);
-      document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-      document.addEventListener('mozfullscreenchange', handleFullscreenChange);
-    }
-
-    function initLocationHandler() {
-      if (!elements.locationBtn) return;
-      const handleClick = UtilityHelper.debounce(() => {
-        openLink(CONFIG.locations.event);
-      }, 300);
-      elements.locationBtn.addEventListener('click', handleClick);
-    }
-
-    function initSaveDateHandler() {
-      if (!elements.saveDateBtn) return;
-      const handleSaveDate = UtilityHelper.debounce(() => {
-        try {
-          const platform = state.platform;
-          if (platform === 'apple') {
-            CalendarURLBuilder.downloadICalendar();
-          } else {
-            const calendarURL = CalendarURLBuilder.generateGoogleCalendarURL();
-            openLink(calendarURL);
-          }
-        } catch (error) {
-          console.error('Save date error:', error);
-          ToastManager.error('Failed to save date');
-        }
-      }, 300);
-      elements.saveDateBtn.addEventListener('click', handleSaveDate);
-    }
-
-    function initRSVPHandler() {
-      if (!elements.rsvpBtn) return;
-      const handleRSVP = UtilityHelper.debounce(() => {
-        if (CONFIG.forms.rsvp) {
-          openLink(CONFIG.forms.rsvp);
-        } else {
-          ToastManager.error('RSVP form not configured');
-        }
-      }, 300);
-      elements.rsvpBtn.addEventListener('click', handleRSVP);
-    }
-
-    function initPageVisibility() {
-      document.addEventListener('visibilitychange', () => {
-        if (!elements.video) return;
-        if (document.hidden) {
-          elements.video.pause();
-        } else {
-          elements.video.play().catch(() => {});
-        }
-      });
-    }
-
-    function initCleanup() {
-      window.addEventListener('beforeunload', () => {
-        clearTimeouts();
-        if (elements.video) {
-          elements.video.pause();
-          elements.video.src = '';
-        }
-      });
+      document.body.append(...Array.from(document.querySelectorAll('.confetti')).slice(-count));
     }
 
     function init() {
-      if (state.isInitialized) return;
-      try {
-        initVideo();
-        initMusicToggle();
-        initFullscreenToggle();
-        initLocationHandler();
-        initRSVPHandler();
-        initSaveDateHandler();
-        initPageVisibility();
-        initCleanup();
-        state.isInitialized = true;
-        console.log('%c🎉 Baby Shower loaded! 💕', 'color: #d64a88; font-size: 16px; font-weight: bold;');
-      } catch (error) {
-        console.error('Init error:', error);
+      Progress.set(10);
+
+      if (el.video) {
+        el.video.addEventListener('ended', onVideoEnd, { once: true });
+        el.video.addEventListener('canplay', onVideoPlay);
+        el.video.addEventListener('error', onVideoError);
       }
+
+      if (el.musicToggle) {
+        el.musicToggle.addEventListener('click', () => {
+          state.isMuted = !state.isMuted;
+          if (el.video) el.video.muted = state.isMuted;
+          el.musicToggle.textContent = state.isMuted ? '🔊' : '🔇';
+        });
+      }
+
+      if (el.fullscreenToggle) {
+        el.fullscreenToggle.addEventListener('click', async () => {
+          try {
+            if (!document.fullscreenElement) {
+              await document.documentElement.requestFullscreen();
+            } else {
+              await document.exitFullscreen();
+            }
+          } catch (e) {
+            console.warn('Fullscreen error:', e);
+          }
+        });
+      }
+
+      if (el.shareToggle) {
+        el.shareToggle.addEventListener('click', () => Share.show());
+      }
+
+      if (el.closeModal) {
+        el.closeModal.addEventListener('click', () => Share.hide());
+      }
+
+      if (el.shareWhatsApp) el.shareWhatsApp.addEventListener('click', () => Share.send('whatsapp'));
+      if (el.shareFacebook) el.shareFacebook.addEventListener('click', () => Share.send('facebook'));
+      if (el.shareTwitter) el.shareTwitter.addEventListener('click', () => Share.send('twitter'));
+      if (el.shareEmail) el.shareEmail.addEventListener('click', () => Share.send('email'));
+
+      if (el.rsvpBtn) {
+        el.rsvpBtn.addEventListener('click', () => {
+          if (CONFIG.forms.rsvp) {
+            window.open(CONFIG.forms.rsvp, '_blank');
+            Toast.success('Opening RSVP form...');
+          }
+        });
+      }
+
+      if (el.saveDateBtn) {
+        el.saveDateBtn.addEventListener('click', Calendar.save.bind(Calendar));
+      }
+
+      if (el.locationBtn) {
+        el.locationBtn.addEventListener('click', () => {
+          window.open(CONFIG.locations.event, '_blank');
+          Toast.success('Opening location...');
+        });
+      }
+
+      document.addEventListener('visibilitychange', () => {
+        if (el.video) {
+          if (document.hidden) el.video.pause();
+          else el.video.play().catch(() => {});
+        }
+      });
+
+      window.addEventListener('beforeunload', cleanup);
+      console.log('%c🎉 Baby Shower loaded! 💕', 'color: #d64a88; font-size: 16px; font-weight: bold;');
     }
 
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init, { once: true });
+      document.addEventListener('DOMContentLoaded', init);
     } else {
       init();
     }
-
-    window.addEventListener('error', (event) => {
-      console.error('Error:', event.error);
-    });
-
-    window.addEventListener('unhandledrejection', (event) => {
-      console.error('Promise error:', event.reason);
-    });
   </script>
 </body>
 </html>
