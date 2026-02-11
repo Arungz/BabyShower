@@ -12,19 +12,22 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="✨Baby Shower🍼">
-  <meta name="description" content="🎂 Baby Shower Invitation to your family 🎉">
+  <meta name="description" content="🎂 Baby Shower Invitation to your family 🎉 - Join us for a magical celebration!">
   <meta name="keywords" content="baby shower, invitation, celebration, family, premium, magical, interactive, event">
   <meta name="robots" content="index, follow">
-  <meta name="author" content="ArunKarthika">
+  <meta name="format-detection" content="telephone=no, email=no">
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
   
   <title>Baby Shower - Magical Celebration Invitation</title>
   <link rel="icon" type="image/png" href="Images/logo.png">
+  <meta name="color-scheme" content="light dark">
 
   <style>
+    /* ========== CSS VARIABLES ========== */
     :root {
+      /* Colors */
       --primary: #d64a88;
       --primary-dark: #b8225c;
       --primary-light: #f5b3d4;
@@ -35,26 +38,28 @@
       --warning: #f4b350;
       --white: #ffffff;
       --black: #1a1a2e;
-      --gray: #f5f5f5;
       
+      /* Gradients */
       --gradient-primary: linear-gradient(135deg, #d64a88 0%, #9d6bc0 100%);
       --gradient-secondary: linear-gradient(135deg, #9d6bc0 0%, #00bcd4 100%);
       --gradient-rsvp: linear-gradient(135deg, #ff4081 0%, #d64a88 50%, #c2185b 100%);
       --gradient-save: linear-gradient(135deg, #26c281 0%, #1abc9c 50%, #00897b 100%);
       --gradient-location: linear-gradient(135deg, #00bcd4 0%, #0288d1 50%, #0097a7 100%);
-      --gradient-share: linear-gradient(135deg, #8338ec 0%, #3a86ff 100%);
       --gradient-bg: linear-gradient(180deg, #fefbff 0%, #f5f2ff 50%, #faf7ff 100%);
       --gradient-dark: linear-gradient(180deg, #0d1419 0%, #1a1f2e 50%, #141820 100%);
       
+      /* Text Colors */
       --text-primary: #1a1a2e;
       --text-secondary: #666b7f;
       --text-light: #999;
       
+      /* Background Colors */
       --bg-primary: #ffffff;
       --bg-light: #f9f7ff;
       --bg-overlay: rgba(255, 255, 255, 0.96);
       --bg-card: rgba(255, 255, 255, 0.85);
       
+      /* Spacing Scale */
       --space-xs: 0.5rem;
       --space-sm: 1rem;
       --space-md: 1.5rem;
@@ -64,27 +69,31 @@
       --space-3xl: 4rem;
       --space-4xl: 5rem;
       
-      --transition-fast: 0.15s;
-      --transition-normal: 0.3s;
-      --transition-slow: 0.5s;
+      /* Timing */
+      --duration-fast: 0.15s;
+      --duration-normal: 0.3s;
+      --duration-slow: 0.5s;
       --easing-out: cubic-bezier(0, 0, 0.2, 1);
       --easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
       --easing-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
       
+      /* Shadows */
       --shadow-lg: 0 8px 24px rgba(214, 74, 136, 0.15);
       --shadow-xl: 0 12px 32px rgba(214, 74, 136, 0.18);
       --shadow-glow: 0 0 20px rgba(214, 74, 136, 0.3);
       --shadow-glow-lg: 0 0 40px rgba(214, 74, 136, 0.25);
       
+      /* Border Radius */
       --radius-md: 16px;
       --radius-lg: 24px;
       --radius-full: 50%;
       
+      /* Z-Index */
       --z-sticky: 20;
-      --z-modal: 40;
       --z-notification: 70;
     }
 
+    /* ========== RESET & BASE ========== */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -111,10 +120,7 @@
     body::before {
       content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       background: radial-gradient(ellipse at 50% -20%, rgba(214, 74, 136, 0.1), transparent 70%);
       pointer-events: none;
       z-index: -1;
@@ -130,6 +136,185 @@
       background: radial-gradient(ellipse at 80% 100%, rgba(157, 107, 192, 0.08), transparent 50%);
       pointer-events: none;
       z-index: -1;
+    }
+
+    /* ========== ANIMATIONS ========== */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.6;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -1000px 0;
+      }
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+
+    @keyframes showerFall {
+      0% {
+        transform: translateY(-100px) translateX(0) scale(1) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) translateX(30px) scale(0.5) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes showerSwing {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      25% {
+        transform: translateX(40px);
+      }
+      75% {
+        transform: translateX(-40px);
+      }
+    }
+
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-45deg);
+      }
+      50% {
+        transform: scale(1.1) rotate(5deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+      }
+    }
+
+    /* ========== SHOWER ANIMATION ========== */
+    .shower-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 35;
+      display: none;
+      overflow: hidden;
+    }
+
+    .shower-container.active {
+      display: block;
+    }
+
+    .shower-drop {
+      position: absolute;
+      font-size: 2.5rem;
+      animation: showerFall linear forwards;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+      will-change: transform;
+    }
+
+    .shower-drop.swing {
+      animation: showerSwing 0.8s ease-in-out infinite, showerFall linear forwards;
+    }
+
+    /* ========== PROGRESS BAR ========== */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+      z-index: var(--z-sticky);
+      box-shadow: 0 0 15px rgba(214, 74, 136, 0.6);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+      width: 0;
+      opacity: 1;
     }
 
     /* ========== TOAST NOTIFICATIONS ========== */
@@ -151,6 +336,7 @@
       display: flex;
       align-items: center;
       gap: var(--space-md);
+      line-height: 1.5;
     }
 
     .toast.success {
@@ -172,111 +358,6 @@
       font-size: 1.5rem;
       flex-shrink: 0;
       animation: bounce 0.6s var(--easing-bounce);
-    }
-
-    /* ========== ANIMATIONS ========== */
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes slideInLeft {
-      from { opacity: 0; transform: translateX(-30px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes slideInRight {
-      from { opacity: 0; transform: translateX(30px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes scaleIn {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    @keyframes shimmer {
-      0% { background-position: -1000px 0; }
-      100% { background-position: 1000px 0; }
-    }
-
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
-
-    @keyframes glow {
-      0%, 100% { box-shadow: var(--shadow-glow); }
-      50% { box-shadow: var(--shadow-glow-lg); }
-    }
-
-    @keyframes popIn {
-      0% { opacity: 0; transform: scale(0.3) rotate(-45deg); }
-      50% { transform: scale(1.1); }
-      100% { opacity: 1; transform: scale(1) rotate(0); }
-    }
-
-    @keyframes showerRain {
-      0% {
-        transform: translateY(-100vh) translateX(0) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) translateX(50px) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* ========== SHOWER EFFECT ========== */
-    .shower-container {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 5;
-      overflow: hidden;
-      display: none;
-    }
-
-    .shower-container.active {
-      display: block;
-    }
-
-    .shower-particle {
-      position: absolute;
-      font-size: 2rem;
-      animation: showerRain linear forwards;
-    }
-
-    /* ========== PROGRESS BAR ========== */
-    .progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 4px;
-      background: var(--gradient-primary);
-      z-index: var(--z-sticky);
-      box-shadow: 0 0 15px rgba(214, 74, 136, 0.6);
-      border-radius: 2px;
     }
 
     /* ========== HEADER ========== */
@@ -311,6 +392,7 @@
       word-break: break-word;
       animation: slideInLeft 0.6s var(--easing-out) 0.1s both;
       filter: drop-shadow(0 2px 4px rgba(214, 74, 136, 0.15));
+      transition: filter var(--duration-normal);
     }
 
     .header-title:hover {
@@ -337,7 +419,7 @@
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
-      transition: all var(--transition-fast) var(--easing-smooth);
+      transition: all var(--duration-fast) var(--easing-smooth);
       box-shadow: var(--shadow-lg);
       position: relative;
       overflow: hidden;
@@ -348,9 +430,9 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3), transparent);
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent);
       opacity: 0;
-      transition: opacity var(--transition-normal);
+      transition: opacity var(--duration-normal);
     }
 
     .btn-control:hover {
@@ -391,7 +473,7 @@
       display: block;
       aspect-ratio: 9 / 16;
       border: 4px solid rgba(214, 74, 136, 0.2);
-      transition: all var(--transition-normal);
+      transition: all var(--duration-normal);
     }
 
     #myVideo:hover {
@@ -460,19 +542,11 @@
       background: var(--bg-light);
     }
 
-    .invite-image-wrapper::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 100%);
-      pointer-events: none;
-    }
-
     .invite-image {
       width: 100%;
       display: block;
       border-radius: var(--radius-lg);
-      transition: all var(--transition-normal) var(--easing-smooth);
+      transition: all var(--duration-normal) var(--easing-smooth);
       background: var(--bg-light);
     }
 
@@ -528,7 +602,7 @@
       z-index: 2;
     }
 
-    /* ========== BUTTONS CONTAINER ========== */
+    /* ========== BUTTONS ========== */
     .button-container {
       text-align: center;
       display: none;
@@ -548,7 +622,6 @@
       width: 100%;
     }
 
-    /* ========== PREMIUM BUTTON DESIGN ========== */
     .btn-glossy {
       position: relative;
       border: none;
@@ -560,7 +633,7 @@
       text-transform: uppercase;
       letter-spacing: 1.2px;
       overflow: hidden;
-      transition: all var(--transition-fast) var(--easing-smooth);
+      transition: all var(--duration-fast) var(--easing-smooth);
       box-shadow: var(--shadow-lg);
       color: var(--white);
       flex: 1;
@@ -573,7 +646,7 @@
       min-height: 58px;
       font-family: 'Poppins', sans-serif;
       backdrop-filter: blur(10px);
-      border: 2px solid rgba(255,255,255,0.2);
+      border: 2px solid rgba(255, 255, 255, 0.2);
     }
 
     .btn-glossy::before {
@@ -583,8 +656,8 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-      transition: left var(--transition-normal) var(--easing-smooth);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left var(--duration-normal) var(--easing-smooth);
       z-index: 1;
     }
 
@@ -592,9 +665,9 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3), transparent);
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent);
       opacity: 0;
-      transition: opacity var(--transition-normal);
+      transition: opacity var(--duration-normal);
     }
 
     .btn-glossy > * {
@@ -640,7 +713,6 @@
       letter-spacing: 1px;
     }
 
-    /* ========== BUTTON VARIANTS ========== */
     .btn-rsvp {
       background: var(--gradient-rsvp);
     }
@@ -668,19 +740,12 @@
       box-shadow: 0 12px 32px rgba(0, 188, 212, 0.4);
     }
 
-    .btn-share {
-      background: var(--gradient-share);
-    }
-
-    .btn-share:hover {
-      box-shadow: 0 12px 32px rgba(131, 56, 236, 0.4);
-    }
-
     /* ========== CONFETTI ========== */
     .confetti {
       position: fixed;
       pointer-events: none;
-      z-index: 35;
+      z-index: 30;
+      will-change: transform;
     }
 
     .confetti-shape {
@@ -696,111 +761,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      filter: drop-shadow(0 3px 8px rgba(0,0,0,0.2));
+      filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.2));
       animation: popIn 0.6s var(--easing-bounce);
-    }
-
-    /* ========== MODAL ========== */
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: var(--z-modal);
-      animation: fadeIn 0.3s var(--easing-smooth);
-      backdrop-filter: blur(5px);
-      padding: var(--space-md);
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
-    .modal-content {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      padding: var(--space-3xl) var(--space-xl);
-      box-shadow: var(--shadow-xl);
-      max-width: 450px;
-      width: 100%;
-      animation: slideUp 0.3s var(--easing-out);
-      border: 2px solid rgba(214, 74, 136, 0.2);
-      position: relative;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-
-    .modal-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: var(--space-2xl);
-      text-align: center;
-      font-weight: 900;
-    }
-
-    .modal-options {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-lg);
-      margin-bottom: var(--space-xl);
-    }
-
-    .modal-btn {
-      padding: var(--space-xl);
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 700;
-      color: var(--white);
-      transition: all var(--transition-normal);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: var(--space-md);
-      font-size: 0.9rem;
-    }
-
-    .modal-btn:hover {
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .modal-btn:active {
-      transform: translateY(-1px) scale(0.98);
-    }
-
-    .modal-btn-icon {
-      font-size: 2.2rem;
-    }
-
-    .close-modal {
-      position: absolute;
-      top: var(--space-xl);
-      right: var(--space-xl);
-      background: none;
-      border: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: var(--text-secondary);
-      transition: all var(--transition-normal);
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: var(--radius-full);
-    }
-
-    .close-modal:hover {
-      transform: rotate(90deg) scale(1.2);
-      color: var(--primary);
-      background: rgba(214, 74, 136, 0.1);
     }
 
     /* ========== FOOTER ========== */
@@ -831,7 +793,7 @@
       font-weight: 800;
       cursor: pointer;
       position: relative;
-      transition: all var(--transition-normal);
+      transition: all var(--duration-normal);
     }
 
     footer a::after {
@@ -843,7 +805,7 @@
       height: 3px;
       background: var(--gradient-primary);
       transform: scaleX(0);
-      transition: transform var(--transition-normal);
+      transition: transform var(--duration-normal);
       transform-origin: right;
       border-radius: 2px;
     }
@@ -857,10 +819,13 @@
       filter: brightness(1.1);
     }
 
-    /* ========== FADE IN ========== */
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
 
     /* ========== RESPONSIVE ========== */
@@ -876,62 +841,57 @@
         --space-4xl: 3.5rem;
       }
 
-      html { font-size: 15px; }
-      
-      header { 
+      html {
+        font-size: 15px;
+      }
+
+      header {
         padding: var(--space-lg) var(--space-md);
         gap: var(--space-sm);
       }
-      
-      .header-title { font-size: 1.6rem; }
-      
-      .btn-control { 
-        width: 48px; 
-        height: 48px; 
-        font-size: 1.3rem; 
+
+      .header-title {
+        font-size: 1.6rem;
       }
-      
-      #myVideo { 
+
+      .btn-control {
+        width: 48px;
+        height: 48px;
+        font-size: 1.3rem;
+      }
+
+      #myVideo {
         max-height: 65vh;
-        border: 3px solid rgba(214, 74, 136, 0.2);
       }
-      
+
       .video-wrapper {
         margin: var(--space-2xl) auto var(--space-lg);
       }
-      
-      #mainContentContainer { 
+
+      #mainContentContainer {
         padding: var(--space-md) var(--space-lg) var(--space-3xl) var(--space-lg);
       }
-      
-      .celebration-container { 
+
+      .celebration-container {
         margin: var(--space-2xl) 0;
         padding: var(--space-2xl) var(--space-lg);
       }
-      
-      .btn-glossy { 
+
+      .btn-glossy {
         padding: 1rem var(--space-lg);
         font-size: 0.9rem;
         min-height: 52px;
       }
-      
-      footer { 
+
+      footer {
         padding: var(--space-2xl) var(--space-lg);
       }
-      
-      .toast { 
+
+      .toast {
         bottom: 1rem;
         right: 1rem;
         left: 1rem;
         max-width: none;
-      }
-      
-      .modal-options { 
-        grid-template-columns: 1fr;
-      }
-      
-      .modal-content {
-        padding: var(--space-2xl) var(--space-lg);
       }
     }
 
@@ -947,60 +907,51 @@
         --space-4xl: 3rem;
       }
 
-      html { font-size: 14px; }
-      
-      header { 
+      html {
+        font-size: 14px;
+      }
+
+      header {
         padding: var(--space-md) var(--space-sm);
       }
-      
-      .header-title { 
+
+      .header-title {
         font-size: 1.4rem;
       }
-      
-      .btn-control { 
+
+      .btn-control {
         width: 46px;
         height: 46px;
         font-size: 1.2rem;
       }
-      
-      #myVideo { 
+
+      #myVideo {
         max-height: 60vh;
-        border: 3px solid rgba(214, 74, 136, 0.2);
       }
-      
+
       .video-wrapper {
         margin: var(--space-xl) auto var(--space-md);
         padding: 0 var(--space-sm);
       }
-      
-      .celebration-text { 
+
+      .celebration-text {
         font-size: 1.3rem;
       }
-      
-      .btn-glossy { 
+
+      .btn-glossy {
         padding: 0.95rem var(--space-md);
         font-size: 0.85rem;
         min-height: 50px;
         gap: var(--space-sm);
       }
-      
-      #mainContentContainer { 
+
+      #mainContentContainer {
         padding: var(--space-sm) var(--space-md) var(--space-2xl) var(--space-md);
       }
-      
+
       footer {
         padding: var(--space-xl) var(--space-md);
         font-size: 0.95rem;
-      }
-      
-      .modal-content {
-        padding: var(--space-xl) var(--space-md);
-        width: 95%;
-      }
-      
-      .modal-title {
-        font-size: 1.6rem;
-        margin-bottom: var(--space-lg);
       }
     }
 
@@ -1016,13 +967,15 @@
         --space-4xl: 2.5rem;
       }
 
-      html { font-size: 13px; }
-      
-      .header-title { 
+      html {
+        font-size: 13px;
+      }
+
+      .header-title {
         font-size: 1.2rem;
       }
-      
-      .btn-glossy { 
+
+      .btn-glossy {
         padding: 0.9rem var(--space-md);
         font-size: 0.8rem;
         min-height: 48px;
@@ -1030,7 +983,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      * { 
+      * {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
       }
@@ -1046,32 +999,36 @@
         --text-secondary: #a0a8b8;
         --gradient-bg: var(--gradient-dark);
       }
-      
-      body { 
+
+      body {
         background: var(--gradient-dark);
       }
-      
-      header { 
+
+      header {
         background: var(--bg-overlay);
         border-bottom-color: rgba(214, 74, 136, 0.15);
       }
-      
-      footer { 
+
+      footer {
         background: var(--bg-overlay);
         border-top-color: rgba(214, 74, 136, 0.15);
       }
     }
 
     @media print {
-      header, footer, .btn-control, .btn-glossy, .video-wrapper { 
+      header,
+      footer,
+      .btn-control,
+      .btn-glossy,
+      .video-wrapper {
         display: none;
       }
-      
-      #mainContentContainer { 
+
+      #mainContentContainer {
         padding: 0;
       }
-      
-      body { 
+
+      body {
         background: white;
       }
     }
@@ -1088,7 +1045,7 @@
     ::-webkit-scrollbar-thumb {
       background: var(--primary);
       border-radius: 8px;
-      transition: all var(--transition-normal);
+      transition: all var(--duration-normal);
     }
 
     ::-webkit-scrollbar-thumb:hover {
@@ -1109,25 +1066,24 @@
 
   <header role="banner">
     <h1 class="header-title">💕 Baby Shower 💕</h1>
-    <div class="header-controls" role="toolbar">
-      <button class="btn-control" id="musicToggle" type="button" title="Toggle Music">🔊</button>
-      <button class="btn-control" id="shareToggle" type="button" title="Share Invitation">📤</button>
-      <button class="btn-control" id="fullscreenToggle" type="button" title="Toggle Fullscreen">⛶</button>
+    <div class="header-controls" role="toolbar" aria-label="Invitation Controls">
+      <button class="btn-control" id="musicToggle" type="button" title="Toggle Music" aria-label="Toggle Music">🔊</button>
+      <button class="btn-control" id="fullscreenToggle" type="button" title="Toggle Fullscreen" aria-label="Toggle Fullscreen">⛶</button>
     </div>
   </header>
 
-  <section class="video-wrapper" role="region">
+  <section class="video-wrapper" role="region" aria-label="Invitation Video">
     <video id="myVideo" muted playsinline autoplay poster="Images/preview.gif" preload="metadata" loading="lazy">
       <source src="video/invite1.mp4" type="video/mp4">
     </video>
-    <div class="loading-container" role="status">
+    <div class="loading-container" role="status" aria-live="polite">
       <div id="loading-text">🎬 Loading Invitation</div>
     </div>
   </section>
 
   <main id="mainContentContainer" role="main">
     <div class="invite-image-wrapper">
-      <img class="invite-image" src="Images/2.png" alt="Baby Shower Invitation" loading="lazy">
+      <img class="invite-image" src="Images/2.png" alt="Beautiful Baby Shower Invitation" loading="lazy">
     </div>
 
     <section class="celebration-container" id="celebrationContainer">
@@ -1152,31 +1108,6 @@
     </div>
   </main>
 
-  <div class="modal" id="shareModal">
-    <div class="modal-content">
-      <button class="close-modal" id="closeModal">&times;</button>
-      <h2 class="modal-title">📤 Share</h2>
-      <div class="modal-options">
-        <button class="modal-btn" id="shareWhatsApp" style="background: linear-gradient(135deg, #25d366, #128c7e);">
-          <span class="modal-btn-icon">💬</span>
-          WhatsApp
-        </button>
-        <button class="modal-btn" id="shareFacebook" style="background: linear-gradient(135deg, #1877f2, #0a66c2);">
-          <span class="modal-btn-icon">📘</span>
-          Facebook
-        </button>
-        <button class="modal-btn" id="shareTwitter" style="background: linear-gradient(135deg, #1da1f2, #0d8bd9);">
-          <span class="modal-btn-icon">𝕏</span>
-          Twitter
-        </button>
-        <button class="modal-btn" id="shareEmail" style="background: linear-gradient(135deg, #ea4c89, #c1272d);">
-          <span class="modal-btn-icon">✉️</span>
-          Email
-        </button>
-      </div>
-    </div>
-  </div>
-
   <footer role="contentinfo">
     <p>✨ Looking forward to celebrating with you! ✨</p>
     <p>Made with 💕 for a special moment</p>
@@ -1185,6 +1116,7 @@
   <script>
     'use strict';
 
+    /* ========== CONFIGURATION ========== */
     const CONFIG = {
       locations: { event: 'https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8' },
       forms: { rsvp: 'https://forms.gle/Aqrw3mATGPEahUxCA' },
@@ -1199,31 +1131,42 @@
       }
     };
 
+    /* ========== TOAST MANAGER ========== */
     class Toast {
       static show(msg, type = 'info', duration = 3000) {
+        if (!msg) return;
         const icons = { success: '✅', error: '❌', info: 'ℹ️' };
         const toast = document.createElement('div');
         toast.className = `toast ${type}`;
         toast.innerHTML = `<span class="toast-icon">${icons[type]}</span><span>${msg}</span>`;
+        toast.setAttribute('role', 'alert');
         document.body.appendChild(toast);
         setTimeout(() => {
           toast.style.animation = 'fadeOut 0.4s forwards';
           setTimeout(() => toast.remove(), 400);
         }, duration);
       }
-      static success(m) { this.show(m, 'success'); }
-      static error(m) { this.show(m, 'error'); }
-      static info(m) { this.show(m, 'info'); }
+
+      static success(msg) {
+        this.show(msg, 'success');
+      }
+
+      static error(msg) {
+        this.show(msg, 'error');
+      }
+
+      static info(msg) {
+        this.show(msg, 'info');
+      }
     }
 
+    /* ========== PROGRESS MANAGER ========== */
     class Progress {
-      static set(val) {
+      static set(value) {
         const bar = document.getElementById('progressBar');
-        if (bar) {
-          bar.style.width = Math.min(val, 100) + '%';
-          bar.style.opacity = '1';
-        }
+        if (bar) bar.style.width = Math.min(value, 100) + '%';
       }
+
       static complete() {
         this.set(100);
         setTimeout(() => {
@@ -1233,6 +1176,7 @@
       }
     }
 
+    /* ========== CALENDAR MANAGER ========== */
     class Calendar {
       static google() {
         const { date, startTime, endTime, title, description, location } = CONFIG.event;
@@ -1248,18 +1192,7 @@
 
       static ics() {
         const { date, startTime, endTime, title, description, location } = CONFIG.event;
-        return `BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Baby Shower//EN
-CALSCALE:GREGORIAN
-BEGIN:VEVENT
-DTSTART:${date}T${startTime}
-DTEND:${date}T${endTime}
-SUMMARY:${title}
-DESCRIPTION:${description}
-LOCATION:${location}
-END:VEVENT
-END:VCALENDAR`;
+        return `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Baby Shower//EN\nCALSCALE:GREGORIAN\nBEGIN:VEVENT\nDTSTART:${date}T${startTime}\nDTEND:${date}T${endTime}\nSUMMARY:${title}\nDESCRIPTION:${description}\nLOCATION:${location}\nEND:VEVENT\nEND:VCALENDAR`;
       }
 
       static save() {
@@ -1288,64 +1221,38 @@ END:VCALENDAR`;
       }
     }
 
+    /* ========== SHOWER ANIMATION ========== */
     class Shower {
       static start() {
         const container = document.getElementById('showerContainer');
         if (!container) return;
 
         container.classList.add('active');
-        const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎀', '🌺', '💐', '🎊'];
-        const duration = 3000;
+        const drops = ['💧', '💙', '💗', '👶', '🎀', '🎈'];
+        const count = 60;
+        const duration = 4000;
 
-        for (let i = 0; i < 40; i++) {
+        for (let i = 0; i < count; i++) {
           setTimeout(() => {
-            const particle = document.createElement('div');
-            particle.className = 'shower-particle';
-            particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
-            particle.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
-            container.appendChild(particle);
-
-            setTimeout(() => particle.remove(), duration);
-          }, i * 50);
+            const drop = document.createElement('div');
+            drop.className = 'shower-drop ' + (Math.random() > 0.5 ? 'swing' : '');
+            drop.textContent = drops[Math.floor(Math.random() * drops.length)];
+            drop.style.left = Math.random() * 100 + '%';
+            drop.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
+            drop.style.fontSize = (Math.random() * 1.8 + 1.2) + 'rem';
+            drop.style.opacity = Math.random() * 0.7 + 0.4;
+            
+            container.appendChild(drop);
+            setTimeout(() => drop.remove(), duration);
+          }, i * 40);
         }
 
         setTimeout(() => container.classList.remove('active'), duration + 500);
       }
     }
 
-    class Share {
-      static show() {
-        document.getElementById('shareModal').classList.add('active');
-      }
-      static hide() {
-        document.getElementById('shareModal').classList.remove('active');
-      }
-      static send(platform) {
-        const { title, description, url } = CONFIG.event;
-        const text = `${title} - ${description}`;
-
-        const links = {
-          whatsapp: `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`,
-          facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-          twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
-          email: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(description)}`
-        };
-
-        if (links[platform]) {
-          if (platform === 'email') {
-            window.location.href = links[platform];
-          } else {
-            window.open(links[platform], '_blank');
-          }
-        }
-        Toast.success('Shared successfully!');
-        this.hide();
-      }
-    }
-
-    const el = {
+    /* ========== DOM ELEMENTS ========== */
+    const elements = {
       video: document.getElementById('myVideo'),
       mainContent: document.getElementById('mainContentContainer'),
       celebration: document.getElementById('celebrationContainer'),
@@ -1353,47 +1260,47 @@ END:VCALENDAR`;
       loadingText: document.getElementById('loading-text'),
       musicToggle: document.getElementById('musicToggle'),
       fullscreenToggle: document.getElementById('fullscreenToggle'),
-      shareToggle: document.getElementById('shareToggle'),
       rsvpBtn: document.getElementById('rsvpBtn'),
       saveDateBtn: document.getElementById('saveDateBtn'),
-      locationBtn: document.getElementById('locationBtn'),
-      shareModal: document.getElementById('shareModal'),
-      closeModal: document.getElementById('closeModal'),
-      shareWhatsApp: document.getElementById('shareWhatsApp'),
-      shareFacebook: document.getElementById('shareFacebook'),
-      shareTwitter: document.getElementById('shareTwitter'),
-      shareEmail: document.getElementById('shareEmail'),
-      showerContainer: document.getElementById('showerContainer')
+      locationBtn: document.getElementById('locationBtn')
     };
 
-    const state = { isMuted: true, isEnded: false, timeouts: [] };
+    /* ========== STATE ========== */
+    const state = {
+      isMuted: true,
+      isEnded: false,
+      timeouts: []
+    };
 
+    /* ========== UTILITIES ========== */
     function cleanup() {
       state.timeouts.forEach(t => clearTimeout(t));
       state.timeouts = [];
     }
 
     function timeout(fn, ms) {
+      if (typeof fn !== 'function') return null;
       const t = setTimeout(fn, ms);
       state.timeouts.push(t);
       return t;
     }
 
+    /* ========== VIDEO HANDLERS ========== */
     function onVideoEnd() {
       if (state.isEnded) return;
       state.isEnded = true;
       Progress.set(70);
 
-      if (el.video) {
-        el.video.style.display = 'none';
-        el.video.pause();
+      if (elements.video) {
+        elements.video.style.display = 'none';
+        elements.video.pause();
       }
 
-      if (el.mainContent) el.mainContent.classList.add('active');
+      if (elements.mainContent) elements.mainContent.classList.add('active');
 
       timeout(() => {
-        if (el.celebration) el.celebration.classList.add('active');
-        if (el.buttonContainer) el.buttonContainer.classList.add('active');
+        if (elements.celebration) elements.celebration.classList.add('active');
+        if (elements.buttonContainer) elements.buttonContainer.classList.add('active');
         Shower.start();
         createConfetti();
         Progress.complete();
@@ -1401,19 +1308,20 @@ END:VCALENDAR`;
     }
 
     function onVideoPlay() {
-      if (el.loadingText) el.loadingText.style.display = 'none';
+      if (elements.loadingText) elements.loadingText.style.display = 'none';
       Progress.set(50);
     }
 
     function onVideoError() {
-      if (el.loadingText) el.loadingText.innerHTML = '❌ Failed to load video';
+      if (elements.loadingText) elements.loadingText.innerHTML = '❌ Failed to load video';
       Toast.error('Video loading failed');
       timeout(() => {
-        if (el.mainContent) el.mainContent.classList.add('active');
+        if (elements.mainContent) elements.mainContent.classList.add('active');
         Progress.complete();
       }, 2000);
     }
 
+    /* ========== CONFETTI ANIMATION ========== */
     function createConfetti() {
       const colors = ['#d64a88', '#ff6b9d', '#9d6bc0', '#00bcd4', '#26c281', '#f4b350'];
       const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎀', '🌺', '💐', '🎊'];
@@ -1439,36 +1347,44 @@ END:VCALENDAR`;
 
         timeout(() => {
           if (!c.parentElement) return;
-          c.animate([
-            { transform: 'translateY(0) rotate(0deg)', opacity: Math.random() * 0.8 + 0.3 },
-            { transform: `translateY(${window.innerHeight + 50}px) translateX(${xMove}px) rotate(${rot}deg)`, opacity: 0 }
-          ], {
-            duration: dur * 1000,
-            easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-            fill: 'forwards'
-          }).onfinish = () => c.remove();
+          try {
+            c.animate([
+              { transform: 'translateY(0) rotate(0deg)', opacity: Math.random() * 0.8 + 0.3 },
+              { transform: `translateY(${window.innerHeight + 50}px) translateX(${xMove}px) rotate(${rot}deg)`, opacity: 0 }
+            ], {
+              duration: dur * 1000,
+              easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              fill: 'forwards'
+            }).onfinish = () => c.remove();
+          } catch (e) {
+            c.remove();
+          }
         }, i * 12);
       }
 
       document.body.append(...Array.from(document.querySelectorAll('.confetti')).slice(-count));
     }
 
+    /* ========== INITIALIZATION ========== */
     function init() {
       Progress.set(10);
 
-      if (el.video) {
-        el.video.addEventListener('ended', onVideoEnd, { once: true });
-        el.video.addEventListener('canplay', onVideoPlay);
-        el.video.addEventListener('error', onVideoError);
+      // Video Event Listeners
+      if (elements.video) {
+        elements.video.addEventListener('ended', onVideoEnd, { once: true });
+        elements.video.addEventListener('canplay', onVideoPlay);
+        elements.video.addEventListener('error', onVideoError);
       }
 
-      el.musicToggle?.addEventListener('click', () => {
+      // Music Toggle
+      elements.musicToggle?.addEventListener('click', () => {
         state.isMuted = !state.isMuted;
-        if (el.video) el.video.muted = state.isMuted;
-        el.musicToggle.textContent = state.isMuted ? '🔊' : '🔇';
+        if (elements.video) elements.video.muted = state.isMuted;
+        elements.musicToggle.textContent = state.isMuted ? '🔊' : '🔇';
       });
 
-      el.fullscreenToggle?.addEventListener('click', async () => {
+      // Fullscreen Toggle
+      elements.fullscreenToggle?.addEventListener('click', async () => {
         try {
           if (!document.fullscreenElement) {
             await document.documentElement.requestFullscreen().catch(() => {});
@@ -1480,41 +1396,36 @@ END:VCALENDAR`;
         }
       });
 
-      el.shareToggle?.addEventListener('click', () => Share.show());
-      el.closeModal?.addEventListener('click', () => Share.hide());
-      el.shareWhatsApp?.addEventListener('click', () => Share.send('whatsapp'));
-      el.shareFacebook?.addEventListener('click', () => Share.send('facebook'));
-      el.shareTwitter?.addEventListener('click', () => Share.send('twitter'));
-      el.shareEmail?.addEventListener('click', () => Share.send('email'));
-
-      el.rsvpBtn?.addEventListener('click', () => {
+      // RSVP Button
+      elements.rsvpBtn?.addEventListener('click', () => {
         window.open(CONFIG.forms.rsvp, '_blank');
         Toast.info('Opening RSVP form...');
       });
 
-      el.saveDateBtn?.addEventListener('click', () => Calendar.save());
+      // Save Date Button
+      elements.saveDateBtn?.addEventListener('click', () => Calendar.save());
 
-      el.locationBtn?.addEventListener('click', () => {
+      // Location Button
+      elements.locationBtn?.addEventListener('click', () => {
         window.open(CONFIG.locations.event, '_blank');
         Toast.info('Opening location...');
       });
 
-      el.shareModal?.addEventListener('click', (e) => {
-        if (e.target === el.shareModal) Share.hide();
-      });
-
+      // Page Visibility
       document.addEventListener('visibilitychange', () => {
-        if (el.video) {
-          if (document.hidden) el.video.pause();
-          else el.video.play().catch(() => {});
+        if (elements.video) {
+          document.hidden ? elements.video.pause() : elements.video.play().catch(() => {});
         }
       });
 
+      // Cleanup on unload
       window.addEventListener('beforeunload', cleanup);
-      console.log('%c🎉 Baby Shower Loaded! 💕', 'color: #d64a88; font-size: 18px; font-weight: bold;');
+
+      console.log('%c🎉 Baby Shower Ready! 💕', 'color: #d64a88; font-size: 18px; font-weight: bold;');
     }
 
+    // Start initialization
     document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();
   </script>
 </body>
-</html>
+  </html>
