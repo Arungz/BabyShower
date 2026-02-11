@@ -1066,7 +1066,7 @@
           <span class="btn-icon">💌</span>
           <span class="btn-text">Vote Now</span>
         </button>
-        <button class="btn-glossy btn-save-date" id="saveDateBtn" type="button" aria-label="Save Date to Calendar">
+        <button class="btn-glossy btn-save-date" id="saveDateBtn" type="button" aria-label="Save Date to Calendar - Works on Apple and Android devices">
           <span class="btn-icon">📅</span>
           <span class="btn-text">Save Date</span>
         </button>
@@ -1105,6 +1105,8 @@
         startTime: '103000',
         endTime: '113000',
         title: 'Karthika Arun Baby Shower',
+        description: 'Join us for a magical Baby Shower celebration with family and friends!',
+        location: 'Special Venue',
         timezone: 'UTC',
       },
       features: {
@@ -1149,6 +1151,17 @@
           }
         };
       }
+
+      static detectPlatform() {
+        const ua = navigator.userAgent.toLowerCase();
+        if (/iphone|ipad|ipod|mac|safari/.test(ua) && !/chrome|android/.test(ua)) {
+          return 'apple';
+        }
+        if (/android|chrome/.test(ua)) {
+          return 'android';
+        }
+        return 'other';
+      }
     }
 
     /* ========== PERFORMANCE MONITORING ========== */
@@ -1176,6 +1189,100 @@
 
     const perfMonitor = new PerformanceMonitor();
 
+    /* ========== ICAL FORMAT GENERATOR ========== */
+    class CalendarURLBuilder {
+      static generateGoogleCalendarURL() {
+        const { date, startTime, endTime, title, description, location, timezone } = CONFIG.event;
+        const params = new URLSearchParams({
+          action: 'TEMPLATE',
+          text: title,
+          dates: `${date}T${startTime}/${date}T${endTime}`,
+          tz: timezone,
+          details: description,
+          location: location,
+        });
+        return `https://www.google.com/calendar/render?${params.toString()}`;
+      }
+
+      static generateICalendar() {
+        const { date, startTime, endTime, title, description, location } = CONFIG.event;
+        
+        const startDateTime = `${date}T${startTime}`;
+        const endDateTime = `${date}T${endTime}`;
+        
+        const ical = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Baby Shower Invitation//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:baby-shower-${date}@invitation.com
+DTSTAMP:${this.getCurrentTimestamp()}
+DTSTART:${startDateTime}
+DTEND:${endDateTime}
+SUMMARY:${title}
+DESCRIPTION:${description}
+LOCATION:${location}
+SEQUENCE:0
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT24H
+DESCRIPTION:Reminder: ${title}
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT2H
+DESCRIPTION:Reminder: ${title} starts in 2 hours
+END:VALARM
+END:VEVENT
+END:VCALENDAR`;
+
+        return ical;
+      }
+
+      static getCurrentTimestamp() {
+        const now = new Date();
+        const year = now.getUTCFullYear();
+        const month = String(now.getUTCMonth() + 1).padStart(2, '0');
+        const day = String(now.getUTCDate()).padStart(2, '0');
+        const hours = String(now.getUTCHours()).padStart(2, '0');
+        const minutes = String(now.getUTCMinutes()).padStart(2, '0');
+        const seconds = String(now.getUTCSeconds()).padStart(2, '0');
+        
+        return `${year}${month}${day}T${hours}${minutes}${seconds}Z`;
+      }
+
+      static downloadICalendar() {
+        try {
+          const ical = this.generateICalendar();
+          const blob = new Blob([ical], { type: 'text/calendar;charset=utf-8' });
+          const link = document.createElement('a');
+          const url = URL.createObjectURL(blob);
+          
+          link.setAttribute('href', url);
+          link.setAttribute('download', `baby-shower-${CONFIG.event.date}.ics`);
+          link.style.visibility = 'hidden';
+          
+          document.body.appendChild(link);
+          link.click();
+          
+          setTimeout(() => {
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+          }, 100);
+          
+          trackEvent('calendar_download_success', { format: 'ics' });
+          return true;
+        } catch (error) {
+          console.error('❌ Calendar download error:', error);
+          trackEvent('calendar_download_error', { error: error?.message });
+          return false;
+        }
+      }
+    }
+
     /* ========== DOM ELEMENTS CACHE ========== */
     const elements = {
       video: document.getElementById('myVideo'),
@@ -1199,28 +1306,14 @@
       isFullscreen: false,
       timeouts: [],
       isInitialized: false,
+      platform: UtilityHelper.detectPlatform(),
       analytics: {
         videoPlayed: false,
         buttonClicked: {},
         startTime: Date.now(),
+        platform: UtilityHelper.detectPlatform(),
       },
     };
-
-    /* ========== CALENDAR URL BUILDER ========== */
-    class CalendarURLBuilder {
-      static generateGoogleCalendarURL() {
-        const { date, startTime, endTime, title, timezone } = CONFIG.event;
-        const params = new URLSearchParams({
-          action: 'TEMPLATE',
-          text: title,
-          dates: `${date}T${startTime}/${date}T${endTime}`,
-          tz: timezone,
-          details: 'Join us for a magical Baby Shower celebration!',
-          location: 'See invitation for details',
-        });
-        return `https://www.google.com/calendar/render?${params.toString()}`;
-      }
-    }
 
     /* ========== LINK HANDLER ========== */
     function openLink(url, target = '_blank') {
@@ -1269,6 +1362,7 @@
       const eventData = {
         timestamp: new Date().toISOString(),
         duration: Date.now() - state.analytics.startTime,
+        platform: state.platform,
         ...data,
       };
 
@@ -1488,64 +1582,84 @@
 
     /* ========== LOCATION HANDLER ========== */
     function initLocationHandler() {
-      if (elements.locationBtn) {
-        const handleClick = UtilityHelper.debounce(() => {
-          openLink(CONFIG.locations.event);
-          state.analytics.buttonClicked.location = true;
-        }, 300);
+      if (!elements.locationBtn) return;
 
-        elements.locationBtn.addEventListener('click', handleClick);
-        elements.locationBtn.addEventListener('keydown', (event) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            handleClick();
-          }
-        });
-      }
+      const handleClick = UtilityHelper.debounce(() => {
+        openLink(CONFIG.locations.event);
+        state.analytics.buttonClicked.location = true;
+        trackEvent('location_opened');
+      }, 300);
+
+      elements.locationBtn.addEventListener('click', handleClick);
+      elements.locationBtn.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          handleClick();
+        }
+      });
     }
 
-    /* ========== RSVP & SAVE DATE HANDLERS ========== */
-    function initRSVPHandlers() {
-      if (elements.rsvpBtn) {
-        const handleRSVP = UtilityHelper.debounce(() => {
-          if (CONFIG.forms.rsvp) {
-            openLink(CONFIG.forms.rsvp);
-            state.analytics.buttonClicked.rsvp = true;
+    /* ========== SAVE DATE HANDLER - CROSS-PLATFORM ========== */
+    function initSaveDateHandler() {
+      if (!elements.saveDateBtn) return;
+
+      const handleSaveDate = UtilityHelper.debounce(() => {
+        try {
+          const platform = state.platform;
+          
+          if (window.location.hash === '#debug') {
+            console.debug(`📱 Detected Platform: ${platform}`);
+          }
+
+          if (platform === 'apple') {
+            const success = CalendarURLBuilder.downloadICalendar();
+            if (success) {
+              state.analytics.buttonClicked.saveDate = true;
+              trackEvent('save_date_clicked', { method: 'icalendar', platform: 'apple' });
+            }
           } else {
-            console.warn('⚠️ RSVP form not configured');
-            alert('RSVP form not configured. Please contact the organizer.');
-          }
-        }, 300);
-
-        elements.rsvpBtn.addEventListener('click', handleRSVP);
-        elements.rsvpBtn.addEventListener('keydown', (event) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            handleRSVP();
-          }
-        });
-      }
-
-      if (elements.saveDateBtn) {
-        const handleSaveDate = UtilityHelper.debounce(() => {
-          try {
             const calendarURL = CalendarURLBuilder.generateGoogleCalendarURL();
             openLink(calendarURL);
             state.analytics.buttonClicked.saveDate = true;
-          } catch (error) {
-            console.error('❌ Calendar URL generation failed:', error);
-            trackEvent('calendar_error', { error: error?.message });
+            trackEvent('save_date_clicked', { method: 'google_calendar', platform: platform });
           }
-        }, 300);
+        } catch (error) {
+          console.error('❌ Save date error:', error);
+          trackEvent('save_date_error', { error: error?.message, platform: state.platform });
+        }
+      }, 300);
 
-        elements.saveDateBtn.addEventListener('click', handleSaveDate);
-        elements.saveDateBtn.addEventListener('keydown', (event) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            handleSaveDate();
-          }
-        });
-      }
+      elements.saveDateBtn.addEventListener('click', handleSaveDate);
+      elements.saveDateBtn.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          handleSaveDate();
+        }
+      });
+    }
+
+    /* ========== RSVP HANDLER ========== */
+    function initRSVPHandler() {
+      if (!elements.rsvpBtn) return;
+
+      const handleRSVP = UtilityHelper.debounce(() => {
+        if (CONFIG.forms.rsvp) {
+          openLink(CONFIG.forms.rsvp);
+          state.analytics.buttonClicked.rsvp = true;
+          trackEvent('rsvp_clicked');
+        } else {
+          console.warn('⚠️ RSVP form not configured');
+          alert('RSVP form not configured. Please contact the organizer.');
+        }
+      }, 300);
+
+      elements.rsvpBtn.addEventListener('click', handleRSVP);
+      elements.rsvpBtn.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          handleRSVP();
+        }
+      });
     }
 
     /* ========== SECURITY SETUP ========== */
@@ -1588,7 +1702,7 @@
     /* ========== LAZY LOADING ========== */
     function initLazyLoading() {
       if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
+        const imageObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               const img = entry.target;
@@ -1596,7 +1710,7 @@
                 img.src = img.dataset.src;
                 img.removeAttribute('data-src');
               }
-              observer.unobserve(img);
+              imageObserver.unobserve(img);
             }
           });
         }, { rootMargin: '50px' });
@@ -1636,7 +1750,8 @@
         initMusicToggle();
         initFullscreenToggle();
         initLocationHandler();
-        initRSVPHandlers();
+        initRSVPHandler();
+        initSaveDateHandler();
         initSecurity();
         initPageVisibility();
         initLazyLoading();
