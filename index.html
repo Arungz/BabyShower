@@ -188,12 +188,8 @@
 
     /* ========== SMOOTH PAGE TRANSITIONS ========== */
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     @keyframes slideDown {
@@ -1085,7 +1081,7 @@
   <script>
     'use strict';
 
-    /* ========== CONFIGURATION ========== */
+    /* ========== ENHANCED CONFIGURATION ========== */
     const CONFIG = {
       locations: {
         event: 'https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8',
@@ -1099,14 +1095,55 @@
         celebrationDelay: 800,
       },
       event: {
-        date: '20260305T103000',
+        date: '20260305',
+        startTime: '103000',
+        endTime: '113000', // 11:30 AM - UPDATED
         title: 'Karthika Arun Baby Shower',
+        timezone: 'UTC', // Customize as needed
       },
       features: {
         enableAnalytics: true,
         enableErrorTracking: true,
       },
     };
+
+    /* ========== UTILITY HELPER CLASS ========== */
+    class UtilityHelper {
+      static validateURL(url) {
+        try {
+          return new URL(url) instanceof URL;
+        } catch {
+          return false;
+        }
+      }
+
+      static safeStringify(obj) {
+        try {
+          return JSON.stringify(obj);
+        } catch (e) {
+          return String(obj);
+        }
+      }
+
+      static debounce(func, delay = 300) {
+        let timeoutId;
+        return function debounced(...args) {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => func.apply(this, args), delay);
+        };
+      }
+
+      static throttle(func, limit = 300) {
+        let inThrottle;
+        return function throttled(...args) {
+          if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+          }
+        };
+      }
+    }
 
     /* ========== PERFORMANCE MONITORING ========== */
     class PerformanceMonitor {
@@ -1117,11 +1154,17 @@
 
       mark(name) {
         this.metrics[name] = performance.now() - this.startTime;
-        console.debug(`⏱️ ${name}: ${this.metrics[name].toFixed(2)}ms`);
+        if (window.location.hash === '#debug') {
+          console.debug(`⏱️ ${name}: ${this.metrics[name].toFixed(2)}ms`);
+        }
       }
 
       getReport() {
         return this.metrics;
+      }
+
+      logReport() {
+        console.table(this.getReport());
       }
     }
 
@@ -1153,23 +1196,51 @@
       analytics: {
         videoPlayed: false,
         buttonClicked: {},
+        startTime: Date.now(),
       },
     };
 
-    /* ========== UTILITY FUNCTIONS ========== */
-    function openLink(url, target = '_blank') {
-      if (!url || typeof url !== 'string') {
-        console.warn('Invalid URL provided:', url);
-        return;
-      }
-      try {
-        window.open(url, target, 'noopener,noreferrer');
-        trackEvent('link_opened', { url });
-      } catch (error) {
-        console.error('Failed to open link:', error);
+    /* ========== CALENDAR URL BUILDER ========== */
+    class CalendarURLBuilder {
+      static generateGoogleCalendarURL() {
+        const { date, startTime, endTime, title, timezone } = CONFIG.event;
+        const params = new URLSearchParams({
+          action: 'TEMPLATE',
+          text: title,
+          dates: `${date}T${startTime}/${date}T${endTime}`,
+          tz: timezone,
+          details: 'Join us for a magical Baby Shower celebration!',
+          location: 'See invitation for details',
+        });
+        return `https://www.google.com/calendar/render?${params.toString()}`;
       }
     }
 
+    /* ========== LINK HANDLER ========== */
+    function openLink(url, target = '_blank') {
+      if (!url || typeof url !== 'string') {
+        console.warn('⚠️ Invalid URL provided:', url);
+        return;
+      }
+
+      if (!UtilityHelper.validateURL(url)) {
+        console.warn('⚠️ URL validation failed:', url);
+        return;
+      }
+
+      try {
+        const windowRef = window.open(url, target, 'noopener,noreferrer');
+        if (!windowRef) {
+          console.warn('⚠️ Popup may have been blocked');
+        }
+        trackEvent('link_opened', { url });
+      } catch (error) {
+        console.error('❌ Failed to open link:', error);
+        trackEvent('link_error', { error: error?.message });
+      }
+    }
+
+    /* ========== TIMEOUT MANAGEMENT ========== */
     function clearTimeouts() {
       state.timeouts.forEach(timeout => clearTimeout(timeout));
       state.timeouts = [];
@@ -1177,7 +1248,7 @@
 
     function addTimeout(callback, delay) {
       if (typeof callback !== 'function') {
-        console.warn('Invalid callback provided to addTimeout');
+        console.warn('⚠️ Invalid callback provided to addTimeout');
         return null;
       }
       const timeout = setTimeout(callback, delay);
@@ -1185,28 +1256,22 @@
       return timeout;
     }
 
-    function debounce(func, delay = 300) {
-      let timeoutId;
-      return function debounced(...args) {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => func.apply(this, args), delay);
-      };
-    }
-
-    function throttle(func, limit = 300) {
-      let inThrottle;
-      return function throttled(...args) {
-        if (!inThrottle) {
-          func.apply(this, args);
-          inThrottle = true;
-          setTimeout(() => inThrottle = false, limit);
-        }
-      };
-    }
-
+    /* ========== ANALYTICS ========== */
     function trackEvent(eventName, data = {}) {
       if (!CONFIG.features.enableAnalytics) return;
-      console.debug(`📊 Event: ${eventName}`, data);
+      
+      const eventData = {
+        timestamp: new Date().toISOString(),
+        duration: Date.now() - state.analytics.startTime,
+        ...data,
+      };
+
+      if (window.location.hash === '#debug') {
+        console.debug(`📊 Event: ${eventName}`, eventData);
+      }
+
+      // Send to analytics service here if needed
+      // analytics.track(eventName, eventData);
     }
 
     /* ========== VIDEO HANDLERS ========== */
@@ -1250,18 +1315,26 @@
     }
 
     function handleVideoError(error) {
+      const errorMsg = error?.target?.error?.message || 'Unknown error';
       if (elements.loadingText) {
         elements.loadingText.innerHTML = '❌ Video loading failed';
         elements.loadingText.setAttribute('role', 'alert');
       }
-      console.error('Video loading error:', error);
-      trackEvent('video_error', { error: error?.message });
+      console.error('❌ Video loading error:', errorMsg);
+      trackEvent('video_error', { error: errorMsg });
+
+      // Fallback: Show main content anyway
+      addTimeout(() => {
+        if (elements.mainContent) {
+          elements.mainContent.classList.add('active');
+        }
+      }, 2000);
     }
 
     /* ========== VIDEO INITIALIZATION ========== */
     function initVideo() {
       if (!elements.video) {
-        console.warn('Video element not found');
+        console.warn('⚠️ Video element not found');
         return;
       }
 
@@ -1329,18 +1402,26 @@
 
             animation.onfinish = () => {
               try {
-                if (confetti.parentElement) confetti.remove();
-              } catch (e) {}
+                if (confetti.parentElement) {
+                  confetti.remove();
+                }
+              } catch (e) {
+                console.debug('Confetti cleanup:', e);
+              }
             };
           } catch (error) {
-            console.warn('Confetti error:', error);
+            console.warn('⚠️ Confetti error:', error);
           }
         }, i * 15);
       }
 
-      document.body.appendChild(fragment);
-      trackEvent('confetti_created', { count: particleCount });
-      perfMonitor.mark('confetti_complete');
+      try {
+        document.body.appendChild(fragment);
+        trackEvent('confetti_created', { count: particleCount });
+        perfMonitor.mark('confetti_complete');
+      } catch (error) {
+        console.error('❌ Failed to append confetti:', error);
+      }
     }
 
     /* ========== MUSIC TOGGLE ========== */
@@ -1362,6 +1443,11 @@
     function initFullscreenToggle() {
       if (!elements.fullscreenToggle) return;
 
+      const handleFullscreenChange = () => {
+        state.isFullscreen = !!document.fullscreenElement;
+        elements.fullscreenToggle.setAttribute('aria-pressed', state.isFullscreen);
+      };
+
       elements.fullscreenToggle.addEventListener('click', async () => {
         try {
           if (!document.fullscreenElement) {
@@ -1373,8 +1459,6 @@
 
             if (requestFS) {
               await requestFS.call(elem);
-              elements.fullscreenToggle.setAttribute('aria-pressed', 'true');
-              state.isFullscreen = true;
               trackEvent('fullscreen_entered');
             }
           } else {
@@ -1385,21 +1469,25 @@
 
             if (exitFS) {
               await exitFS.call(document);
-              elements.fullscreenToggle.setAttribute('aria-pressed', 'false');
-              state.isFullscreen = false;
               trackEvent('fullscreen_exited');
             }
           }
         } catch (error) {
-          console.warn('Fullscreen error:', error);
+          console.warn('⚠️ Fullscreen error:', error);
+          trackEvent('fullscreen_error', { error: error?.message });
         }
       });
+
+      document.addEventListener('fullscreenchange', handleFullscreenChange);
+      document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+      document.addEventListener('msfullscreenchange', handleFullscreenChange);
     }
 
     /* ========== LOCATION HANDLER ========== */
     function initLocationHandler() {
       if (elements.locationBtn) {
-        const handleClick = debounce(() => {
+        const handleClick = UtilityHelper.debounce(() => {
           openLink(CONFIG.locations.event);
           state.analytics.buttonClicked.location = true;
         }, 300);
@@ -1414,45 +1502,69 @@
       }
     }
 
-    /* ========== RSVP HANDLERS ========== */
+    /* ========== RSVP & SAVE DATE HANDLERS ========== */
     function initRSVPHandlers() {
       if (elements.rsvpBtn) {
-        const handleRSVP = debounce(() => {
+        const handleRSVP = UtilityHelper.debounce(() => {
           if (CONFIG.forms.rsvp) {
             openLink(CONFIG.forms.rsvp);
             state.analytics.buttonClicked.rsvp = true;
           } else {
+            console.warn('⚠️ RSVP form not configured');
             alert('RSVP form not configured. Please contact the organizer.');
           }
         }, 300);
 
         elements.rsvpBtn.addEventListener('click', handleRSVP);
+        elements.rsvpBtn.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            handleRSVP();
+          }
+        });
       }
 
       if (elements.saveDateBtn) {
-        const handleSaveDate = debounce(() => {
-          const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(CONFIG.event.title)}&dates=${CONFIG.event.date}/${CONFIG.event.date}`;
-          openLink(url);
-          state.analytics.buttonClicked.saveDate = true;
+        const handleSaveDate = UtilityHelper.debounce(() => {
+          try {
+            const calendarURL = CalendarURLBuilder.generateGoogleCalendarURL();
+            openLink(calendarURL);
+            state.analytics.buttonClicked.saveDate = true;
+          } catch (error) {
+            console.error('❌ Calendar URL generation failed:', error);
+            trackEvent('calendar_error', { error: error?.message });
+          }
         }, 300);
 
         elements.saveDateBtn.addEventListener('click', handleSaveDate);
+        elements.saveDateBtn.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            handleSaveDate();
+          }
+        });
       }
     }
 
     /* ========== SECURITY SETUP ========== */
     function initSecurity() {
+      // Prevent right-click context menu
       document.addEventListener('contextmenu', (e) => e.preventDefault(), { passive: false });
-      document.addEventListener('dragstart', (e) => e.preventDefault(), { passive: false });
+
+      // Prevent text selection
       document.addEventListener('selectstart', (e) => e.preventDefault(), { passive: false });
 
+      // Prevent drag and drop
+      document.addEventListener('dragstart', (e) => e.preventDefault(), { passive: false });
+
+      // Prevent F12, Ctrl+Shift+I, and other dev tools shortcuts
       document.addEventListener('keydown', (event) => {
         const isDevTools = event.key === 'F12' || 
                           (event.ctrlKey && event.shiftKey && event.key === 'I') || 
-                          (event.ctrlKey && event.key === 'u');
-        const isFKey = event.key.startsWith('F') && !isNaN(parseInt(event.key.substring(1), 10));
-
-        if (isDevTools || isFKey) {
+                          (event.ctrlKey && event.key === 'u') ||
+                          (event.metaKey && event.altKey && event.key === 'i');
+        
+        if (isDevTools) {
           event.preventDefault();
         }
       }, { passive: false });
@@ -1470,7 +1582,7 @@
           trackEvent('page_hidden');
         } else {
           elements.video.play().catch((error) => {
-            console.warn('Video play error:', error);
+            console.warn('⚠️ Video play error:', error);
           });
           trackEvent('page_visible');
         }
@@ -1491,9 +1603,10 @@
               observer.unobserve(img);
             }
           });
-        });
+        }, { rootMargin: '50px' });
 
         document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
+        perfMonitor.mark('lazy_loading_init');
       }
     }
 
@@ -1505,8 +1618,16 @@
           elements.video.pause();
           elements.video.src = '';
         }
-        console.debug('📊 Session Analytics:', state.analytics);
-        console.debug('⏱️ Performance Report:', perfMonitor.getReport());
+
+        const sessionDuration = (Date.now() - state.analytics.startTime) / 1000;
+        console.debug('📊 Session Analytics:', {
+          ...state.analytics,
+          sessionDuration: `${sessionDuration.toFixed(2)}s`,
+        });
+
+        if (window.location.hash === '#debug') {
+          perfMonitor.logReport();
+        }
       });
     }
 
@@ -1527,10 +1648,16 @@
 
         state.isInitialized = true;
         perfMonitor.mark('initialization_complete');
-        console.log('%c🎉 Baby Shower Invitation loaded successfully! 💕', 'color: #d64a88; font-size: 16px; font-weight: bold;');
-        console.table(perfMonitor.getReport());
+        console.log(
+          '%c🎉 Baby Shower Invitation loaded successfully! 💕',
+          'color: #d64a88; font-size: 16px; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.2);'
+        );
+
+        if (window.location.hash === '#debug') {
+          perfMonitor.logReport();
+        }
       } catch (error) {
-        console.error('Initialization error:', error);
+        console.error('❌ Initialization error:', error);
         trackEvent('init_error', { error: error?.message });
       }
     }
@@ -1548,7 +1675,8 @@
       if (CONFIG.features.enableErrorTracking) {
         trackEvent('window_error', { 
           message: event.error?.message,
-          stack: event.error?.stack
+          filename: event.filename,
+          lineno: event.lineno,
         });
       }
     });
@@ -1563,4 +1691,4 @@
     });
   </script>
 </body>
-  </html>
+</html>
