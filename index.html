@@ -282,10 +282,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: var(--space-md) var(--space-lg);
+      padding: var(--space-lg) var(--space-lg);
       background: var(--bg-overlay);
-      border-bottom: 1px solid rgba(214, 74, 136, 0.1);
-      box-shadow: var(--shadow-md);
+      border-bottom: 2px solid rgba(214, 74, 136, 0.15);
+      box-shadow: var(--shadow-lg);
       position: sticky;
       top: 0;
       z-index: var(--z-sticky);
@@ -296,18 +296,20 @@
 
     .header-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.3rem, 5vw, 1.8rem);
-      font-weight: 800;
+      font-size: clamp(2rem, 7vw, 2.8rem);
+      font-weight: 900;
       background: var(--gradient-primary);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-align: left;
       flex: 1;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.5px;
       min-width: 0;
       word-break: break-word;
       animation: slideInLeft 0.6s var(--easing-out) 0.1s both;
+      text-shadow: 0 4px 8px rgba(214, 74, 136, 0.1);
+      filter: drop-shadow(0 2px 4px rgba(214, 74, 136, 0.15));
     }
 
     .header-controls {
@@ -322,14 +324,14 @@
       background: var(--gradient-primary);
       color: var(--white);
       border: 2px solid transparent;
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
       border-radius: var(--radius-full);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       transition: all var(--transition-fast) var(--easing-smooth);
       box-shadow: var(--shadow-lg);
       position: relative;
@@ -347,9 +349,9 @@
     }
 
     .btn-control:hover {
-      transform: scale(1.1) translateY(-3px);
+      transform: scale(1.15) translateY(-3px);
       box-shadow: var(--shadow-glow-lg);
-      filter: brightness(1.12);
+      filter: brightness(1.15);
     }
 
     .btn-control:hover::before {
@@ -361,7 +363,7 @@
     }
 
     .btn-control:focus-visible {
-      outline: 2px solid var(--primary);
+      outline: 3px solid var(--primary);
       outline-offset: 3px;
     }
 
@@ -394,7 +396,7 @@
     }
 
     #myVideo:hover {
-      transform: scale(1.01) translateY(-4px);
+      transform: scale(1.02) translateY(-4px);
       box-shadow: var(--shadow-glow-lg);
     }
 
@@ -410,23 +412,23 @@
     }
 
     #loading-text {
-      font-size: 1rem;
+      font-size: 1.1rem;
       background: var(--gradient-primary);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      font-weight: 600;
+      font-weight: 700;
       animation: pulse 2s var(--easing-smooth) infinite;
       display: inline-flex;
       align-items: center;
       gap: var(--space-sm);
-      letter-spacing: 0.3px;
+      letter-spacing: 0.4px;
     }
 
     #loading-text::after {
       content: '';
-      width: 6px;
-      height: 6px;
+      width: 8px;
+      height: 8px;
       background: var(--primary);
       border-radius: var(--radius-full);
       animation: bounce 1.4s var(--easing-smooth) infinite;
@@ -448,9 +450,10 @@
     /* ========== INVITATION IMAGE ========== */
     .invite-image-wrapper {
       margin-bottom: var(--space-2xl);
+      margin-top: -var(--space-lg);
       border-radius: var(--radius-lg);
       overflow: hidden;
-      box-shadow: var(--shadow-lg);
+      box-shadow: var(--shadow-xl);
       animation: slideUp 0.7s var(--easing-out);
       position: relative;
       transition: all var(--transition-normal);
@@ -484,7 +487,7 @@
     }
 
     .invite-image:hover {
-      transform: scale(1.02) translateY(-4px);
+      transform: scale(1.03) translateY(-6px);
     }
 
     /* ========== CELEBRATION MESSAGE ========== */
@@ -497,7 +500,7 @@
       background: var(--bg-card);
       border-radius: var(--radius-lg);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(214, 74, 136, 0.15);
+      border: 2px solid rgba(214, 74, 136, 0.2);
       box-shadow: var(--shadow-md);
       position: relative;
       overflow: hidden;
@@ -520,14 +523,14 @@
 
     .celebration-text {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.3rem, 6vw, 2rem);
+      font-size: clamp(1.5rem, 7vw, 2.2rem);
       background: var(--gradient-secondary);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      font-weight: 800;
+      font-weight: 900;
       margin: 0;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.4px;
       animation: scaleIn 0.6s var(--easing-bounce);
       line-height: 1.4;
       position: relative;
@@ -559,16 +562,16 @@
     .btn-glossy {
       position: relative;
       border: none;
-      padding: 0.95rem var(--space-xl);
-      font-size: 0.9rem;
-      font-weight: 700;
+      padding: 1rem var(--space-xl);
+      font-size: 0.95rem;
+      font-weight: 800;
       border-radius: 50px;
       cursor: pointer;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
+      letter-spacing: 1px;
       overflow: hidden;
       transition: all var(--transition-fast) var(--easing-smooth);
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-lg);
       color: var(--white);
       flex: 1;
       min-width: 140px;
@@ -577,7 +580,7 @@
       justify-content: center;
       gap: var(--space-sm);
       white-space: nowrap;
-      min-height: 52px;
+      min-height: 54px;
       font-family: 'Poppins', sans-serif;
       backdrop-filter: blur(10px);
     }
@@ -589,7 +592,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
       transition: left var(--transition-normal) var(--easing-smooth);
       z-index: 1;
     }
@@ -598,7 +601,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent);
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), transparent);
       opacity: 0;
       transition: opacity var(--transition-normal);
     }
@@ -617,9 +620,9 @@
     }
 
     .btn-glossy:hover {
-      transform: translateY(-4px);
+      transform: translateY(-5px);
       box-shadow: var(--shadow-glow-lg);
-      filter: brightness(1.12);
+      filter: brightness(1.15);
     }
 
     .btn-glossy:active {
@@ -627,7 +630,7 @@
     }
 
     .btn-glossy:focus-visible {
-      outline: 2px solid var(--primary);
+      outline: 3px solid var(--primary);
       outline-offset: 2px;
     }
 
@@ -642,19 +645,19 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       flex-shrink: 0;
       transition: transform var(--transition-normal);
     }
 
     .btn-glossy:hover .btn-icon {
-      transform: scale(1.2) rotate(5deg);
+      transform: scale(1.25) rotate(8deg);
     }
 
     .btn-text {
       display: inline;
-      font-weight: 700;
-      letter-spacing: 0.7px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
     }
 
     /* ========== BUTTON VARIANTS ========== */
@@ -663,7 +666,7 @@
     }
 
     .btn-rsvp:hover {
-      box-shadow: 0 8px 24px rgba(255, 64, 129, 0.35);
+      box-shadow: 0 10px 28px rgba(255, 64, 129, 0.4);
     }
 
     .btn-save-date {
@@ -671,7 +674,7 @@
     }
 
     .btn-save-date:hover {
-      box-shadow: 0 8px 24px rgba(38, 194, 129, 0.35);
+      box-shadow: 0 10px 28px rgba(38, 194, 129, 0.4);
     }
 
     .btn-location {
@@ -682,7 +685,7 @@
     }
 
     .btn-location:hover {
-      box-shadow: 0 8px 24px rgba(0, 188, 212, 0.35);
+      box-shadow: 0 10px 28px rgba(0, 188, 212, 0.4);
     }
 
     /* ========== CONFETTI ANIMATION ========== */
@@ -693,19 +696,19 @@
     }
 
     .confetti-shape {
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       border-radius: var(--radius-full);
       background: var(--primary);
       box-shadow: var(--shadow-glow);
     }
 
     .confetti-emoji {
-      font-size: 24px;
+      font-size: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
     }
 
     /* ========== FOOTER ========== */
@@ -713,19 +716,19 @@
       text-align: center;
       padding: var(--space-2xl) var(--space-lg);
       color: var(--text-secondary);
-      font-size: 0.95rem;
-      border-top: 1px solid rgba(214, 74, 136, 0.1);
+      font-size: 1rem;
+      border-top: 2px solid rgba(214, 74, 136, 0.15);
       margin-top: var(--space-md);
       background: var(--bg-overlay);
-      box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.03);
+      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
       animation: slideUp 0.7s var(--easing-out);
     }
 
     footer p {
       margin: var(--space-sm) 0;
       animation: slideUp 0.7s var(--easing-out);
-      letter-spacing: 0.3px;
-      font-weight: 500;
+      letter-spacing: 0.4px;
+      font-weight: 600;
     }
 
     footer a {
@@ -734,7 +737,7 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 800;
       transition: all var(--transition-fast) var(--easing-smooth);
       cursor: pointer;
       position: relative;
@@ -743,7 +746,7 @@
     footer a::after {
       content: '';
       position: absolute;
-      bottom: -2px;
+      bottom: -3px;
       left: 0;
       right: 0;
       height: 2px;
@@ -763,20 +766,21 @@
       html { font-size: 15px; }
 
       header {
-        padding: var(--space-md) var(--space-md);
+        padding: var(--space-lg) var(--space-md);
         gap: var(--space-sm);
+        border-bottom: 1.5px solid rgba(214, 74, 136, 0.15);
       }
 
       .header-title {
-        font-size: 1.2rem;
+        font-size: 1.6rem;
       }
 
       .header-controls { gap: var(--space-sm); }
 
       .btn-control {
-        width: 42px;
-        height: 42px;
-        font-size: 1.1rem;
+        width: 46px;
+        height: 46px;
+        font-size: 1.2rem;
       }
 
       #myVideo {
@@ -791,6 +795,7 @@
       .invite-image-wrapper {
         border-radius: var(--radius-md);
         margin-bottom: var(--space-xl);
+        margin-top: -var(--space-md);
       }
 
       #mainContentContainer {
@@ -799,7 +804,7 @@
 
       .celebration-container {
         margin: var(--space-xl) 0 var(--space-xl) 0;
-        padding: var(--space-xl) var(--space-lg);
+        padding: var(--space-xl) var(--space-md);
       }
 
       .button-group {
@@ -808,9 +813,9 @@
       }
 
       .btn-glossy {
-        padding: 0.9rem var(--space-lg);
-        font-size: 0.85rem;
-        min-height: 50px;
+        padding: 0.95rem var(--space-lg);
+        font-size: 0.9rem;
+        min-height: 52px;
         min-width: 130px;
       }
 
@@ -823,20 +828,20 @@
       html { font-size: 14px; }
 
       header {
-        padding: var(--space-sm) var(--space-sm);
+        padding: var(--space-md) var(--space-sm);
         gap: var(--space-sm);
       }
 
       .header-title {
-        font-size: 1.1rem;
+        font-size: 1.4rem;
       }
 
       .header-controls { gap: var(--space-sm); }
 
       .btn-control {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
       }
 
       #myVideo {
@@ -857,10 +862,11 @@
       .invite-image-wrapper {
         border-radius: var(--radius-md);
         margin-bottom: var(--space-lg);
+        margin-top: -var(--space-sm);
       }
 
       .celebration-text {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
       }
 
       .celebration-container {
@@ -874,15 +880,15 @@
       }
 
       .btn-glossy {
-        padding: 0.85rem var(--space-md);
-        font-size: 0.8rem;
+        padding: 0.9rem var(--space-md);
+        font-size: 0.85rem;
         min-width: 110px;
-        min-height: 48px;
+        min-height: 50px;
         gap: var(--space-sm);
       }
 
       .btn-icon {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
       }
 
       #mainContentContainer {
@@ -891,7 +897,7 @@
 
       footer {
         padding: var(--space-lg) var(--space-sm);
-        font-size: 0.9rem;
+        font-size: 0.95rem;
       }
     }
 
@@ -899,23 +905,23 @@
       html { font-size: 13px; }
 
       .header-title {
-        font-size: 0.95rem;
+        font-size: 1.2rem;
       }
 
       .btn-glossy {
-        padding: 0.8rem var(--space-md);
-        font-size: 0.75rem;
+        padding: 0.85rem var(--space-md);
+        font-size: 0.8rem;
         min-width: 95px;
-        min-height: 46px;
+        min-height: 48px;
         gap: var(--space-xs);
       }
 
       .btn-icon {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
       }
 
       .celebration-text {
-        font-size: 1.05rem;
+        font-size: 1.15rem;
       }
     }
 
@@ -991,8 +997,8 @@
 
     /* ========== SCROLLBAR STYLING ========== */
     ::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
     }
 
     ::-webkit-scrollbar-track {
@@ -1012,7 +1018,7 @@
 
     /* ========== FOCUS VISIBLE STYLES ========== */
     :focus-visible {
-      outline: 2px solid var(--primary);
+      outline: 3px solid var(--primary);
       outline-offset: 2px;
     }
   </style>
@@ -1097,9 +1103,9 @@
       event: {
         date: '20260305',
         startTime: '103000',
-        endTime: '113000', // 11:30 AM - UPDATED
+        endTime: '113000',
         title: 'Karthika Arun Baby Shower',
-        timezone: 'UTC', // Customize as needed
+        timezone: 'UTC',
       },
       features: {
         enableAnalytics: true,
@@ -1269,9 +1275,6 @@
       if (window.location.hash === '#debug') {
         console.debug(`📊 Event: ${eventName}`, eventData);
       }
-
-      // Send to analytics service here if needed
-      // analytics.track(eventName, eventData);
     }
 
     /* ========== VIDEO HANDLERS ========== */
@@ -1323,7 +1326,6 @@
       console.error('❌ Video loading error:', errorMsg);
       trackEvent('video_error', { error: errorMsg });
 
-      // Fallback: Show main content anyway
       addTimeout(() => {
         if (elements.mainContent) {
           elements.mainContent.classList.add('active');
@@ -1353,7 +1355,7 @@
     function createConfetti() {
       const colors = ['#d64a88', '#ff6b9d', '#9d6bc0', '#00bcd4', '#26c281', '#f4b350'];
       const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎀', '🌺', '💐', '🎊'];
-      const particleCount = window.innerWidth > 768 ? 100 : 60;
+      const particleCount = window.innerWidth > 768 ? 120 : 80;
       const fragment = document.createDocumentFragment();
 
       for (let i = 0; i < particleCount; i++) {
@@ -1548,16 +1550,10 @@
 
     /* ========== SECURITY SETUP ========== */
     function initSecurity() {
-      // Prevent right-click context menu
       document.addEventListener('contextmenu', (e) => e.preventDefault(), { passive: false });
-
-      // Prevent text selection
       document.addEventListener('selectstart', (e) => e.preventDefault(), { passive: false });
-
-      // Prevent drag and drop
       document.addEventListener('dragstart', (e) => e.preventDefault(), { passive: false });
 
-      // Prevent F12, Ctrl+Shift+I, and other dev tools shortcuts
       document.addEventListener('keydown', (event) => {
         const isDevTools = event.key === 'F12' || 
                           (event.ctrlKey && event.shiftKey && event.key === 'I') || 
