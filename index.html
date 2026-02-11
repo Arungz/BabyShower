@@ -29,6 +29,7 @@
   <link rel="apple-touch-icon" href="Images/logo.png">
 
   <style>
+    /* ========== CSS VARIABLES ========== */
     :root {
       --primary: #ec4899;
       --primary-dark: #be185d;
@@ -36,12 +37,9 @@
       --gradient-1: linear-gradient(135deg, #ec4899 0%, #a78bfa 50%, #60a5fa 100%);
       --gradient-2: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #34d399 100%);
       --gradient-3: linear-gradient(135deg, #f472b6 0%, #ec4899 50%, #a78bfa 100%);
-      
-      /* Premium Multi-Color Button Gradients */
       --gradient-rsvp: linear-gradient(135deg, #ff006e 0%, #ec4899 25%, #f472b6 50%, #a78bfa 75%, #7c3aed 100%);
       --gradient-save: linear-gradient(135deg, #06d6a0 0%, #34d399 25%, #10b981 50%, #059669 75%, #047857 100%);
       --gradient-location: linear-gradient(135deg, #00d9ff 0%, #06b6d4 25%, #0891b2 50%, #0e7490 75%, #164e63 100%);
-      
       --glow-pink: rgba(236, 72, 153, 0.5);
       --glow-purple: rgba(167, 139, 250, 0.5);
       --glow-cyan: rgba(6, 182, 212, 0.5);
@@ -61,6 +59,7 @@
       --shadow-xxl: 0 20px 64px rgba(0, 0, 0, 0.2);
     }
 
+    /* ========== BASE STYLES ========== */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -84,7 +83,7 @@
       font-weight: 400;
     }
 
-    /* Skip to main content link for accessibility */
+    /* ========== ACCESSIBILITY ========== */
     .skip-link {
       position: absolute;
       top: -40px;
@@ -368,7 +367,7 @@
       }
     }
 
-    /* ========== RSVP & ACTION BUTTONS ========== */
+    /* ========== BUTTONS CONTAINER ========== */
     .button-container {
       text-align: center;
       margin-bottom: 0;
@@ -389,7 +388,7 @@
       align-items: stretch;
     }
 
-    /* ========== PREMIUM GLOSSY BUTTON STYLES ========== */
+    /* ========== GLOSSY BUTTON BASE ========== */
     .btn-glossy {
       position: relative;
       border: none;
@@ -415,7 +414,6 @@
       background-position: 0% 0%;
     }
 
-    /* Enhanced Glossy shine effect */
     .btn-glossy::before {
       content: '';
       position: absolute;
@@ -430,7 +428,6 @@
       opacity: 1;
     }
 
-    /* Enhanced Hover shine effect */
     .btn-glossy::after {
       content: '';
       position: absolute;
@@ -474,7 +471,7 @@
       transform: none;
     }
 
-    /* RSVP Button - Premium Pink to Purple Multi-Gradient */
+    /* ========== BUTTON VARIANTS ========== */
     .btn-rsvp {
       background: var(--gradient-rsvp);
       background-size: 200% 200%;
@@ -485,7 +482,6 @@
       filter: brightness(1.15);
     }
 
-    /* Save Date Button - Premium Green Multi-Gradient */
     .btn-save-date {
       background: var(--gradient-save);
       background-size: 200% 200%;
@@ -496,7 +492,6 @@
       filter: brightness(1.15);
     }
 
-    /* Location Button - Premium Cyan Multi-Gradient */
     .btn-location {
       background: var(--gradient-location);
       background-size: 200% 200%;
@@ -508,6 +503,21 @@
     .btn-location:hover {
       box-shadow: 0 20px 64px rgba(6, 182, 212, 0.6);
       filter: brightness(1.15);
+    }
+
+    /* ========== BUTTON TEXT VISIBILITY ========== */
+    .btn-text-label {
+      display: inline;
+    }
+
+    @media (max-width: 580px) {
+      .btn-text-label {
+        display: none;
+      }
+
+      .btn-location .btn-text-label {
+        display: inline;
+      }
     }
 
     /* ========== CONFETTI ========== */
@@ -620,10 +630,6 @@
         font-size: 0.95rem;
       }
 
-      .btn-glossy span:last-child {
-        display: inline;
-      }
-
       .celebration-container {
         margin-top: 0.8rem;
         margin-bottom: 1rem;
@@ -635,18 +641,6 @@
 
       footer {
         padding: 2rem 1rem;
-      }
-    }
-
-    @media (max-width: 580px) {
-      html { font-size: 14px; }
-
-      .btn-glossy span:last-child {
-        display: none;
-      }
-
-      .btn-location span:last-child {
-        display: inline;
       }
     }
 
@@ -714,18 +708,10 @@
         gap: 0.4rem;
       }
 
-      .btn-glossy span:last-child {
-        display: none;
-      }
-
       .btn-location {
         font-size: 0.85rem;
         padding: 0.9rem 1.4rem;
         margin-top: 0.4rem;
-      }
-
-      .btn-location span:last-child {
-        display: inline;
       }
 
       #mainContentContainer {
@@ -846,16 +832,16 @@
       <div class="button-group">
         <button class="btn-glossy btn-rsvp" id="rsvpBtn" type="button" aria-label="Vote Now - RSVP to the Baby Shower">
           <span>💌</span>
-          <span>Vote Now</span>
+          <span class="btn-text-label">Vote Now</span>
         </button>
         <button class="btn-glossy btn-save-date" id="saveDateBtn" type="button" aria-label="Save Date to Calendar">
           <span>📅</span>
-          <span>Save Date</span>
+          <span class="btn-text-label">Save Date</span>
         </button>
       </div>
       <button class="btn-glossy btn-location" id="locationBtn" type="button" aria-label="View event location on Google Maps">
         <span>📍</span>
-        <span>Get Location</span>
+        <span class="btn-text-label">Get Location</span>
       </button>
     </div>
   </main>
@@ -904,7 +890,7 @@
     };
 
     // ========== STATE MANAGEMENT ==========
-    let state = {
+    const state = {
       isMuted: true,
       isAnimating: false,
       hasEnded: false,
@@ -914,6 +900,11 @@
     };
 
     // ========== UTILITY FUNCTIONS ==========
+    /**
+     * Safely opens a URL in a new tab
+     * @param {string} url - The URL to open
+     * @param {string} target - The target attribute (default: '_blank')
+     */
     function openLink(url, target = '_blank') {
       if (!url || typeof url !== 'string') {
         console.warn('Invalid URL provided:', url);
@@ -921,16 +912,25 @@
       }
       try {
         window.open(url, target, 'noopener,noreferrer');
-      } catch (e) {
-        console.error('Failed to open link:', e);
+      } catch (error) {
+        console.error('Failed to open link:', error);
       }
     }
 
+    /**
+     * Clears all pending timeouts
+     */
     function clearTimeouts() {
       state.timeouts.forEach(timeout => clearTimeout(timeout));
       state.timeouts = [];
     }
 
+    /**
+     * Adds a timeout with automatic tracking
+     * @param {Function} callback - The callback function
+     * @param {number} delay - The delay in milliseconds
+     * @returns {number} The timeout ID
+     */
     function addTimeout(callback, delay) {
       if (typeof callback !== 'function') {
         console.warn('Invalid callback provided to addTimeout');
@@ -942,16 +942,22 @@
     }
 
     // ========== VIDEO HANDLERS ==========
+    /**
+     * Handles video end event - shows main content and triggers celebrations
+     */
     function handleVideoEnded() {
       if (state.isAnimating || state.hasEnded) return;
+      
       state.isAnimating = true;
       state.hasEnded = true;
 
+      // Hide video
       if (elements.video) {
         elements.video.style.display = 'none';
         elements.video.pause();
       }
 
+      // Show main content
       if (elements.mainContent) {
         elements.mainContent.classList.add('active');
       }
@@ -970,12 +976,19 @@
       }, CONFIG.timing.celebrationDelay);
     }
 
+    /**
+     * Handles when video can play
+     */
     function handleVideoCanPlay() {
       if (elements.loadingText) {
         elements.loadingText.style.display = 'none';
       }
     }
 
+    /**
+     * Handles video errors
+     * @param {Event} error - The error event
+     */
     function handleVideoError(error) {
       if (elements.loadingText) {
         elements.loadingText.innerHTML = '❌ Video loading failed';
@@ -985,6 +998,9 @@
     }
 
     // ========== VIDEO INITIALIZATION ==========
+    /**
+     * Initializes video element and event listeners
+     */
     function initVideo() {
       if (!elements.video) {
         console.warn('Video element not found');
@@ -1001,6 +1017,9 @@
     }
 
     // ========== CONFETTI ANIMATION ==========
+    /**
+     * Creates confetti animation effect
+     */
     function createConfetti() {
       const colors = ['#ec4899', '#f472b6', '#d946ef', '#a78bfa', '#60a5fa', '#34d399', '#fbbf24'];
       const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎀', '🌺'];
@@ -1058,12 +1077,12 @@
                 if (confetti.parentElement) {
                   confetti.remove();
                 }
-              } catch (e) {
+              } catch (error) {
                 // Silently handle cleanup errors
               }
             };
-          } catch (e) {
-            console.warn('Confetti animation error:', e);
+          } catch (error) {
+            console.warn('Confetti animation error:', error);
           }
         }, i * 8);
       }
@@ -1072,6 +1091,9 @@
     }
 
     // ========== MUSIC TOGGLE ==========
+    /**
+     * Initializes music toggle button
+     */
     function initMusicToggle() {
       if (!elements.musicToggle) return;
 
@@ -1086,6 +1108,9 @@
     }
 
     // ========== FULLSCREEN TOGGLE ==========
+    /**
+     * Initializes fullscreen toggle button
+     */
     function initFullscreenToggle() {
       if (!elements.fullscreenToggle) return;
 
@@ -1093,7 +1118,10 @@
         try {
           if (!document.fullscreenElement) {
             const elem = document.documentElement;
-            const requestFS = elem.requestFullscreen || elem.webkitRequestFullscreen || elem.mozRequestFullScreen || elem.msRequestFullscreen;
+            const requestFS = elem.requestFullscreen || 
+                             elem.webkitRequestFullscreen || 
+                             elem.mozRequestFullScreen || 
+                             elem.msRequestFullscreen;
 
             if (requestFS) {
               await requestFS.call(elem);
@@ -1101,7 +1129,10 @@
               state.isFullscreen = true;
             }
           } else {
-            const exitFS = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
+            const exitFS = document.exitFullscreen || 
+                          document.webkitExitFullscreen || 
+                          document.mozCancelFullScreen || 
+                          document.msExitFullscreen;
 
             if (exitFS) {
               await exitFS.call(document);
@@ -1109,13 +1140,16 @@
               state.isFullscreen = false;
             }
           }
-        } catch (e) {
-          console.warn('Fullscreen error:', e);
+        } catch (error) {
+          console.warn('Fullscreen error:', error);
         }
       });
     }
 
     // ========== LOCATION HANDLER ==========
+    /**
+     * Initializes location button
+     */
     function initLocationHandler() {
       if (elements.endImage) {
         elements.endImage.style.cursor = 'default';
@@ -1126,9 +1160,9 @@
           openLink(CONFIG.locations.event);
         });
 
-        elements.locationBtn.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
+        elements.locationBtn.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
             openLink(CONFIG.locations.event);
           }
         });
@@ -1136,6 +1170,9 @@
     }
 
     // ========== RSVP HANDLERS ==========
+    /**
+     * Initializes RSVP and Save Date buttons
+     */
     function initRSVPHandlers() {
       if (elements.rsvpBtn) {
         elements.rsvpBtn.addEventListener('click', () => {
@@ -1155,7 +1192,10 @@
       }
     }
 
-    // ========== SECURITY & PROTECTION ==========
+    // ========== SECURITY SETUP ==========
+    /**
+     * Initializes security measures
+     */
     function initSecurity() {
       document.addEventListener('contextmenu', (e) => e.preventDefault(), { passive: false });
       document.addEventListener('dragstart', (e) => e.preventDefault(), { passive: false });
@@ -1163,12 +1203,14 @@
 
       document.addEventListener(
         'keydown',
-        (e) => {
-          const isDevTools = e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u');
-          const isFKey = e.key.startsWith('F') && !isNaN(parseInt(e.key.substring(1), 10));
+        (event) => {
+          const isDevTools = event.key === 'F12' || 
+                            (event.ctrlKey && event.shiftKey && event.key === 'I') || 
+                            (event.ctrlKey && event.key === 'u');
+          const isFKey = event.key.startsWith('F') && !isNaN(parseInt(event.key.substring(1), 10));
 
           if (isDevTools || isFKey) {
-            e.preventDefault();
+            event.preventDefault();
           }
         },
         { passive: false }
@@ -1176,6 +1218,9 @@
     }
 
     // ========== PAGE VISIBILITY ==========
+    /**
+     * Handles page visibility changes
+     */
     function initPageVisibility() {
       document.addEventListener('visibilitychange', () => {
         if (!elements.video) return;
@@ -1183,14 +1228,17 @@
         if (document.hidden) {
           elements.video.pause();
         } else {
-          elements.video.play().catch((e) => {
-            console.warn('Video play error:', e);
+          elements.video.play().catch((error) => {
+            console.warn('Video play error:', error);
           });
         }
       });
     }
 
     // ========== LAZY LOADING ==========
+    /**
+     * Initializes lazy loading for images
+     */
     function initLazyLoading() {
       const images = document.querySelectorAll('img');
       images.forEach((img) => {
@@ -1201,6 +1249,9 @@
     }
 
     // ========== CLEANUP ==========
+    /**
+     * Initializes cleanup on page unload
+     */
     function initCleanup() {
       window.addEventListener('beforeunload', () => {
         clearTimeouts();
@@ -1211,7 +1262,10 @@
       });
     }
 
-    // ========== INITIALIZATION ==========
+    // ========== MAIN INITIALIZATION ==========
+    /**
+     * Initializes all components
+     */
     function init() {
       if (state.isInitialized) {
         return;
@@ -1238,12 +1292,12 @@
     }
 
     // Global error handler
-    window.addEventListener('error', (e) => {
-      console.error('[Baby Shower Error]', e.error);
+    window.addEventListener('error', (event) => {
+      console.error('[Baby Shower Error]', event.error);
     });
 
-    window.addEventListener('unhandledrejection', (e) => {
-      console.error('[Baby Shower Promise Error]', e.reason);
+    window.addEventListener('unhandledrejection', (event) => {
+      console.error('[Baby Shower Promise Error]', event.reason);
     });
   </script>
 </body>
