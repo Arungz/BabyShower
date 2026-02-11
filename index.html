@@ -55,12 +55,14 @@
       --bg-overlay: rgba(255, 255, 255, 0.96);
       --bg-card: rgba(255, 255, 255, 0.85);
       
-      --space-sm: 0.5rem;
-      --space-md: 1rem;
-      --space-lg: 1.5rem;
-      --space-xl: 2rem;
-      --space-2xl: 2.5rem;
-      --space-3xl: 3rem;
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+      --space-4xl: 5rem;
       
       --transition-fast: 0.15s;
       --transition-normal: 0.3s;
@@ -169,6 +171,7 @@
     .toast-icon {
       font-size: 1.5rem;
       flex-shrink: 0;
+      animation: bounce 0.6s var(--easing-bounce);
     }
 
     /* ========== ANIMATIONS ========== */
@@ -233,6 +236,37 @@
       100% { opacity: 1; transform: scale(1) rotate(0); }
     }
 
+    @keyframes showerRain {
+      0% {
+        transform: translateY(-100vh) translateX(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) translateX(50px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* ========== SHOWER EFFECT ========== */
+    .shower-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+      overflow: hidden;
+      display: none;
+    }
+
+    .shower-container.active {
+      display: block;
+    }
+
+    .shower-particle {
+      position: absolute;
+      font-size: 2rem;
+      animation: showerRain linear forwards;
+    }
+
     /* ========== PROGRESS BAR ========== */
     .progress-bar {
       position: fixed;
@@ -250,7 +284,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: var(--space-lg);
+      padding: var(--space-lg) var(--space-xl);
       background: var(--bg-overlay);
       border-bottom: 2px solid rgba(214, 74, 136, 0.15);
       box-shadow: var(--shadow-lg);
@@ -336,12 +370,12 @@
     /* ========== VIDEO SECTION ========== */
     .video-wrapper {
       max-width: 95%;
-      margin: var(--space-lg) auto 0;
+      margin: var(--space-3xl) auto var(--space-xl);
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0 var(--space-sm);
+      padding: 0 var(--space-md);
       animation: slideUp 0.7s var(--easing-out);
     }
 
@@ -367,7 +401,7 @@
     }
 
     .loading-container {
-      margin-top: var(--space-md);
+      margin-top: var(--space-xl);
       min-height: 80px;
       text-align: center;
       display: flex;
@@ -405,7 +439,7 @@
       display: none;
       max-width: 760px;
       margin: 0 auto;
-      padding: var(--space-md) var(--space-lg) var(--space-3xl) var(--space-lg);
+      padding: var(--space-xl) var(--space-xl) var(--space-4xl) var(--space-xl);
       animation: slideUp 0.7s var(--easing-out) 0.3s both;
     }
 
@@ -416,7 +450,7 @@
     /* ========== INVITATION IMAGE ========== */
     .invite-image-wrapper {
       margin-bottom: var(--space-2xl);
-      margin-top: -var(--space-lg);
+      margin-top: 0;
       border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: var(--shadow-xl);
@@ -450,10 +484,10 @@
     /* ========== CELEBRATION MESSAGE ========== */
     .celebration-container {
       text-align: center;
-      margin: var(--space-2xl) 0 var(--space-2xl) 0;
+      margin: var(--space-3xl) 0;
       display: none;
       animation: slideUp 0.7s var(--easing-out);
-      padding: var(--space-2xl) var(--space-lg);
+      padding: var(--space-3xl) var(--space-xl);
       background: var(--bg-card);
       border-radius: var(--radius-lg);
       backdrop-filter: blur(10px);
@@ -489,7 +523,7 @@
       margin: 0;
       letter-spacing: 0.5px;
       animation: scaleIn 0.6s var(--easing-bounce);
-      line-height: 1.4;
+      line-height: 1.5;
       position: relative;
       z-index: 2;
     }
@@ -510,7 +544,7 @@
       gap: var(--space-md);
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: var(--space-lg);
+      margin-bottom: var(--space-xl);
       width: 100%;
     }
 
@@ -518,7 +552,7 @@
     .btn-glossy {
       position: relative;
       border: none;
-      padding: 1.1rem var(--space-xl);
+      padding: 1.2rem var(--space-xl);
       font-size: 0.95rem;
       font-weight: 800;
       border-radius: 50px;
@@ -536,7 +570,7 @@
       justify-content: center;
       gap: var(--space-md);
       white-space: nowrap;
-      min-height: 56px;
+      min-height: 58px;
       font-family: 'Poppins', sans-serif;
       backdrop-filter: blur(10px);
       border: 2px solid rgba(255,255,255,0.2);
@@ -584,12 +618,6 @@
 
     .btn-glossy:active {
       transform: translateY(-2px) scale(0.98);
-    }
-
-    .btn-glossy:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
     }
 
     .btn-icon {
@@ -652,8 +680,7 @@
     .confetti {
       position: fixed;
       pointer-events: none;
-      z-index: var(--z-modal);
-      animation: popIn 0.6s var(--easing-bounce);
+      z-index: 35;
     }
 
     .confetti-shape {
@@ -670,6 +697,7 @@
       align-items: center;
       justify-content: center;
       filter: drop-shadow(0 3px 8px rgba(0,0,0,0.2));
+      animation: popIn 0.6s var(--easing-bounce);
     }
 
     /* ========== MODAL ========== */
@@ -683,6 +711,7 @@
       z-index: var(--z-modal);
       animation: fadeIn 0.3s var(--easing-smooth);
       backdrop-filter: blur(5px);
+      padding: var(--space-md);
     }
 
     .modal.active {
@@ -692,10 +721,10 @@
     .modal-content {
       background: var(--bg-card);
       border-radius: var(--radius-lg);
-      padding: var(--space-2xl);
+      padding: var(--space-3xl) var(--space-xl);
       box-shadow: var(--shadow-xl);
       max-width: 450px;
-      width: 90%;
+      width: 100%;
       animation: slideUp 0.3s var(--easing-out);
       border: 2px solid rgba(214, 74, 136, 0.2);
       position: relative;
@@ -710,7 +739,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: var(--space-xl);
+      margin-bottom: var(--space-2xl);
       text-align: center;
       font-weight: 900;
     }
@@ -718,12 +747,12 @@
     .modal-options {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--space-md);
+      gap: var(--space-lg);
       margin-bottom: var(--space-xl);
     }
 
     .modal-btn {
-      padding: var(--space-lg);
+      padding: var(--space-xl);
       border: none;
       border-radius: 12px;
       cursor: pointer;
@@ -733,7 +762,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: var(--space-sm);
+      gap: var(--space-md);
       font-size: 0.9rem;
     }
 
@@ -742,22 +771,26 @@
       box-shadow: var(--shadow-lg);
     }
 
+    .modal-btn:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+
     .modal-btn-icon {
       font-size: 2.2rem;
     }
 
     .close-modal {
       position: absolute;
-      top: var(--space-lg);
-      right: var(--space-lg);
+      top: var(--space-xl);
+      right: var(--space-xl);
       background: none;
       border: none;
       font-size: 1.8rem;
       cursor: pointer;
       color: var(--text-secondary);
       transition: all var(--transition-normal);
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -773,11 +806,11 @@
     /* ========== FOOTER ========== */
     footer {
       text-align: center;
-      padding: var(--space-2xl) var(--space-lg);
+      padding: var(--space-3xl) var(--space-xl);
       color: var(--text-secondary);
       font-size: 1rem;
       border-top: 2px solid rgba(214, 74, 136, 0.15);
-      margin-top: var(--space-lg);
+      margin-top: var(--space-2xl);
       background: var(--bg-overlay);
       box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
       animation: slideUp 0.7s var(--easing-out);
@@ -832,39 +865,175 @@
 
     /* ========== RESPONSIVE ========== */
     @media (max-width: 768px) {
+      :root {
+        --space-xs: 0.5rem;
+        --space-sm: 0.75rem;
+        --space-md: 1rem;
+        --space-lg: 1.5rem;
+        --space-xl: 2rem;
+        --space-2xl: 2.5rem;
+        --space-3xl: 3rem;
+        --space-4xl: 3.5rem;
+      }
+
       html { font-size: 15px; }
-      header { padding: var(--space-lg) var(--space-md); gap: var(--space-sm); }
+      
+      header { 
+        padding: var(--space-lg) var(--space-md);
+        gap: var(--space-sm);
+      }
+      
       .header-title { font-size: 1.6rem; }
-      .btn-control { width: 48px; height: 48px; font-size: 1.3rem; }
-      #myVideo { max-height: 65vh; }
-      #mainContentContainer { padding: var(--space-md) var(--space-md) var(--space-2xl) var(--space-md); }
-      .celebration-container { margin: var(--space-xl) 0; padding: var(--space-xl) var(--space-md); }
-      .btn-glossy { padding: 1rem var(--space-lg); font-size: 0.9rem; min-height: 52px; }
-      footer { padding: var(--space-xl) var(--space-md); }
-      .toast { bottom: 1rem; right: 1rem; left: 1rem; max-width: none; }
-      .modal-options { grid-template-columns: 1fr; }
+      
+      .btn-control { 
+        width: 48px; 
+        height: 48px; 
+        font-size: 1.3rem; 
+      }
+      
+      #myVideo { 
+        max-height: 65vh;
+        border: 3px solid rgba(214, 74, 136, 0.2);
+      }
+      
+      .video-wrapper {
+        margin: var(--space-2xl) auto var(--space-lg);
+      }
+      
+      #mainContentContainer { 
+        padding: var(--space-md) var(--space-lg) var(--space-3xl) var(--space-lg);
+      }
+      
+      .celebration-container { 
+        margin: var(--space-2xl) 0;
+        padding: var(--space-2xl) var(--space-lg);
+      }
+      
+      .btn-glossy { 
+        padding: 1rem var(--space-lg);
+        font-size: 0.9rem;
+        min-height: 52px;
+      }
+      
+      footer { 
+        padding: var(--space-2xl) var(--space-lg);
+      }
+      
+      .toast { 
+        bottom: 1rem;
+        right: 1rem;
+        left: 1rem;
+        max-width: none;
+      }
+      
+      .modal-options { 
+        grid-template-columns: 1fr;
+      }
+      
+      .modal-content {
+        padding: var(--space-2xl) var(--space-lg);
+      }
     }
 
     @media (max-width: 600px) {
+      :root {
+        --space-xs: 0.5rem;
+        --space-sm: 0.75rem;
+        --space-md: 1rem;
+        --space-lg: 1.25rem;
+        --space-xl: 1.5rem;
+        --space-2xl: 2rem;
+        --space-3xl: 2.5rem;
+        --space-4xl: 3rem;
+      }
+
       html { font-size: 14px; }
-      header { padding: var(--space-md) var(--space-sm); }
-      .header-title { font-size: 1.4rem; }
-      .btn-control { width: 46px; height: 46px; font-size: 1.2rem; }
-      #myVideo { max-height: 60vh; }
-      .celebration-text { font-size: 1.3rem; }
-      .btn-glossy { padding: 0.95rem var(--space-md); font-size: 0.85rem; min-height: 50px; }
-      #mainContentContainer { padding: var(--space-sm) var(--space-sm) var(--space-xl) var(--space-sm); }
-      footer { padding: var(--space-lg) var(--space-sm); font-size: 0.95rem; }
+      
+      header { 
+        padding: var(--space-md) var(--space-sm);
+      }
+      
+      .header-title { 
+        font-size: 1.4rem;
+      }
+      
+      .btn-control { 
+        width: 46px;
+        height: 46px;
+        font-size: 1.2rem;
+      }
+      
+      #myVideo { 
+        max-height: 60vh;
+        border: 3px solid rgba(214, 74, 136, 0.2);
+      }
+      
+      .video-wrapper {
+        margin: var(--space-xl) auto var(--space-md);
+        padding: 0 var(--space-sm);
+      }
+      
+      .celebration-text { 
+        font-size: 1.3rem;
+      }
+      
+      .btn-glossy { 
+        padding: 0.95rem var(--space-md);
+        font-size: 0.85rem;
+        min-height: 50px;
+        gap: var(--space-sm);
+      }
+      
+      #mainContentContainer { 
+        padding: var(--space-sm) var(--space-md) var(--space-2xl) var(--space-md);
+      }
+      
+      footer {
+        padding: var(--space-xl) var(--space-md);
+        font-size: 0.95rem;
+      }
+      
+      .modal-content {
+        padding: var(--space-xl) var(--space-md);
+        width: 95%;
+      }
+      
+      .modal-title {
+        font-size: 1.6rem;
+        margin-bottom: var(--space-lg);
+      }
     }
 
     @media (max-width: 380px) {
+      :root {
+        --space-xs: 0.4rem;
+        --space-sm: 0.6rem;
+        --space-md: 0.8rem;
+        --space-lg: 1rem;
+        --space-xl: 1.2rem;
+        --space-2xl: 1.5rem;
+        --space-3xl: 2rem;
+        --space-4xl: 2.5rem;
+      }
+
       html { font-size: 13px; }
-      .header-title { font-size: 1.2rem; }
-      .btn-glossy { padding: 0.9rem var(--space-md); font-size: 0.8rem; min-height: 48px; }
+      
+      .header-title { 
+        font-size: 1.2rem;
+      }
+      
+      .btn-glossy { 
+        padding: 0.9rem var(--space-md);
+        font-size: 0.8rem;
+        min-height: 48px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      * { 
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
     }
 
     @media (prefers-color-scheme: dark) {
@@ -877,15 +1046,34 @@
         --text-secondary: #a0a8b8;
         --gradient-bg: var(--gradient-dark);
       }
-      body { background: var(--gradient-dark); }
-      header { background: var(--bg-overlay); border-bottom-color: rgba(214, 74, 136, 0.15); }
-      footer { background: var(--bg-overlay); border-top-color: rgba(214, 74, 136, 0.15); }
+      
+      body { 
+        background: var(--gradient-dark);
+      }
+      
+      header { 
+        background: var(--bg-overlay);
+        border-bottom-color: rgba(214, 74, 136, 0.15);
+      }
+      
+      footer { 
+        background: var(--bg-overlay);
+        border-top-color: rgba(214, 74, 136, 0.15);
+      }
     }
 
     @media print {
-      header, footer, .btn-control, .btn-glossy, .video-wrapper { display: none; }
-      #mainContentContainer { padding: 0; }
-      body { background: white; }
+      header, footer, .btn-control, .btn-glossy, .video-wrapper { 
+        display: none;
+      }
+      
+      #mainContentContainer { 
+        padding: 0;
+      }
+      
+      body { 
+        background: white;
+      }
     }
 
     ::-webkit-scrollbar {
@@ -917,6 +1105,7 @@
 </head>
 <body>
   <div class="progress-bar" id="progressBar"></div>
+  <div class="shower-container" id="showerContainer"></div>
 
   <header role="banner">
     <h1 class="header-title">💕 Baby Shower 💕</h1>
@@ -1099,6 +1288,33 @@ END:VCALENDAR`;
       }
     }
 
+    class Shower {
+      static start() {
+        const container = document.getElementById('showerContainer');
+        if (!container) return;
+
+        container.classList.add('active');
+        const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎀', '🌺', '💐', '🎊'];
+        const duration = 3000;
+
+        for (let i = 0; i < 40; i++) {
+          setTimeout(() => {
+            const particle = document.createElement('div');
+            particle.className = 'shower-particle';
+            particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            particle.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+            container.appendChild(particle);
+
+            setTimeout(() => particle.remove(), duration);
+          }, i * 50);
+        }
+
+        setTimeout(() => container.classList.remove('active'), duration + 500);
+      }
+    }
+
     class Share {
       static show() {
         document.getElementById('shareModal').classList.add('active');
@@ -1146,7 +1362,8 @@ END:VCALENDAR`;
       shareWhatsApp: document.getElementById('shareWhatsApp'),
       shareFacebook: document.getElementById('shareFacebook'),
       shareTwitter: document.getElementById('shareTwitter'),
-      shareEmail: document.getElementById('shareEmail')
+      shareEmail: document.getElementById('shareEmail'),
+      showerContainer: document.getElementById('showerContainer')
     };
 
     const state = { isMuted: true, isEnded: false, timeouts: [] };
@@ -1177,6 +1394,7 @@ END:VCALENDAR`;
       timeout(() => {
         if (el.celebration) el.celebration.classList.add('active');
         if (el.buttonContainer) el.buttonContainer.classList.add('active');
+        Shower.start();
         createConfetti();
         Progress.complete();
       }, 800);
@@ -1253,9 +1471,9 @@ END:VCALENDAR`;
       el.fullscreenToggle?.addEventListener('click', async () => {
         try {
           if (!document.fullscreenElement) {
-            await document.documentElement.requestFullscreen();
+            await document.documentElement.requestFullscreen().catch(() => {});
           } else {
-            await document.exitFullscreen();
+            await document.exitFullscreen().catch(() => {});
           }
         } catch (e) {
           console.warn('Fullscreen not available');
