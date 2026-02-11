@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-  <meta property="og:title" content="Baby Shower Celebration" />
-  <meta property="og:description" content="Join us for a magical Baby Shower Invitation with family and friends!" />
+  <meta property="og:title" content="Baby Shower Celebration - Join Us!" />
+  <meta property="og:description" content="You are invited to a magical Baby Shower celebration with family and friends!" />
   <meta property="og:image" content="https://arungz.github.io/BabyShower/Images/1770581656335.png" />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#d64a88">
@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
   
-  <title>Baby Shower - Magical Celebration</title>
+  <title>Baby Shower - Magical Celebration Invitation</title>
   <link rel="icon" type="image/png" href="Images/logo.png">
 
   <style>
@@ -31,9 +31,11 @@
       --secondary: #9d6bc0;
       --accent: #00bcd4;
       --success: #26c281;
+      --danger: #ff4081;
       --warning: #f4b350;
       --white: #ffffff;
       --black: #1a1a2e;
+      --gray: #f5f5f5;
       
       --gradient-primary: linear-gradient(135deg, #d64a88 0%, #9d6bc0 100%);
       --gradient-secondary: linear-gradient(135deg, #9d6bc0 0%, #00bcd4 100%);
@@ -43,8 +45,6 @@
       --gradient-share: linear-gradient(135deg, #8338ec 0%, #3a86ff 100%);
       --gradient-bg: linear-gradient(180deg, #fefbff 0%, #f5f2ff 50%, #faf7ff 100%);
       --gradient-dark: linear-gradient(180deg, #0d1419 0%, #1a1f2e 50%, #141820 100%);
-      --gradient-overlay: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 100%);
-      --gradient-shimmer: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
       
       --text-primary: #1a1a2e;
       --text-secondary: #666b7f;
@@ -93,6 +93,7 @@
       font-size: 16px;
       scroll-behavior: smooth;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     body {
@@ -117,21 +118,37 @@
       z-index: -1;
     }
 
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 400px;
+      background: radial-gradient(ellipse at 80% 100%, rgba(157, 107, 192, 0.08), transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* ========== TOAST NOTIFICATIONS ========== */
     .toast {
       position: fixed;
       bottom: 2rem;
       right: 1.5rem;
       background: var(--bg-card);
-      padding: 1rem 1.5rem;
+      padding: 1.2rem 1.8rem;
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-xl);
       animation: slideUp 0.4s var(--easing-out) forwards;
       backdrop-filter: blur(10px);
       border: 2px solid rgba(214, 74, 136, 0.3);
-      max-width: 300px;
+      max-width: 320px;
       z-index: var(--z-notification);
       font-weight: 600;
       font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
     }
 
     .toast.success {
@@ -144,24 +161,17 @@
       background: rgba(255, 64, 129, 0.1);
     }
 
-    .skip-link {
-      position: absolute;
-      top: -40px;
-      left: 0;
-      background: var(--primary);
-      color: var(--white);
-      padding: var(--space-sm) var(--space-md);
-      text-decoration: none;
-      z-index: var(--z-sticky);
-      border-radius: 0 0 8px 0;
-      font-weight: 600;
-      font-size: 0.875rem;
+    .toast.info {
+      border-color: rgba(0, 188, 212, 0.4);
+      background: rgba(0, 188, 212, 0.1);
     }
 
-    .skip-link:focus {
-      top: 0;
+    .toast-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
     }
 
+    /* ========== ANIMATIONS ========== */
     @keyframes slideUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -198,7 +208,7 @@
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0px); }
+      0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
 
@@ -212,11 +222,30 @@
       to { opacity: 0; }
     }
 
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    @keyframes glow {
+      0%, 100% { box-shadow: var(--shadow-glow); }
+      50% { box-shadow: var(--shadow-glow-lg); }
     }
 
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.3) rotate(-45deg); }
+      50% { transform: scale(1.1); }
+      100% { opacity: 1; transform: scale(1) rotate(0); }
+    }
+
+    /* ========== PROGRESS BAR ========== */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+      z-index: var(--z-sticky);
+      box-shadow: 0 0 15px rgba(214, 74, 136, 0.6);
+      border-radius: 2px;
+    }
+
+    /* ========== HEADER ========== */
     header {
       display: flex;
       align-items: center;
@@ -235,7 +264,7 @@
 
     .header-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 7vw, 2.8rem);
+      font-size: clamp(1.8rem, 7vw, 2.8rem);
       font-weight: 900;
       background: var(--gradient-primary);
       -webkit-background-clip: text;
@@ -266,19 +295,28 @@
       background: var(--gradient-primary);
       color: var(--white);
       border: none;
-      width: 48px;
-      height: 48px;
+      width: 50px;
+      height: 50px;
       border-radius: var(--radius-full);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       transition: all var(--transition-fast) var(--easing-smooth);
       box-shadow: var(--shadow-lg);
       position: relative;
       overflow: hidden;
       flex-shrink: 0;
+    }
+
+    .btn-control::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3), transparent);
+      opacity: 0;
+      transition: opacity var(--transition-normal);
     }
 
     .btn-control:hover {
@@ -287,10 +325,15 @@
       filter: brightness(1.15);
     }
 
+    .btn-control:hover::before {
+      opacity: 1;
+    }
+
     .btn-control:active {
       transform: scale(0.92);
     }
 
+    /* ========== VIDEO SECTION ========== */
     .video-wrapper {
       max-width: 95%;
       margin: var(--space-lg) auto 0;
@@ -308,21 +351,24 @@
       max-height: 70vh;
       border-radius: var(--radius-lg);
       object-fit: cover;
+      object-position: center;
       box-shadow: var(--shadow-lg);
       background: var(--gradient-bg);
       display: block;
       aspect-ratio: 9 / 16;
-      border: 3px solid rgba(214, 74, 136, 0.2);
+      border: 4px solid rgba(214, 74, 136, 0.2);
+      transition: all var(--transition-normal);
     }
 
     #myVideo:hover {
       transform: scale(1.02) translateY(-4px);
       box-shadow: var(--shadow-glow-lg);
+      border-color: rgba(214, 74, 136, 0.4);
     }
 
     .loading-container {
       margin-top: var(--space-md);
-      min-height: 60px;
+      min-height: 80px;
       text-align: center;
       display: flex;
       align-items: center;
@@ -354,19 +400,10 @@
       animation: bounce 1.4s var(--easing-smooth) infinite;
     }
 
-    .progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      background: var(--gradient-primary);
-      z-index: var(--z-sticky);
-      box-shadow: 0 0 10px rgba(214, 74, 136, 0.5);
-    }
-
+    /* ========== MAIN CONTENT ========== */
     #mainContentContainer {
       display: none;
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto;
       padding: var(--space-md) var(--space-lg) var(--space-3xl) var(--space-lg);
       animation: slideUp 0.7s var(--easing-out) 0.3s both;
@@ -376,6 +413,7 @@
       display: block;
     }
 
+    /* ========== INVITATION IMAGE ========== */
     .invite-image-wrapper {
       margin-bottom: var(--space-2xl);
       margin-top: -var(--space-lg);
@@ -385,6 +423,15 @@
       animation: slideUp 0.7s var(--easing-out);
       position: relative;
       border: 3px solid rgba(214, 74, 136, 0.15);
+      background: var(--bg-light);
+    }
+
+    .invite-image-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 100%);
+      pointer-events: none;
     }
 
     .invite-image {
@@ -396,9 +443,11 @@
     }
 
     .invite-image:hover {
-      transform: scale(1.03) translateY(-6px);
+      transform: scale(1.05) translateY(-8px);
+      filter: brightness(1.05);
     }
 
+    /* ========== CELEBRATION MESSAGE ========== */
     .celebration-container {
       text-align: center;
       margin: var(--space-2xl) 0 var(--space-2xl) 0;
@@ -408,7 +457,7 @@
       background: var(--bg-card);
       border-radius: var(--radius-lg);
       backdrop-filter: blur(10px);
-      border: 2px solid rgba(214, 74, 136, 0.2);
+      border: 2px solid rgba(214, 74, 136, 0.25);
       box-shadow: var(--shadow-lg);
       position: relative;
       overflow: hidden;
@@ -431,20 +480,21 @@
 
     .celebration-text {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.5rem, 7vw, 2.2rem);
+      font-size: clamp(1.5rem, 7vw, 2.3rem);
       background: var(--gradient-secondary);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       font-weight: 900;
       margin: 0;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.5px;
       animation: scaleIn 0.6s var(--easing-bounce);
       line-height: 1.4;
       position: relative;
       z-index: 2;
     }
 
+    /* ========== BUTTONS CONTAINER ========== */
     .button-container {
       text-align: center;
       display: none;
@@ -464,16 +514,17 @@
       width: 100%;
     }
 
+    /* ========== PREMIUM BUTTON DESIGN ========== */
     .btn-glossy {
       position: relative;
       border: none;
-      padding: 1rem var(--space-xl);
+      padding: 1.1rem var(--space-xl);
       font-size: 0.95rem;
       font-weight: 800;
       border-radius: 50px;
       cursor: pointer;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
       overflow: hidden;
       transition: all var(--transition-fast) var(--easing-smooth);
       box-shadow: var(--shadow-lg);
@@ -483,9 +534,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: var(--space-sm);
+      gap: var(--space-md);
       white-space: nowrap;
-      min-height: 54px;
+      min-height: 56px;
       font-family: 'Poppins', sans-serif;
       backdrop-filter: blur(10px);
       border: 2px solid rgba(255,255,255,0.2);
@@ -498,7 +549,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
       transition: left var(--transition-normal) var(--easing-smooth);
       z-index: 1;
     }
@@ -507,7 +558,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), transparent);
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3), transparent);
       opacity: 0;
       transition: opacity var(--transition-normal);
     }
@@ -526,7 +577,7 @@
     }
 
     .btn-glossy:hover {
-      transform: translateY(-5px) scale(1.05);
+      transform: translateY(-6px) scale(1.06);
       box-shadow: var(--shadow-glow-lg);
       filter: brightness(1.15);
     }
@@ -535,32 +586,39 @@
       transform: translateY(-2px) scale(0.98);
     }
 
+    .btn-glossy:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     .btn-icon {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       flex-shrink: 0;
       animation: float 3s var(--easing-smooth) infinite;
     }
 
     .btn-glossy:hover .btn-icon {
-      transform: scale(1.25) rotate(8deg) translateY(-2px);
+      transform: scale(1.3) rotate(10deg) translateY(-3px);
       animation: none;
     }
 
     .btn-text {
       display: inline;
       font-weight: 800;
-      letter-spacing: 0.8px;
+      letter-spacing: 1px;
     }
 
+    /* ========== BUTTON VARIANTS ========== */
     .btn-rsvp {
       background: var(--gradient-rsvp);
     }
 
     .btn-rsvp:hover {
-      box-shadow: 0 10px 28px rgba(255, 64, 129, 0.4);
+      box-shadow: 0 12px 32px rgba(255, 64, 129, 0.4);
     }
 
     .btn-save-date {
@@ -568,7 +626,7 @@
     }
 
     .btn-save-date:hover {
-      box-shadow: 0 10px 28px rgba(38, 194, 129, 0.4);
+      box-shadow: 0 12px 32px rgba(38, 194, 129, 0.4);
     }
 
     .btn-location {
@@ -579,7 +637,7 @@
     }
 
     .btn-location:hover {
-      box-shadow: 0 10px 28px rgba(0, 188, 212, 0.4);
+      box-shadow: 0 12px 32px rgba(0, 188, 212, 0.4);
     }
 
     .btn-share {
@@ -587,79 +645,35 @@
     }
 
     .btn-share:hover {
-      box-shadow: 0 10px 28px rgba(131, 56, 236, 0.4);
+      box-shadow: 0 12px 32px rgba(131, 56, 236, 0.4);
     }
 
+    /* ========== CONFETTI ========== */
     .confetti {
       position: fixed;
       pointer-events: none;
       z-index: var(--z-modal);
+      animation: popIn 0.6s var(--easing-bounce);
     }
 
     .confetti-shape {
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       border-radius: var(--radius-full);
       background: var(--primary);
       box-shadow: var(--shadow-glow);
     }
 
     .confetti-emoji {
-      font-size: 28px;
+      font-size: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+      filter: drop-shadow(0 3px 8px rgba(0,0,0,0.2));
     }
 
-    footer {
-      text-align: center;
-      padding: var(--space-2xl) var(--space-lg);
-      color: var(--text-secondary);
-      font-size: 1rem;
-      border-top: 2px solid rgba(214, 74, 136, 0.15);
-      margin-top: var(--space-md);
-      background: var(--bg-overlay);
-      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
-      animation: slideUp 0.7s var(--easing-out);
-    }
-
-    footer p {
-      margin: var(--space-sm) 0;
-      letter-spacing: 0.4px;
-      font-weight: 600;
-    }
-
-    footer a {
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-decoration: none;
-      font-weight: 800;
-      cursor: pointer;
-      position: relative;
-    }
-
-    footer a::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--gradient-primary);
-      transform: scaleX(0);
-      transition: transform var(--transition-normal);
-      transform-origin: right;
-    }
-
-    footer a:hover::after {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-
-    .share-modal {
+    /* ========== MODAL ========== */
+    .modal {
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,0.5);
@@ -667,29 +681,31 @@
       align-items: center;
       justify-content: center;
       z-index: var(--z-modal);
-      animation: slideUp 0.3s var(--easing-smooth);
+      animation: fadeIn 0.3s var(--easing-smooth);
       backdrop-filter: blur(5px);
     }
 
-    .share-modal.active {
+    .modal.active {
       display: flex;
     }
 
-    .share-modal-content {
+    .modal-content {
       background: var(--bg-card);
       border-radius: var(--radius-lg);
       padding: var(--space-2xl);
       box-shadow: var(--shadow-xl);
-      max-width: 400px;
+      max-width: 450px;
       width: 90%;
       animation: slideUp 0.3s var(--easing-out);
       border: 2px solid rgba(214, 74, 136, 0.2);
       position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
     }
 
-    .share-modal-title {
+    .modal-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
+      font-size: 2rem;
       background: var(--gradient-primary);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -699,14 +715,14 @@
       font-weight: 900;
     }
 
-    .share-options {
+    .modal-options {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: var(--space-md);
       margin-bottom: var(--space-xl);
     }
 
-    .share-btn {
+    .modal-btn {
       padding: var(--space-lg);
       border: none;
       border-radius: 12px;
@@ -721,13 +737,13 @@
       font-size: 0.9rem;
     }
 
-    .share-btn:hover {
-      transform: translateY(-3px);
+    .modal-btn:hover {
+      transform: translateY(-4px) scale(1.05);
       box-shadow: var(--shadow-lg);
     }
 
-    .share-btn-icon {
-      font-size: 2rem;
+    .modal-btn-icon {
+      font-size: 2.2rem;
     }
 
     .close-modal {
@@ -736,93 +752,115 @@
       right: var(--space-lg);
       background: none;
       border: none;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       cursor: pointer;
       color: var(--text-secondary);
       transition: all var(--transition-normal);
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-full);
     }
 
     .close-modal:hover {
-      transform: rotate(90deg);
+      transform: rotate(90deg) scale(1.2);
       color: var(--primary);
+      background: rgba(214, 74, 136, 0.1);
     }
 
+    /* ========== FOOTER ========== */
+    footer {
+      text-align: center;
+      padding: var(--space-2xl) var(--space-lg);
+      color: var(--text-secondary);
+      font-size: 1rem;
+      border-top: 2px solid rgba(214, 74, 136, 0.15);
+      margin-top: var(--space-lg);
+      background: var(--bg-overlay);
+      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
+      animation: slideUp 0.7s var(--easing-out);
+    }
+
+    footer p {
+      margin: var(--space-md) 0;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    footer a {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+      font-weight: 800;
+      cursor: pointer;
+      position: relative;
+      transition: all var(--transition-normal);
+    }
+
+    footer a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-primary);
+      transform: scaleX(0);
+      transition: transform var(--transition-normal);
+      transform-origin: right;
+      border-radius: 2px;
+    }
+
+    footer a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    footer a:hover {
+      filter: brightness(1.1);
+    }
+
+    /* ========== FADE IN ========== */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ========== RESPONSIVE ========== */
     @media (max-width: 768px) {
       html { font-size: 15px; }
-      header {
-        padding: var(--space-lg) var(--space-md);
-        gap: var(--space-sm);
-      }
+      header { padding: var(--space-lg) var(--space-md); gap: var(--space-sm); }
       .header-title { font-size: 1.6rem; }
-      .btn-control {
-        width: 46px;
-        height: 46px;
-        font-size: 1.2rem;
-      }
-      #myVideo {
-        max-height: 65vh;
-        border-radius: 16px;
-      }
-      #mainContentContainer {
-        padding: var(--space-md) var(--space-md) var(--space-2xl) var(--space-md);
-      }
-      .celebration-container {
-        margin: var(--space-xl) 0;
-        padding: var(--space-xl) var(--space-md);
-      }
-      .btn-glossy {
-        padding: 0.95rem var(--space-lg);
-        font-size: 0.9rem;
-        min-height: 52px;
-      }
+      .btn-control { width: 48px; height: 48px; font-size: 1.3rem; }
+      #myVideo { max-height: 65vh; }
+      #mainContentContainer { padding: var(--space-md) var(--space-md) var(--space-2xl) var(--space-md); }
+      .celebration-container { margin: var(--space-xl) 0; padding: var(--space-xl) var(--space-md); }
+      .btn-glossy { padding: 1rem var(--space-lg); font-size: 0.9rem; min-height: 52px; }
       footer { padding: var(--space-xl) var(--space-md); }
-      .toast {
-        bottom: 1rem;
-        right: 1rem;
-        left: 1rem;
-        max-width: none;
-      }
-      .share-options {
-        grid-template-columns: 1fr;
-      }
+      .toast { bottom: 1rem; right: 1rem; left: 1rem; max-width: none; }
+      .modal-options { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 600px) {
       html { font-size: 14px; }
       header { padding: var(--space-md) var(--space-sm); }
       .header-title { font-size: 1.4rem; }
-      .btn-control {
-        width: 44px;
-        height: 44px;
-        font-size: 1.1rem;
-      }
-      #myVideo {
-        max-width: 100%;
-        max-height: 60vh;
-      }
+      .btn-control { width: 46px; height: 46px; font-size: 1.2rem; }
+      #myVideo { max-height: 60vh; }
       .celebration-text { font-size: 1.3rem; }
-      .btn-glossy {
-        padding: 0.9rem var(--space-md);
-        font-size: 0.85rem;
-        min-height: 50px;
-      }
-      #mainContentContainer {
-        padding: var(--space-sm) var(--space-sm) var(--space-xl) var(--space-sm);
-      }
-      footer {
-        padding: var(--space-lg) var(--space-sm);
-        font-size: 0.95rem;
-      }
+      .btn-glossy { padding: 0.95rem var(--space-md); font-size: 0.85rem; min-height: 50px; }
+      #mainContentContainer { padding: var(--space-sm) var(--space-sm) var(--space-xl) var(--space-sm); }
+      footer { padding: var(--space-lg) var(--space-sm); font-size: 0.95rem; }
     }
 
     @media (max-width: 380px) {
       html { font-size: 13px; }
       .header-title { font-size: 1.2rem; }
-      .btn-glossy {
-        padding: 0.85rem var(--space-md);
-        font-size: 0.8rem;
-        min-height: 48px;
-      }
+      .btn-glossy { padding: 0.9rem var(--space-md); font-size: 0.8rem; min-height: 48px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -862,6 +900,7 @@
     ::-webkit-scrollbar-thumb {
       background: var(--primary);
       border-radius: 8px;
+      transition: all var(--transition-normal);
     }
 
     ::-webkit-scrollbar-thumb:hover {
@@ -872,36 +911,34 @@
     :focus-visible {
       outline: 3px solid var(--primary);
       outline-offset: 2px;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-  <a href="#mainContentContainer" class="skip-link">Skip to main content</a>
-
   <div class="progress-bar" id="progressBar"></div>
 
   <header role="banner">
     <h1 class="header-title">💕 Baby Shower 💕</h1>
-    <div class="header-controls" role="toolbar" aria-label="Invitation Controls">
-      <button class="btn-control" id="musicToggle" type="button" title="Toggle Music" aria-label="Toggle Music">🔊</button>
-      <button class="btn-control" id="shareToggle" type="button" title="Share Invitation" aria-label="Share Invitation">📤</button>
-      <button class="btn-control" id="fullscreenToggle" type="button" title="Toggle Fullscreen" aria-label="Toggle Fullscreen">⛶</button>
+    <div class="header-controls" role="toolbar">
+      <button class="btn-control" id="musicToggle" type="button" title="Toggle Music">🔊</button>
+      <button class="btn-control" id="shareToggle" type="button" title="Share Invitation">📤</button>
+      <button class="btn-control" id="fullscreenToggle" type="button" title="Toggle Fullscreen">⛶</button>
     </div>
   </header>
 
-  <section class="video-wrapper" role="region" aria-label="Invitation Video">
+  <section class="video-wrapper" role="region">
     <video id="myVideo" muted playsinline autoplay poster="Images/preview.gif" preload="metadata" loading="lazy">
       <source src="video/invite1.mp4" type="video/mp4">
-      Your browser does not support the video tag.
     </video>
-    <div class="loading-container" role="status" aria-live="polite">
-      <div id="loading-text">Loading Invitation</div>
+    <div class="loading-container" role="status">
+      <div id="loading-text">🎬 Loading Invitation</div>
     </div>
   </section>
 
   <main id="mainContentContainer" role="main">
     <div class="invite-image-wrapper">
-      <img class="invite-image" src="Images/2.png" alt="Baby Shower Invitation with event details" draggable="false" loading="lazy">
+      <img class="invite-image" src="Images/2.png" alt="Baby Shower Invitation" loading="lazy">
     </div>
 
     <section class="celebration-container" id="celebrationContainer">
@@ -926,25 +963,25 @@
     </div>
   </main>
 
-  <div class="share-modal" id="shareModal">
-    <div class="share-modal-content">
+  <div class="modal" id="shareModal">
+    <div class="modal-content">
       <button class="close-modal" id="closeModal">&times;</button>
-      <h2 class="share-modal-title">Share Invitation</h2>
-      <div class="share-options">
-        <button class="share-btn" id="shareWhatsApp" style="background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);">
-          <span class="share-btn-icon">💬</span>
+      <h2 class="modal-title">📤 Share</h2>
+      <div class="modal-options">
+        <button class="modal-btn" id="shareWhatsApp" style="background: linear-gradient(135deg, #25d366, #128c7e);">
+          <span class="modal-btn-icon">💬</span>
           WhatsApp
         </button>
-        <button class="share-btn" id="shareFacebook" style="background: linear-gradient(135deg, #1877f2 0%, #0a66c2 100%);">
-          <span class="share-btn-icon">📘</span>
+        <button class="modal-btn" id="shareFacebook" style="background: linear-gradient(135deg, #1877f2, #0a66c2);">
+          <span class="modal-btn-icon">📘</span>
           Facebook
         </button>
-        <button class="share-btn" id="shareTwitter" style="background: linear-gradient(135deg, #1da1f2 0%, #0d8bd9 100%);">
-          <span class="share-btn-icon">𝕏</span>
+        <button class="modal-btn" id="shareTwitter" style="background: linear-gradient(135deg, #1da1f2, #0d8bd9);">
+          <span class="modal-btn-icon">𝕏</span>
           Twitter
         </button>
-        <button class="share-btn" id="shareEmail" style="background: linear-gradient(135deg, #ea4c89 0%, #c1272d 100%);">
-          <span class="share-btn-icon">✉️</span>
+        <button class="modal-btn" id="shareEmail" style="background: linear-gradient(135deg, #ea4c89, #c1272d);">
+          <span class="modal-btn-icon">✉️</span>
           Email
         </button>
       </div>
@@ -974,31 +1011,36 @@
     };
 
     class Toast {
-      static show(msg, type = 'info') {
+      static show(msg, type = 'info', duration = 3000) {
+        const icons = { success: '✅', error: '❌', info: 'ℹ️' };
         const toast = document.createElement('div');
         toast.className = `toast ${type}`;
-        toast.textContent = msg;
+        toast.innerHTML = `<span class="toast-icon">${icons[type]}</span><span>${msg}</span>`;
         document.body.appendChild(toast);
         setTimeout(() => {
           toast.style.animation = 'fadeOut 0.4s forwards';
           setTimeout(() => toast.remove(), 400);
-        }, 3000);
+        }, duration);
       }
       static success(m) { this.show(m, 'success'); }
       static error(m) { this.show(m, 'error'); }
+      static info(m) { this.show(m, 'info'); }
     }
 
     class Progress {
       static set(val) {
         const bar = document.getElementById('progressBar');
-        if (bar) bar.style.width = Math.min(val, 100) + '%';
+        if (bar) {
+          bar.style.width = Math.min(val, 100) + '%';
+          bar.style.opacity = '1';
+        }
       }
       static complete() {
         this.set(100);
         setTimeout(() => {
           const bar = document.getElementById('progressBar');
           if (bar) bar.style.opacity = '0';
-        }, 1000);
+        }, 800);
       }
     }
 
@@ -1020,6 +1062,7 @@
         return `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Baby Shower//EN
+CALSCALE:GREGORIAN
 BEGIN:VEVENT
 DTSTART:${date}T${startTime}
 DTEND:${date}T${endTime}
@@ -1032,22 +1075,26 @@ END:VCALENDAR`;
 
       static save() {
         const ua = navigator.userAgent.toLowerCase();
-        const isApple = /iphone|ipad|mac|safari/.test(ua) && !/chrome|android/.test(ua);
+        const isApple = /iphone|ipad|ipod|mac|safari/.test(ua) && !/chrome|android/.test(ua);
 
         if (isApple) {
           try {
-            const blob = new Blob([this.ics()], { type: 'text/calendar' });
+            const blob = new Blob([this.ics()], { type: 'text/calendar;charset=utf-8' });
             const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
+            const url = URL.createObjectURL(blob);
+            link.href = url;
             link.download = 'baby-shower.ics';
+            document.body.appendChild(link);
             link.click();
-            Toast.success('Event saved!');
-          } catch {
-            Toast.error('Failed to save');
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            Toast.success('Event saved to calendar!');
+          } catch (e) {
+            Toast.error('Failed to save event');
           }
         } else {
           window.open(this.google(), '_blank');
-          Toast.success('Opening calendar...');
+          Toast.info('Opening Google Calendar...');
         }
       }
     }
@@ -1063,21 +1110,21 @@ END:VCALENDAR`;
         const { title, description, url } = CONFIG.event;
         const text = `${title} - ${description}`;
 
-        switch(platform) {
-          case 'whatsapp':
-            window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
-            break;
-          case 'facebook':
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
-            break;
-          case 'twitter':
-            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
-            break;
-          case 'email':
-            window.location.href = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(description)}`;
-            break;
+        const links = {
+          whatsapp: `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`,
+          facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+          twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
+          email: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(description)}`
+        };
+
+        if (links[platform]) {
+          if (platform === 'email') {
+            window.location.href = links[platform];
+          } else {
+            window.open(links[platform], '_blank');
+          }
         }
-        Toast.success('Shared!');
+        Toast.success('Shared successfully!');
         this.hide();
       }
     }
@@ -1141,8 +1188,8 @@ END:VCALENDAR`;
     }
 
     function onVideoError() {
-      if (el.loadingText) el.loadingText.innerHTML = '❌ Video loading failed';
-      Toast.error('Video failed to load');
+      if (el.loadingText) el.loadingText.innerHTML = '❌ Failed to load video';
+      Toast.error('Video loading failed');
       timeout(() => {
         if (el.mainContent) el.mainContent.classList.add('active');
         Progress.complete();
@@ -1152,7 +1199,7 @@ END:VCALENDAR`;
     function createConfetti() {
       const colors = ['#d64a88', '#ff6b9d', '#9d6bc0', '#00bcd4', '#26c281', '#f4b350'];
       const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎀', '🌺', '💐', '🎊'];
-      const count = window.innerWidth > 768 ? 100 : 60;
+      const count = window.innerWidth > 768 ? 120 : 80;
 
       for (let i = 0; i < count; i++) {
         const c = document.createElement('div');
@@ -1166,24 +1213,23 @@ END:VCALENDAR`;
 
         c.style.left = Math.random() * 100 + '%';
         c.style.top = '-30px';
-        c.style.opacity = Math.random() * 0.8 + 0.2;
+        c.style.opacity = Math.random() * 0.8 + 0.3;
 
-        const dur = Math.random() * 3 + 2;
+        const dur = Math.random() * 3.5 + 2;
         const xMove = (Math.random() - 0.5) * 500;
         const rot = Math.random() * 720;
 
         timeout(() => {
-          if (c.parentElement) {
-            c.animate([
-              { transform: 'translateY(0) rotate(0deg)', opacity: Math.random() * 0.8 + 0.2 },
-              { transform: `translateY(${window.innerHeight + 50}px) translateX(${xMove}px) rotate(${rot}deg)`, opacity: 0 }
-            ], {
-              duration: dur * 1000,
-              easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-              fill: 'forwards'
-            }).onfinish = () => c.remove();
-          }
-        }, i * 10);
+          if (!c.parentElement) return;
+          c.animate([
+            { transform: 'translateY(0) rotate(0deg)', opacity: Math.random() * 0.8 + 0.3 },
+            { transform: `translateY(${window.innerHeight + 50}px) translateX(${xMove}px) rotate(${rot}deg)`, opacity: 0 }
+          ], {
+            duration: dur * 1000,
+            easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            fill: 'forwards'
+          }).onfinish = () => c.remove();
+        }, i * 12);
       }
 
       document.body.append(...Array.from(document.querySelectorAll('.confetti')).slice(-count));
@@ -1198,60 +1244,46 @@ END:VCALENDAR`;
         el.video.addEventListener('error', onVideoError);
       }
 
-      if (el.musicToggle) {
-        el.musicToggle.addEventListener('click', () => {
-          state.isMuted = !state.isMuted;
-          if (el.video) el.video.muted = state.isMuted;
-          el.musicToggle.textContent = state.isMuted ? '🔊' : '🔇';
-        });
-      }
+      el.musicToggle?.addEventListener('click', () => {
+        state.isMuted = !state.isMuted;
+        if (el.video) el.video.muted = state.isMuted;
+        el.musicToggle.textContent = state.isMuted ? '🔊' : '🔇';
+      });
 
-      if (el.fullscreenToggle) {
-        el.fullscreenToggle.addEventListener('click', async () => {
-          try {
-            if (!document.fullscreenElement) {
-              await document.documentElement.requestFullscreen();
-            } else {
-              await document.exitFullscreen();
-            }
-          } catch (e) {
-            console.warn('Fullscreen error:', e);
+      el.fullscreenToggle?.addEventListener('click', async () => {
+        try {
+          if (!document.fullscreenElement) {
+            await document.documentElement.requestFullscreen();
+          } else {
+            await document.exitFullscreen();
           }
-        });
-      }
+        } catch (e) {
+          console.warn('Fullscreen not available');
+        }
+      });
 
-      if (el.shareToggle) {
-        el.shareToggle.addEventListener('click', () => Share.show());
-      }
+      el.shareToggle?.addEventListener('click', () => Share.show());
+      el.closeModal?.addEventListener('click', () => Share.hide());
+      el.shareWhatsApp?.addEventListener('click', () => Share.send('whatsapp'));
+      el.shareFacebook?.addEventListener('click', () => Share.send('facebook'));
+      el.shareTwitter?.addEventListener('click', () => Share.send('twitter'));
+      el.shareEmail?.addEventListener('click', () => Share.send('email'));
 
-      if (el.closeModal) {
-        el.closeModal.addEventListener('click', () => Share.hide());
-      }
+      el.rsvpBtn?.addEventListener('click', () => {
+        window.open(CONFIG.forms.rsvp, '_blank');
+        Toast.info('Opening RSVP form...');
+      });
 
-      if (el.shareWhatsApp) el.shareWhatsApp.addEventListener('click', () => Share.send('whatsapp'));
-      if (el.shareFacebook) el.shareFacebook.addEventListener('click', () => Share.send('facebook'));
-      if (el.shareTwitter) el.shareTwitter.addEventListener('click', () => Share.send('twitter'));
-      if (el.shareEmail) el.shareEmail.addEventListener('click', () => Share.send('email'));
+      el.saveDateBtn?.addEventListener('click', () => Calendar.save());
 
-      if (el.rsvpBtn) {
-        el.rsvpBtn.addEventListener('click', () => {
-          if (CONFIG.forms.rsvp) {
-            window.open(CONFIG.forms.rsvp, '_blank');
-            Toast.success('Opening RSVP form...');
-          }
-        });
-      }
+      el.locationBtn?.addEventListener('click', () => {
+        window.open(CONFIG.locations.event, '_blank');
+        Toast.info('Opening location...');
+      });
 
-      if (el.saveDateBtn) {
-        el.saveDateBtn.addEventListener('click', Calendar.save.bind(Calendar));
-      }
-
-      if (el.locationBtn) {
-        el.locationBtn.addEventListener('click', () => {
-          window.open(CONFIG.locations.event, '_blank');
-          Toast.success('Opening location...');
-        });
-      }
+      el.shareModal?.addEventListener('click', (e) => {
+        if (e.target === el.shareModal) Share.hide();
+      });
 
       document.addEventListener('visibilitychange', () => {
         if (el.video) {
@@ -1261,14 +1293,10 @@ END:VCALENDAR`;
       });
 
       window.addEventListener('beforeunload', cleanup);
-      console.log('%c🎉 Baby Shower loaded! 💕', 'color: #d64a88; font-size: 16px; font-weight: bold;');
+      console.log('%c🎉 Baby Shower Loaded! 💕', 'color: #d64a88; font-size: 18px; font-weight: bold;');
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
-    } else {
-      init();
-    }
+    document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();
   </script>
 </body>
 </html>
