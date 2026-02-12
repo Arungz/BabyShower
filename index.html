@@ -16,6 +16,19 @@
   <meta name="keywords" content="baby shower, invitation, celebration, family, premium, magical, interactive, event">
   <meta name="robots" content="index, follow">
   <meta name="format-detection" content="telephone=no, email=no">
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' https: data:;
+    media-src 'self' https:;
+    frame-ancestors 'none';
+    base-uri 'self';
+    form-action 'self' https://forms.gle https://maps.app.goo.gl https://www.google.com;
+  ">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
@@ -389,6 +402,7 @@
     .btn-control:active {
       transform: scale(0.95);
     }
+
     /* ========== VIDEO SECTION ========== */
     .video-wrapper {
       max-width: 95%;
@@ -882,6 +896,7 @@
   <section class="video-wrapper" role="region" aria-label="Invitation Video">
     <video id="myVideo" muted playsinline autoplay poster="Images/preview.gif" preload="metadata" loading="lazy">
       <source src="video/invite1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
     </video>
     <div class="loading-container" role="status" aria-live="polite">
       <div id="loading-text">🎬 Loading Invitation</div>
@@ -924,10 +939,14 @@
     'use strict';
 
     /* ========== CONFIGURATION ========== */
-    const CONFIG = {
-      locations: { event: 'https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8' },
-      forms: { rsvp: 'https://forms.gle/Aqrw3mATGPEahUxCA' },
-      event: {
+    const CONFIG = Object.freeze({
+      locations: Object.freeze({ 
+        event: 'https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8' 
+      }),
+      forms: Object.freeze({ 
+        rsvp: 'https://forms.gle/Aqrw3mATGPEahUxCA' 
+      }),
+      event: Object.freeze({
         date: '20260305',
         startTime: '103000',
         endTime: '113000',
@@ -935,20 +954,53 @@
         description: 'Join us for a magical Baby Shower celebration!',
         location: 'Special Venue',
         url: 'https://arungz.github.io/BabyShower/'
-      },
-      confetti: {
+      }),
+      confetti: Object.freeze({
         count: 120,
         duration: 1.8,
         colors: ['#d64a88', '#ff6b9d', '#9d6bc0', '#00bcd4', '#26c281', '#f4b350', '#ff1493', '#ff69b4'],
         emojis: ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎀', '🌺', '💐', '🎊', '🍼', '💝']
+      })
+    });
+
+    /* ========== URL VALIDATION ========== */
+    class URLValidator {
+      static isValidURL(urlString) {
+        try {
+          const url = new URL(urlString);
+          // Only allow http and https protocols
+          return url.protocol === 'http:' || url.protocol === 'https:';
+        } catch {
+          return false;
+        }
       }
-    };
+
+      static safeOpenURL(urlString, target = '_blank') {
+        if (!this.isValidURL(urlString)) {
+          console.warn('Invalid URL attempted:', urlString);
+          return false;
+        }
+        try {
+          window.open(urlString, target);
+          return true;
+        } catch (e) {
+          console.error('Failed to open URL:', e);
+          return false;
+        }
+      }
+    }
 
     /* ========== TOAST MANAGER ========== */
     class Toast {
       static show(msg, type = 'info', duration = 3000) {
-        if (!msg || typeof msg !== 'string') return;
-        const icons = { success: '✅', error: '❌', info: 'ℹ️' };
+        if (!msg || typeof msg !== 'string' || msg.trim().length === 0) return null;
+
+        const icons = Object.freeze({ 
+          success: '✅', 
+          error: '❌', 
+          info: 'ℹ️' 
+        });
+
         const toast = document.createElement('div');
         toast.className = `toast ${type}`;
         toast.setAttribute('role', 'alert');
@@ -965,11 +1017,24 @@
         document.body.appendChild(toast);
 
         const timeout = setTimeout(() => {
-          toast.style.animation = 'fadeOut 0.4s forwards';
-          setTimeout(() => toast.parentElement && toast.remove(), 400);
+          if (toast.parentElement) {
+            toast.style.animation = 'fadeOut 0.4s forwards';
+            setTimeout(() => {
+              if (toast.parentElement) {
+                toast.remove();
+              }
+            }, 400);
+          }
         }, duration);
 
-        return { remove: () => { clearTimeout(timeout); toast.parentElement && toast.remove(); } };
+        return { 
+          remove: () => { 
+            clearTimeout(timeout); 
+            if (toast.parentElement) {
+              toast.remove();
+            }
+          } 
+        };
       }
 
       static success(msg) { return this.show(msg, 'success'); }
@@ -981,26 +1046,40 @@
     class Progress {
       static set(value) {
         const bar = document.getElementById('progressBar');
-        if (bar) bar.style.width = Math.min(Math.max(value, 0), 100) + '%';
+        if (bar) {
+          const safeValue = Math.min(Math.max(Number(value) || 0, 0), 100);
+          bar.style.width = safeValue + '%';
+        }
       }
 
       static complete() {
         this.set(100);
         setTimeout(() => {
           const bar = document.getElementById('progressBar');
-          if (bar) bar.style.opacity = '0';
+          if (bar) {
+            bar.style.opacity = '0';
+          }
         }, 1000);
       }
     }
 
     /* ========== CALENDAR MANAGER ========== */
     class Calendar {
+      static encodeParam(str) {
+        return encodeURIComponent(str || '');
+      }
+
       static google() {
         const { date, startTime, endTime, title, description, location } = CONFIG.event;
+        
+        // Format: YYYYMMDDTHHMMSS
+        const formattedStart = `${date}T${startTime}`;
+        const formattedEnd = `${date}T${endTime}`;
+
         const params = new URLSearchParams({
           action: 'TEMPLATE',
           text: title,
-          dates: `${date}T${startTime}/${date}T${endTime}`,
+          dates: `${formattedStart}/${formattedEnd}`,
           details: description,
           location: location
         });
@@ -1009,7 +1088,37 @@
 
       static ics() {
         const { date, startTime, endTime, title, description, location } = CONFIG.event;
-        return `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Baby Shower//EN\nCALSCALE:GREGORIAN\nBEGIN:VEVENT\nDTSTART:${date}T${startTime}\nDTEND:${date}T${endTime}\nSUMMARY:${title}\nDESCRIPTION:${description}\nLOCATION:${location}\nEND:VEVENT\nEND:VCALENDAR`;
+        
+        // Format dates properly for iCalendar
+        const formattedStart = `${date}T${startTime}Z`;
+        const formattedEnd = `${date}T${endTime}Z`;
+
+        return [
+          'BEGIN:VCALENDAR',
+          'VERSION:2.0',
+          'PRODID:-//Baby Shower//EN',
+          'CALSCALE:GREGORIAN',
+          'METHOD:PUBLISH',
+          'BEGIN:VEVENT',
+          `DTSTART:${formattedStart}`,
+          `DTEND:${formattedEnd}`,
+          `SUMMARY:${this.escapeICS(title)}`,
+          `DESCRIPTION:${this.escapeICS(description)}`,
+          `LOCATION:${this.escapeICS(location)}`,
+          'UID:baby-shower-' + Date.now() + '@babyshower.local',
+          `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '')}`,
+          'END:VEVENT',
+          'END:VCALENDAR'
+        ].join('\r\n');
+      }
+
+      static escapeICS(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/\\/g, '\\\\')
+          .replace(/,/g, '\\,')
+          .replace(/;/g, '\\;')
+          .replace(/\n/g, '\\n');
       }
 
       static save() {
@@ -1018,26 +1127,37 @@
 
         if (isApple) {
           try {
-            const blob = new Blob([this.ics()], { type: 'text/calendar;charset=utf-8' });
+            const icsContent = this.ics();
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
             const link = document.createElement('a');
             const url = URL.createObjectURL(blob);
+            
             link.href = url;
             link.download = 'baby-shower.ics';
             link.style.display = 'none';
+            
             document.body.appendChild(link);
             link.click();
+            
             setTimeout(() => {
-              document.body.removeChild(link);
+              if (document.body.contains(link)) {
+                document.body.removeChild(link);
+              }
               URL.revokeObjectURL(url);
             }, 100);
+            
             Toast.success('Event saved to calendar!');
           } catch (e) {
             console.error('Calendar save error:', e);
             Toast.error('Failed to save event');
           }
         } else {
-          window.open(this.google(), '_blank');
-          Toast.info('Opening Google Calendar...');
+          const googleCalendarUrl = this.google();
+          if (URLValidator.safeOpenURL(googleCalendarUrl)) {
+            Toast.info('Opening Google Calendar...');
+          } else {
+            Toast.error('Failed to open calendar');
+          }
         }
       }
     }
@@ -1054,7 +1174,9 @@
         const duration = 4000;
 
         for (let i = 0; i < count; i++) {
-          setTimeout(() => {
+          scheduleTask(() => {
+            if (!container.classList.contains('active')) return;
+            
             const drop = document.createElement('div');
             drop.className = 'shower-drop ' + (Math.random() > 0.5 ? 'swing' : '');
             drop.textContent = drops[Math.floor(Math.random() * drops.length)];
@@ -1064,11 +1186,17 @@
             drop.style.opacity = Math.random() * 0.8 + 0.3;
             
             container.appendChild(drop);
-            setTimeout(() => drop.parentElement && drop.remove(), duration);
+            scheduleTask(() => {
+              if (drop.parentElement) {
+                drop.remove();
+              }
+            }, duration);
           }, i * 30);
         }
 
-        setTimeout(() => container.classList.remove('active'), duration + 500);
+        scheduleTask(() => {
+          container.classList.remove('active');
+        }, duration + 500);
       }
     }
 
@@ -1079,11 +1207,12 @@
         const totalDuration = duration * 1000;
 
         for (let i = 0; i < count; i++) {
-          setTimeout(() => {
+          scheduleTask(() => {
             const c = document.createElement('div');
-            c.className = 'confetti ' + (Math.random() > 0.35 ? 'confetti-emoji' : 'confetti-shape');
+            const isEmoji = Math.random() > 0.35;
+            c.className = 'confetti ' + (isEmoji ? 'confetti-emoji' : 'confetti-shape');
             
-            if (Math.random() > 0.35) {
+            if (isEmoji) {
               c.textContent = emojis[Math.floor(Math.random() * emojis.length)];
             } else {
               c.style.background = colors[Math.floor(Math.random() * colors.length)];
@@ -1102,14 +1231,18 @@
             c.style.animation = `confettiFall ${duration}s ease-in forwards`;
 
             document.body.appendChild(c);
-            setTimeout(() => c.parentElement && c.remove(), totalDuration);
+            scheduleTask(() => {
+              if (c.parentElement) {
+                c.remove();
+              }
+            }, totalDuration);
           }, i * 12);
         }
       }
     }
 
     /* ========== DOM CACHE ========== */
-    const DOM = {
+    const DOM = Object.freeze({
       video: document.getElementById('myVideo'),
       mainContent: document.getElementById('mainContentContainer'),
       celebration: document.getElementById('celebrationContainer'),
@@ -1120,27 +1253,27 @@
       rsvpBtn: document.getElementById('rsvpBtn'),
       saveDateBtn: document.getElementById('saveDateBtn'),
       locationBtn: document.getElementById('locationBtn')
-    };
+    });
 
     /* ========== STATE ========== */
     const state = {
       isMuted: true,
       isEnded: false,
-      timeouts: [],
-      listeners: new WeakMap()
+      timeouts: new Set(),
+      isInitialized: false
     };
 
     /* ========== UTILITIES ========== */
     function scheduleTask(fn, delay = 0) {
       if (typeof fn !== 'function') return null;
       const id = setTimeout(fn, delay);
-      state.timeouts.push(id);
+      state.timeouts.add(id);
       return id;
     }
 
     function clearAllTimeouts() {
       state.timeouts.forEach(clearTimeout);
-      state.timeouts = [];
+      state.timeouts.clear();
     }
 
     /* ========== VIDEO EVENT HANDLERS ========== */
@@ -1155,11 +1288,17 @@
           DOM.video.pause();
         }
 
-        if (DOM.mainContent) DOM.mainContent.classList.add('active');
+        if (DOM.mainContent) {
+          DOM.mainContent.classList.add('active');
+        }
 
         scheduleTask(() => {
-          if (DOM.celebration) DOM.celebration.classList.add('active');
-          if (DOM.buttonContainer) DOM.buttonContainer.classList.add('active');
+          if (DOM.celebration) {
+            DOM.celebration.classList.add('active');
+          }
+          if (DOM.buttonContainer) {
+            DOM.buttonContainer.classList.add('active');
+          }
           Shower.start();
           Confetti.create();
           Progress.complete();
@@ -1167,16 +1306,22 @@
       },
 
       onPlay: () => {
-        if (DOM.loadingText) DOM.loadingText.style.display = 'none';
+        if (DOM.loadingText) {
+          DOM.loadingText.style.display = 'none';
+        }
         Progress.set(60);
       },
 
       onError: (error) => {
         console.error('Video error:', error);
-        if (DOM.loadingText) DOM.loadingText.innerHTML = '❌ Failed to load video';
+        if (DOM.loadingText) {
+          DOM.loadingText.innerHTML = '❌ Failed to load video';
+        }
         Toast.error('Video loading failed');
         scheduleTask(() => {
-          if (DOM.mainContent) DOM.mainContent.classList.add('active');
+          if (DOM.mainContent) {
+            DOM.mainContent.classList.add('active');
+          }
           Progress.complete();
         }, 2500);
       },
@@ -1185,7 +1330,11 @@
         if (DOM.video && !DOM.video.paused) {
           DOM.video.pause();
           scheduleTask(() => {
-            if (DOM.video) DOM.video.play().catch(() => {});
+            if (DOM.video && !DOM.video.ended) {
+              DOM.video.play().catch((err) => {
+                console.warn('Video resume failed:', err);
+              });
+            }
           }, 1000);
         }
       }
@@ -1195,6 +1344,12 @@
     function setupVideoEvents() {
       if (!DOM.video) return;
 
+      // Remove any existing listeners to prevent duplicates
+      DOM.video.removeEventListener('ended', VideoHandlers.onEnd);
+      DOM.video.removeEventListener('canplay', VideoHandlers.onPlay);
+      DOM.video.removeEventListener('error', VideoHandlers.onError);
+      DOM.video.removeEventListener('stalled', VideoHandlers.onStalled);
+
       DOM.video.addEventListener('ended', VideoHandlers.onEnd, { once: true });
       DOM.video.addEventListener('canplay', VideoHandlers.onPlay, { once: true });
       DOM.video.addEventListener('error', VideoHandlers.onError);
@@ -1202,21 +1357,30 @@
     }
 
     function setupControlButtons() {
-      DOM.musicToggle?.addEventListener('click', () => {
+      if (!DOM.musicToggle || !DOM.fullscreenToggle) return;
+
+      DOM.musicToggle.addEventListener('click', () => {
         state.isMuted = !state.isMuted;
-        if (DOM.video) DOM.video.muted = state.isMuted;
+        if (DOM.video) {
+          DOM.video.muted = state.isMuted;
+        }
         DOM.musicToggle.textContent = state.isMuted ? '🔊' : '🔇';
         Toast.info(state.isMuted ? 'Muted' : 'Unmuted');
       });
 
-      DOM.fullscreenToggle?.addEventListener('click', async () => {
+      DOM.fullscreenToggle.addEventListener('click', async () => {
         try {
-          if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+          const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
+          
+          if (!isFullscreen) {
             const elem = document.documentElement;
             if (elem.requestFullscreen) {
               await elem.requestFullscreen();
             } else if (elem.webkitRequestFullscreen) {
               await elem.webkitRequestFullscreen();
+            } else {
+              Toast.info('Fullscreen not supported on this device');
+              return;
             }
           } else {
             if (document.exitFullscreen) {
@@ -1226,61 +1390,84 @@
             }
           }
         } catch (e) {
-          console.warn('Fullscreen not available:', e);
-          Toast.info('Fullscreen not supported');
+          console.warn('Fullscreen error:', e);
+          Toast.info('Unable to toggle fullscreen');
         }
       });
     }
 
     function setupActionButtons() {
-      DOM.rsvpBtn?.addEventListener('click', () => {
-        if (CONFIG.forms.rsvp) {
-          window.open(CONFIG.forms.rsvp, '_blank');
-          Toast.info('Opening RSVP form...');
-        }
-      });
+      if (DOM.rsvpBtn) {
+        DOM.rsvpBtn.addEventListener('click', () => {
+          const rsvpUrl = CONFIG.forms.rsvp;
+          if (rsvpUrl && URLValidator.safeOpenURL(rsvpUrl)) {
+            Toast.info('Opening RSVP form...');
+          } else {
+            Toast.error('Failed to open RSVP form');
+          }
+        });
+      }
 
-      DOM.saveDateBtn?.addEventListener('click', () => Calendar.save());
+      if (DOM.saveDateBtn) {
+        DOM.saveDateBtn.addEventListener('click', () => {
+          Calendar.save();
+        });
+      }
 
-      DOM.locationBtn?.addEventListener('click', () => {
-        if (CONFIG.locations.event) {
-          window.open(CONFIG.locations.event, '_blank');
-          Toast.info('Opening location...');
-        }
-      });
+      if (DOM.locationBtn) {
+        DOM.locationBtn.addEventListener('click', () => {
+          const locationUrl = CONFIG.locations.event;
+          if (locationUrl && URLValidator.safeOpenURL(locationUrl)) {
+            Toast.info('Opening location...');
+          } else {
+            Toast.error('Failed to open location');
+          }
+        });
+      }
     }
 
     function setupVisibilityHandler() {
-      document.addEventListener('visibilitychange', () => {
+      const handleVisibilityChange = () => {
         if (DOM.video) {
           if (document.hidden) {
             DOM.video.pause();
           } else {
-            DOM.video.play().catch(() => {});
+            DOM.video.play().catch((err) => {
+              console.warn('Video autoplay failed:', err);
+            });
           }
         }
-      });
+      };
+
+      document.addEventListener('visibilitychange', handleVisibilityChange);
     }
 
     /* ========== INITIALIZATION ========== */
     function init() {
+      if (state.isInitialized) return;
+      state.isInitialized = true;
+
       Progress.set(15);
       setupVideoEvents();
       setupControlButtons();
       setupActionButtons();
       setupVisibilityHandler();
 
-      window.addEventListener('beforeunload', clearAllTimeouts);
+      const handleBeforeUnload = () => {
+        clearAllTimeouts();
+      };
+
+      window.addEventListener('beforeunload', handleBeforeUnload);
 
       console.log('%c🎉 Baby Shower Ready! 💕', 'color: #d64a88; font-size: 18px; font-weight: bold;');
     }
 
     // Start when DOM is ready
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
+      document.addEventListener('DOMContentLoaded', init, { once: true });
     } else {
       init();
     }
   </script>
 </body>
-</html>
+        </html>
