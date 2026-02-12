@@ -27,7 +27,6 @@
   <style>
     /* ========== CSS VARIABLES ========== */
     :root {
-      /* Colors */
       --primary: #d64a88;
       --primary-dark: #b8225c;
       --primary-light: #f5b3d4;
@@ -39,7 +38,6 @@
       --white: #ffffff;
       --black: #1a1a2e;
       
-      /* Gradients */
       --gradient-primary: linear-gradient(135deg, #d64a88 0%, #9d6bc0 100%);
       --gradient-secondary: linear-gradient(135deg, #9d6bc0 0%, #00bcd4 100%);
       --gradient-rsvp: linear-gradient(135deg, #ff4081 0%, #d64a88 50%, #c2185b 100%);
@@ -48,18 +46,15 @@
       --gradient-bg: linear-gradient(180deg, #fefbff 0%, #f5f2ff 50%, #faf7ff 100%);
       --gradient-dark: linear-gradient(180deg, #0d1419 0%, #1a1f2e 50%, #141820 100%);
       
-      /* Text Colors */
       --text-primary: #1a1a2e;
       --text-secondary: #666b7f;
       --text-light: #999;
       
-      /* Background Colors */
       --bg-primary: #ffffff;
       --bg-light: #f9f7ff;
       --bg-overlay: rgba(255, 255, 255, 0.96);
       --bg-card: rgba(255, 255, 255, 0.85);
       
-      /* Spacing Scale */
       --space-xs: 0.5rem;
       --space-sm: 1rem;
       --space-md: 1.5rem;
@@ -69,7 +64,6 @@
       --space-3xl: 4rem;
       --space-4xl: 5rem;
       
-      /* Timing */
       --duration-fast: 0.15s;
       --duration-normal: 0.3s;
       --duration-slow: 0.5s;
@@ -77,18 +71,15 @@
       --easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
       --easing-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
       
-      /* Shadows */
       --shadow-lg: 0 8px 24px rgba(214, 74, 136, 0.15);
       --shadow-xl: 0 12px 32px rgba(214, 74, 136, 0.18);
       --shadow-glow: 0 0 20px rgba(214, 74, 136, 0.3);
       --shadow-glow-lg: 0 0 40px rgba(214, 74, 136, 0.25);
       
-      /* Border Radius */
       --radius-md: 16px;
       --radius-lg: 24px;
       --radius-full: 50%;
       
-      /* Z-Index */
       --z-sticky: 20;
       --z-notification: 70;
     }
@@ -138,183 +129,108 @@
       z-index: -1;
     }
 
-    /* ========== ENHANCED ANIMATIONS ========== */
+    /* ========== KEYFRAME ANIMATIONS ========== */
     @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      from { opacity: 0; transform: translateX(-40px); }
+      to { opacity: 1; transform: translateX(0); }
     }
 
     @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      from { opacity: 0; transform: translateX(40px); }
+      to { opacity: 1; transform: translateX(0); }
     }
 
     @keyframes scaleIn {
-      from {
-        opacity: 0;
-        transform: scale(0.7) rotate(-10deg);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-      }
+      from { opacity: 0; transform: scale(0.7) rotate(-10deg); }
+      to { opacity: 1; transform: scale(1) rotate(0deg); }
     }
 
     @keyframes pulse {
-      0%, 100% {
-        opacity: 0.6;
-      }
-      50% {
-        opacity: 1;
-      }
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
     }
 
     @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-12px);
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
     }
 
     @keyframes float {
-      0%, 100% {
-        transform: translateY(0) rotate(0deg);
-      }
-      25% {
-        transform: translateY(-12px) rotate(2deg);
-      }
-      75% {
-        transform: translateY(-8px) rotate(-2deg);
-      }
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-12px) rotate(2deg); }
+      75% { transform: translateY(-8px) rotate(-2deg); }
     }
 
     @keyframes shimmer {
-      0% {
-        background-position: -1000px 0;
-      }
-      100% {
-        background-position: 1000px 0;
-      }
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
     }
 
     @keyframes fadeOut {
-      from {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-      }
+      from { opacity: 1; }
+      to { opacity: 0; }
     }
 
     @keyframes showerFall {
-      0% {
-        transform: translateY(-100px) translateX(0) scale(1) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) translateX(50px) scale(0.3) rotate(720deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(-100px) translateX(0) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) translateX(50px) scale(0.3) rotate(720deg); opacity: 0; }
     }
 
     @keyframes showerSwing {
-      0%, 100% {
-        transform: translateX(0);
-      }
-      25% {
-        transform: translateX(60px);
-      }
-      75% {
-        transform: translateX(-60px);
-      }
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(60px); }
+      75% { transform: translateX(-60px); }
     }
 
     @keyframes popIn {
-      0% {
-        opacity: 0;
-        transform: scale(0.2) rotate(-45deg);
-      }
-      50% {
-        transform: scale(1.15) rotate(5deg);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1) rotate(0);
-      }
+      0% { opacity: 0; transform: scale(0.2) rotate(-45deg); }
+      50% { transform: scale(1.15) rotate(5deg); }
+      100% { opacity: 1; transform: scale(1) rotate(0); }
     }
 
     @keyframes heartBeat {
-      0%, 100% {
-        transform: scale(1);
-      }
-      25% {
-        transform: scale(1.2);
-      }
-      50% {
-        transform: scale(1);
-      }
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.2); }
+      50% { transform: scale(1); }
     }
 
-    @keyframes glow {
-      0%, 100% {
-        filter: drop-shadow(0 0 8px rgba(214, 74, 136, 0.4));
-      }
-      50% {
-        filter: drop-shadow(0 0 20px rgba(214, 74, 136, 0.8));
-      }
-    }
-
-    @keyframes waveFlow {
-      0% {
-        opacity: 0.3;
-        transform: translateY(20px) scaleX(0.8);
-      }
-      50% {
+    @keyframes confettiFall {
+      0% { 
+        transform: translateY(0) translateX(0) rotate(0deg) scale(1);
         opacity: 1;
       }
-      100% {
-        opacity: 0.3;
-        transform: translateY(-20px) scaleX(1.2);
+      100% { 
+        transform: translateY(100vh) translateX(var(--tx)) rotate(var(--rotate)) scale(0);
+        opacity: 0;
       }
     }
 
-    /* ========== SHOWER ANIMATION ========== */
+    /* ========== PROGRESS BAR ========== */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+      z-index: var(--z-sticky);
+      box-shadow: 0 0 20px rgba(214, 74, 136, 0.8);
+      border-radius: 2px;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0;
+      opacity: 1;
+    }
+
+    /* ========== SHOWER CONTAINER ========== */
     .shower-container {
       position: fixed;
       inset: 0;
@@ -339,21 +255,6 @@
 
     .shower-drop.swing {
       animation: showerSwing 1s ease-in-out infinite, showerFall linear forwards;
-    }
-
-    /* ========== PROGRESS BAR ========== */
-    .progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 4px;
-      background: var(--gradient-primary);
-      z-index: var(--z-sticky);
-      box-shadow: 0 0 20px rgba(214, 74, 136, 0.8);
-      border-radius: 2px;
-      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      width: 0;
-      opacity: 1;
     }
 
     /* ========== TOAST NOTIFICATIONS ========== */
@@ -633,10 +534,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 255, 255, 0.4), 
-        transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
       background-size: 200% 100%;
       opacity: 0;
       animation: shimmer 3s linear infinite;
@@ -823,7 +721,6 @@
       align-items: center;
       justify-content: center;
       filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
-      animation: popIn 0.7s var(--easing-bounce);
     }
 
     /* ========== FOOTER ========== */
@@ -889,7 +786,6 @@
     /* ========== RESPONSIVE ========== */
     @media (max-width: 768px) {
       :root {
-        --space-xs: 0.5rem;
         --space-sm: 0.75rem;
         --space-md: 1rem;
         --space-lg: 1.5rem;
@@ -899,63 +795,26 @@
         --space-4xl: 3.5rem;
       }
 
-      html {
-        font-size: 15px;
-      }
+      html { font-size: 15px; }
 
-      header {
-        padding: var(--space-lg) var(--space-md);
-        gap: var(--space-sm);
-      }
+      header { padding: var(--space-lg) var(--space-md); gap: var(--space-sm); }
+      .header-title { font-size: 1.6rem; }
+      .btn-control { width: 50px; height: 50px; font-size: 1.4rem; }
 
-      .header-title {
-        font-size: 1.6rem;
-      }
+      #myVideo { max-height: 65vh; }
+      .video-wrapper { margin: var(--space-2xl) auto var(--space-lg); }
 
-      .btn-control {
-        width: 50px;
-        height: 50px;
-        font-size: 1.4rem;
-      }
+      #mainContentContainer { padding: var(--space-md) var(--space-lg) var(--space-3xl) var(--space-lg); }
+      .celebration-container { margin: var(--space-2xl) 0; padding: var(--space-2xl) var(--space-lg); }
 
-      #myVideo {
-        max-height: 65vh;
-      }
+      .btn-glossy { padding: 1.1rem var(--space-lg); font-size: 0.9rem; min-height: 54px; }
 
-      .video-wrapper {
-        margin: var(--space-2xl) auto var(--space-lg);
-      }
-
-      #mainContentContainer {
-        padding: var(--space-md) var(--space-lg) var(--space-3xl) var(--space-lg);
-      }
-
-      .celebration-container {
-        margin: var(--space-2xl) 0;
-        padding: var(--space-2xl) var(--space-lg);
-      }
-
-      .btn-glossy {
-        padding: 1.1rem var(--space-lg);
-        font-size: 0.9rem;
-        min-height: 54px;
-      }
-
-      footer {
-        padding: var(--space-2xl) var(--space-lg);
-      }
-
-      .toast {
-        bottom: 1rem;
-        right: 1rem;
-        left: 1rem;
-        max-width: none;
-      }
+      footer { padding: var(--space-2xl) var(--space-lg); }
+      .toast { bottom: 1rem; right: 1rem; left: 1rem; max-width: none; }
     }
 
     @media (max-width: 600px) {
       :root {
-        --space-xs: 0.5rem;
         --space-sm: 0.75rem;
         --space-md: 1rem;
         --space-lg: 1.25rem;
@@ -965,57 +824,24 @@
         --space-4xl: 3rem;
       }
 
-      html {
-        font-size: 14px;
-      }
+      html { font-size: 14px; }
 
-      header {
-        padding: var(--space-md) var(--space-sm);
-      }
+      header { padding: var(--space-md) var(--space-sm); }
+      .header-title { font-size: 1.4rem; }
+      .btn-control { width: 48px; height: 48px; font-size: 1.3rem; }
 
-      .header-title {
-        font-size: 1.4rem;
-      }
+      #myVideo { max-height: 60vh; }
+      .video-wrapper { margin: var(--space-xl) auto var(--space-md); padding: 0 var(--space-sm); }
 
-      .btn-control {
-        width: 48px;
-        height: 48px;
-        font-size: 1.3rem;
-      }
+      .celebration-text { font-size: 1.3rem; }
+      .btn-glossy { padding: 1rem var(--space-md); font-size: 0.85rem; min-height: 52px; gap: var(--space-sm); }
 
-      #myVideo {
-        max-height: 60vh;
-      }
-
-      .video-wrapper {
-        margin: var(--space-xl) auto var(--space-md);
-        padding: 0 var(--space-sm);
-      }
-
-      .celebration-text {
-        font-size: 1.3rem;
-      }
-
-      .btn-glossy {
-        padding: 1rem var(--space-md);
-        font-size: 0.85rem;
-        min-height: 52px;
-        gap: var(--space-sm);
-      }
-
-      #mainContentContainer {
-        padding: var(--space-sm) var(--space-md) var(--space-2xl) var(--space-md);
-      }
-
-      footer {
-        padding: var(--space-xl) var(--space-md);
-        font-size: 0.95rem;
-      }
+      #mainContentContainer { padding: var(--space-sm) var(--space-md) var(--space-2xl) var(--space-md); }
+      footer { padding: var(--space-xl) var(--space-md); font-size: 0.95rem; }
     }
 
     @media (max-width: 380px) {
       :root {
-        --space-xs: 0.4rem;
         --space-sm: 0.6rem;
         --space-md: 0.8rem;
         --space-lg: 1rem;
@@ -1025,26 +851,13 @@
         --space-4xl: 2.5rem;
       }
 
-      html {
-        font-size: 13px;
-      }
-
-      .header-title {
-        font-size: 1.2rem;
-      }
-
-      .btn-glossy {
-        padding: 0.95rem var(--space-md);
-        font-size: 0.8rem;
-        min-height: 50px;
-      }
+      html { font-size: 13px; }
+      .header-title { font-size: 1.2rem; }
+      .btn-glossy { padding: 0.95rem var(--space-md); font-size: 0.8rem; min-height: 50px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      * {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
 
     @media (prefers-color-scheme: dark) {
@@ -1058,37 +871,15 @@
         --gradient-bg: var(--gradient-dark);
       }
 
-      body {
-        background: var(--gradient-dark);
-      }
-
-      header {
-        background: var(--bg-overlay);
-        border-bottom-color: rgba(214, 74, 136, 0.2);
-      }
-
-      footer {
-        background: var(--bg-overlay);
-        border-top-color: rgba(214, 74, 136, 0.2);
-      }
+      body { background: var(--gradient-dark); }
+      header { background: var(--bg-overlay); border-bottom-color: rgba(214, 74, 136, 0.2); }
+      footer { background: var(--bg-overlay); border-top-color: rgba(214, 74, 136, 0.2); }
     }
 
     @media print {
-      header,
-      footer,
-      .btn-control,
-      .btn-glossy,
-      .video-wrapper {
-        display: none;
-      }
-
-      #mainContentContainer {
-        padding: 0;
-      }
-
-      body {
-        background: white;
-      }
+      header, footer, .btn-control, .btn-glossy, .video-wrapper { display: none; }
+      #mainContentContainer { padding: 0; }
+      body { background: white; }
     }
 
     ::-webkit-scrollbar {
@@ -1145,7 +936,7 @@
     </div>
 
     <section class="celebration-container" id="celebrationContainer">
-      <p class="celebration-text">✨ We Look Forward to Celebrating With You! ��</p>
+      <p class="celebration-text">✨ We Look Forward to Celebrating With You! ✨</p>
     </section>
 
     <div class="button-container" id="buttonContainer">
@@ -1186,12 +977,18 @@
         description: 'Join us for a magical Baby Shower celebration!',
         location: 'Special Venue',
         url: 'https://arungz.github.io/BabyShower/'
+      },
+      confetti: {
+        count: 120,
+        duration: 1.8,
+        colors: ['#d64a88', '#ff6b9d', '#9d6bc0', '#00bcd4', '#26c281', '#f4b350', '#ff1493', '#ff69b4'],
+        emojis: ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎀', '🌺', '💐', '🎊', '🍼', '💝']
       }
     };
 
     /* ========== TOAST MANAGER ========== */
     class Toast {
-      static show(msg, type = 'info', duration = 3500) {
+      static show(msg, type = 'info', duration = 3000) {
         if (!msg || typeof msg !== 'string') return;
         const icons = { success: '✅', error: '❌', info: 'ℹ️' };
         const toast = document.createElement('div');
@@ -1209,25 +1006,17 @@
         toast.appendChild(message);
         document.body.appendChild(toast);
 
-        setTimeout(() => {
+        const timeout = setTimeout(() => {
           toast.style.animation = 'fadeOut 0.4s forwards';
-          setTimeout(() => {
-            if (toast.parentElement) toast.remove();
-          }, 400);
+          setTimeout(() => toast.parentElement && toast.remove(), 400);
         }, duration);
+
+        return { remove: () => { clearTimeout(timeout); toast.parentElement && toast.remove(); } };
       }
 
-      static success(msg) {
-        this.show(msg, 'success');
-      }
-
-      static error(msg) {
-        this.show(msg, 'error');
-      }
-
-      static info(msg) {
-        this.show(msg, 'info');
-      }
+      static success(msg) { return this.show(msg, 'success'); }
+      static error(msg) { return this.show(msg, 'error'); }
+      static info(msg) { return this.show(msg, 'info'); }
     }
 
     /* ========== PROGRESS MANAGER ========== */
@@ -1303,8 +1092,8 @@
 
         container.classList.add('active');
         const drops = ['💞', '🎉', '🍼', '👶', '🎀', '🎈', '💕', '🌸'];
-        const count = 75;
-        const duration = 4500;
+        const count = 80;
+        const duration = 4000;
 
         for (let i = 0; i < count; i++) {
           setTimeout(() => {
@@ -1317,18 +1106,52 @@
             drop.style.opacity = Math.random() * 0.8 + 0.3;
             
             container.appendChild(drop);
-            setTimeout(() => {
-              if (drop.parentElement) drop.remove();
-            }, duration);
-          }, i * 35);
+            setTimeout(() => drop.parentElement && drop.remove(), duration);
+          }, i * 30);
         }
 
         setTimeout(() => container.classList.remove('active'), duration + 500);
       }
     }
 
-    /* ========== DOM ELEMENTS ========== */
-    const elements = {
+    /* ========== CONFETTI ANIMATION ========== */
+    class Confetti {
+      static create() {
+        const { count, duration, colors, emojis } = CONFIG.confetti;
+        const totalDuration = duration * 1000;
+
+        for (let i = 0; i < count; i++) {
+          setTimeout(() => {
+            const c = document.createElement('div');
+            c.className = 'confetti ' + (Math.random() > 0.35 ? 'confetti-emoji' : 'confetti-shape');
+            
+            if (Math.random() > 0.35) {
+              c.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            } else {
+              c.style.background = colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            const startX = Math.random() * window.innerWidth;
+            c.style.left = startX + 'px';
+            c.style.top = '-40px';
+            c.style.opacity = Math.random() * 0.9 + 0.3;
+
+            const tx = (Math.random() - 0.5) * 500;
+            const rotate = Math.random() * 720 + 360;
+
+            c.style.setProperty('--tx', tx + 'px');
+            c.style.setProperty('--rotate', rotate + 'deg');
+            c.style.animation = `confettiFall ${duration}s ease-in forwards`;
+
+            document.body.appendChild(c);
+            setTimeout(() => c.parentElement && c.remove(), totalDuration);
+          }, i * 12);
+        }
+      }
+    }
+
+    /* ========== DOM CACHE ========== */
+    const DOM = {
       video: document.getElementById('myVideo'),
       mainContent: document.getElementById('mainContentContainer'),
       celebration: document.getElementById('celebrationContainer'),
@@ -1345,140 +1168,90 @@
     const state = {
       isMuted: true,
       isEnded: false,
-      timeouts: []
+      timeouts: [],
+      listeners: new WeakMap()
     };
 
     /* ========== UTILITIES ========== */
-    function cleanup() {
-      state.timeouts.forEach(t => clearTimeout(t));
+    function scheduleTask(fn, delay = 0) {
+      if (typeof fn !== 'function') return null;
+      const id = setTimeout(fn, delay);
+      state.timeouts.push(id);
+      return id;
+    }
+
+    function clearAllTimeouts() {
+      state.timeouts.forEach(clearTimeout);
       state.timeouts = [];
     }
 
-    function timeout(fn, ms) {
-      if (typeof fn !== 'function' || typeof ms !== 'number') return null;
-      const t = setTimeout(fn, ms);
-      state.timeouts.push(t);
-      return t;
-    }
+    /* ========== VIDEO EVENT HANDLERS ========== */
+    const VideoHandlers = {
+      onEnd: () => {
+        if (state.isEnded) return;
+        state.isEnded = true;
+        Progress.set(75);
 
-    /* ========== VIDEO HANDLERS ========== */
-    function onVideoEnd() {
-      if (state.isEnded) return;
-      state.isEnded = true;
-      Progress.set(75);
+        if (DOM.video) {
+          DOM.video.style.display = 'none';
+          DOM.video.pause();
+        }
 
-      if (elements.video) {
-        elements.video.style.display = 'none';
-        elements.video.pause();
+        if (DOM.mainContent) DOM.mainContent.classList.add('active');
+
+        scheduleTask(() => {
+          if (DOM.celebration) DOM.celebration.classList.add('active');
+          if (DOM.buttonContainer) DOM.buttonContainer.classList.add('active');
+          Shower.start();
+          Confetti.create();
+          Progress.complete();
+        }, 800);
+      },
+
+      onPlay: () => {
+        if (DOM.loadingText) DOM.loadingText.style.display = 'none';
+        Progress.set(60);
+      },
+
+      onError: (error) => {
+        console.error('Video error:', error);
+        if (DOM.loadingText) DOM.loadingText.innerHTML = '❌ Failed to load video';
+        Toast.error('Video loading failed');
+        scheduleTask(() => {
+          if (DOM.mainContent) DOM.mainContent.classList.add('active');
+          Progress.complete();
+        }, 2500);
+      },
+
+      onStalled: () => {
+        if (DOM.video && !DOM.video.paused) {
+          DOM.video.pause();
+          scheduleTask(() => {
+            if (DOM.video) DOM.video.play().catch(() => {});
+          }, 1000);
+        }
       }
+    };
 
-      if (elements.mainContent) elements.mainContent.classList.add('active');
+    /* ========== EVENT SETUP ========== */
+    function setupVideoEvents() {
+      if (!DOM.video) return;
 
-      timeout(() => {
-        if (elements.celebration) elements.celebration.classList.add('active');
-        if (elements.buttonContainer) elements.buttonContainer.classList.add('active');
-        Shower.start();
-        createConfetti();
-        Progress.complete();
-      }, 900);
+      DOM.video.addEventListener('ended', VideoHandlers.onEnd, { once: true });
+      DOM.video.addEventListener('canplay', VideoHandlers.onPlay, { once: true });
+      DOM.video.addEventListener('error', VideoHandlers.onError);
+      DOM.video.addEventListener('stalled', VideoHandlers.onStalled);
     }
 
-    function onVideoPlay() {
-      if (elements.loadingText) elements.loadingText.style.display = 'none';
-      Progress.set(60);
-    }
-
-    function onVideoError(error) {
-      console.error('Video error:', error);
-      if (elements.loadingText) elements.loadingText.innerHTML = '❌ Failed to load video';
-      Toast.error('Video loading failed');
-      timeout(() => {
-        if (elements.mainContent) elements.mainContent.classList.add('active');
-        Progress.complete();
-      }, 2500);
-    }
-
-    /* ========== CONFETTI ANIMATION ========== */
-    function createConfetti() {
-      const colors = ['#d64a88', '#ff6b9d', '#9d6bc0', '#00bcd4', '#26c281', '#f4b350', '#ff1493', '#ff69b4'];
-      const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎀', '🌺', '💐', '🎊', '🍼', '💝'];
-      const count = window.innerWidth > 768 ? 140 : 90;
-
-      for (let i = 0; i < count; i++) {
-        timeout(() => {
-          const c = document.createElement('div');
-          c.className = 'confetti ' + (Math.random() > 0.3 ? 'confetti-emoji' : 'confetti-shape');
-          
-          if (Math.random() > 0.3) {
-            c.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-          } else {
-            c.style.background = colors[Math.floor(Math.random() * colors.length)];
-          }
-
-          c.style.left = Math.random() * 100 + '%';
-          c.style.top = '-40px';
-          c.style.opacity = Math.random() * 0.9 + 0.2;
-
-          const dur = Math.random() * 3.8 + 2.5;
-          const xMove = (Math.random() - 0.5) * 600;
-          const rot = Math.random() * 720 + 360;
-
-          document.body.appendChild(c);
-
-          try {
-            c.animate([
-              { 
-                transform: 'translateY(0) translateX(0) rotate(0deg) scale(1)', 
-                opacity: Math.random() * 0.9 + 0.2 
-              },
-              { 
-                transform: `translateY(${window.innerHeight + 100}px) translateX(${xMove}px) rotate(${rot}deg) scale(0)`, 
-                opacity: 0 
-              }
-            ], {
-              duration: dur * 1000,
-              easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-              fill: 'forwards'
-            }).onfinish = () => {
-              if (c.parentElement) c.remove();
-            };
-          } catch (e) {
-            console.warn('Animation not supported:', e);
-            if (c.parentElement) c.remove();
-          }
-        }, i * 15);
-      }
-    }
-
-    /* ========== EVENT LISTENERS ========== */
-    function setupEventListeners() {
-      // Video Event Listeners
-      if (elements.video) {
-        elements.video.addEventListener('ended', onVideoEnd, { once: true });
-        elements.video.addEventListener('canplay', onVideoPlay, { once: true });
-        elements.video.addEventListener('error', onVideoError);
-        
-        // Retry video on error
-        elements.video.addEventListener('stalled', () => {
-          if (elements.video && !elements.video.paused) {
-            elements.video.pause();
-            setTimeout(() => {
-              if (elements.video) elements.video.play().catch(() => {});
-            }, 1000);
-          }
-        });
-      }
-
-      // Music Toggle
-      elements.musicToggle?.addEventListener('click', () => {
+    function setupControlButtons() {
+      DOM.musicToggle?.addEventListener('click', () => {
         state.isMuted = !state.isMuted;
-        if (elements.video) elements.video.muted = state.isMuted;
-        elements.musicToggle.textContent = state.isMuted ? '🔊' : '🔇';
+        if (DOM.video) DOM.video.muted = state.isMuted;
+        DOM.musicToggle.textContent = state.isMuted ? '🔊' : '🔇';
         Toast.info(state.isMuted ? 'Muted' : 'Unmuted');
       });
 
-      // Fullscreen Toggle
-      elements.fullscreenToggle?.addEventListener('click', async () => {
+      DOM.fullscreenToggle?.addEventListener('click', async () => {
         try {
           if (!document.fullscreenElement && !document.webkitFullscreenElement) {
             const elem = document.documentElement;
@@ -1496,52 +1269,55 @@
           }
         } catch (e) {
           console.warn('Fullscreen not available:', e);
-          Toast.info('Fullscreen not supported on this device');
+          Toast.info('Fullscreen not supported');
         }
       });
+    }
 
-      // RSVP Button
-      elements.rsvpBtn?.addEventListener('click', () => {
+    function setupActionButtons() {
+      DOM.rsvpBtn?.addEventListener('click', () => {
         if (CONFIG.forms.rsvp) {
           window.open(CONFIG.forms.rsvp, '_blank');
           Toast.info('Opening RSVP form...');
         }
       });
 
-      // Save Date Button
-      elements.saveDateBtn?.addEventListener('click', () => Calendar.save());
+      DOM.saveDateBtn?.addEventListener('click', () => Calendar.save());
 
-      // Location Button
-      elements.locationBtn?.addEventListener('click', () => {
+      DOM.locationBtn?.addEventListener('click', () => {
         if (CONFIG.locations.event) {
           window.open(CONFIG.locations.event, '_blank');
           Toast.info('Opening location...');
         }
       });
+    }
 
-      // Page Visibility
+    function setupVisibilityHandler() {
       document.addEventListener('visibilitychange', () => {
-        if (elements.video) {
+        if (DOM.video) {
           if (document.hidden) {
-            elements.video.pause();
+            DOM.video.pause();
           } else {
-            elements.video.play().catch(() => {});
+            DOM.video.play().catch(() => {});
           }
         }
       });
-
-      // Cleanup on unload
-      window.addEventListener('beforeunload', cleanup);
     }
 
     /* ========== INITIALIZATION ========== */
     function init() {
       Progress.set(15);
-      setupEventListeners();
+      setupVideoEvents();
+      setupControlButtons();
+      setupActionButtons();
+      setupVisibilityHandler();
+
+      window.addEventListener('beforeunload', clearAllTimeouts);
+
       console.log('%c🎉 Baby Shower Ready! 💕', 'color: #d64a88; font-size: 18px; font-weight: bold;');
     }
 
-    // Start initialization
+    // Start when DOM is ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', init);
     } else {
@@ -1549,4 +1325,4 @@
     }
   </script>
 </body>
-  </html>
+</html>
