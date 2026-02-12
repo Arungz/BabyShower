@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Shower</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            overflow: hidden;
+        }
+        .glossy {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+        }
+        .glossy:hover {
+            transform: scale(1.05);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Welcome to the Baby Shower!</h1>
+<div id="images-container">
+    <img src="restricted_image.jpg" alt="A special moment" onerror="this.onerror=null; this.src='default.jpg'; this.alt='Image not available';" class="glossy" />
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            img.onload = () => img.classList.add('loaded');
+            img.onerror = () => img.src = 'default.jpg';
+        });
+    });
+</script>
+</body>
+</html>
