@@ -389,11 +389,10 @@
     .btn-control:active {
       transform: scale(0.95);
     }
-
     /* ========== VIDEO SECTION ========== */
     .video-wrapper {
       max-width: 95%;
-      margin: var(--space-3xl) auto var(--space-xl);
+      margin: var(--space-3xl) auto 0;
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -417,53 +416,12 @@
       transition: all var(--duration-normal);
     }
 
-    #myVideo:hover {
-      transform: scale(1.03) translateY(-6px);
-      box-shadow: var(--shadow-glow-lg);
-      border-color: rgba(214, 74, 136, 0.5);
-    }
-
-    .loading-container {
-      margin-top: var(--space-xl);
-      min-height: 80px;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: var(--space-md);
-    }
-
-    #loading-text {
-      font-size: 1.1rem;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 700;
-      animation: pulse 2s var(--easing-smooth) infinite;
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-sm);
-      letter-spacing: 0.5px;
-    }
-
-    #loading-text::after {
-      content: '';
-      width: 10px;
-      height: 10px;
-      background: var(--primary);
-      border-radius: var(--radius-full);
-      animation: bounce 1.4s var(--easing-smooth) infinite;
-      box-shadow: var(--shadow-glow);
-    }
-
     /* ========== MAIN CONTENT ========== */
     #mainContentContainer {
       display: none;
       max-width: 760px;
       margin: 0 auto;
-      padding: var(--space-xl) var(--space-xl) var(--space-4xl) var(--space-xl);
+      padding: 0 var(--space-xl) var(--space-4xl) var(--space-xl);
       animation: slideUp 0.8s var(--easing-out) 0.3s both;
     }
 
