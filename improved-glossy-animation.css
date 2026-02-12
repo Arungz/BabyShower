@@ -1,0 +1,43 @@
+.glossy-button {
+    background: linear-gradient(145deg, #e6f3ff, #ffffff);
+    border-radius: 25px;
+    border: none;
+    box-shadow:  5px 5px 15px #b8b3b3,
+                -5px -5px 15px #ffffff;
+    color: #431a9b;
+    cursor: pointer;
+    font-weight: bold;
+    height: 50px;
+    width: 200px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.glossy-button:hover {
+    box-shadow:  10px 10px 20px #a2a2a2,
+                -10px -10px 20px #ffffff;
+    transform: translateY(-2px);
+}
+
+@keyframes shine { 
+    0% { background-position: -200%; }
+    100% { background-position: 200%; }
+}
+
+.glossy-background {
+    background: linear-gradient(45deg, #ffcccb, #ffebcd);
+    background-size: 400% 400%;
+    animation: shine 5s linear infinite;
+    height: 100vh;
+}
+
+.animated-text {
+    font-size: 2em;
+    color: #431a9b;
+    animation: fadeIn 2s ease-in-out 1s both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
