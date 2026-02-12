@@ -48,14 +48,12 @@
       
       --text-primary: #1a1a2e;
       --text-secondary: #666b7f;
-      --text-light: #999;
       
       --bg-primary: #ffffff;
       --bg-light: #f9f7ff;
       --bg-overlay: rgba(255, 255, 255, 0.96);
       --bg-card: rgba(255, 255, 255, 0.85);
       
-      --space-xs: 0.5rem;
       --space-sm: 1rem;
       --space-md: 1.5rem;
       --space-lg: 2rem;
@@ -73,7 +71,6 @@
       
       --shadow-lg: 0 8px 24px rgba(214, 74, 136, 0.15);
       --shadow-xl: 0 12px 32px rgba(214, 74, 136, 0.18);
-      --shadow-glow: 0 0 20px rgba(214, 74, 136, 0.3);
       --shadow-glow-lg: 0 0 40px rgba(214, 74, 136, 0.25);
       
       --radius-md: 16px;
@@ -84,7 +81,6 @@
       --z-notification: 70;
     }
 
-    /* ========== RESET & BASE ========== */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -95,7 +91,6 @@
       font-size: 16px;
       scroll-behavior: smooth;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
     body {
@@ -129,7 +124,7 @@
       z-index: -1;
     }
 
-    /* ========== KEYFRAME ANIMATIONS ========== */
+    /* ========== ANIMATIONS ========== */
     @keyframes slideUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -166,9 +161,8 @@
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      25% { transform: translateY(-12px) rotate(2deg); }
-      75% { transform: translateY(-8px) rotate(-2deg); }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
     }
 
     @keyframes shimmer {
@@ -196,23 +190,6 @@
       0% { opacity: 0; transform: scale(0.2) rotate(-45deg); }
       50% { transform: scale(1.15) rotate(5deg); }
       100% { opacity: 1; transform: scale(1) rotate(0); }
-    }
-
-    @keyframes heartBeat {
-      0%, 100% { transform: scale(1); }
-      25% { transform: scale(1.2); }
-      50% { transform: scale(1); }
-    }
-
-    @keyframes confettiFall {
-      0% { 
-        transform: translateY(0) translateX(0) rotate(0deg) scale(1);
-        opacity: 1;
-      }
-      100% { 
-        transform: translateY(100vh) translateX(var(--tx)) rotate(var(--rotate)) scale(0);
-        opacity: 0;
-      }
     }
 
     /* ========== PROGRESS BAR ========== */
@@ -250,14 +227,13 @@
       animation: showerFall linear forwards;
       filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
       will-change: transform;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
     }
 
     .shower-drop.swing {
       animation: showerSwing 1s ease-in-out infinite, showerFall linear forwards;
     }
 
-    /* ========== TOAST NOTIFICATIONS ========== */
+    /* ========== TOAST ========== */
     .toast {
       position: fixed;
       bottom: 2rem;
@@ -279,26 +255,11 @@
       line-height: 1.5;
     }
 
-    .toast.success {
-      border-color: rgba(38, 194, 129, 0.5);
-      background: rgba(38, 194, 129, 0.12);
-    }
+    .toast.success { border-color: rgba(38, 194, 129, 0.5); background: rgba(38, 194, 129, 0.12); }
+    .toast.error { border-color: rgba(255, 64, 129, 0.5); background: rgba(255, 64, 129, 0.12); }
+    .toast.info { border-color: rgba(0, 188, 212, 0.5); background: rgba(0, 188, 212, 0.12); }
 
-    .toast.error {
-      border-color: rgba(255, 64, 129, 0.5);
-      background: rgba(255, 64, 129, 0.12);
-    }
-
-    .toast.info {
-      border-color: rgba(0, 188, 212, 0.5);
-      background: rgba(0, 188, 212, 0.12);
-    }
-
-    .toast-icon {
-      font-size: 1.5rem;
-      flex-shrink: 0;
-      animation: bounce 0.6s var(--easing-bounce);
-    }
+    .toast-icon { font-size: 1.5rem; flex-shrink: 0; animation: bounce 0.6s var(--easing-bounce); }
 
     /* ========== HEADER ========== */
     header {
@@ -382,14 +343,10 @@
       filter: brightness(1.2);
     }
 
-    .btn-control:hover::before {
-      opacity: 1;
-    }
+    .btn-control:hover::before { opacity: 1; }
+    .btn-control:active { transform: scale(0.95); }
 
-    .btn-control:active {
-      transform: scale(0.95);
-    }
-    /* ========== VIDEO SECTION ========== */
+    /* ========== VIDEO ========== */
     .video-wrapper {
       max-width: 95%;
       margin: var(--space-3xl) auto 0;
@@ -407,13 +364,46 @@
       max-height: 70vh;
       border-radius: var(--radius-lg);
       object-fit: cover;
-      object-position: center;
       box-shadow: var(--shadow-lg);
       background: var(--gradient-bg);
       display: block;
       aspect-ratio: 9 / 16;
       border: 4px solid rgba(214, 74, 136, 0.2);
       transition: all var(--duration-normal);
+    }
+
+    .loading-container {
+      margin-top: var(--space-xl);
+      min-height: 80px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    #loading-text {
+      font-size: 1.1rem;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+      animation: pulse 2s var(--easing-smooth) infinite;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      letter-spacing: 0.4px;
+    }
+
+    #loading-text::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: var(--radius-full);
+      animation: bounce 1.4s var(--easing-smooth) infinite;
     }
 
     /* ========== MAIN CONTENT ========== */
@@ -425,9 +415,7 @@
       animation: slideUp 0.8s var(--easing-out) 0.3s both;
     }
 
-    #mainContentContainer.active {
-      display: block;
-    }
+    #mainContentContainer.active { display: block; }
 
     /* ========== INVITATION IMAGE ========== */
     .invite-image-wrapper {
@@ -442,37 +430,17 @@
       background: var(--bg-light);
     }
 
-    .invite-image-wrapper::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(214, 74, 136, 0.1), transparent);
-      opacity: 0;
-      transition: opacity var(--duration-normal);
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .invite-image-wrapper:hover::before {
-      opacity: 1;
-    }
-
     .invite-image {
       width: 100%;
       display: block;
       border-radius: var(--radius-lg);
       transition: all var(--duration-normal) var(--easing-smooth);
       background: var(--bg-light);
-      position: relative;
-      z-index: 0;
     }
 
-    .invite-image:hover {
-      transform: scale(1.06) translateY(-10px);
-      filter: brightness(1.08) saturate(1.1);
-    }
+    .invite-image:hover { transform: scale(1.06) translateY(-10px); filter: brightness(1.08); }
 
-    /* ========== CELEBRATION MESSAGE ========== */
+    /* ========== CELEBRATION ========== */
     .celebration-container {
       text-align: center;
       margin: var(--space-3xl) 0;
@@ -499,10 +467,7 @@
       pointer-events: none;
     }
 
-    .celebration-container.active {
-      display: block;
-      animation: slideUp 0.8s var(--easing-out), heartBeat 0.6s var(--easing-bounce) 0.3s;
-    }
+    .celebration-container.active { display: block; }
 
     .celebration-text {
       font-family: 'Playfair Display', serif;
@@ -521,15 +486,8 @@
     }
 
     /* ========== BUTTONS ========== */
-    .button-container {
-      text-align: center;
-      display: none;
-      animation: slideUp 0.8s var(--easing-out);
-    }
-
-    .button-container.active {
-      display: block;
-    }
+    .button-container { text-align: center; display: none; animation: slideUp 0.8s var(--easing-out); }
+    .button-container.active { display: block; }
 
     .button-group {
       display: flex;
@@ -588,18 +546,9 @@
       transition: opacity var(--duration-normal);
     }
 
-    .btn-glossy > * {
-      position: relative;
-      z-index: 2;
-    }
-
-    .btn-glossy:hover::before {
-      left: 100%;
-    }
-
-    .btn-glossy:hover::after {
-      opacity: 1;
-    }
+    .btn-glossy > * { position: relative; z-index: 2; }
+    .btn-glossy:hover::before { left: 100%; }
+    .btn-glossy:hover::after { opacity: 1; }
 
     .btn-glossy:hover {
       transform: translateY(-8px) scale(1.08);
@@ -607,9 +556,7 @@
       filter: brightness(1.2);
     }
 
-    .btn-glossy:active {
-      transform: translateY(-2px) scale(0.97);
-    }
+    .btn-glossy:active { transform: translateY(-2px) scale(0.97); }
 
     .btn-icon {
       display: inline-flex;
@@ -620,31 +567,15 @@
       animation: float 4s var(--easing-smooth) infinite;
     }
 
-    .btn-glossy:hover .btn-icon {
-      animation: heartBeat 0.6s var(--easing-bounce);
-    }
+    .btn-glossy:hover .btn-icon { animation: none; transform: scale(1.3) rotate(15deg); }
 
-    .btn-text {
-      display: inline;
-      font-weight: 800;
-      letter-spacing: 1.2px;
-    }
+    .btn-text { display: inline; font-weight: 800; letter-spacing: 1.2px; }
 
-    .btn-rsvp {
-      background: var(--gradient-rsvp);
-    }
+    .btn-rsvp { background: var(--gradient-rsvp); }
+    .btn-rsvp:hover { box-shadow: 0 15px 40px rgba(255, 64, 129, 0.45); }
 
-    .btn-rsvp:hover {
-      box-shadow: 0 15px 40px rgba(255, 64, 129, 0.45);
-    }
-
-    .btn-save-date {
-      background: var(--gradient-save);
-    }
-
-    .btn-save-date:hover {
-      box-shadow: 0 15px 40px rgba(38, 194, 129, 0.45);
-    }
+    .btn-save-date { background: var(--gradient-save); }
+    .btn-save-date:hover { box-shadow: 0 15px 40px rgba(38, 194, 129, 0.45); }
 
     .btn-location {
       background: var(--gradient-location);
@@ -652,10 +583,7 @@
       max-width: 100%;
       margin-top: 0;
     }
-
-    .btn-location:hover {
-      box-shadow: 0 15px 40px rgba(0, 188, 212, 0.45);
-    }
+    .btn-location:hover { box-shadow: 0 15px 40px rgba(0, 188, 212, 0.45); }
 
     /* ========== CONFETTI ========== */
     .confetti {
@@ -670,7 +598,7 @@
       height: 14px;
       border-radius: var(--radius-full);
       background: var(--primary);
-      box-shadow: var(--shadow-glow);
+      box-shadow: 0 0 20px rgba(214, 74, 136, 0.3);
     }
 
     .confetti-emoji {
@@ -699,11 +627,6 @@
       margin: var(--space-md) 0;
       font-weight: 600;
       letter-spacing: 0.6px;
-      animation: slideUp 0.8s var(--easing-out);
-    }
-
-    footer p:nth-child(2) {
-      animation-delay: 0.1s;
     }
 
     footer a {
@@ -732,14 +655,8 @@
       border-radius: 2px;
     }
 
-    footer a:hover::after {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-
-    footer a:hover {
-      filter: brightness(1.15);
-    }
+    footer a:hover::after { transform: scaleX(1); transform-origin: left; }
+    footer a:hover { filter: brightness(1.15); }
 
     /* ========== RESPONSIVE ========== */
     @media (max-width: 768px) {
@@ -754,19 +671,14 @@
       }
 
       html { font-size: 15px; }
-
       header { padding: var(--space-lg) var(--space-md); gap: var(--space-sm); }
       .header-title { font-size: 1.6rem; }
       .btn-control { width: 50px; height: 50px; font-size: 1.4rem; }
-
       #myVideo { max-height: 65vh; }
       .video-wrapper { margin: var(--space-2xl) auto var(--space-lg); }
-
       #mainContentContainer { padding: var(--space-md) var(--space-lg) var(--space-3xl) var(--space-lg); }
       .celebration-container { margin: var(--space-2xl) 0; padding: var(--space-2xl) var(--space-lg); }
-
       .btn-glossy { padding: 1.1rem var(--space-lg); font-size: 0.9rem; min-height: 54px; }
-
       footer { padding: var(--space-2xl) var(--space-lg); }
       .toast { bottom: 1rem; right: 1rem; left: 1rem; max-width: none; }
     }
@@ -783,32 +695,18 @@
       }
 
       html { font-size: 14px; }
-
       header { padding: var(--space-md) var(--space-sm); }
       .header-title { font-size: 1.4rem; }
       .btn-control { width: 48px; height: 48px; font-size: 1.3rem; }
-
       #myVideo { max-height: 60vh; }
       .video-wrapper { margin: var(--space-xl) auto var(--space-md); padding: 0 var(--space-sm); }
-
       .celebration-text { font-size: 1.3rem; }
-      .btn-glossy { padding: 1rem var(--space-md); font-size: 0.85rem; min-height: 52px; gap: var(--space-sm); }
-
+      .btn-glossy { padding: 1rem var(--space-md); font-size: 0.85rem; min-height: 52px; }
       #mainContentContainer { padding: var(--space-sm) var(--space-md) var(--space-2xl) var(--space-md); }
       footer { padding: var(--space-xl) var(--space-md); font-size: 0.95rem; }
     }
 
     @media (max-width: 380px) {
-      :root {
-        --space-sm: 0.6rem;
-        --space-md: 0.8rem;
-        --space-lg: 1rem;
-        --space-xl: 1.2rem;
-        --space-2xl: 1.5rem;
-        --space-3xl: 2rem;
-        --space-4xl: 2.5rem;
-      }
-
       html { font-size: 13px; }
       .header-title { font-size: 1.2rem; }
       .btn-glossy { padding: 0.95rem var(--space-md); font-size: 0.8rem; min-height: 50px; }
@@ -857,7 +755,7 @@
 
     ::-webkit-scrollbar-thumb:hover {
       background: var(--primary-dark);
-      box-shadow: var(--shadow-glow);
+      box-shadow: 0 0 20px rgba(214, 74, 136, 0.3);
     }
 
     :focus-visible {
@@ -880,7 +778,7 @@
   </header>
 
   <section class="video-wrapper" role="region" aria-label="Invitation Video">
-    <video id="myVideo" muted playsinline autoplay poster="Images/preview.gif" preload="metadata" loading="lazy">
+    <video id="myVideo" muted playsinline autoplay poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 1100'%3E%3Crect fill='%23f5f2ff' width='700' height='1100'/%3E%3C/svg%3E" preload="metadata" loading="lazy">
       <source src="video/invite1.mp4" type="video/mp4">
     </video>
     <div class="loading-container" role="status" aria-live="polite">
@@ -890,7 +788,7 @@
 
   <main id="mainContentContainer" role="main">
     <div class="invite-image-wrapper">
-      <img class="invite-image" src="Images/2.png" alt="Beautiful Baby Shower Invitation" loading="lazy">
+      <img class="invite-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Crect fill='%23f9f7ff' width='400' height='600'/%3E%3Ctext x='50%25' y='50%25' font-size='32' fill='%23d64a88' text-anchor='middle' dominant-baseline='middle'%3E🎉 Invitation Image 🎉%3C/text%3E%3C/svg%3E" alt="Baby Shower Invitation Image" loading="lazy">
     </div>
 
     <section class="celebration-container" id="celebrationContainer">
@@ -904,7 +802,7 @@
           <span class="btn-text">Vote Now</span>
         </button>
         <button class="btn-glossy btn-save-date" id="saveDateBtn" type="button">
-          <span class="btn-icon">📅</span>
+          <span class="btn-icon">���</span>
           <span class="btn-text">Save Date</span>
         </button>
       </div>
@@ -923,7 +821,6 @@
   <script>
     'use strict';
 
-    /* ========== CONFIGURATION ========== */
     const CONFIG = {
       locations: { event: 'https://maps.app.goo.gl/f8kCNiDMSnJ1st4U8' },
       forms: { rsvp: 'https://forms.gle/Aqrw3mATGPEahUxCA' },
@@ -935,19 +832,12 @@
         description: 'Join us for a magical Baby Shower celebration!',
         location: 'Special Venue',
         url: 'https://arungz.github.io/BabyShower/'
-      },
-      confetti: {
-        count: 120,
-        duration: 1.8,
-        colors: ['#d64a88', '#ff6b9d', '#9d6bc0', '#00bcd4', '#26c281', '#f4b350', '#ff1493', '#ff69b4'],
-        emojis: ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎀', '🌺', '💐', '🎊', '🍼', '💝']
       }
     };
 
-    /* ========== TOAST MANAGER ========== */
     class Toast {
       static show(msg, type = 'info', duration = 3000) {
-        if (!msg || typeof msg !== 'string') return;
+        if (!msg) return;
         const icons = { success: '✅', error: '❌', info: 'ℹ️' };
         const toast = document.createElement('div');
         toast.className = `toast ${type}`;
@@ -955,29 +845,26 @@
         
         const icon = document.createElement('span');
         icon.className = 'toast-icon';
-        icon.textContent = icons[type] || '❓';
+        icon.textContent = icons[type];
         
-        const message = document.createElement('span');
-        message.textContent = msg;
+        const msg_el = document.createElement('span');
+        msg_el.textContent = msg;
         
         toast.appendChild(icon);
-        toast.appendChild(message);
+        toast.appendChild(msg_el);
         document.body.appendChild(toast);
 
-        const timeout = setTimeout(() => {
+        setTimeout(() => {
           toast.style.animation = 'fadeOut 0.4s forwards';
           setTimeout(() => toast.parentElement && toast.remove(), 400);
         }, duration);
-
-        return { remove: () => { clearTimeout(timeout); toast.parentElement && toast.remove(); } };
       }
 
-      static success(msg) { return this.show(msg, 'success'); }
-      static error(msg) { return this.show(msg, 'error'); }
-      static info(msg) { return this.show(msg, 'info'); }
+      static success(m) { this.show(m, 'success'); }
+      static error(m) { this.show(m, 'error'); }
+      static info(m) { this.show(m, 'info'); }
     }
 
-    /* ========== PROGRESS MANAGER ========== */
     class Progress {
       static set(value) {
         const bar = document.getElementById('progressBar');
@@ -993,7 +880,6 @@
       }
     }
 
-    /* ========== CALENDAR MANAGER ========== */
     class Calendar {
       static google() {
         const { date, startTime, endTime, title, description, location } = CONFIG.event;
@@ -1019,30 +905,23 @@
         if (isApple) {
           try {
             const blob = new Blob([this.ics()], { type: 'text/calendar;charset=utf-8' });
-            const link = document.createElement('a');
             const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
             link.href = url;
             link.download = 'baby-shower.ics';
-            link.style.display = 'none';
-            document.body.appendChild(link);
             link.click();
-            setTimeout(() => {
-              document.body.removeChild(link);
-              URL.revokeObjectURL(url);
-            }, 100);
-            Toast.success('Event saved to calendar!');
+            URL.revokeObjectURL(url);
+            Toast.success('Event saved!');
           } catch (e) {
-            console.error('Calendar save error:', e);
-            Toast.error('Failed to save event');
+            Toast.error('Failed to save');
           }
         } else {
           window.open(this.google(), '_blank');
-          Toast.info('Opening Google Calendar...');
+          Toast.info('Opening Calendar...');
         }
       }
     }
 
-    /* ========== SHOWER ANIMATION ========== */
     class Shower {
       static start() {
         const container = document.getElementById('showerContainer');
@@ -1072,11 +951,11 @@
       }
     }
 
-    /* ========== CONFETTI ANIMATION ========== */
     class Confetti {
       static create() {
-        const { count, duration, colors, emojis } = CONFIG.confetti;
-        const totalDuration = duration * 1000;
+        const colors = ['#d64a88', '#ff6b9d', '#9d6bc0', '#00bcd4', '#26c281', '#f4b350'];
+        const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎀', '🌺', '💐', '🎊'];
+        const count = 120;
 
         for (let i = 0; i < count; i++) {
           setTimeout(() => {
@@ -1089,26 +968,29 @@
               c.style.background = colors[Math.floor(Math.random() * colors.length)];
             }
 
-            const startX = Math.random() * window.innerWidth;
-            c.style.left = startX + 'px';
+            c.style.left = Math.random() * 100 + '%';
             c.style.top = '-40px';
             c.style.opacity = Math.random() * 0.9 + 0.3;
 
+            const dur = Math.random() * 3.5 + 2;
             const tx = (Math.random() - 0.5) * 500;
-            const rotate = Math.random() * 720 + 360;
+            const rot = Math.random() * 720;
 
-            c.style.setProperty('--tx', tx + 'px');
-            c.style.setProperty('--rotate', rotate + 'deg');
-            c.style.animation = `confettiFall ${duration}s ease-in forwards`;
+            c.animate([
+              { transform: 'translateY(0) rotate(0deg)', opacity: Math.random() * 0.8 + 0.3 },
+              { transform: `translateY(${window.innerHeight + 50}px) translateX(${tx}px) rotate(${rot}deg)`, opacity: 0 }
+            ], {
+              duration: dur * 1000,
+              easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              fill: 'forwards'
+            }).onfinish = () => c.parentElement && c.remove();
 
             document.body.appendChild(c);
-            setTimeout(() => c.parentElement && c.remove(), totalDuration);
           }, i * 12);
         }
       }
     }
 
-    /* ========== DOM CACHE ========== */
     const DOM = {
       video: document.getElementById('myVideo'),
       mainContent: document.getElementById('mainContentContainer'),
@@ -1122,28 +1004,8 @@
       locationBtn: document.getElementById('locationBtn')
     };
 
-    /* ========== STATE ========== */
-    const state = {
-      isMuted: true,
-      isEnded: false,
-      timeouts: [],
-      listeners: new WeakMap()
-    };
+    const state = { isMuted: true, isEnded: false };
 
-    /* ========== UTILITIES ========== */
-    function scheduleTask(fn, delay = 0) {
-      if (typeof fn !== 'function') return null;
-      const id = setTimeout(fn, delay);
-      state.timeouts.push(id);
-      return id;
-    }
-
-    function clearAllTimeouts() {
-      state.timeouts.forEach(clearTimeout);
-      state.timeouts = [];
-    }
-
-    /* ========== VIDEO EVENT HANDLERS ========== */
     const VideoHandlers = {
       onEnd: () => {
         if (state.isEnded) return;
@@ -1157,7 +1019,7 @@
 
         if (DOM.mainContent) DOM.mainContent.classList.add('active');
 
-        scheduleTask(() => {
+        setTimeout(() => {
           if (DOM.celebration) DOM.celebration.classList.add('active');
           if (DOM.buttonContainer) DOM.buttonContainer.classList.add('active');
           Shower.start();
@@ -1171,37 +1033,25 @@
         Progress.set(60);
       },
 
-      onError: (error) => {
-        console.error('Video error:', error);
-        if (DOM.loadingText) DOM.loadingText.innerHTML = '❌ Failed to load video';
+      onError: () => {
+        if (DOM.loadingText) DOM.loadingText.innerHTML = '❌ Video failed';
         Toast.error('Video loading failed');
-        scheduleTask(() => {
+        setTimeout(() => {
           if (DOM.mainContent) DOM.mainContent.classList.add('active');
           Progress.complete();
         }, 2500);
-      },
-
-      onStalled: () => {
-        if (DOM.video && !DOM.video.paused) {
-          DOM.video.pause();
-          scheduleTask(() => {
-            if (DOM.video) DOM.video.play().catch(() => {});
-          }, 1000);
-        }
       }
     };
 
-    /* ========== EVENT SETUP ========== */
-    function setupVideoEvents() {
-      if (!DOM.video) return;
+    function init() {
+      Progress.set(15);
 
-      DOM.video.addEventListener('ended', VideoHandlers.onEnd, { once: true });
-      DOM.video.addEventListener('canplay', VideoHandlers.onPlay, { once: true });
-      DOM.video.addEventListener('error', VideoHandlers.onError);
-      DOM.video.addEventListener('stalled', VideoHandlers.onStalled);
-    }
+      if (DOM.video) {
+        DOM.video.addEventListener('ended', VideoHandlers.onEnd, { once: true });
+        DOM.video.addEventListener('canplay', VideoHandlers.onPlay, { once: true });
+        DOM.video.addEventListener('error', VideoHandlers.onError);
+      }
 
-    function setupControlButtons() {
       DOM.musicToggle?.addEventListener('click', () => {
         state.isMuted = !state.isMuted;
         if (DOM.video) DOM.video.muted = state.isMuted;
@@ -1211,32 +1061,20 @@
 
       DOM.fullscreenToggle?.addEventListener('click', async () => {
         try {
-          if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-            const elem = document.documentElement;
-            if (elem.requestFullscreen) {
-              await elem.requestFullscreen();
-            } else if (elem.webkitRequestFullscreen) {
-              await elem.webkitRequestFullscreen();
-            }
+          if (!document.fullscreenElement) {
+            await document.documentElement.requestFullscreen();
           } else {
-            if (document.exitFullscreen) {
-              await document.exitFullscreen();
-            } else if (document.webkitExitFullscreen) {
-              await document.webkitExitFullscreen();
-            }
+            await document.exitFullscreen();
           }
         } catch (e) {
-          console.warn('Fullscreen not available:', e);
           Toast.info('Fullscreen not supported');
         }
       });
-    }
 
-    function setupActionButtons() {
       DOM.rsvpBtn?.addEventListener('click', () => {
         if (CONFIG.forms.rsvp) {
           window.open(CONFIG.forms.rsvp, '_blank');
-          Toast.info('Opening RSVP form...');
+          Toast.info('Opening RSVP...');
         }
       });
 
@@ -1248,39 +1086,17 @@
           Toast.info('Opening location...');
         }
       });
-    }
 
-    function setupVisibilityHandler() {
       document.addEventListener('visibilitychange', () => {
         if (DOM.video) {
-          if (document.hidden) {
-            DOM.video.pause();
-          } else {
-            DOM.video.play().catch(() => {});
-          }
+          document.hidden ? DOM.video.pause() : DOM.video.play().catch(() => {});
         }
       });
-    }
-
-    /* ========== INITIALIZATION ========== */
-    function init() {
-      Progress.set(15);
-      setupVideoEvents();
-      setupControlButtons();
-      setupActionButtons();
-      setupVisibilityHandler();
-
-      window.addEventListener('beforeunload', clearAllTimeouts);
 
       console.log('%c🎉 Baby Shower Ready! 💕', 'color: #d64a88; font-size: 18px; font-weight: bold;');
     }
 
-    // Start when DOM is ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
-    } else {
-      init();
-    }
+    document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();
   </script>
 </body>
 </html>
