@@ -138,11 +138,11 @@
       z-index: -1;
     }
 
-    /* ========== ANIMATIONS ========== */
+    /* ========== ENHANCED ANIMATIONS ========== */
     @keyframes slideUp {
       from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
       }
       to {
         opacity: 1;
@@ -153,7 +153,7 @@
     @keyframes slideDown {
       from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-30px);
       }
       to {
         opacity: 1;
@@ -164,7 +164,7 @@
     @keyframes slideInLeft {
       from {
         opacity: 0;
-        transform: translateX(-30px);
+        transform: translateX(-40px);
       }
       to {
         opacity: 1;
@@ -175,7 +175,7 @@
     @keyframes slideInRight {
       from {
         opacity: 0;
-        transform: translateX(30px);
+        transform: translateX(40px);
       }
       to {
         opacity: 1;
@@ -186,11 +186,11 @@
     @keyframes scaleIn {
       from {
         opacity: 0;
-        transform: scale(0.8);
+        transform: scale(0.7) rotate(-10deg);
       }
       to {
         opacity: 1;
-        transform: scale(1);
+        transform: scale(1) rotate(0deg);
       }
     }
 
@@ -208,16 +208,19 @@
         transform: translateY(0);
       }
       50% {
-        transform: translateY(-8px);
+        transform: translateY(-12px);
       }
     }
 
     @keyframes float {
       0%, 100% {
-        transform: translateY(0);
+        transform: translateY(0) rotate(0deg);
       }
-      50% {
-        transform: translateY(-10px);
+      25% {
+        transform: translateY(-12px) rotate(2deg);
+      }
+      75% {
+        transform: translateY(-8px) rotate(-2deg);
       }
     }
 
@@ -245,7 +248,7 @@
         opacity: 1;
       }
       100% {
-        transform: translateY(100vh) translateX(30px) scale(0.5) rotate(360deg);
+        transform: translateY(100vh) translateX(50px) scale(0.3) rotate(720deg);
         opacity: 0;
       }
     }
@@ -255,24 +258,59 @@
         transform: translateX(0);
       }
       25% {
-        transform: translateX(40px);
+        transform: translateX(60px);
       }
       75% {
-        transform: translateX(-40px);
+        transform: translateX(-60px);
       }
     }
 
     @keyframes popIn {
       0% {
         opacity: 0;
-        transform: scale(0.3) rotate(-45deg);
+        transform: scale(0.2) rotate(-45deg);
       }
       50% {
-        transform: scale(1.1) rotate(5deg);
+        transform: scale(1.15) rotate(5deg);
       }
       100% {
         opacity: 1;
         transform: scale(1) rotate(0);
+      }
+    }
+
+    @keyframes heartBeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      25% {
+        transform: scale(1.2);
+      }
+      50% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        filter: drop-shadow(0 0 8px rgba(214, 74, 136, 0.4));
+      }
+      50% {
+        filter: drop-shadow(0 0 20px rgba(214, 74, 136, 0.8));
+      }
+    }
+
+    @keyframes waveFlow {
+      0% {
+        opacity: 0.3;
+        transform: translateY(20px) scaleX(0.8);
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.3;
+        transform: translateY(-20px) scaleX(1.2);
       }
     }
 
@@ -294,12 +332,13 @@
       position: absolute;
       font-size: 2.5rem;
       animation: showerFall linear forwards;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
       will-change: transform;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
     }
 
     .shower-drop.swing {
-      animation: showerSwing 0.8s ease-in-out infinite, showerFall linear forwards;
+      animation: showerSwing 1s ease-in-out infinite, showerFall linear forwards;
     }
 
     /* ========== PROGRESS BAR ========== */
@@ -310,9 +349,9 @@
       height: 4px;
       background: var(--gradient-primary);
       z-index: var(--z-sticky);
-      box-shadow: 0 0 15px rgba(214, 74, 136, 0.6);
+      box-shadow: 0 0 20px rgba(214, 74, 136, 0.8);
       border-radius: 2px;
-      transition: width 0.3s ease;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       width: 0;
       opacity: 1;
     }
@@ -326,8 +365,8 @@
       padding: 1.2rem 1.8rem;
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-xl);
-      animation: slideUp 0.4s var(--easing-out) forwards;
-      backdrop-filter: blur(10px);
+      animation: slideUp 0.5s var(--easing-out) forwards;
+      backdrop-filter: blur(15px);
       border: 2px solid rgba(214, 74, 136, 0.3);
       max-width: 320px;
       z-index: var(--z-notification);
@@ -340,18 +379,18 @@
     }
 
     .toast.success {
-      border-color: rgba(38, 194, 129, 0.4);
-      background: rgba(38, 194, 129, 0.1);
+      border-color: rgba(38, 194, 129, 0.5);
+      background: rgba(38, 194, 129, 0.12);
     }
 
     .toast.error {
-      border-color: rgba(255, 64, 129, 0.4);
-      background: rgba(255, 64, 129, 0.1);
+      border-color: rgba(255, 64, 129, 0.5);
+      background: rgba(255, 64, 129, 0.12);
     }
 
     .toast.info {
-      border-color: rgba(0, 188, 212, 0.4);
-      background: rgba(0, 188, 212, 0.1);
+      border-color: rgba(0, 188, 212, 0.5);
+      background: rgba(0, 188, 212, 0.12);
     }
 
     .toast-icon {
@@ -367,12 +406,12 @@
       justify-content: space-between;
       padding: var(--space-lg) var(--space-xl);
       background: var(--bg-overlay);
-      border-bottom: 2px solid rgba(214, 74, 136, 0.15);
+      border-bottom: 2px solid rgba(214, 74, 136, 0.2);
       box-shadow: var(--shadow-lg);
       position: sticky;
       top: 0;
       z-index: var(--z-sticky);
-      animation: slideDown 0.6s var(--easing-out);
+      animation: slideDown 0.7s var(--easing-out);
       backdrop-filter: blur(10px);
       gap: var(--space-md);
     }
@@ -387,16 +426,17 @@
       background-clip: text;
       text-align: left;
       flex: 1;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
       min-width: 0;
       word-break: break-word;
-      animation: slideInLeft 0.6s var(--easing-out) 0.1s both;
-      filter: drop-shadow(0 2px 4px rgba(214, 74, 136, 0.15));
-      transition: filter var(--duration-normal);
+      animation: slideInLeft 0.8s var(--easing-out) 0.1s both;
+      filter: drop-shadow(0 2px 6px rgba(214, 74, 136, 0.2));
+      transition: all var(--duration-normal);
     }
 
     .header-title:hover {
-      filter: drop-shadow(0 4px 8px rgba(214, 74, 136, 0.25));
+      filter: drop-shadow(0 6px 16px rgba(214, 74, 136, 0.35));
+      transform: scale(1.02);
     }
 
     .header-controls {
@@ -404,21 +444,21 @@
       gap: var(--space-sm);
       align-items: center;
       flex-shrink: 0;
-      animation: slideInRight 0.6s var(--easing-out) 0.2s both;
+      animation: slideInRight 0.8s var(--easing-out) 0.2s both;
     }
 
     .btn-control {
       background: var(--gradient-primary);
       color: var(--white);
       border: none;
-      width: 50px;
-      height: 50px;
+      width: 52px;
+      height: 52px;
       border-radius: var(--radius-full);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       transition: all var(--duration-fast) var(--easing-smooth);
       box-shadow: var(--shadow-lg);
       position: relative;
@@ -430,15 +470,15 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent);
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), transparent);
       opacity: 0;
       transition: opacity var(--duration-normal);
     }
 
     .btn-control:hover {
-      transform: scale(1.15) translateY(-3px);
+      transform: scale(1.2) translateY(-4px);
       box-shadow: var(--shadow-glow-lg);
-      filter: brightness(1.15);
+      filter: brightness(1.2);
     }
 
     .btn-control:hover::before {
@@ -446,7 +486,7 @@
     }
 
     .btn-control:active {
-      transform: scale(0.92);
+      transform: scale(0.95);
     }
 
     /* ========== VIDEO SECTION ========== */
@@ -458,7 +498,7 @@
       flex-direction: column;
       align-items: center;
       padding: 0 var(--space-md);
-      animation: slideUp 0.7s var(--easing-out);
+      animation: slideUp 0.8s var(--easing-out);
     }
 
     #myVideo {
@@ -477,9 +517,9 @@
     }
 
     #myVideo:hover {
-      transform: scale(1.02) translateY(-4px);
+      transform: scale(1.03) translateY(-6px);
       box-shadow: var(--shadow-glow-lg);
-      border-color: rgba(214, 74, 136, 0.4);
+      border-color: rgba(214, 74, 136, 0.5);
     }
 
     .loading-container {
@@ -504,16 +544,17 @@
       display: inline-flex;
       align-items: center;
       gap: var(--space-sm);
-      letter-spacing: 0.4px;
+      letter-spacing: 0.5px;
     }
 
     #loading-text::after {
       content: '';
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       background: var(--primary);
       border-radius: var(--radius-full);
       animation: bounce 1.4s var(--easing-smooth) infinite;
+      box-shadow: var(--shadow-glow);
     }
 
     /* ========== MAIN CONTENT ========== */
@@ -522,7 +563,7 @@
       max-width: 760px;
       margin: 0 auto;
       padding: var(--space-xl) var(--space-xl) var(--space-4xl) var(--space-xl);
-      animation: slideUp 0.7s var(--easing-out) 0.3s both;
+      animation: slideUp 0.8s var(--easing-out) 0.3s both;
     }
 
     #mainContentContainer.active {
@@ -536,10 +577,25 @@
       border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: var(--shadow-xl);
-      animation: slideUp 0.7s var(--easing-out);
+      animation: slideUp 0.8s var(--easing-out);
       position: relative;
-      border: 3px solid rgba(214, 74, 136, 0.15);
+      border: 3px solid rgba(214, 74, 136, 0.2);
       background: var(--bg-light);
+    }
+
+    .invite-image-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(214, 74, 136, 0.1), transparent);
+      opacity: 0;
+      transition: opacity var(--duration-normal);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .invite-image-wrapper:hover::before {
+      opacity: 1;
     }
 
     .invite-image {
@@ -548,11 +604,13 @@
       border-radius: var(--radius-lg);
       transition: all var(--duration-normal) var(--easing-smooth);
       background: var(--bg-light);
+      position: relative;
+      z-index: 0;
     }
 
     .invite-image:hover {
-      transform: scale(1.05) translateY(-8px);
-      filter: brightness(1.05);
+      transform: scale(1.06) translateY(-10px);
+      filter: brightness(1.08) saturate(1.1);
     }
 
     /* ========== CELEBRATION MESSAGE ========== */
@@ -560,12 +618,12 @@
       text-align: center;
       margin: var(--space-3xl) 0;
       display: none;
-      animation: slideUp 0.7s var(--easing-out);
+      animation: slideUp 0.8s var(--easing-out);
       padding: var(--space-3xl) var(--space-xl);
       background: var(--bg-card);
       border-radius: var(--radius-lg);
-      backdrop-filter: blur(10px);
-      border: 2px solid rgba(214, 74, 136, 0.25);
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(214, 74, 136, 0.3);
       box-shadow: var(--shadow-lg);
       position: relative;
       overflow: hidden;
@@ -575,7 +633,10 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: var(--gradient-shimmer);
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.4), 
+        transparent);
       background-size: 200% 100%;
       opacity: 0;
       animation: shimmer 3s linear infinite;
@@ -584,6 +645,7 @@
 
     .celebration-container.active {
       display: block;
+      animation: slideUp 0.8s var(--easing-out), heartBeat 0.6s var(--easing-bounce) 0.3s;
     }
 
     .celebration-text {
@@ -595,8 +657,8 @@
       background-clip: text;
       font-weight: 900;
       margin: 0;
-      letter-spacing: 0.5px;
-      animation: scaleIn 0.6s var(--easing-bounce);
+      letter-spacing: 0.8px;
+      animation: scaleIn 0.7s var(--easing-bounce);
       line-height: 1.5;
       position: relative;
       z-index: 2;
@@ -606,7 +668,7 @@
     .button-container {
       text-align: center;
       display: none;
-      animation: slideUp 0.7s var(--easing-out);
+      animation: slideUp 0.8s var(--easing-out);
     }
 
     .button-container.active {
@@ -625,13 +687,13 @@
     .btn-glossy {
       position: relative;
       border: none;
-      padding: 1.2rem var(--space-xl);
+      padding: 1.3rem var(--space-xl);
       font-size: 0.95rem;
       font-weight: 800;
       border-radius: 50px;
       cursor: pointer;
       text-transform: uppercase;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.3px;
       overflow: hidden;
       transition: all var(--duration-fast) var(--easing-smooth);
       box-shadow: var(--shadow-lg);
@@ -643,10 +705,10 @@
       justify-content: center;
       gap: var(--space-md);
       white-space: nowrap;
-      min-height: 58px;
+      min-height: 60px;
       font-family: 'Poppins', sans-serif;
       backdrop-filter: blur(10px);
-      border: 2px solid rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.25);
     }
 
     .btn-glossy::before {
@@ -656,7 +718,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
       transition: left var(--duration-normal) var(--easing-smooth);
       z-index: 1;
     }
@@ -665,7 +727,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent);
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.35), transparent);
       opacity: 0;
       transition: opacity var(--duration-normal);
     }
@@ -684,33 +746,32 @@
     }
 
     .btn-glossy:hover {
-      transform: translateY(-6px) scale(1.06);
+      transform: translateY(-8px) scale(1.08);
       box-shadow: var(--shadow-glow-lg);
-      filter: brightness(1.15);
+      filter: brightness(1.2);
     }
 
     .btn-glossy:active {
-      transform: translateY(-2px) scale(0.98);
+      transform: translateY(-2px) scale(0.97);
     }
 
     .btn-icon {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       flex-shrink: 0;
-      animation: float 3s var(--easing-smooth) infinite;
+      animation: float 4s var(--easing-smooth) infinite;
     }
 
     .btn-glossy:hover .btn-icon {
-      transform: scale(1.3) rotate(10deg) translateY(-3px);
-      animation: none;
+      animation: heartBeat 0.6s var(--easing-bounce);
     }
 
     .btn-text {
       display: inline;
       font-weight: 800;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
     }
 
     .btn-rsvp {
@@ -718,7 +779,7 @@
     }
 
     .btn-rsvp:hover {
-      box-shadow: 0 12px 32px rgba(255, 64, 129, 0.4);
+      box-shadow: 0 15px 40px rgba(255, 64, 129, 0.45);
     }
 
     .btn-save-date {
@@ -726,7 +787,7 @@
     }
 
     .btn-save-date:hover {
-      box-shadow: 0 12px 32px rgba(38, 194, 129, 0.4);
+      box-shadow: 0 15px 40px rgba(38, 194, 129, 0.45);
     }
 
     .btn-location {
@@ -737,7 +798,7 @@
     }
 
     .btn-location:hover {
-      box-shadow: 0 12px 32px rgba(0, 188, 212, 0.4);
+      box-shadow: 0 15px 40px rgba(0, 188, 212, 0.45);
     }
 
     /* ========== CONFETTI ========== */
@@ -749,20 +810,20 @@
     }
 
     .confetti-shape {
-      width: 12px;
-      height: 12px;
+      width: 14px;
+      height: 14px;
       border-radius: var(--radius-full);
       background: var(--primary);
       box-shadow: var(--shadow-glow);
     }
 
     .confetti-emoji {
-      font-size: 32px;
+      font-size: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
-      filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.2));
-      animation: popIn 0.6s var(--easing-bounce);
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+      animation: popIn 0.7s var(--easing-bounce);
     }
 
     /* ========== FOOTER ========== */
@@ -771,17 +832,23 @@
       padding: var(--space-3xl) var(--space-xl);
       color: var(--text-secondary);
       font-size: 1rem;
-      border-top: 2px solid rgba(214, 74, 136, 0.15);
+      border-top: 2px solid rgba(214, 74, 136, 0.2);
       margin-top: var(--space-2xl);
       background: var(--bg-overlay);
-      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
-      animation: slideUp 0.7s var(--easing-out);
+      box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.06);
+      animation: slideUp 0.8s var(--easing-out);
+      backdrop-filter: blur(10px);
     }
 
     footer p {
       margin: var(--space-md) 0;
       font-weight: 600;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.6px;
+      animation: slideUp 0.8s var(--easing-out);
+    }
+
+    footer p:nth-child(2) {
+      animation-delay: 0.1s;
     }
 
     footer a {
@@ -799,7 +866,7 @@
     footer a::after {
       content: '';
       position: absolute;
-      bottom: -4px;
+      bottom: -5px;
       left: 0;
       right: 0;
       height: 3px;
@@ -816,16 +883,7 @@
     }
 
     footer a:hover {
-      filter: brightness(1.1);
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+      filter: brightness(1.15);
     }
 
     /* ========== RESPONSIVE ========== */
@@ -855,9 +913,9 @@
       }
 
       .btn-control {
-        width: 48px;
-        height: 48px;
-        font-size: 1.3rem;
+        width: 50px;
+        height: 50px;
+        font-size: 1.4rem;
       }
 
       #myVideo {
@@ -878,9 +936,9 @@
       }
 
       .btn-glossy {
-        padding: 1rem var(--space-lg);
+        padding: 1.1rem var(--space-lg);
         font-size: 0.9rem;
-        min-height: 52px;
+        min-height: 54px;
       }
 
       footer {
@@ -920,9 +978,9 @@
       }
 
       .btn-control {
-        width: 46px;
-        height: 46px;
-        font-size: 1.2rem;
+        width: 48px;
+        height: 48px;
+        font-size: 1.3rem;
       }
 
       #myVideo {
@@ -939,9 +997,9 @@
       }
 
       .btn-glossy {
-        padding: 0.95rem var(--space-md);
+        padding: 1rem var(--space-md);
         font-size: 0.85rem;
-        min-height: 50px;
+        min-height: 52px;
         gap: var(--space-sm);
       }
 
@@ -976,9 +1034,9 @@
       }
 
       .btn-glossy {
-        padding: 0.9rem var(--space-md);
+        padding: 0.95rem var(--space-md);
         font-size: 0.8rem;
-        min-height: 48px;
+        min-height: 50px;
       }
     }
 
@@ -1006,12 +1064,12 @@
 
       header {
         background: var(--bg-overlay);
-        border-bottom-color: rgba(214, 74, 136, 0.15);
+        border-bottom-color: rgba(214, 74, 136, 0.2);
       }
 
       footer {
         background: var(--bg-overlay);
-        border-top-color: rgba(214, 74, 136, 0.15);
+        border-top-color: rgba(214, 74, 136, 0.2);
       }
     }
 
@@ -1087,7 +1145,7 @@
     </div>
 
     <section class="celebration-container" id="celebrationContainer">
-      <p class="celebration-text">✨ We Look Forward to Celebrating With You! ✨</p>
+      <p class="celebration-text">✨ We Look Forward to Celebrating With You! ��</p>
     </section>
 
     <div class="button-container" id="buttonContainer">
@@ -1133,17 +1191,29 @@
 
     /* ========== TOAST MANAGER ========== */
     class Toast {
-      static show(msg, type = 'info', duration = 3000) {
-        if (!msg) return;
+      static show(msg, type = 'info', duration = 3500) {
+        if (!msg || typeof msg !== 'string') return;
         const icons = { success: '✅', error: '❌', info: 'ℹ️' };
         const toast = document.createElement('div');
         toast.className = `toast ${type}`;
-        toast.innerHTML = `<span class="toast-icon">${icons[type]}</span><span>${msg}</span>`;
         toast.setAttribute('role', 'alert');
+        
+        const icon = document.createElement('span');
+        icon.className = 'toast-icon';
+        icon.textContent = icons[type] || '❓';
+        
+        const message = document.createElement('span');
+        message.textContent = msg;
+        
+        toast.appendChild(icon);
+        toast.appendChild(message);
         document.body.appendChild(toast);
+
         setTimeout(() => {
           toast.style.animation = 'fadeOut 0.4s forwards';
-          setTimeout(() => toast.remove(), 400);
+          setTimeout(() => {
+            if (toast.parentElement) toast.remove();
+          }, 400);
         }, duration);
       }
 
@@ -1164,7 +1234,7 @@
     class Progress {
       static set(value) {
         const bar = document.getElementById('progressBar');
-        if (bar) bar.style.width = Math.min(value, 100) + '%';
+        if (bar) bar.style.width = Math.min(Math.max(value, 0), 100) + '%';
       }
 
       static complete() {
@@ -1172,7 +1242,7 @@
         setTimeout(() => {
           const bar = document.getElementById('progressBar');
           if (bar) bar.style.opacity = '0';
-        }, 800);
+        }, 1000);
       }
     }
 
@@ -1206,12 +1276,16 @@
             const url = URL.createObjectURL(blob);
             link.href = url;
             link.download = 'baby-shower.ics';
+            link.style.display = 'none';
             document.body.appendChild(link);
             link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
+            setTimeout(() => {
+              document.body.removeChild(link);
+              URL.revokeObjectURL(url);
+            }, 100);
             Toast.success('Event saved to calendar!');
           } catch (e) {
+            console.error('Calendar save error:', e);
             Toast.error('Failed to save event');
           }
         } else {
@@ -1228,9 +1302,9 @@
         if (!container) return;
 
         container.classList.add('active');
-        const drops = ['💞', '🎉', '🍼', '👶', '🎀', '🎈'];
-        const count = 60;
-        const duration = 4000;
+        const drops = ['💞', '🎉', '🍼', '👶', '🎀', '🎈', '💕', '🌸'];
+        const count = 75;
+        const duration = 4500;
 
         for (let i = 0; i < count; i++) {
           setTimeout(() => {
@@ -1238,13 +1312,15 @@
             drop.className = 'shower-drop ' + (Math.random() > 0.5 ? 'swing' : '');
             drop.textContent = drops[Math.floor(Math.random() * drops.length)];
             drop.style.left = Math.random() * 100 + '%';
-            drop.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
-            drop.style.fontSize = (Math.random() * 1.8 + 1.2) + 'rem';
-            drop.style.opacity = Math.random() * 0.7 + 0.4;
+            drop.style.animationDuration = (Math.random() * 2.5 + 2.8) + 's';
+            drop.style.fontSize = (Math.random() * 2 + 1.3) + 'rem';
+            drop.style.opacity = Math.random() * 0.8 + 0.3;
             
             container.appendChild(drop);
-            setTimeout(() => drop.remove(), duration);
-          }, i * 40);
+            setTimeout(() => {
+              if (drop.parentElement) drop.remove();
+            }, duration);
+          }, i * 35);
         }
 
         setTimeout(() => container.classList.remove('active'), duration + 500);
@@ -1279,7 +1355,7 @@
     }
 
     function timeout(fn, ms) {
-      if (typeof fn !== 'function') return null;
+      if (typeof fn !== 'function' || typeof ms !== 'number') return null;
       const t = setTimeout(fn, ms);
       state.timeouts.push(t);
       return t;
@@ -1289,7 +1365,7 @@
     function onVideoEnd() {
       if (state.isEnded) return;
       state.isEnded = true;
-      Progress.set(70);
+      Progress.set(75);
 
       if (elements.video) {
         elements.video.style.display = 'none';
@@ -1304,76 +1380,93 @@
         Shower.start();
         createConfetti();
         Progress.complete();
-      }, 800);
+      }, 900);
     }
 
     function onVideoPlay() {
       if (elements.loadingText) elements.loadingText.style.display = 'none';
-      Progress.set(50);
+      Progress.set(60);
     }
 
-    function onVideoError() {
+    function onVideoError(error) {
+      console.error('Video error:', error);
       if (elements.loadingText) elements.loadingText.innerHTML = '❌ Failed to load video';
       Toast.error('Video loading failed');
       timeout(() => {
         if (elements.mainContent) elements.mainContent.classList.add('active');
         Progress.complete();
-      }, 2000);
+      }, 2500);
     }
 
     /* ========== CONFETTI ANIMATION ========== */
     function createConfetti() {
-      const colors = ['#d64a88', '#ff6b9d', '#9d6bc0', '#00bcd4', '#26c281', '#f4b350'];
-      const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎀', '🌺', '💐', '🎊'];
-      const count = window.innerWidth > 768 ? 120 : 80;
+      const colors = ['#d64a88', '#ff6b9d', '#9d6bc0', '#00bcd4', '#26c281', '#f4b350', '#ff1493', '#ff69b4'];
+      const emojis = ['🎉', '🎈', '🎁', '✨', '💕', '👶', '🌸', '💖', '🎀', '🌺', '💐', '🎊', '🍼', '💝'];
+      const count = window.innerWidth > 768 ? 140 : 90;
 
       for (let i = 0; i < count; i++) {
-        const c = document.createElement('div');
-        c.className = 'confetti ' + (Math.random() > 0.3 ? 'confetti-emoji' : 'confetti-shape');
-        
-        if (Math.random() > 0.3) {
-          c.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-        } else {
-          c.style.background = colors[Math.floor(Math.random() * colors.length)];
-        }
-
-        c.style.left = Math.random() * 100 + '%';
-        c.style.top = '-30px';
-        c.style.opacity = Math.random() * 0.8 + 0.3;
-
-        const dur = Math.random() * 3.5 + 2;
-        const xMove = (Math.random() - 0.5) * 500;
-        const rot = Math.random() * 720;
-
         timeout(() => {
-          if (!c.parentElement) return;
+          const c = document.createElement('div');
+          c.className = 'confetti ' + (Math.random() > 0.3 ? 'confetti-emoji' : 'confetti-shape');
+          
+          if (Math.random() > 0.3) {
+            c.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+          } else {
+            c.style.background = colors[Math.floor(Math.random() * colors.length)];
+          }
+
+          c.style.left = Math.random() * 100 + '%';
+          c.style.top = '-40px';
+          c.style.opacity = Math.random() * 0.9 + 0.2;
+
+          const dur = Math.random() * 3.8 + 2.5;
+          const xMove = (Math.random() - 0.5) * 600;
+          const rot = Math.random() * 720 + 360;
+
+          document.body.appendChild(c);
+
           try {
             c.animate([
-              { transform: 'translateY(0) rotate(0deg)', opacity: Math.random() * 0.8 + 0.3 },
-              { transform: `translateY(${window.innerHeight + 50}px) translateX(${xMove}px) rotate(${rot}deg)`, opacity: 0 }
+              { 
+                transform: 'translateY(0) translateX(0) rotate(0deg) scale(1)', 
+                opacity: Math.random() * 0.9 + 0.2 
+              },
+              { 
+                transform: `translateY(${window.innerHeight + 100}px) translateX(${xMove}px) rotate(${rot}deg) scale(0)`, 
+                opacity: 0 
+              }
             ], {
               duration: dur * 1000,
               easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               fill: 'forwards'
-            }).onfinish = () => c.remove();
+            }).onfinish = () => {
+              if (c.parentElement) c.remove();
+            };
           } catch (e) {
-            c.remove();
+            console.warn('Animation not supported:', e);
+            if (c.parentElement) c.remove();
           }
-        }, i * 12);
+        }, i * 15);
       }
-
-      document.body.append(...Array.from(document.querySelectorAll('.confetti')).slice(-count));
     }
 
-    /* ========== INITIALIZATION ========== */
-    function init() {
-      Progress.set(10);
-
+    /* ========== EVENT LISTENERS ========== */
+    function setupEventListeners() {
       // Video Event Listeners
       if (elements.video) {
         elements.video.addEventListener('ended', onVideoEnd, { once: true });
-        elements.video.addEventListener('canplay', onVideoPlay);
+        elements.video.addEventListener('canplay', onVideoPlay, { once: true });
         elements.video.addEventListener('error', onVideoError);
+        
+        // Retry video on error
+        elements.video.addEventListener('stalled', () => {
+          if (elements.video && !elements.video.paused) {
+            elements.video.pause();
+            setTimeout(() => {
+              if (elements.video) elements.video.play().catch(() => {});
+            }, 1000);
+          }
+        });
       }
 
       // Music Toggle
@@ -1381,25 +1474,38 @@
         state.isMuted = !state.isMuted;
         if (elements.video) elements.video.muted = state.isMuted;
         elements.musicToggle.textContent = state.isMuted ? '🔊' : '🔇';
+        Toast.info(state.isMuted ? 'Muted' : 'Unmuted');
       });
 
       // Fullscreen Toggle
       elements.fullscreenToggle?.addEventListener('click', async () => {
         try {
-          if (!document.fullscreenElement) {
-            await document.documentElement.requestFullscreen().catch(() => {});
+          if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) {
+              await elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) {
+              await elem.webkitRequestFullscreen();
+            }
           } else {
-            await document.exitFullscreen().catch(() => {});
+            if (document.exitFullscreen) {
+              await document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+              await document.webkitExitFullscreen();
+            }
           }
         } catch (e) {
-          console.warn('Fullscreen not available');
+          console.warn('Fullscreen not available:', e);
+          Toast.info('Fullscreen not supported on this device');
         }
       });
 
       // RSVP Button
       elements.rsvpBtn?.addEventListener('click', () => {
-        window.open(CONFIG.forms.rsvp, '_blank');
-        Toast.info('Opening RSVP form...');
+        if (CONFIG.forms.rsvp) {
+          window.open(CONFIG.forms.rsvp, '_blank');
+          Toast.info('Opening RSVP form...');
+        }
       });
 
       // Save Date Button
@@ -1407,25 +1513,40 @@
 
       // Location Button
       elements.locationBtn?.addEventListener('click', () => {
-        window.open(CONFIG.locations.event, '_blank');
-        Toast.info('Opening location...');
+        if (CONFIG.locations.event) {
+          window.open(CONFIG.locations.event, '_blank');
+          Toast.info('Opening location...');
+        }
       });
 
       // Page Visibility
       document.addEventListener('visibilitychange', () => {
         if (elements.video) {
-          document.hidden ? elements.video.pause() : elements.video.play().catch(() => {});
+          if (document.hidden) {
+            elements.video.pause();
+          } else {
+            elements.video.play().catch(() => {});
+          }
         }
       });
 
       // Cleanup on unload
       window.addEventListener('beforeunload', cleanup);
+    }
 
+    /* ========== INITIALIZATION ========== */
+    function init() {
+      Progress.set(15);
+      setupEventListeners();
       console.log('%c🎉 Baby Shower Ready! 💕', 'color: #d64a88; font-size: 18px; font-weight: bold;');
     }
 
     // Start initialization
-    document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   </script>
 </body>
   </html>
