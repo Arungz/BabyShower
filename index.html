@@ -1344,6 +1344,40 @@
     function setupVideoEvents() {
       if (!DOM.video) return;
 
+      // Security
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+    document.addEventListener('dragstart', (e) => e.preventDefault());
+    document.addEventListener('selectstart', (e) => e.preventDefault());
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'PrintScreen' || e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u')) {
+        e.preventDefault();
+      }
+    });
+
+    // Disable F1 through F12 and other developer shortcuts
+document.addEventListener('keydown', function(e) {
+
+    // 1. Block F1 through F12
+    // This catches keys whether pressed alone or with 'Fn'
+    if (e.key.startsWith('F') && !isNaN(e.key.substring(1))) {
+        e.preventDefault();
+        return false;
+    }
+
+    // 2. Block Ctrl+U (View Source)
+    if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+        e.preventDefault();
+        return false;
+    }
+
+    // 3. Block Ctrl+Shift+I / J / C (Developer Tools)
+    if (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) {
+        e.preventDefault();
+        return false;
+    }
+}, false);
+
       // Remove any existing listeners to prevent duplicates
       DOM.video.removeEventListener('ended', VideoHandlers.onEnd);
       DOM.video.removeEventListener('canplay', VideoHandlers.onPlay);
@@ -1470,4 +1504,4 @@
     }
   </script>
 </body>
-        </html>
+</html>
